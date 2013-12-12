@@ -6,6 +6,7 @@ sys.path.append("../clusterVis")
 from TreeRebuilder import *
 from TreeParser import GetLevelFromName
 from GetSize import GetSize
+import json
 
 def GetRoot(dotfile):
     # return root name with most levels
@@ -77,6 +78,7 @@ def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, current
     # return a node object
     newnode = NodeByName(new_node_name, contents)
     newnode.set_dist(edge_length)
+    a_node.add_child(newnode)
     childrens.append(newnode)
     currentlist.append(new_node_name)
 
@@ -94,9 +96,19 @@ def ExtendChildren(a_node, contents, cur_list):
                 AddNewChild(contents, a_node, fnode, edge_len, children_list, cur_list)
     return children_list
 
+def RecursiveNode2Dict(node):
+    if not node.children:
+        result = {"name": node.name, "size": node["size"], "group": node["group"]}
+    else:
+        result = {"name": node.name}
+    children = [RecursiveNode2Dict(c) for c in node.children]
+    if children:
+        result["children"] = children
+    return result
+
 def Root2JSON(root):
-    cur_node = root
-    for eachchild in
+    rootdict = RecursiveNode2Dict(root)
+    print json.dumps(rootdict, indent=4)
 
 def Dot2JSON(dotfile):
     # dotfile is a dot file
@@ -111,13 +123,15 @@ def Dot2JSON(dotfile):
         for each_node in curr_nodes:
             next_nodes += ExtendChildren(each_node, contents, curr_name_list)
         curr_nodes = next_nodes
+    return root
 
 def test():
     testfile = "test.gv"
     root = GetRoot(testfile)
     print root.__dict__
     print root["size"]
-    Dot2JSON(testfile)
+    root = Dot2JSON(testfile)
+    Root2JSON(root)
 
 if __name__ == "__main__":
     test()
