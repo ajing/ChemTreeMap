@@ -1,25 +1,980 @@
 {
-    "name": "CHEMBL446374_CHEMBL265171_CHEMBL428154",
-    "children": [
+  "name": "N1", 
+  "children": [
+    {
+      "name": "N2", 
+      "children": [
         {
-            "group": "blue",
-            "name": "CHEMBL446374",
-            "size": 1000.0
-        },
-        {
-            "name": "CHEMBL265171_CHEMBL428154",
-            "children": [
+          "name": "N3", 
+          "children": [
+            {
+              "name": "N4", 
+              "children": [
                 {
-                    "group": "blue",
-                    "name": "CHEMBL265171",
-                    "size": 2000.0000000000866
-                },
+                  "name": "N5", 
+                  "children": [
+                    {
+                      "name": "N6", 
+                      "children": [
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL85552", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "red", 
+                          "name": "ASD01150293", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N9", 
+                      "children": [
+                        {
+                          "name": "N10", 
+                          "children": [
+                            {
+                              "group": "red", 
+                              "name": "ASD01880409", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL105625", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N13", 
+                          "children": [
+                            {
+                              "group": "red", 
+                              "name": "CHEMBL556291", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL404", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
                 {
-                    "group": "blue",
-                    "name": "CHEMBL428154",
-                    "size": 2000.0000000000866
+                  "name": "N16", 
+                  "children": [
+                    {
+                      "group": "red", 
+                      "name": "ASD01240008", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "group": "red", 
+                      "name": "ASD01200099", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
                 }
-            ]
+              ]
+            }, 
+            {
+              "name": "N19", 
+              "children": [
+                {
+                  "name": "N20", 
+                  "children": [
+                    {
+                      "name": "N21", 
+                      "children": [
+                        {
+                          "group": "red", 
+                          "name": "ASD01880170", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "red", 
+                          "name": "ASD02390006", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N24", 
+                      "children": [
+                        {
+                          "name": "N25", 
+                          "children": [
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL419911", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL44348", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N28", 
+                          "children": [
+                            {
+                              "group": "red", 
+                              "name": "ASD01920005", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "red", 
+                              "name": "CHEMBL349261", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "N31", 
+                  "children": [
+                    {
+                      "name": "N32", 
+                      "children": [
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL333807", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "name": "N34", 
+                          "children": [
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL108157", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL1688604", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N37", 
+                      "children": [
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL49615", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL140320", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "N40", 
+          "children": [
+            {
+              "name": "N41", 
+              "children": [
+                {
+                  "name": "N42", 
+                  "children": [
+                    {
+                      "name": "N43", 
+                      "children": [
+                        {
+                          "name": "N44", 
+                          "children": [
+                            {
+                              "name": "N45", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL51248", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL46695", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL575639", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N49", 
+                          "children": [
+                            {
+                              "group": "red", 
+                              "name": "ASD01880254", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "red", 
+                              "name": "ASD03900019", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N52", 
+                      "children": [
+                        {
+                          "group": "red", 
+                          "name": "ASD00240007", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "name": "N54", 
+                          "children": [
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL195962", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "name": "N56", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL501599", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD00170320", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "N59", 
+                  "children": [
+                    {
+                      "name": "N60", 
+                      "children": [
+                        {
+                          "name": "N61", 
+                          "children": [
+                            {
+                              "name": "N62", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD02610009", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "CHEMBL1091392", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N65", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL31128", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "name": "N67", 
+                                  "children": [
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL121943", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL1160350", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N70", 
+                          "children": [
+                            {
+                              "name": "N71", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL569407", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD01880384", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N74", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "CHEMBL448", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD00170201", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N77", 
+                      "children": [
+                        {
+                          "name": "N78", 
+                          "children": [
+                            {
+                              "name": "N79", 
+                              "children": [
+                                {
+                                  "name": "N80", 
+                                  "children": [
+                                    {
+                                      "group": "red", 
+                                      "name": "ASD01140057", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "group": "red", 
+                                      "name": "ASD03540189", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "N83", 
+                                  "children": [
+                                    {
+                                      "group": "red", 
+                                      "name": "ASD03090603", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL431640", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N86", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL263546", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD03090370", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N89", 
+                          "children": [
+                            {
+                              "name": "N90", 
+                              "children": [
+                                {
+                                  "name": "N91", 
+                                  "children": [
+                                    {
+                                      "group": "red", 
+                                      "name": "ASD00170686", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL495", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD02560021", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N95", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD01880147", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL42604", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "N98", 
+              "children": [
+                {
+                  "name": "N99", 
+                  "children": [
+                    {
+                      "name": "N100", 
+                      "children": [
+                        {
+                          "name": "N101", 
+                          "children": [
+                            {
+                              "name": "N102", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL297411", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "name": "N104", 
+                                  "children": [
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL324867", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "group": "red", 
+                                      "name": "ASD02610032", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N107", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD01150895", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "CHEMBL595983", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N110", 
+                          "children": [
+                            {
+                              "group": "red", 
+                              "name": "ASD03090028", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "red", 
+                              "name": "ASD01120038", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N113", 
+                      "children": [
+                        {
+                          "name": "N114", 
+                          "children": [
+                            {
+                              "name": "N115", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL104196", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD03090633", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N118", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD01810144", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL404945", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N121", 
+                          "children": [
+                            {
+                              "name": "N122", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL139452", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL14830", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N125", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL315468", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL705", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "N128", 
+                  "children": [
+                    {
+                      "name": "N129", 
+                      "children": [
+                        {
+                          "name": "N130", 
+                          "children": [
+                            {
+                              "name": "N131", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD03240044", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "ASD01150859", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "group": "red", 
+                              "name": "ASD01010020", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N135", 
+                          "children": [
+                            {
+                              "name": "N136", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD02500017", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "red", 
+                                  "name": "CHEMBL164534", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL584588", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N140", 
+                      "children": [
+                        {
+                          "name": "N141", 
+                          "children": [
+                            {
+                              "group": "blue", 
+                              "name": "CHEMBL284360", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "group": "red", 
+                              "name": "ASD01810006", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "N144", 
+                          "children": [
+                            {
+                              "name": "N145", 
+                              "children": [
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL356442", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "group": "blue", 
+                                  "name": "CHEMBL306878", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "N148", 
+                              "children": [
+                                {
+                                  "group": "red", 
+                                  "name": "ASD01150653", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "name": "N150", 
+                                  "children": [
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL1204116", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "group": "blue", 
+                                      "name": "CHEMBL43480", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    }, 
+    {
+      "name": "N153", 
+      "children": [
+        {
+          "name": "N154", 
+          "children": [
+            {
+              "name": "N155", 
+              "children": [
+                {
+                  "group": "blue", 
+                  "name": "CHEMBL585920", 
+                  "size": 2000.0000000000866
+                }, 
+                {
+                  "group": "red", 
+                  "name": "ASD01180015", 
+                  "size": 2000.0000000000866
+                }
+              ]
+            }, 
+            {
+              "name": "N158", 
+              "children": [
+                {
+                  "name": "N159", 
+                  "children": [
+                    {
+                      "group": "red", 
+                      "name": "ASD02000001", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "group": "red", 
+                      "name": "ASD01910527", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
+                }, 
+                {
+                  "name": "N162", 
+                  "children": [
+                    {
+                      "name": "N163", 
+                      "children": [
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL41472", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "red", 
+                          "name": "ASD03540318", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N166", 
+                      "children": [
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL1673155", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL297853", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "N169", 
+          "children": [
+            {
+              "name": "N170", 
+              "children": [
+                {
+                  "name": "N171", 
+                  "children": [
+                    {
+                      "group": "red", 
+                      "name": "ASD01910773", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "group": "blue", 
+                      "name": "CHEMBL13122", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
+                }, 
+                {
+                  "name": "N174", 
+                  "children": [
+                    {
+                      "group": "red", 
+                      "name": "CHEMBL595965", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "group": "blue", 
+                      "name": "CHEMBL137906", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "N177", 
+              "children": [
+                {
+                  "name": "N178", 
+                  "children": [
+                    {
+                      "name": "N179", 
+                      "children": [
+                        {
+                          "group": "red", 
+                          "name": "ASD01150455", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL152050", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N182", 
+                      "children": [
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL96174", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL6959", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "N185", 
+                  "children": [
+                    {
+                      "name": "N186", 
+                      "children": [
+                        {
+                          "group": "red", 
+                          "name": "ASD01100061", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL552680", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "N189", 
+                      "children": [
+                        {
+                          "group": "red", 
+                          "name": "ASD01860002", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "group": "blue", 
+                          "name": "CHEMBL485286", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "name": "N192", 
+      "children": [
+        {
+          "group": "red", 
+          "name": "ASD01150818", 
+          "size": 2000.0000000000866
+        }, 
+        {
+          "name": "N194", 
+          "children": [
+            {
+              "group": "red", 
+              "name": "ASD03740007", 
+              "size": 2000.0000000000866
+            }, 
+            {
+              "group": "blue", 
+              "name": "CHEMBL413266", 
+              "size": 2000.0000000000866
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

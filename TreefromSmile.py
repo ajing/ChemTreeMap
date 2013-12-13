@@ -52,7 +52,7 @@ def Convert2NJmoldict(moldict):
     return newdict
 
 def TreefromSmile(infile):
-    newfile = SamplingLigandFile(infile, 300, 300)
+    newfile = SamplingLigandFile(infile, 50, 50)
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
