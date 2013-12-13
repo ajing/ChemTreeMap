@@ -12,18 +12,25 @@ import random
 
 def SamplingLigandFile(infile, num_allo, num_comp):
     # return new ligand filename
-    bindingtypes = ["Allosteric", "Competitive"]
+    newfile  = infile + "_sampled"
+    newobj   = open(newfile, "w")
+    bindingtypes = ["allosteric", "competitive"]
     allolist     = []
     complist     = []
+    # header flag
+    flag         = 1
     for line in open(infile):
+        if flag:
+            header = line
+            newobj.write(header)
+            flag = 0
+            continue
         if bindingtypes[0] in line:
             allolist.append(line)
         elif bindingtypes[1] in line:
             complist.append(line)
     new_allo     = random.sample(allolist, num_allo)
     new_comp     = random.sample(complist, num_allo)
-    newfile  = infile + "_sampled"
-    newobj   = open(newfile, "w")
     for each in new_allo + new_comp:
         newobj.write(each)
     newobj.close()
@@ -40,3 +47,13 @@ def TreefromSmile(infile):
     # write to JSON file
     root = Dot2JSON(dotfile)
     Root2JSON(root)
+
+def test():
+    samplefile = "Data/ligand_5_7_ppilot.txt"
+    # test for Sampling
+    #SamplingLigandFile(samplefile, 100, 100)
+    # test for TreefromSmile
+    TreefromSmile(samplefile)
+
+if __name__ == "__main__":
+    test()
