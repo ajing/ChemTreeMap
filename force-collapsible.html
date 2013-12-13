@@ -45,7 +45,7 @@ var w = 800,
 
 var force = d3.layout.force()
     .on("tick", tick)
-    .charge(function(d) { return d._children ? -d.size / 100 : -30; })
+    .charge(function(d) { return d._children ? -d.size / 100 : -50; })
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
     .size([w, h - 160]);
 

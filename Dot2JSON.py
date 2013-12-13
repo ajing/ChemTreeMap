@@ -99,19 +99,37 @@ def ExtendChildren(a_node, contents, cur_list):
                 AddNewChild(contents, a_node, fnode, edge_len, children_list, cur_list)
     return children_list
 
+def static_var(varname, value):
+    def decorate(func):
+        setattr(func, varname, value)
+        return func
+    return decorate
+
+@static_var("namedict", dict())
+@static_var("counter", 0)
+def SimpleName(name):
+    SimpleName.counter += 1
+    if not "_" in name:
+        return name
+    if not name in SimpleName.namedict:
+        SimpleName.namedict[name] = SimpleName.counter
+        return "N" + str(SimpleName.counter)
+    return SimpleName.namedict[name]
+
 def RecursiveNode2Dict(node):
     if not node.children:
-        result = {"name": node.name, "size": node["size"], "group": node["group"]}
+        result = {"name": SimpleName(node.name), "size": node["size"], "group": node["group"]}
     else:
-        result = {"name": node.name}
+        result = {"name": SimpleName(node.name)}
     children = [RecursiveNode2Dict(c) for c in node.children]
     if children:
         result["children"] = children
     return result
 
-def Root2JSON(root):
+def Root2JSON(root, filename):
+    fileobj  = open(filename, "w")
     rootdict = RecursiveNode2Dict(root)
-    print json.dumps(rootdict, indent=4)
+    fileobj.write(json.dumps(rootdict, indent=2))
 
 def Dot2JSON(dotfile):
     # dotfile is a dot file
@@ -134,10 +152,10 @@ def test():
     #print root.__dict__
     #print root["size"]
     root = Dot2JSON(testfile)
-    Root2JSON(root)
+    Root2JSON(root, "test.json")
 
 if __name__ == "__main__":
     #test()
     infile = sys.argv[1]
     root = Dot2JSON(infile)
-    Root2JSON(root)
+    Root2JSON(root, "test.json")

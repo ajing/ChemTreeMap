@@ -5,7 +5,7 @@
 import sys
 sys.path.append("../clusterVis")
 from ligandGraphall import NewLigandFile, parseLigandFile, similarityMatrix, getSimilarity
-from TreeConstruction import nj
+from TreeConstruction import nj, DistanceMatrix
 from CreateGraph import MoleculeDictionary
 from Dot2JSON import Dot2JSON, Root2JSON
 import random
@@ -36,17 +36,33 @@ def SamplingLigandFile(infile, num_allo, num_comp):
     newobj.close()
     return newfile
 
+def Convert2NJmoldict(moldict):
+    # convert from MoleculeDictionary from CreateGraph.py to what can work in TreeConstruction nj
+    newdict = dict()
+    for eachkey in moldict:
+        if "size" in moldict[eachkey]:
+            ligandname = moldict[eachkey]["ligandid"]
+            ligandtype = moldict[eachkey]["typeofbinding"]
+            clustersize = moldict[eachkey]["size"]
+            newdict[ligandname] = [clustersize, ligandtype]
+        else:
+            ligandname = moldict[eachkey]["ligandid"]
+            ligandtype = moldict[eachkey]["typeofbinding"]
+            newdict[ligandname] = [1, ligandtype]
+    return newdict
+
 def TreefromSmile(infile):
     newfile = SamplingLigandFile(infile, 300, 300)
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
-    moldict  = MoleculeDictionary(newfile)
+    dmatrix  = DistanceMatrix(liganddict.keys(), smatrix)
+    moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
     # so write dot language to file
-    dotfile  = nj(smatrx, moldict, True)
+    dotfile  = nj(dmatrix, moldict, True)
     # write to JSON file
     root = Dot2JSON(dotfile)
-    Root2JSON(root)
+    Root2JSON(root, "test.json")
 
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
