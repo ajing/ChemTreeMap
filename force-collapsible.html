@@ -23,7 +23,7 @@ line.link {
   <div id="main">
     <table>
       <tr>
-        <td><div class="molecule"/></td>
+          <td><div class="molecule"><img id="molimage" src=""></div></td>
         <td>
           <div class="intgraph"/>
         </td>
@@ -31,7 +31,7 @@ line.link {
     </table>
   </div>
     <h2>
-      Flare code size<br>
+      Molecular Tree<br>
       force-directed graph
     </h2>
     <script type="text/javascript" src="d3/d3.v3.js"></script>
@@ -145,14 +145,15 @@ function click(d) {
 function mouseover(d){
   if (!d.children){
     var image_src = "Image/" + d.name;
-    d3.select(".molecule").append("img")
+    d3.select("#molimage")
       .attr("src", image_src);
   }
 }
 
 function mouseout(){
 //   d3.select("img").transition().duration(500).remove();
-   d3.select("img").remove();
+   d3.select("#molimage")
+     .attr("src", "");
 }
 
 // Returns a list of all nodes under the root.

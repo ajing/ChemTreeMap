@@ -73,7 +73,7 @@ class Node(dict):
 
 def NodeByName(name, contents):
     for eachline in contents:
-        if NodeNameExist(eachline) and not IsEdge(eachline) and name in eachline:
+        if not IsEdge(eachline) and name in eachline:
             name, size, group = GetNodeProperty(eachline)
             return Node(name, size = size, group = group)
 
@@ -137,4 +137,7 @@ def test():
     Root2JSON(root)
 
 if __name__ == "__main__":
-    test()
+    #test()
+    infile = sys.argv[1]
+    root = Dot2JSON(infile)
+    Root2JSON(root)
