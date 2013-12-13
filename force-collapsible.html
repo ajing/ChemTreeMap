@@ -20,17 +20,25 @@ line.link {
     </style>
   </head>
   <body>
+  <div id="main">
+    <table>
+      <tr>
+        <td><div class="molecule"/></td>
+        <td>
+          <div class="intgraph"/>
+        </td>
+      </tr>
+    </table>
+  </div>
     <h2>
       Flare code size<br>
       force-directed graph
     </h2>
-    <script type="text/javascript" src="d3/d3.js"></script>
-    <script type="text/javascript" src="d3/d3.geom.js"></script>
-    <script type="text/javascript" src="d3/d3.layout.js"></script>
+    <script type="text/javascript" src="d3/d3.v3.js"></script>
     <script type="text/javascript">
 
-var w = 1280,
-    h = 800,
+var w = 800,
+    h = 640,
     node,
     link,
     root;
@@ -41,9 +49,10 @@ var force = d3.layout.force()
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
     .size([w, h - 160]);
 
-var vis = d3.select("body").append("svg:svg")
+var vis = d3.select(".intgraph").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
+
 
 d3.json("test.json", function(json) {
   root = json;
@@ -78,7 +87,7 @@ function update() {
   // Exit any old links.
   link.exit().remove();
 
-  // Update the nodes…
+  // Update the nodes
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color);
@@ -94,10 +103,13 @@ function update() {
       .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
       .on("click", click)
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
       .call(force.drag);
 
   // Exit any old nodes.
   node.exit().remove();
+
 }
 
 function tick() {
@@ -112,7 +124,8 @@ function tick() {
 
 // Color leaf nodes orange, and packages white or blue.
 function color(d) {
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
+//  return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
+  return d._children ? "#3182bd" : d.children ? "#c6dbef" : d.group;
 }
 
 // Toggle children on click.
@@ -125,6 +138,21 @@ function click(d) {
     d._children = null;
   }
   update();
+}
+
+// Mouse over display
+// This is added by me
+function mouseover(d){
+  if (!d.children){
+    var image_src = "Image/" + d.name;
+    d3.select(".molecule").append("img")
+      .attr("src", image_src);
+  }
+}
+
+function mouseout(){
+//   d3.select("img").transition().duration(500).remove();
+   d3.select("img").remove();
 }
 
 // Returns a list of all nodes under the root.

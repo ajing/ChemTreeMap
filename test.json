@@ -1,12 +1,10 @@
-{'dist': 0, 'name': 'CHEMBL446374_CHEMBL265171_CHEMBL428154', 'parent': None, 'children': []}
-1.0
 {
     "name": "CHEMBL446374_CHEMBL265171_CHEMBL428154", 
     "children": [
         {
             "group": "blue", 
             "name": "CHEMBL446374", 
-            "size": 1.0
+            "size": 1000.0
         }, 
         {
             "name": "CHEMBL265171_CHEMBL428154", 
@@ -14,12 +12,12 @@
                 {
                     "group": "blue", 
                     "name": "CHEMBL265171", 
-                    "size": 2.0000000000000866
+                    "size": 2000.0000000000866
                 }, 
                 {
                     "group": "blue", 
                     "name": "CHEMBL428154", 
-                    "size": 2.0000000000000866
+                    "size": 2000.0000000000866
                 }
             ]
         }

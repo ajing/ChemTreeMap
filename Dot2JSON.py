@@ -19,9 +19,12 @@ def GetRoot(dotfile):
             if nodelevel > maxlevel:
                 maxnode  = eachline
                 maxlevel = nodelevel
-    name, width, group = GetNodeProperty(maxnode)
-    size = GetSize(width)
+    name, size, group = GetNodeProperty(maxnode)
     return Node(name, size = size, group = group)
+
+def SizeScale(size):
+    # size is a string
+    return 1000*float(size)
 
 def GetNodeProperty(line):
     name, attr = NameAndAttribute(line)
@@ -29,7 +32,8 @@ def GetNodeProperty(line):
     attr = CleanAttribute(attr)
     width = GetAttributeValue("width", attr)
     group = GetAttributeValue("color", attr)
-    return name, width, group
+    size = SizeScale(GetSize(width))
+    return name, size, group
 
 class Node(dict):
     # class for node of tree, each node can only have one parent
@@ -70,8 +74,7 @@ class Node(dict):
 def NodeByName(name, contents):
     for eachline in contents:
         if NodeNameExist(eachline) and not IsEdge(eachline) and name in eachline:
-            name, width, group = GetNodeProperty(eachline)
-            size = GetSize(width)
+            name, size, group = GetNodeProperty(eachline)
             return Node(name, size = size, group = group)
 
 def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, currentlist):
@@ -128,8 +131,8 @@ def Dot2JSON(dotfile):
 def test():
     testfile = "test.gv"
     root = GetRoot(testfile)
-    print root.__dict__
-    print root["size"]
+    #print root.__dict__
+    #print root["size"]
     root = Dot2JSON(testfile)
     Root2JSON(root)
 
