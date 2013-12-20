@@ -118,9 +118,9 @@ def SimpleName(name):
 
 def RecursiveNode2Dict(node):
     if not node.children:
-        result = {"name": SimpleName(node.name), "size": node["size"], "group": node["group"]}
+        result = {"name": SimpleName(node.name), "size": node["size"], "group": node["group"], "dist": float(node.dist)}
     else:
-        result = {"name": SimpleName(node.name)}
+        result = {"name": SimpleName(node.name), "dist": float(node.dist)}
     children = [RecursiveNode2Dict(c) for c in node.children]
     if children:
         result["children"] = children

@@ -5,6 +5,7 @@
 import sys
 sys.path.append("../clusterVis")
 from ligandGraphall import NewLigandFile, parseLigandFile, similarityMatrix, getSimilarity
+from ligandGraphnams import getSimilarityNAMS
 from TreeConstruction import nj, DistanceMatrix
 from CreateGraph import MoleculeDictionary
 from Dot2JSON import Dot2JSON, Root2JSON
@@ -56,7 +57,7 @@ def TreefromSmile(infile):
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
-    dmatrix  = DistanceMatrix(liganddict.keys(), smatrix)
+    dmatrix  = DistanceMatrix(liganddict.keys(), 1 - smatrix)
     moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
     # so write dot language to file
     dotfile  = nj(dmatrix, moldict, True)
