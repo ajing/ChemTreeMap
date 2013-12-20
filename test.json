@@ -1,187 +1,118 @@
 {
+  "dist": 0.0, 
   "name": "N1", 
   "children": [
     {
+      "dist": 0.00275328722223, 
       "name": "N2", 
       "children": [
         {
+          "dist": 0.00285450626609, 
           "name": "N3", 
           "children": [
             {
+              "dist": 0.0121520192066, 
               "name": "N4", 
               "children": [
                 {
+                  "dist": 0.0289994416616, 
                   "name": "N5", 
                   "children": [
                     {
-                      "name": "N6", 
-                      "children": [
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL85552", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "red", 
-                          "name": "ASD01150293", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
+                      "dist": 0.372981463234, 
+                      "group": "blue", 
+                      "name": "CHEMBL196373", 
+                      "size": 2000.0000000000866
                     }, 
                     {
-                      "name": "N9", 
+                      "dist": 0.0216896218045, 
+                      "name": "N7", 
                       "children": [
                         {
-                          "name": "N10", 
-                          "children": [
-                            {
-                              "group": "red", 
-                              "name": "ASD01880409", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL105625", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
+                          "dist": 0.365611632809, 
+                          "group": "blue", 
+                          "name": "CHEMBL196374", 
+                          "size": 2000.0000000000866
                         }, 
                         {
-                          "name": "N13", 
-                          "children": [
-                            {
-                              "group": "red", 
-                              "name": "CHEMBL556291", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL404", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
+                          "dist": 0.393512454782, 
+                          "group": "blue", 
+                          "name": "CHEMBL127310", 
+                          "size": 2000.0000000000866
                         }
                       ]
                     }
                   ]
                 }, 
                 {
-                  "name": "N16", 
+                  "dist": 0.00207353922221, 
+                  "name": "N10", 
                   "children": [
                     {
-                      "group": "red", 
-                      "name": "ASD01240008", 
-                      "size": 2000.0000000000866
+                      "dist": 0.00340069708389, 
+                      "name": "N11", 
+                      "children": [
+                        {
+                          "dist": 0.416953051909, 
+                          "group": "red", 
+                          "name": "ASD01150338", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "dist": 0.404034602412, 
+                          "group": "red", 
+                          "name": "ASD01410049", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
                     }, 
                     {
-                      "group": "red", 
-                      "name": "ASD01200099", 
-                      "size": 2000.0000000000866
+                      "dist": 0.00587033425291, 
+                      "name": "N14", 
+                      "children": [
+                        {
+                          "dist": 0.416142581691, 
+                          "group": "blue", 
+                          "name": "CHEMBL94750", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "dist": 0.445243556923, 
+                          "group": "red", 
+                          "name": "ASD01150936", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
                     }
                   ]
                 }
               ]
             }, 
             {
-              "name": "N19", 
+              "dist": 0.0110530856903, 
+              "name": "N17", 
               "children": [
                 {
-                  "name": "N20", 
-                  "children": [
-                    {
-                      "name": "N21", 
-                      "children": [
-                        {
-                          "group": "red", 
-                          "name": "ASD01880170", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "red", 
-                          "name": "ASD02390006", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }, 
-                    {
-                      "name": "N24", 
-                      "children": [
-                        {
-                          "name": "N25", 
-                          "children": [
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL419911", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL44348", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
-                        }, 
-                        {
-                          "name": "N28", 
-                          "children": [
-                            {
-                              "group": "red", 
-                              "name": "ASD01920005", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "red", 
-                              "name": "CHEMBL349261", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                  "dist": 0.434449833274, 
+                  "group": "red", 
+                  "name": "CHEMBL1209666", 
+                  "size": 2000.0000000000866
                 }, 
                 {
-                  "name": "N31", 
+                  "dist": 0.029031886735, 
+                  "name": "N19", 
                   "children": [
                     {
-                      "name": "N32", 
-                      "children": [
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL333807", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "name": "N34", 
-                          "children": [
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL108157", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL1688604", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
-                        }
-                      ]
+                      "dist": 0.383941487137, 
+                      "group": "red", 
+                      "name": "CHEMBL1682813", 
+                      "size": 2000.0000000000866
                     }, 
                     {
-                      "name": "N37", 
-                      "children": [
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL49615", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL140320", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
+                      "dist": 0.404676399042, 
+                      "group": "red", 
+                      "name": "ASD01910667", 
+                      "size": 2000.0000000000866
                     }
                   ]
                 }
@@ -190,140 +121,260 @@
           ]
         }, 
         {
-          "name": "N40", 
+          "dist": 0.0028319091019, 
+          "name": "N22", 
           "children": [
             {
-              "name": "N41", 
+              "dist": 0.00285459903337, 
+              "name": "N23", 
               "children": [
                 {
-                  "name": "N42", 
+                  "dist": 0.436583392798, 
+                  "group": "red", 
+                  "name": "ASD01810005", 
+                  "size": 2000.0000000000866
+                }, 
+                {
+                  "dist": 0.0142337386892, 
+                  "name": "N25", 
                   "children": [
                     {
-                      "name": "N43", 
-                      "children": [
-                        {
-                          "name": "N44", 
-                          "children": [
-                            {
-                              "name": "N45", 
-                              "children": [
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL51248", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL46695", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }, 
-                            {
-                              "group": "blue", 
-                              "name": "CHEMBL575639", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
-                        }, 
-                        {
-                          "name": "N49", 
-                          "children": [
-                            {
-                              "group": "red", 
-                              "name": "ASD01880254", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "red", 
-                              "name": "ASD03900019", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
-                        }
-                      ]
+                      "dist": 0.4016155393, 
+                      "group": "red", 
+                      "name": "CHEMBL1631467", 
+                      "size": 2000.0000000000866
                     }, 
                     {
-                      "name": "N52", 
+                      "dist": 0.0670333359983, 
+                      "name": "N27", 
                       "children": [
                         {
+                          "dist": 0.349131418409, 
                           "group": "red", 
-                          "name": "ASD00240007", 
+                          "name": "ASD01911136", 
                           "size": 2000.0000000000866
                         }, 
                         {
-                          "name": "N54", 
+                          "dist": 0.0243544601078, 
+                          "name": "N29", 
                           "children": [
                             {
-                              "group": "blue", 
-                              "name": "CHEMBL195962", 
+                              "dist": 0.312026942908, 
+                              "group": "red", 
+                              "name": "ASD01910524", 
                               "size": 2000.0000000000866
                             }, 
                             {
-                              "name": "N56", 
-                              "children": [
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL501599", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "ASD00170320", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
+                              "dist": 0.301306390425, 
+                              "group": "red", 
+                              "name": "ASD01910279", 
+                              "size": 2000.0000000000866
                             }
                           ]
                         }
                       ]
                     }
                   ]
-                }, 
+                }
+              ]
+            }, 
+            {
+              "dist": 0.00460022462874, 
+              "name": "N32", 
+              "children": [
                 {
-                  "name": "N59", 
+                  "dist": 0.00210362065811, 
+                  "name": "N33", 
                   "children": [
                     {
-                      "name": "N60", 
+                      "dist": 0.022126989329, 
+                      "name": "N34", 
                       "children": [
                         {
-                          "name": "N61", 
+                          "dist": 0.403929488064, 
+                          "group": "blue", 
+                          "name": "CHEMBL1641807", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "dist": 0.0073434786121, 
+                          "name": "N36", 
                           "children": [
                             {
-                              "name": "N62", 
+                              "dist": 0.399577256994, 
+                              "group": "blue", 
+                              "name": "CHEMBL515472", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "dist": 0.0249230706605, 
+                              "name": "N38", 
                               "children": [
                                 {
-                                  "group": "red", 
-                                  "name": "ASD02610009", 
+                                  "dist": 0.394226485903, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL541252", 
                                   "size": 2000.0000000000866
                                 }, 
                                 {
-                                  "group": "red", 
-                                  "name": "CHEMBL1091392", 
+                                  "dist": 0.376415715931, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL1277956", 
                                   "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "dist": 0.00240296747091, 
+                      "name": "N41", 
+                      "children": [
+                        {
+                          "dist": 0.00593621023367, 
+                          "name": "N42", 
+                          "children": [
+                            {
+                              "dist": 0.0054043053663, 
+                              "name": "N43", 
+                              "children": [
+                                {
+                                  "dist": 0.422269173378, 
+                                  "group": "red", 
+                                  "name": "ASD01940031", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "dist": 0.0161491328543, 
+                                  "name": "N45", 
+                                  "children": [
+                                    {
+                                      "dist": 0.0215068653825, 
+                                      "name": "N46", 
+                                      "children": [
+                                        {
+                                          "dist": 0.377889815425, 
+                                          "group": "red", 
+                                          "name": "CHEMBL490310", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.034363561945, 
+                                          "name": "N48", 
+                                          "children": [
+                                            {
+                                              "dist": 0.343150169887, 
+                                              "group": "red", 
+                                              "name": "ASD01120185", 
+                                              "size": 2000.0000000000866
+                                            }, 
+                                            {
+                                              "dist": 0.348124997898, 
+                                              "group": "red", 
+                                              "name": "ASD01120220", 
+                                              "size": 2000.0000000000866
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "dist": 0.0195061632761, 
+                                      "name": "N51", 
+                                      "children": [
+                                        {
+                                          "dist": 0.389544102671, 
+                                          "group": "red", 
+                                          "name": "ASD00190035", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.380240069991, 
+                                          "group": "red", 
+                                          "name": "CHEMBL1256404", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }, 
                             {
-                              "name": "N65", 
+                              "dist": 0.00827342690675, 
+                              "name": "N54", 
                               "children": [
                                 {
-                                  "group": "blue", 
-                                  "name": "CHEMBL31128", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "name": "N67", 
+                                  "dist": 0.0918120884644, 
+                                  "name": "N55", 
                                   "children": [
                                     {
+                                      "dist": 0.339750923057, 
                                       "group": "blue", 
-                                      "name": "CHEMBL121943", 
+                                      "name": "CHEMBL268856", 
                                       "size": 2000.0000000000866
                                     }, 
                                     {
+                                      "dist": 0.339148159512, 
                                       "group": "blue", 
-                                      "name": "CHEMBL1160350", 
+                                      "name": "CHEMBL575421", 
                                       "size": 2000.0000000000866
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "dist": 0.0162032670624, 
+                                  "name": "N58", 
+                                  "children": [
+                                    {
+                                      "dist": 0.0247132463995, 
+                                      "name": "N59", 
+                                      "children": [
+                                        {
+                                          "dist": 0.369365197993, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL416088", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.0249426344295, 
+                                          "name": "N61", 
+                                          "children": [
+                                            {
+                                              "dist": 0.33103989351, 
+                                              "group": "red", 
+                                              "name": "ASD00170404", 
+                                              "size": 2000.0000000000866
+                                            }, 
+                                            {
+                                              "dist": 0.335626773157, 
+                                              "group": "red", 
+                                              "name": "ASD00170207", 
+                                              "size": 2000.0000000000866
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "dist": 0.0179232037481, 
+                                      "name": "N64", 
+                                      "children": [
+                                        {
+                                          "dist": 0.374721328956, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL1164374", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.381003861883, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL672", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
                                     }
                                   ]
                                 }
@@ -332,140 +383,90 @@
                           ]
                         }, 
                         {
-                          "name": "N70", 
+                          "dist": 0.00448763559728, 
+                          "name": "N67", 
                           "children": [
                             {
+                              "dist": 0.0173237390573, 
+                              "name": "N68", 
+                              "children": [
+                                {
+                                  "dist": 0.404313591654, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL565693", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "dist": 0.407280611244, 
+                                  "group": "red", 
+                                  "name": "ASD01880074", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "dist": 0.0097578682962, 
                               "name": "N71", 
                               "children": [
                                 {
-                                  "group": "blue", 
-                                  "name": "CHEMBL569407", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "ASD01880384", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }, 
-                            {
-                              "name": "N74", 
-                              "children": [
-                                {
-                                  "group": "red", 
-                                  "name": "CHEMBL448", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "ASD00170201", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }, 
-                    {
-                      "name": "N77", 
-                      "children": [
-                        {
-                          "name": "N78", 
-                          "children": [
-                            {
-                              "name": "N79", 
-                              "children": [
-                                {
-                                  "name": "N80", 
+                                  "dist": 0.0138309760253, 
+                                  "name": "N72", 
                                   "children": [
                                     {
+                                      "dist": 0.384122654354, 
                                       "group": "red", 
-                                      "name": "ASD01140057", 
+                                      "name": "CHEMBL1672248", 
                                       "size": 2000.0000000000866
                                     }, 
                                     {
+                                      "dist": 0.378072467597, 
                                       "group": "red", 
-                                      "name": "ASD03540189", 
+                                      "name": "ASD01910841", 
                                       "size": 2000.0000000000866
                                     }
                                   ]
                                 }, 
                                 {
-                                  "name": "N83", 
+                                  "dist": 0.0592772909796, 
+                                  "name": "N75", 
                                   "children": [
                                     {
-                                      "group": "red", 
-                                      "name": "ASD03090603", 
-                                      "size": 2000.0000000000866
+                                      "dist": 0.0235902331425, 
+                                      "name": "N76", 
+                                      "children": [
+                                        {
+                                          "dist": 0.320858924192, 
+                                          "group": "red", 
+                                          "name": "CHEMBL1093238", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.311085520253, 
+                                          "group": "red", 
+                                          "name": "ASD01810210", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
                                     }, 
                                     {
-                                      "group": "blue", 
-                                      "name": "CHEMBL431640", 
-                                      "size": 2000.0000000000866
+                                      "dist": 0.034228531271, 
+                                      "name": "N79", 
+                                      "children": [
+                                        {
+                                          "dist": 0.302325752952, 
+                                          "group": "red", 
+                                          "name": "ASD01810167", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.292501833255, 
+                                          "group": "red", 
+                                          "name": "ASD01810131", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
                                     }
                                   ]
-                                }
-                              ]
-                            }, 
-                            {
-                              "name": "N86", 
-                              "children": [
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL263546", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "ASD03090370", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }
-                          ]
-                        }, 
-                        {
-                          "name": "N89", 
-                          "children": [
-                            {
-                              "name": "N90", 
-                              "children": [
-                                {
-                                  "name": "N91", 
-                                  "children": [
-                                    {
-                                      "group": "red", 
-                                      "name": "ASD00170686", 
-                                      "size": 2000.0000000000866
-                                    }, 
-                                    {
-                                      "group": "blue", 
-                                      "name": "CHEMBL495", 
-                                      "size": 2000.0000000000866
-                                    }
-                                  ]
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "ASD02560021", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }, 
-                            {
-                              "name": "N95", 
-                              "children": [
-                                {
-                                  "group": "red", 
-                                  "name": "ASD01880147", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL42604", 
-                                  "size": 2000.0000000000866
                                 }
                               ]
                             }
@@ -474,112 +475,249 @@
                       ]
                     }
                   ]
-                }
-              ]
-            }, 
-            {
-              "name": "N98", 
-              "children": [
+                }, 
                 {
-                  "name": "N99", 
+                  "dist": 0.00950029828405, 
+                  "name": "N82", 
                   "children": [
                     {
-                      "name": "N100", 
+                      "dist": 0.00321687319151, 
+                      "name": "N83", 
                       "children": [
                         {
-                          "name": "N101", 
+                          "dist": 0.0223989120859, 
+                          "name": "N84", 
                           "children": [
                             {
-                              "name": "N102", 
+                              "dist": 0.184538582117, 
+                              "name": "N85", 
                               "children": [
                                 {
+                                  "dist": 0.231979942072, 
                                   "group": "blue", 
-                                  "name": "CHEMBL297411", 
+                                  "name": "CHEMBL1202203", 
                                   "size": 2000.0000000000866
                                 }, 
                                 {
-                                  "name": "N104", 
+                                  "dist": 0.20946149937, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL1202205", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "dist": 0.080795077533, 
+                              "name": "N88", 
+                              "children": [
+                                {
+                                  "dist": 0.311827727966, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL419908", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "dist": 0.0264995660429, 
+                                  "name": "N90", 
                                   "children": [
                                     {
+                                      "dist": 0.279659099686, 
                                       "group": "blue", 
-                                      "name": "CHEMBL324867", 
+                                      "name": "CHEMBL107678", 
                                       "size": 2000.0000000000866
                                     }, 
                                     {
+                                      "dist": 0.017656101547, 
+                                      "name": "N92", 
+                                      "children": [
+                                        {
+                                          "dist": 0.0655012499099, 
+                                          "name": "N93", 
+                                          "children": [
+                                            {
+                                              "dist": 0.20590910683, 
+                                              "group": "blue", 
+                                              "name": "CHEMBL322326", 
+                                              "size": 2000.0000000000866
+                                            }, 
+                                            {
+                                              "dist": 0.207314033666, 
+                                              "group": "blue", 
+                                              "name": "CHEMBL108157", 
+                                              "size": 2000.0000000000866
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "dist": 0.274520176475, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL106598", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "dist": 0.00556857163115, 
+                          "name": "N97", 
+                          "children": [
+                            {
+                              "dist": 0.0239725455413, 
+                              "name": "N98", 
+                              "children": [
+                                {
+                                  "dist": 0.0117252161725, 
+                                  "name": "N99", 
+                                  "children": [
+                                    {
+                                      "dist": 0.0875141537884, 
+                                      "name": "N100", 
+                                      "children": [
+                                        {
+                                          "dist": 0.287972242704, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL434629", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.289263529654, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL28032", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "dist": 0.0188319613782, 
+                                      "name": "N103", 
+                                      "children": [
+                                        {
+                                          "dist": 0.368034477597, 
+                                          "group": "red", 
+                                          "name": "ASD00170144", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.34863218907, 
+                                          "group": "red", 
+                                          "name": "ASD00170642", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "dist": 0.0877360561608, 
+                                  "name": "N106", 
+                                  "children": [
+                                    {
+                                      "dist": 0.307715424752, 
                                       "group": "red", 
-                                      "name": "ASD02610032", 
+                                      "name": "ASD03240151", 
                                       "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "dist": 0.0279665916811, 
+                                      "name": "N108", 
+                                      "children": [
+                                        {
+                                          "dist": 0.0914806752803, 
+                                          "name": "N109", 
+                                          "children": [
+                                            {
+                                              "dist": 0.163943320853, 
+                                              "group": "red", 
+                                              "name": "ASD03240104", 
+                                              "size": 2000.0000000000866
+                                            }, 
+                                            {
+                                              "dist": 0.179430173123, 
+                                              "group": "red", 
+                                              "name": "ASD03240105", 
+                                              "size": 2000.0000000000866
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "dist": 0.281114139718, 
+                                          "group": "red", 
+                                          "name": "ASD03240060", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
                                     }
                                   ]
                                 }
                               ]
                             }, 
                             {
-                              "name": "N107", 
+                              "dist": 0.0240091167006, 
+                              "name": "N113", 
                               "children": [
                                 {
+                                  "dist": 0.383693320006, 
                                   "group": "red", 
-                                  "name": "ASD01150895", 
+                                  "name": "ASD01150149", 
                                   "size": 2000.0000000000866
                                 }, 
                                 {
-                                  "group": "red", 
-                                  "name": "CHEMBL595983", 
-                                  "size": 2000.0000000000866
+                                  "dist": 0.0262688012061, 
+                                  "name": "N115", 
+                                  "children": [
+                                    {
+                                      "dist": 0.349153783403, 
+                                      "group": "red", 
+                                      "name": "ASD03540237", 
+                                      "size": 2000.0000000000866
+                                    }, 
+                                    {
+                                      "dist": 0.34417954993, 
+                                      "group": "red", 
+                                      "name": "ASD03540510", 
+                                      "size": 2000.0000000000866
+                                    }
+                                  ]
                                 }
                               ]
-                            }
-                          ]
-                        }, 
-                        {
-                          "name": "N110", 
-                          "children": [
-                            {
-                              "group": "red", 
-                              "name": "ASD03090028", 
-                              "size": 2000.0000000000866
-                            }, 
-                            {
-                              "group": "red", 
-                              "name": "ASD01120038", 
-                              "size": 2000.0000000000866
                             }
                           ]
                         }
                       ]
                     }, 
                     {
-                      "name": "N113", 
+                      "dist": 0.0105004522824, 
+                      "name": "N118", 
                       "children": [
                         {
-                          "name": "N114", 
+                          "dist": 0.020034750793, 
+                          "name": "N119", 
                           "children": [
                             {
-                              "name": "N115", 
-                              "children": [
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL104196", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "ASD03090633", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
+                              "dist": 0.38445919766, 
+                              "group": "red", 
+                              "name": "ASD01410002", 
+                              "size": 2000.0000000000866
                             }, 
                             {
-                              "name": "N118", 
+                              "dist": 0.00954579102596, 
+                              "name": "N121", 
                               "children": [
                                 {
-                                  "group": "red", 
-                                  "name": "ASD01810144", 
+                                  "dist": 0.394698743018, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL519053", 
                                   "size": 2000.0000000000866
                                 }, 
                                 {
+                                  "dist": 0.379769342088, 
                                   "group": "blue", 
-                                  "name": "CHEMBL404945", 
+                                  "name": "CHEMBL140200", 
                                   "size": 2000.0000000000866
                                 }
                               ]
@@ -587,157 +725,321 @@
                           ]
                         }, 
                         {
-                          "name": "N121", 
+                          "dist": 0.0103665181973, 
+                          "name": "N124", 
                           "children": [
                             {
-                              "name": "N122", 
-                              "children": [
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL139452", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "blue", 
-                                  "name": "CHEMBL14830", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }, 
-                            {
+                              "dist": 0.0197820246712, 
                               "name": "N125", 
                               "children": [
                                 {
-                                  "group": "blue", 
-                                  "name": "CHEMBL315468", 
-                                  "size": 2000.0000000000866
+                                  "dist": 0.00761908580187, 
+                                  "name": "N126", 
+                                  "children": [
+                                    {
+                                      "dist": 0.127146809068, 
+                                      "name": "N127", 
+                                      "children": [
+                                        {
+                                          "dist": 0.328003814251, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL432629", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.326758090511, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL111327", 
+                                          "size": 2000.0000000000866
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "dist": 0.0323698423526, 
+                                      "name": "N130", 
+                                      "children": [
+                                        {
+                                          "dist": 0.418302502911, 
+                                          "group": "blue", 
+                                          "name": "CHEMBL846", 
+                                          "size": 2000.0000000000866
+                                        }, 
+                                        {
+                                          "dist": 0.0192401212971, 
+                                          "name": "N132", 
+                                          "children": [
+                                            {
+                                              "dist": 0.413513882809, 
+                                              "group": "blue", 
+                                              "name": "CHEMBL511334", 
+                                              "size": 2000.0000000000866
+                                            }, 
+                                            {
+                                              "dist": 0.407624328573, 
+                                              "group": "red", 
+                                              "name": "CHEMBL164534", 
+                                              "size": 2000.0000000000866
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }, 
                                 {
+                                  "dist": 0.433538728613, 
                                   "group": "blue", 
-                                  "name": "CHEMBL705", 
+                                  "name": "CHEMBL315535", 
                                   "size": 2000.0000000000866
                                 }
                               ]
+                            }, 
+                            {
+                              "dist": 0.438902036847, 
+                              "group": "red", 
+                              "name": "ASD01810037", 
+                              "size": 2000.0000000000866
                             }
                           ]
                         }
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "dist": 0.00575931266457, 
+      "name": "N137", 
+      "children": [
+        {
+          "dist": 0.0133995297013, 
+          "name": "N138", 
+          "children": [
+            {
+              "dist": 0.0462466956651, 
+              "name": "N139", 
+              "children": [
+                {
+                  "dist": 0.376727407041, 
+                  "group": "red", 
+                  "name": "ASD03910104", 
+                  "size": 2000.0000000000866
                 }, 
                 {
-                  "name": "N128", 
+                  "dist": 0.36658810098, 
+                  "group": "blue", 
+                  "name": "CHEMBL49302", 
+                  "size": 2000.0000000000866
+                }
+              ]
+            }, 
+            {
+              "dist": 0.0128827655703, 
+              "name": "N142", 
+              "children": [
+                {
+                  "dist": 0.141974847228, 
+                  "name": "N143", 
                   "children": [
                     {
-                      "name": "N129", 
+                      "dist": 0.274773336606, 
+                      "group": "red", 
+                      "name": "ASD01120149", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "dist": 0.270681208849, 
+                      "group": "red", 
+                      "name": "ASD01120141", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
+                }, 
+                {
+                  "dist": 0.412544007412, 
+                  "group": "blue", 
+                  "name": "CHEMBL153205", 
+                  "size": 2000.0000000000866
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "dist": 0.00452560356781, 
+          "name": "N147", 
+          "children": [
+            {
+              "dist": 0.00100098321025, 
+              "name": "N148", 
+              "children": [
+                {
+                  "dist": 0.0120648001709, 
+                  "name": "N149", 
+                  "children": [
+                    {
+                      "dist": 0.451677655014, 
+                      "group": "blue", 
+                      "name": "CHEMBL281275", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "dist": 0.0132714073514, 
+                      "name": "N151", 
                       "children": [
                         {
-                          "name": "N130", 
+                          "dist": 0.0177852553812, 
+                          "name": "N152", 
                           "children": [
                             {
-                              "name": "N131", 
+                              "dist": 0.399089020692, 
+                              "group": "red", 
+                              "name": "CHEMBL1096663", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "dist": 0.0098197127401, 
+                              "name": "N154", 
                               "children": [
                                 {
-                                  "group": "red", 
-                                  "name": "ASD03240044", 
+                                  "dist": 0.411820386638, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL432107", 
                                   "size": 2000.0000000000866
                                 }, 
                                 {
+                                  "dist": 0.423705929152, 
                                   "group": "red", 
-                                  "name": "ASD01150859", 
+                                  "name": "ASD01150799", 
                                   "size": 2000.0000000000866
                                 }
                               ]
-                            }, 
-                            {
-                              "group": "red", 
-                              "name": "ASD01010020", 
-                              "size": 2000.0000000000866
                             }
                           ]
                         }, 
                         {
-                          "name": "N135", 
+                          "dist": 0.428735609813, 
+                          "group": "red", 
+                          "name": "ASD01180035", 
+                          "size": 2000.0000000000866
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "dist": 0.0341860836908, 
+                  "name": "N158", 
+                  "children": [
+                    {
+                      "dist": 0.430580706013, 
+                      "group": "blue", 
+                      "name": "CHEMBL463513", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "dist": 0.0156601405215, 
+                      "name": "N160", 
+                      "children": [
+                        {
+                          "dist": 0.436831142988, 
+                          "group": "red", 
+                          "name": "ASD00870006", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "dist": 0.0143713125459, 
+                          "name": "N162", 
                           "children": [
                             {
-                              "name": "N136", 
-                              "children": [
-                                {
-                                  "group": "red", 
-                                  "name": "ASD02500017", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "group": "red", 
-                                  "name": "CHEMBL164534", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
+                              "dist": 0.384844027088, 
+                              "group": "blue", 
+                              "name": "CHEMBL1254845", 
+                              "size": 2000.0000000000866
                             }, 
                             {
+                              "dist": 0.401415514897, 
                               "group": "blue", 
-                              "name": "CHEMBL584588", 
+                              "name": "CHEMBL373226", 
                               "size": 2000.0000000000866
                             }
                           ]
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "dist": 0.00508405455871, 
+              "name": "N165", 
+              "children": [
+                {
+                  "dist": 0.0117451442831, 
+                  "name": "N166", 
+                  "children": [
+                    {
+                      "dist": 0.450846724615, 
+                      "group": "blue", 
+                      "name": "CHEMBL161", 
+                      "size": 2000.0000000000866
                     }, 
                     {
-                      "name": "N140", 
+                      "dist": 0.410397294523, 
+                      "group": "blue", 
+                      "name": "CHEMBL115851", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
+                }, 
+                {
+                  "dist": 0.00545120957587, 
+                  "name": "N169", 
+                  "children": [
+                    {
+                      "dist": 0.0260958842065, 
+                      "name": "N170", 
                       "children": [
                         {
-                          "name": "N141", 
+                          "dist": 0.0324616535587, 
+                          "name": "N171", 
                           "children": [
                             {
+                              "dist": 0.449962795914, 
                               "group": "blue", 
-                              "name": "CHEMBL284360", 
+                              "name": "CHEMBL504265", 
                               "size": 2000.0000000000866
                             }, 
                             {
-                              "group": "red", 
-                              "name": "ASD01810006", 
-                              "size": 2000.0000000000866
-                            }
-                          ]
-                        }, 
-                        {
-                          "name": "N144", 
-                          "children": [
-                            {
-                              "name": "N145", 
+                              "dist": 0.0355517287051, 
+                              "name": "N173", 
                               "children": [
                                 {
+                                  "dist": 0.361136110148, 
                                   "group": "blue", 
-                                  "name": "CHEMBL356442", 
+                                  "name": "CHEMBL450301", 
                                   "size": 2000.0000000000866
                                 }, 
                                 {
-                                  "group": "blue", 
-                                  "name": "CHEMBL306878", 
-                                  "size": 2000.0000000000866
-                                }
-                              ]
-                            }, 
-                            {
-                              "name": "N148", 
-                              "children": [
-                                {
-                                  "group": "red", 
-                                  "name": "ASD01150653", 
-                                  "size": 2000.0000000000866
-                                }, 
-                                {
-                                  "name": "N150", 
+                                  "dist": 0.0376058135753, 
+                                  "name": "N175", 
                                   "children": [
                                     {
+                                      "dist": 0.330823332969, 
                                       "group": "blue", 
-                                      "name": "CHEMBL1204116", 
+                                      "name": "CHEMBL263366", 
                                       "size": 2000.0000000000866
                                     }, 
                                     {
+                                      "dist": 0.321831534288, 
                                       "group": "blue", 
-                                      "name": "CHEMBL43480", 
+                                      "name": "CHEMBL414273", 
                                       "size": 2000.0000000000866
                                     }
                                   ]
@@ -745,6 +1047,78 @@
                               ]
                             }
                           ]
+                        }, 
+                        {
+                          "dist": 0.0280799895786, 
+                          "name": "N178", 
+                          "children": [
+                            {
+                              "dist": 0.437809532281, 
+                              "group": "blue", 
+                              "name": "CHEMBL1084621", 
+                              "size": 2000.0000000000866
+                            }, 
+                            {
+                              "dist": 0.438594962101, 
+                              "group": "red", 
+                              "name": "ASD01150101", 
+                              "size": 2000.0000000000866
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "dist": 0.00373284853661, 
+                      "name": "N181", 
+                      "children": [
+                        {
+                          "dist": 0.436773868094, 
+                          "group": "blue", 
+                          "name": "CHEMBL64338", 
+                          "size": 2000.0000000000866
+                        }, 
+                        {
+                          "dist": 0.0604184606882, 
+                          "name": "N183", 
+                          "children": [
+                            {
+                              "dist": 0.132581749827, 
+                              "name": "N184", 
+                              "children": [
+                                {
+                                  "dist": 0.241136633031, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL46713", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "dist": 0.231981646539, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL296485", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }, 
+                            {
+                              "dist": 0.00229879115045, 
+                              "name": "N187", 
+                              "children": [
+                                {
+                                  "dist": 0.406127009064, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL14815", 
+                                  "size": 2000.0000000000866
+                                }, 
+                                {
+                                  "dist": 0.422444419508, 
+                                  "group": "blue", 
+                                  "name": "CHEMBL43480", 
+                                  "size": 2000.0000000000866
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -757,222 +1131,56 @@
       ]
     }, 
     {
-      "name": "N153", 
+      "dist": 0.0186764621319, 
+      "name": "N190", 
       "children": [
         {
-          "name": "N154", 
+          "dist": 0.00460794242551, 
+          "name": "N191", 
           "children": [
             {
-              "name": "N155", 
-              "children": [
-                {
-                  "group": "blue", 
-                  "name": "CHEMBL585920", 
-                  "size": 2000.0000000000866
-                }, 
-                {
-                  "group": "red", 
-                  "name": "ASD01180015", 
-                  "size": 2000.0000000000866
-                }
-              ]
-            }, 
-            {
-              "name": "N158", 
-              "children": [
-                {
-                  "name": "N159", 
-                  "children": [
-                    {
-                      "group": "red", 
-                      "name": "ASD02000001", 
-                      "size": 2000.0000000000866
-                    }, 
-                    {
-                      "group": "red", 
-                      "name": "ASD01910527", 
-                      "size": 2000.0000000000866
-                    }
-                  ]
-                }, 
-                {
-                  "name": "N162", 
-                  "children": [
-                    {
-                      "name": "N163", 
-                      "children": [
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL41472", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "red", 
-                          "name": "ASD03540318", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }, 
-                    {
-                      "name": "N166", 
-                      "children": [
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL1673155", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL297853", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }, 
-        {
-          "name": "N169", 
-          "children": [
-            {
-              "name": "N170", 
-              "children": [
-                {
-                  "name": "N171", 
-                  "children": [
-                    {
-                      "group": "red", 
-                      "name": "ASD01910773", 
-                      "size": 2000.0000000000866
-                    }, 
-                    {
-                      "group": "blue", 
-                      "name": "CHEMBL13122", 
-                      "size": 2000.0000000000866
-                    }
-                  ]
-                }, 
-                {
-                  "name": "N174", 
-                  "children": [
-                    {
-                      "group": "red", 
-                      "name": "CHEMBL595965", 
-                      "size": 2000.0000000000866
-                    }, 
-                    {
-                      "group": "blue", 
-                      "name": "CHEMBL137906", 
-                      "size": 2000.0000000000866
-                    }
-                  ]
-                }
-              ]
-            }, 
-            {
-              "name": "N177", 
-              "children": [
-                {
-                  "name": "N178", 
-                  "children": [
-                    {
-                      "name": "N179", 
-                      "children": [
-                        {
-                          "group": "red", 
-                          "name": "ASD01150455", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL152050", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }, 
-                    {
-                      "name": "N182", 
-                      "children": [
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL96174", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL6959", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }
-                  ]
-                }, 
-                {
-                  "name": "N185", 
-                  "children": [
-                    {
-                      "name": "N186", 
-                      "children": [
-                        {
-                          "group": "red", 
-                          "name": "ASD01100061", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL552680", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }, 
-                    {
-                      "name": "N189", 
-                      "children": [
-                        {
-                          "group": "red", 
-                          "name": "ASD01860002", 
-                          "size": 2000.0000000000866
-                        }, 
-                        {
-                          "group": "blue", 
-                          "name": "CHEMBL485286", 
-                          "size": 2000.0000000000866
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }, 
-    {
-      "name": "N192", 
-      "children": [
-        {
-          "group": "red", 
-          "name": "ASD01150818", 
-          "size": 2000.0000000000866
-        }, 
-        {
-          "name": "N194", 
-          "children": [
-            {
+              "dist": 0.426079832915, 
               "group": "red", 
-              "name": "ASD03740007", 
+              "name": "ASD01100084", 
               "size": 2000.0000000000866
             }, 
             {
-              "group": "blue", 
-              "name": "CHEMBL413266", 
-              "size": 2000.0000000000866
+              "dist": 0.0172256572079, 
+              "name": "N193", 
+              "children": [
+                {
+                  "dist": 0.207314925384, 
+                  "name": "N194", 
+                  "children": [
+                    {
+                      "dist": 0.20706913727, 
+                      "group": "red", 
+                      "name": "CHEMBL568240", 
+                      "size": 2000.0000000000866
+                    }, 
+                    {
+                      "dist": 0.211535513892, 
+                      "group": "red", 
+                      "name": "CHEMBL578358", 
+                      "size": 2000.0000000000866
+                    }
+                  ]
+                }, 
+                {
+                  "dist": 0.422575924511, 
+                  "group": "blue", 
+                  "name": "CHEMBL300949", 
+                  "size": 2000.0000000000866
+                }
+              ]
             }
           ]
+        }, 
+        {
+          "dist": 0.424169040095, 
+          "group": "red", 
+          "name": "ASD00530001", 
+          "size": 2000.0000000000866
         }
       ]
     }
