@@ -93,17 +93,20 @@ h3 {
   color: #1181B8;
 }
 
-body > svg {
-  position: absolute;
-  top: -80px;
-  left: -160px;
-}
-
 .molecule {
   height: 640px;
-  width: 100px;
+  width: 200px;
 }
+
 .intgraph {
+  position: relative;
   height: 640px;
-  width: 860px;
+  width: 760px;
 }
+
+div.intgraph svg {
+  position: absolute;
+  top: -40px;
+  left: -100px;
+}
+
