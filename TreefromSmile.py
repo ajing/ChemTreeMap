@@ -52,18 +52,23 @@ def Convert2NJmoldict(moldict):
             newdict[ligandname] = [1, ligandtype]
     return newdict
 
-def TreefromSmile(infile):
-    newfile = SamplingLigandFile(infile, 50, 50)
-    liganddict = parseLigandFile(newfile)
-    NewLigandFile(liganddict, newfile)
-    smatrix  = similarityMatrix(liganddict, getSimilarity)
+def Matrix2JSON(smatrix, liganddict, newfile, filename):
     dmatrix  = DistanceMatrix(liganddict.keys(), 1 - smatrix)
     moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
     # so write dot language to file
     dotfile  = nj(dmatrix, moldict, True)
     # write to JSON file
     root = Dot2JSON(dotfile)
-    Root2JSON(root, "test.json")
+    Root2JSON(root, filename)
+
+def TreefromSmile(infile):
+    newfile = SamplingLigandFile(infile, 50, 50)
+    liganddict = parseLigandFile(newfile)
+    NewLigandFile(liganddict, newfile)
+    smatrix  = similarityMatrix(liganddict, getSimilarity)
+    Matrix2JSON(smatrix, liganddict, newfile, "test.json.t")
+    smatrix  = similarityMatrix(liganddict, getSimilarityNAMS)
+    Matrix2JSON(smatrix, liganddict, newfile, "test.json.n")
 
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
