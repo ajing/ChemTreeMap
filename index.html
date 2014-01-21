@@ -21,7 +21,6 @@ line.link {
 #slider{
   width:10%;
   height:0%;
-  background-color:red;
   top:0px;
   left:0px;
   position:absolute;
@@ -78,6 +77,7 @@ $( "#slider" ).slider({
   min: 0,
   max: 0.2,
   step: 0.01,
+  value: force.gravity(),
   slide: function( event, ui ) {
     force.gravity( ui.value ),
     // This is the value that you just dragged the slider to, there it is,
