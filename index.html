@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <style type="text/css">
 
 circle.node {
@@ -17,11 +18,31 @@ line.link {
   stroke-width: 1.5px;
 }
 
+#slider{
+  width:10%;
+  height:0%;
+  background-color:red;
+  top:0px;
+  left:0px;
+  position:absolute;
+  cursor:pointer;
+}
+
+.ui-slider .ui-slider-handle{
+    width:20px;
+    height:20px;
+    position:absolute;
+    border-style:none;
+}
+
     </style>
   </head>
   <body>
   <div id="main">
     <table>
+      <tr>
+          <td><div id="slider"></div></td>
+      </tr>
       <tr>
           <td><div class="molecule"><img id="molimage" src=""></div></td>
         <td>
@@ -34,8 +55,11 @@ line.link {
       Molecular Tree<br>
       force-directed graph
     </h2>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript" src="d3/d3.v3.js"></script>
     <script type="text/javascript">
+
 
 var w = 800,
     h = 800,
@@ -49,10 +73,24 @@ var force = d3.layout.force()
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
     .size([w, h - 160]);
 
+$(function() {
+$( "#slider" ).slider({
+  min: 0,
+  max: 0.2,
+  step: 0.01,
+  slide: function( event, ui ) {
+    force.gravity( ui.value ),
+    // This is the value that you just dragged the slider to, there it is,
+    // in a variable
+    console.log( ui.value )
+  }
+}
+);
+});
+
 var vis = d3.select(".intgraph").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
-
 
 d3.json("test.json", function(json) {
   root = json;
