@@ -18,7 +18,7 @@ line.link {
   stroke-width: 1.5px;
 }
 
-#slider{
+#slider1{
   width:10%;
   height:0%;
   top:0px;
@@ -26,6 +26,16 @@ line.link {
   position:absolute;
   cursor:pointer;
 }
+
+#slider2{
+  width:10%;
+  height:0%;
+  top:50px;
+  left:0px;
+  position:absolute;
+  cursor:pointer;
+}
+
 
 .ui-slider .ui-slider-handle{
     width:20px;
@@ -40,7 +50,10 @@ line.link {
   <div id="main">
     <table>
       <tr>
-          <td><div id="slider" style="font-size:30px">Gravity</div></td>
+          <td><div id="slider1" style="font-size:20px">Gravity</div></td>
+      </tr>
+      <tr>
+          <td><div id="slider2" style="font-size:20px">link strength</div></td>
       </tr>
       <tr>
           <td><div class="molecule"><img id="molimage" src=""></div></td>
@@ -73,16 +86,32 @@ var force = d3.layout.force()
     .size([w, h - 160]);
 
 $(function() {
-$( "#slider" ).slider({
+$( "#slider1" ).slider({
   min: 0,
   max: 0.2,
   step: 0.01,
   value: force.gravity(),
   slide: function( event, ui ) {
-    force.gravity( ui.value ),
     // This is the value that you just dragged the slider to, there it is,
     // in a variable
-    console.log( ui.value )
+    force.start(),
+    force.gravity( ui.value )
+  }
+}
+);
+});
+
+$(function() {
+$( "#slider2" ).slider({
+  min: 0,
+  max: 10,
+  step: 0.01,
+  value: force.linkStrength(),
+  slide: function( event, ui ) {
+    // This is the value that you just dragged the slider to, there it is,
+    // in a variable
+    force.start(),
+    force.linkStrength( ui.value )
   }
 }
 );
