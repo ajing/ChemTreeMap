@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link type="text/css" rel="stylesheet" href="style_cp.css"/>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <style type="text/css">
 
@@ -50,12 +50,6 @@ line.link {
   <div id="main">
     <table>
       <tr>
-          <td><div id="slider1" style="font-size:20px">Gravity</div></td>
-      </tr>
-      <tr>
-          <td><div id="slider2" style="font-size:20px">link strength</div></td>
-      </tr>
-      <tr>
           <td><div class="molecule"><img id="molimage" src=""></div></td>
         <td>
           <div class="intgraph"/>
@@ -85,56 +79,17 @@ var force = d3.layout.force()
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
     .size([w, h - 160]);
 
-$(function() {
-$( "#slider1" ).slider({
-  min: 0,
-  max: 0.2,
-  step: 0.01,
-  value: force.gravity(),
-  slide: function( event, ui ) {
-    // This is the value that you just dragged the slider to, there it is,
-    // in a variable
-    force.start(),
-    force.gravity( ui.value )
-  }
-}
-);
-});
-
-$(function() {
-$( "#slider2" ).slider({
-  min: 0,
-  max: 10,
-  step: 0.01,
-  value: force.linkStrength(),
-  slide: function( event, ui ) {
-    // This is the value that you just dragged the slider to, there it is,
-    // in a variable
-    force.start(),
-    force.linkStrength( ui.value )
-  }
-}
-);
-});
-
-var x = d3.scale.linear()
-        .domain([0, w])
-        .range([0, w]);
-
-var y = d3.scale.linear()
-        .domain([0, h])
-        .range([h, 0]);
-
 function zoom() {
   console.log("here", d3.event.translate, d3.event.scale);
   console.log("transform", d3.event.translate, d3.event.scale);
-  vis.attr("transform", transform);
- // link.attr("transform", transform);
+  //vis.attr("transform", transform);
+  node.attr("transform", transform);
+  link.attr("transform", transform);
 }
 
 function transform(d){
   //return "translate(" + d.x + "," + d.y + ")";
-  return "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")";
+  return "translate(" + d3.event.translate + ")";
 }
 
 var vis = d3.select(".intgraph").append("svg:svg")
@@ -149,7 +104,6 @@ var rect =  vis.append("rect")
         .attr("height", h)
         .style("fill", "none")
         .style("pointer-events", "all")
-        .append("g");
 
 d3.json("test.json", function(json) {
   root = json;
@@ -200,8 +154,6 @@ function update() {
       .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
       .on("click", click)
-      .on("mouseover", mouseover)
-  //    .on("mouseout", mouseout)
       .call(drag)
 
   // Exit any old nodes.
@@ -257,22 +209,6 @@ function click(d) {
     d._children = null;
   }
   update();
-}
-
-// Mouse over display
-// This is added by me
-function mouseover(d){
-  if (!d.children){
-    var image_src = "Image/" + d.name;
-    d3.select("#molimage")
-      .attr("src", image_src);
-  }
-}
-
-function mouseout(){
-//   d3.select("img").transition().duration(500).remove();
-   d3.select("#molimage")
-     .attr("src", "");
 }
 
 // Returns a list of all nodes under the root.
