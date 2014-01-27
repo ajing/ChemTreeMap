@@ -57,7 +57,9 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
     moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
     # so write dot language to file
     dotfile  = nj(dmatrix, moldict, True)
+    # dotfile with sfdp layout
     # write to JSON file
+    print dotfile
     root = Dot2JSON(dotfile)
     Root2JSON(root, filename)
 
@@ -66,9 +68,10 @@ def TreefromSmile(infile):
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
-    Matrix2JSON(smatrix, liganddict, newfile, "test.json.t")
-    smatrix  = similarityMatrix(liganddict, getSimilarityNAMS)
-    Matrix2JSON(smatrix, liganddict, newfile, "test.json.n")
+    Matrix2JSON(smatrix, liganddict, newfile, "test.json")
+    # for two different distance function
+    #smatrix  = similarityMatrix(liganddict, getSimilarityNAMS)
+    #Matrix2JSON(smatrix, liganddict, newfile, "test.json.n")
 
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
