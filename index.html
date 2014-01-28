@@ -117,9 +117,39 @@ $( "#slider2" ).slider({
 );
 });
 
+var x = d3.scale.linear()
+        .domain([0, w])
+        .range([0, w]);
+
+var y = d3.scale.linear()
+        .domain([0, h])
+        .range([h, 0]);
+
+function zoom() {
+  console.log("here", d3.event.translate, d3.event.scale);
+  console.log("transform", d3.event.translate, d3.event.scale);
+  vis.attr("transform", transform);
+ // link.attr("transform", transform);
+}
+
+function transform(d){
+  //return "translate(" + d.x + "," + d.y + ")";
+  return "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")";
+}
+
 var vis = d3.select(".intgraph").append("svg:svg")
     .attr("width", w)
-    .attr("height", h);
+    .attr("height", h)
+  .append("svg:g")
+    .call(d3.behavior.zoom().on("zoom", zoom));
+
+// the area to zoom
+var rect =  vis.append("rect")
+        .attr("width", w)
+        .attr("height", h)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        .append("g");
 
 d3.json("test.json", function(json) {
   root = json;
@@ -172,12 +202,34 @@ function update() {
       .on("click", click)
       .on("mouseover", mouseover)
   //    .on("mouseout", mouseout)
-      .call(force.drag);
+      .call(drag)
 
   // Exit any old nodes.
   node.exit().remove();
 
 }
+
+// modifed drag event
+var drag = d3.behavior.drag()
+        .origin(function(d) { return d; })
+        .on("dragstart", dragstarted)
+        .on("drag", dragged)
+        .on("dragend", dragended);
+
+function dragstarted(d){
+    d3.event.sourceEvent.stopPropagation();
+    d3.select(this).classed("dragging", true);
+    force.start();
+}
+
+function dragged(d){
+    d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+}
+
+function dragended(d){
+    d3.select(this).classed("dragging", false);
+}
+
 
 function tick() {
   link.attr("x1", function(d) { return d.source.x; })

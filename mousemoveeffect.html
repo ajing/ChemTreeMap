@@ -87,8 +87,8 @@ function zoom() {
 }
 
 function transform(d){
-  //return "translate(" + d.x + "," + d.y + ")";
-  return "translate(" + d3.event.translate + ")";
+  return "translate(" + d.x + "," + d.y + ")";
+  //return "translate(" + d3.event.translate + ")";
 }
 
 var vis = d3.select(".intgraph").append("svg:svg")
@@ -102,7 +102,7 @@ var rect =  vis.append("rect")
         .attr("width", w)
         .attr("height", h)
         .style("fill", "none")
-        .style("pointer-events", "all")
+        .style("pointer-events", "all");
 
 d3.json("test.json", function(json) {
   root = json;
@@ -153,7 +153,7 @@ function update() {
       .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
       .on("click", click)
-      .call(drag)
+      .call(drag);
 
   // Exit any old nodes.
   node.exit().remove();
