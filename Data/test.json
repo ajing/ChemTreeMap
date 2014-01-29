@@ -1,0 +1,1358 @@
+{
+  "position": "388.8-203.56", 
+  "dist": 0.0, 
+  "name": "N1", 
+  "children": [
+    {
+      "position": "440.09-212.6", 
+      "dist": 0.000748, 
+      "name": "N2", 
+      "children": [
+        {
+          "position": "412.73-246.85", 
+          "dist": 0.007764, 
+          "name": "N3", 
+          "children": [
+            {
+              "position": "380.31-278.59", 
+              "dist": 0.021512, 
+              "name": "N4", 
+              "children": [
+                {
+                  "position": "362.01-314.3", 
+                  "dist": 0.027876, 
+                  "name": "N5", 
+                  "children": [
+                    {
+                      "position": "358.19-328.71", 
+                      "group": "blue", 
+                      "name": "CHEMBL104719", 
+                      "dist": 0.363785, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "344.58-347.67", 
+                      "dist": 0.107394, 
+                      "name": "N7", 
+                      "children": [
+                        {
+                          "position": "331.01-378.78", 
+                          "dist": 0.017566, 
+                          "name": "N8", 
+                          "children": [
+                            {
+                              "position": "310.22-392.24", 
+                              "dist": 0.030788, 
+                              "name": "N9", 
+                              "children": [
+                                {
+                                  "position": "293-390.71", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL105595", 
+                                  "dist": 0.217775, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "300.77-408.87", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL107391", 
+                                  "dist": 0.216334, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }, 
+                            {
+                              "position": "333.74-404.02", 
+                              "dist": 0.011289, 
+                              "name": "N12", 
+                              "children": [
+                                {
+                                  "position": "326.9-422.33", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL326670", 
+                                  "dist": 0.227809, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "345.32-417.37", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL441274", 
+                                  "dist": 0.239344, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "position": "329.76-353.93", 
+                          "group": "blue", 
+                          "name": "CHEMBL107755", 
+                          "dist": 0.2964, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "position": "354.75-281.01", 
+                  "dist": 0.006036, 
+                  "name": "N16", 
+                  "children": [
+                    {
+                      "position": "343.93-268.52", 
+                      "group": "blue", 
+                      "name": "CHEMBL478680", 
+                      "dist": 0.390148, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "332.9-289.98", 
+                      "dist": 0.157539, 
+                      "name": "N18", 
+                      "children": [
+                        {
+                          "position": "319.48-281.79", 
+                          "group": "blue", 
+                          "name": "CHEMBL515472", 
+                          "dist": 0.238619, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "318.26-301.83", 
+                          "group": "blue", 
+                          "name": "CHEMBL490632", 
+                          "dist": 0.227547, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "position": "432.18-251.86", 
+              "dist": 0.082077, 
+              "name": "N21", 
+              "children": [
+                {
+                  "position": "444.32-262.11", 
+                  "group": "blue", 
+                  "name": "CHEMBL170995", 
+                  "dist": 0.330401, 
+                  "size": 1531.745688841004
+                }, 
+                {
+                  "position": "445.06-242.86", 
+                  "group": "blue", 
+                  "name": "CHEMBL291002", 
+                  "dist": 0.334648, 
+                  "size": 1531.745688841004
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "position": "501.34-197.88", 
+          "dist": 0.001596, 
+          "name": "N24", 
+          "children": [
+            {
+              "position": "518.13-212.32", 
+              "dist": 0.007007, 
+              "name": "N25", 
+              "children": [
+                {
+                  "position": "513.44-186.94", 
+                  "dist": 0.004951, 
+                  "name": "N26", 
+                  "children": [
+                    {
+                      "position": "495.38-176.4", 
+                      "dist": 0.02112, 
+                      "name": "N27", 
+                      "children": [
+                        {
+                          "position": "487.91-161.54", 
+                          "group": "blue", 
+                          "name": "CHEMBL565693", 
+                          "dist": 0.393601, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "478.58-179.14", 
+                          "group": "blue", 
+                          "name": "CHEMBL569443", 
+                          "dist": 0.40005, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }, 
+                    {
+                      "position": "517.02-165.11", 
+                      "dist": 0.008996, 
+                      "name": "N30", 
+                      "children": [
+                        {
+                          "position": "510.3-147.43", 
+                          "group": "red", 
+                          "name": "ASD01120228", 
+                          "dist": 0.414976, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "527.93-153.25", 
+                          "group": "red", 
+                          "name": "ASD01200098", 
+                          "dist": 0.393767, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "position": "532.85-239.34", 
+                  "dist": 0.014126, 
+                  "name": "N33", 
+                  "children": [
+                    {
+                      "position": "547.88-240.21", 
+                      "group": "red", 
+                      "name": "ASD03910064", 
+                      "dist": 0.399838, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "543.66-266.97", 
+                      "dist": 0.017013, 
+                      "name": "N35", 
+                      "children": [
+                        {
+                          "position": "558.64-272.3", 
+                          "group": "blue", 
+                          "name": "CHEMBL152034", 
+                          "dist": 0.384487, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "550.68-292.26", 
+                          "dist": 0.225241, 
+                          "name": "N37", 
+                          "children": [
+                            {
+                              "position": "565-305.58", 
+                              "group": "red", 
+                              "name": "ASD03090123", 
+                              "dist": 0.157691, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "546.08-309.7", 
+                              "group": "red", 
+                              "name": "ASD03090108", 
+                              "dist": 0.14876, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "position": "559.36-174.52", 
+              "dist": 0.003546, 
+              "name": "N40", 
+              "children": [
+                {
+                  "position": "585.74-133.8", 
+                  "dist": 0.009923, 
+                  "name": "N41", 
+                  "children": [
+                    {
+                      "position": "602.22-128.9", 
+                      "group": "red", 
+                      "name": "ASD03540075", 
+                      "dist": 0.406092, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "604.04-92.09", 
+                      "dist": 0.009364, 
+                      "name": "N43", 
+                      "children": [
+                        {
+                          "position": "613.07-70.443", 
+                          "dist": 0.019229, 
+                          "name": "N44", 
+                          "children": [
+                            {
+                              "position": "637.64-68.564", 
+                              "dist": 0.022538, 
+                              "name": "N45", 
+                              "children": [
+                                {
+                                  "position": "653.79-58.844", 
+                                  "group": "red", 
+                                  "name": "ASD03080017", 
+                                  "dist": 0.39077, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "650.87-78.666", 
+                                  "group": "red", 
+                                  "name": "ASD01880245", 
+                                  "dist": 0.369914, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }, 
+                            {
+                              "position": "598.5-49.537", 
+                              "dist": 0.070126, 
+                              "name": "N48", 
+                              "children": [
+                                {
+                                  "position": "595.89-30.946", 
+                                  "group": "red", 
+                                  "name": "ASD01910504", 
+                                  "dist": 0.330303, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "583.15-40.322", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL1165469", 
+                                  "dist": 0.316313, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "position": "618.47-57.225", 
+                          "dist": 0.033442, 
+                          "name": "N51", 
+                          "children": [
+                            {
+                              "position": "630.87-44.463", 
+                              "group": "red", 
+                              "name": "ASD01810140", 
+                              "dist": 0.366277, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "627.33-27.897", 
+                              "dist": 0.031845, 
+                              "name": "N53", 
+                              "children": [
+                                {
+                                  "position": "642.79-15.276", 
+                                  "group": "red", 
+                                  "name": "ASD01810275", 
+                                  "dist": 0.327908, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "623.83-8.7398", 
+                                  "group": "red", 
+                                  "name": "CHEMBL1092987", 
+                                  "dist": 0.343233, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "position": "607.41-183.86", 
+                  "dist": 0.002511, 
+                  "name": "N56", 
+                  "children": [
+                    {
+                      "position": "651.21-177.71", 
+                      "dist": 0.00486, 
+                      "name": "N57", 
+                      "children": [
+                        {
+                          "position": "694.64-166.05", 
+                          "dist": 0.005284, 
+                          "name": "N58", 
+                          "children": [
+                            {
+                              "position": "729.32-170.99", 
+                              "dist": 0.026724, 
+                              "name": "N59", 
+                              "children": [
+                                {
+                                  "position": "737.08-185.09", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL460508", 
+                                  "dist": 0.383594, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "761.36-171.08", 
+                                  "dist": 0.00572, 
+                                  "name": "N61", 
+                                  "children": [
+                                    {
+                                      "position": "783.48-157.61", 
+                                      "dist": 0.030899, 
+                                      "name": "N62", 
+                                      "children": [
+                                        {
+                                          "position": "802.19-157.08", 
+                                          "group": "blue", 
+                                          "name": "CHEMBL28032", 
+                                          "dist": 0.349682, 
+                                          "size": 1531.745688841004
+                                        }, 
+                                        {
+                                          "position": "791.43-141.12", 
+                                          "group": "red", 
+                                          "name": "ASD01910029", 
+                                          "dist": 0.333771, 
+                                          "size": 1531.745688841004
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "position": "778.9-187.21", 
+                                      "dist": 0.017546, 
+                                      "name": "N65", 
+                                      "children": [
+                                        {
+                                          "position": "796.23-192.41", 
+                                          "group": "red", 
+                                          "name": "CHEMBL12", 
+                                          "dist": 0.357083, 
+                                          "size": 1531.745688841004
+                                        }, 
+                                        {
+                                          "position": "779.7-204.59", 
+                                          "group": "red", 
+                                          "name": "ASD01120128", 
+                                          "dist": 0.39017, 
+                                          "size": 1531.745688841004
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "position": "711.48-142.2", 
+                              "dist": 0.015713, 
+                              "name": "N68", 
+                              "children": [
+                                {
+                                  "position": "726.11-139.07", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL94462", 
+                                  "dist": 0.406082, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "724.45-119.58", 
+                                  "dist": 0.051426, 
+                                  "name": "N70", 
+                                  "children": [
+                                    {
+                                      "position": "739.96-110.09", 
+                                      "group": "red", 
+                                      "name": "ASD00060023", 
+                                      "dist": 0.375158, 
+                                      "size": 1531.745688841004
+                                    }, 
+                                    {
+                                      "position": "725.63-100.76", 
+                                      "group": "red", 
+                                      "name": "ASD00710002", 
+                                      "dist": 0.368744, 
+                                      "size": 1531.745688841004
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "position": "666.48-188.6", 
+                          "dist": 0.017488, 
+                          "name": "N73", 
+                          "children": [
+                            {
+                              "position": "669.24-170.23", 
+                              "dist": 0.047241, 
+                              "name": "N74", 
+                              "children": [
+                                {
+                                  "position": "676.39-156.51", 
+                                  "group": "red", 
+                                  "name": "ASD01870019", 
+                                  "dist": 0.349816, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "658.72-157.99", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL140098", 
+                                  "dist": 0.356915, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }, 
+                            {
+                              "position": "673.84-207.85", 
+                              "dist": 0.022997, 
+                              "name": "N77", 
+                              "children": [
+                                {
+                                  "position": "688.04-213.34", 
+                                  "group": "red", 
+                                  "name": "ASD03540255", 
+                                  "dist": 0.358616, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "676.03-225.58", 
+                                  "group": "red", 
+                                  "name": "ASD01150929", 
+                                  "dist": 0.376191, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "position": "613.68-209.92", 
+                      "dist": 0.005936, 
+                      "name": "N80", 
+                      "children": [
+                        {
+                          "position": "592.06-182.17", 
+                          "dist": 0.014597, 
+                          "name": "N81", 
+                          "children": [
+                            {
+                              "position": "587.48-197.65", 
+                              "group": "blue", 
+                              "name": "CHEMBL567790", 
+                              "dist": 0.431376, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "574.65-150.38", 
+                              "dist": 0.015325, 
+                              "name": "N83", 
+                              "children": [
+                                {
+                                  "position": "573.28-123.66", 
+                                  "dist": 0.091237, 
+                                  "name": "N84", 
+                                  "children": [
+                                    {
+                                      "position": "566.64-103.87", 
+                                      "group": "red", 
+                                      "name": "ASD03240022", 
+                                      "dist": 0.304874, 
+                                      "size": 1531.745688841004
+                                    }, 
+                                    {
+                                      "position": "582-108.92", 
+                                      "group": "red", 
+                                      "name": "ASD03240149", 
+                                      "dist": 0.305746, 
+                                      "size": 1531.745688841004
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "position": "553.35-131.35", 
+                                  "dist": 0.220893, 
+                                  "name": "N87", 
+                                  "children": [
+                                    {
+                                      "position": "543.74-111.61", 
+                                      "group": "blue", 
+                                      "name": "CHEMBL139582", 
+                                      "dist": 0.164775, 
+                                      "size": 1531.745688841004
+                                    }, 
+                                    {
+                                      "position": "535.04-123.83", 
+                                      "group": "blue", 
+                                      "name": "CHEMBL342492", 
+                                      "dist": 0.170109, 
+                                      "size": 1531.745688841004
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "position": "633.86-246.53", 
+                          "dist": 0.007037, 
+                          "name": "N90", 
+                          "children": [
+                            {
+                              "position": "654.5-280.56", 
+                              "dist": 0.006218, 
+                              "name": "N91", 
+                              "children": [
+                                {
+                                  "position": "675.27-311.79", 
+                                  "dist": 0.042784, 
+                                  "name": "N92", 
+                                  "children": [
+                                    {
+                                      "position": "697.48-315.71", 
+                                      "dist": 0.008252, 
+                                      "name": "N93", 
+                                      "children": [
+                                        {
+                                          "position": "712.88-308.04", 
+                                          "group": "red", 
+                                          "name": "ASD01911036", 
+                                          "dist": 0.343622, 
+                                          "size": 1531.745688841004
+                                        }, 
+                                        {
+                                          "position": "711.78-326.77", 
+                                          "group": "red", 
+                                          "name": "ASD01910386", 
+                                          "dist": 0.350255, 
+                                          "size": 1531.745688841004
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "position": "684.61-342.94", 
+                                      "dist": 0.038392, 
+                                      "name": "N96", 
+                                      "children": [
+                                        {
+                                          "position": "698.73-368.99", 
+                                          "dist": 0.039595, 
+                                          "name": "N97", 
+                                          "children": [
+                                            {
+                                              "position": "705.22-393.35", 
+                                              "dist": 0.075214, 
+                                              "name": "N98", 
+                                              "children": [
+                                                {
+                                                  "position": "719.11-405.91", 
+                                                  "group": "red", 
+                                                  "name": "ASD01910691", 
+                                                  "dist": 0.209817, 
+                                                  "size": 1531.745688841004
+                                                }, 
+                                                {
+                                                  "position": "698.36-410.09", 
+                                                  "group": "red", 
+                                                  "name": "ASD01910891", 
+                                                  "dist": 0.210473, 
+                                                  "size": 1531.745688841004
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "position": "715.01-373.51", 
+                                              "group": "red", 
+                                              "name": "ASD01910851", 
+                                              "dist": 0.291761, 
+                                              "size": 1531.745688841004
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "position": "675.33-356.54", 
+                                          "group": "red", 
+                                          "name": "ASD01910904", 
+                                          "dist": 0.329462, 
+                                          "size": 1531.745688841004
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "position": "650.55-295.59", 
+                                  "group": "red", 
+                                  "name": "ASD00170524", 
+                                  "dist": 0.401633, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }, 
+                            {
+                              "position": "631.97-261.6", 
+                              "group": "red", 
+                              "name": "ASD01910173", 
+                              "dist": 0.401842, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "position": "337.18-181.84", 
+      "dist": 0.006922, 
+      "name": "N105", 
+      "children": [
+        {
+          "position": "322.22-187.75", 
+          "group": "red", 
+          "name": "ASD00170248", 
+          "dist": 0.439808, 
+          "size": 1531.745688841004
+        }, 
+        {
+          "position": "288.42-157.87", 
+          "dist": 0.005999, 
+          "name": "N107", 
+          "children": [
+            {
+              "position": "286-118.77", 
+              "dist": 0.005855, 
+              "name": "N108", 
+              "children": [
+                {
+                  "position": "283.07-81.147", 
+                  "dist": 0.009798, 
+                  "name": "N109", 
+                  "children": [
+                    {
+                      "position": "274.77-67.637", 
+                      "group": "red", 
+                      "name": "ASD01820142", 
+                      "dist": 0.44935, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "282.22-48.202", 
+                      "dist": 0.035574, 
+                      "name": "N111", 
+                      "children": [
+                        {
+                          "position": "285.2-20.206", 
+                          "dist": 0.107505, 
+                          "name": "N112", 
+                          "children": [
+                            {
+                              "position": "297.15-5.555", 
+                              "group": "blue", 
+                              "name": "CHEMBL691", 
+                              "dist": 0.315372, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "277.27-2.5", 
+                              "group": "blue", 
+                              "name": "CHEMBL175602", 
+                              "dist": 0.310715, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }, 
+                        {
+                          "position": "271.55-36.091", 
+                          "group": "red", 
+                          "name": "CHEMBL160024", 
+                          "dist": 0.400109, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "position": "288.39-101.47", 
+                  "dist": 0.007128, 
+                  "name": "N116", 
+                  "children": [
+                    {
+                      "position": "266.96-97.833", 
+                      "dist": 0.116575, 
+                      "name": "N117", 
+                      "children": [
+                        {
+                          "position": "255.65-108.89", 
+                          "group": "blue", 
+                          "name": "CHEMBL386969", 
+                          "dist": 0.304086, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "253.18-86.023", 
+                          "group": "blue", 
+                          "name": "CHEMBL384181", 
+                          "dist": 0.296899, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }, 
+                    {
+                      "position": "308.15-89.244", 
+                      "dist": 0.037321, 
+                      "name": "N120", 
+                      "children": [
+                        {
+                          "position": "319.84-74.465", 
+                          "group": "red", 
+                          "name": "ASD01870022", 
+                          "dist": 0.405697, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "324.1-92.957", 
+                          "group": "red", 
+                          "name": "ASD01870051", 
+                          "dist": 0.408096, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "position": "238.39-161.38", 
+              "dist": 0.009779, 
+              "name": "N123", 
+              "children": [
+                {
+                  "position": "210.45-190.64", 
+                  "dist": 0.004988, 
+                  "name": "N124", 
+                  "children": [
+                    {
+                      "position": "209.56-219.61", 
+                      "dist": 0.024777, 
+                      "name": "N125", 
+                      "children": [
+                        {
+                          "position": "222.18-237.94", 
+                          "dist": 0.029514, 
+                          "name": "N126", 
+                          "children": [
+                            {
+                              "position": "237.27-245.15", 
+                              "group": "blue", 
+                              "name": "CHEMBL39664", 
+                              "dist": 0.44125, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "224.74-256.31", 
+                              "group": "blue", 
+                              "name": "CHEMBL403", 
+                              "dist": 0.42888, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }, 
+                        {
+                          "position": "198.19-240.99", 
+                          "dist": 0.019546, 
+                          "name": "N129", 
+                          "children": [
+                            {
+                              "position": "184.77-248.83", 
+                              "group": "blue", 
+                              "name": "CHEMBL102", 
+                              "dist": 0.409095, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "199.13-259.87", 
+                              "group": "blue", 
+                              "name": "CHEMBL389847", 
+                              "dist": 0.422484, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "position": "178.7-202.72", 
+                      "dist": 0.006056, 
+                      "name": "N132", 
+                      "children": [
+                        {
+                          "position": "165.29-192.91", 
+                          "group": "red", 
+                          "name": "ASD00390006", 
+                          "dist": 0.511535, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "150.93-219.52", 
+                          "dist": 0.013003, 
+                          "name": "N134", 
+                          "children": [
+                            {
+                              "position": "149.47-233.98", 
+                              "group": "blue", 
+                              "name": "CHEMBL62305", 
+                              "dist": 0.414035, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "125.82-232.86", 
+                              "dist": 0.024901, 
+                              "name": "N136", 
+                              "children": [
+                                {
+                                  "position": "128.27-248.64", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL112304", 
+                                  "dist": 0.394426, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "101.64-243.31", 
+                                  "dist": 0.011103, 
+                                  "name": "N138", 
+                                  "children": [
+                                    {
+                                      "position": "105.59-259.23", 
+                                      "group": "blue", 
+                                      "name": "CHEMBL343233", 
+                                      "dist": 0.390565, 
+                                      "size": 1531.745688841004
+                                    }, 
+                                    {
+                                      "position": "78.205-249.72", 
+                                      "dist": 0.053184, 
+                                      "name": "N140", 
+                                      "children": [
+                                        {
+                                          "position": "53.601-249.81", 
+                                          "dist": 0.010224, 
+                                          "name": "N141", 
+                                          "children": [
+                                            {
+                                              "position": "53.122-265.55", 
+                                              "group": "blue", 
+                                              "name": "CHEMBL610607", 
+                                              "dist": 0.367717, 
+                                              "size": 1531.745688841004
+                                            }, 
+                                            {
+                                              "position": "31.877-244.74", 
+                                              "dist": 0.136779, 
+                                              "name": "N143", 
+                                              "children": [
+                                                {
+                                                  "position": "13.904-251.52", 
+                                                  "dist": 0.077878, 
+                                                  "name": "N144", 
+                                                  "children": [
+                                                    {
+                                                      "position": "5.6889-266.3", 
+                                                      "group": "red", 
+                                                      "name": "ASD00030001", 
+                                                      "dist": 0.148832, 
+                                                      "size": 1531.745688841004
+                                                    }, 
+                                                    {
+                                                      "position": "2.5-239.86", 
+                                                      "group": "red", 
+                                                      "name": "ASD00150001", 
+                                                      "dist": 0.150233, 
+                                                      "size": 1531.745688841004
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "position": "27.143-228.26", 
+                                                  "group": "red", 
+                                                  "name": "ASD00290006", 
+                                                  "dist": 0.227411, 
+                                                  "size": 1531.745688841004
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "position": "78.125-266.36", 
+                                          "group": "red", 
+                                          "name": "ASD00860001", 
+                                          "dist": 0.365639, 
+                                          "size": 1531.745688841004
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "position": "205.78-136.64", 
+                  "dist": 0.011357, 
+                  "name": "N149", 
+                  "children": [
+                    {
+                      "position": "195.81-110.81", 
+                      "dist": 0.032266, 
+                      "name": "N150", 
+                      "children": [
+                        {
+                          "position": "203.17-98.71", 
+                          "group": "blue", 
+                          "name": "CHEMBL153813", 
+                          "dist": 0.384235, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "186.14-86.391", 
+                          "dist": 0.026583, 
+                          "name": "N152", 
+                          "children": [
+                            {
+                              "position": "190.85-68.531", 
+                              "group": "blue", 
+                              "name": "CHEMBL62688", 
+                              "dist": 0.348661, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "173.34-72.848", 
+                              "group": "red", 
+                              "name": "ASD00080001", 
+                              "dist": 0.421831, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "position": "173.89-125.93", 
+                      "dist": 0.064149, 
+                      "name": "N155", 
+                      "children": [
+                        {
+                          "position": "160.87-135.06", 
+                          "group": "blue", 
+                          "name": "CHEMBL411173", 
+                          "dist": 0.380564, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "146.62-111.06", 
+                          "dist": 0.065569, 
+                          "name": "N157", 
+                          "children": [
+                            {
+                              "position": "130.44-116.46", 
+                              "group": "blue", 
+                              "name": "CHEMBL446202", 
+                              "dist": 0.339961, 
+                              "size": 1531.745688841004
+                            }, 
+                            {
+                              "position": "126.86-93.367", 
+                              "dist": 0.025457, 
+                              "name": "N159", 
+                              "children": [
+                                {
+                                  "position": "108.84-90.769", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL441736", 
+                                  "dist": 0.336636, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "120.55-75.677", 
+                                  "group": "blue", 
+                                  "name": "CHEMBL406899", 
+                                  "dist": 0.302765, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "position": "402.48-226.46", 
+      "dist": 0.003637, 
+      "name": "N162", 
+      "children": [
+        {
+          "position": "414.53-271.16", 
+          "dist": 0.003276, 
+          "name": "N163", 
+          "children": [
+            {
+              "position": "430.94-311.4", 
+              "dist": 0.002936, 
+              "name": "N164", 
+              "children": [
+                {
+                  "position": "437.39-350.16", 
+                  "dist": 0.005932, 
+                  "name": "N165", 
+                  "children": [
+                    {
+                      "position": "455.34-363", 
+                      "dist": 0.040903, 
+                      "name": "N166", 
+                      "children": [
+                        {
+                          "position": "461.8-377.78", 
+                          "group": "red", 
+                          "name": "ASD01150219", 
+                          "dist": 0.381699, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "473.02-364.03", 
+                          "group": "blue", 
+                          "name": "CHEMBL36", 
+                          "dist": 0.396078, 
+                          "size": 1531.745688841004
+                        }
+                      ]
+                    }, 
+                    {
+                      "position": "436.63-384.16", 
+                      "dist": 0.020073, 
+                      "name": "N169", 
+                      "children": [
+                        {
+                          "position": "424.21-393.99", 
+                          "group": "red", 
+                          "name": "ASD01880400", 
+                          "dist": 0.452835, 
+                          "size": 1531.745688841004
+                        }, 
+                        {
+                          "position": "440.72-414.7", 
+                          "dist": 0.022084, 
+                          "name": "N171", 
+                          "children": [
+                            {
+                              "position": "448.72-439.36", 
+                              "dist": 0.106537, 
+                              "name": "N172", 
+                              "children": [
+                                {
+                                  "position": "462.26-451.8", 
+                                  "group": "red", 
+                                  "name": "ASD01120059", 
+                                  "dist": 0.265515, 
+                                  "size": 1531.745688841004
+                                }, 
+                                {
+                                  "position": "442.61-456.53", 
+                                  "group": "red", 
+                                  "name": "ASD01120043", 
+                                  "dist": 0.298439, 
+                                  "size": 1531.745688841004
+                                }
+                              ]
+                            }, 
+                            {
+                              "position": "429.49-427.38", 
+                              "group": "red", 
+                              "name": "ASD03090618", 
+                              "dist": 0.404136, 
+                              "size": 1531.745688841004
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "position": "451.33-316.74", 
+                  "dist": 0.016108, 
+                  "name": "N176", 
+                  "children": [
+                    {
+                      "position": "464.42-328.1", 
+                      "group": "blue", 
+                      "name": "CHEMBL114941", 
+                      "dist": 0.42282, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "465.59-307.12", 
+                      "group": "blue", 
+                      "name": "CHEMBL166244", 
+                      "dist": 0.414529, 
+                      "size": 1531.745688841004
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "position": "407.11-289.3", 
+              "dist": 0.019971, 
+              "name": "N179", 
+              "children": [
+                {
+                  "position": "410.55-305.51", 
+                  "group": "blue", 
+                  "name": "CHEMBL77030", 
+                  "dist": 0.465384, 
+                  "size": 1531.745688841004
+                }, 
+                {
+                  "position": "393.7-297.92", 
+                  "group": "blue", 
+                  "name": "CHEMBL9225", 
+                  "dist": 0.415804, 
+                  "size": 1531.745688841004
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "position": "400.05-188.61", 
+          "dist": 0.014237, 
+          "name": "N182", 
+          "children": [
+            {
+              "position": "396.38-155.07", 
+              "dist": 0.014988, 
+              "name": "N183", 
+              "children": [
+                {
+                  "position": "386.87-142.13", 
+                  "group": "blue", 
+                  "name": "CHEMBL152023", 
+                  "dist": 0.401647, 
+                  "size": 1531.745688841004
+                }, 
+                {
+                  "position": "397.76-126.51", 
+                  "dist": 0.089975, 
+                  "name": "N185", 
+                  "children": [
+                    {
+                      "position": "407.13-109.91", 
+                      "group": "blue", 
+                      "name": "CHEMBL323391", 
+                      "dist": 0.322601, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "390.2-108.92", 
+                      "group": "blue", 
+                      "name": "CHEMBL327158", 
+                      "dist": 0.321467, 
+                      "size": 1531.745688841004
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "position": "398.88-170.13", 
+              "dist": 0.012319, 
+              "name": "N188", 
+              "children": [
+                {
+                  "position": "418.13-155.82", 
+                  "dist": 0.056381, 
+                  "name": "N189", 
+                  "children": [
+                    {
+                      "position": "425.4-137.8", 
+                      "group": "blue", 
+                      "name": "CHEMBL487924", 
+                      "dist": 0.369806, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "434.54-155.72", 
+                      "group": "blue", 
+                      "name": "CHEMBL519828", 
+                      "dist": 0.336444, 
+                      "size": 1531.745688841004
+                    }
+                  ]
+                }, 
+                {
+                  "position": "376.27-165.3", 
+                  "dist": 0.096099, 
+                  "name": "N192", 
+                  "children": [
+                    {
+                      "position": "362.58-153.2", 
+                      "group": "red", 
+                      "name": "ASD01820065", 
+                      "dist": 0.336426, 
+                      "size": 1531.745688841004
+                    }, 
+                    {
+                      "position": "362.54-173.89", 
+                      "group": "red", 
+                      "name": "ASD01820164", 
+                      "dist": 0.327637, 
+                      "size": 1531.745688841004
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
