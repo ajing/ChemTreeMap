@@ -19,8 +19,8 @@ def GetRoot(dotfile):
             if nodelevel > maxlevel:
                 maxnode  = eachline
                 maxlevel = nodelevel
-    name, size, group = GetNodeProperty(maxnode)
-    return Node(name, size = size, group = group)
+    name, size, group, position = GetNodeProperty(maxnode)
+    return Node(name, size = size, group = group, position = position)
 
 def SizeScale(size):
     # size is a string
@@ -29,11 +29,13 @@ def SizeScale(size):
 def GetNodeProperty(line):
     name, attr = NameAndAttribute(line)
     name = ProcessName(name, False)
+    position = GetAttributeValue("pos", attr)[:-1].replace(",", "-")
+    print position
     attr = CleanAttribute(attr)
     width = GetAttributeValue("width", attr)
     group = GetAttributeValue("color", attr)
     size = SizeScale(GetSize(width))
-    return name, size, group
+    return name, size, group, position
 
 class Node(dict):
     # class for node of tree, each node can only have one parent
@@ -74,8 +76,8 @@ class Node(dict):
 def NodeByName(name, contents):
     for eachline in contents:
         if not IsEdge(eachline) and name in eachline:
-            name, size, group = GetNodeProperty(eachline)
-            return Node(name, size = size, group = group)
+            name, size, group, position = GetNodeProperty(eachline)
+            return Node(name, size = size, group = group, position = position)
 
 def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, currentlist):
     # return a node object
@@ -91,6 +93,7 @@ def ExtendChildren(a_node, contents, cur_list):
         if IsEdge(eachline):
             name, attr = NameAndAttribute(eachline)
             fnode, snode = ProcessName(name, True)
+            eachline = CleanAttribute(eachline)
             if fnode == a_node.name and not snode in cur_list:
                 edge_len  = GetAttributeValue("len", eachline)
                 AddNewChild(contents, a_node, snode, edge_len, children_list, cur_list)
@@ -118,9 +121,9 @@ def SimpleName(name):
 
 def RecursiveNode2Dict(node):
     if not node.children:
-        result = {"name": SimpleName(node.name), "size": node["size"], "group": node["group"], "dist": float(node.dist)}
+        result = {"name": SimpleName(node.name), "size": node["size"], "group": node["group"], "position": node["position"], "dist": float(node.dist)}
     else:
-        result = {"name": SimpleName(node.name), "dist": float(node.dist)}
+        result = {"name": SimpleName(node.name), "position": node["position"], "dist": float(node.dist)}
     children = [RecursiveNode2Dict(c) for c in node.children]
     if children:
         result["children"] = children
@@ -147,15 +150,17 @@ def Dot2JSON(dotfile):
     return root
 
 def test():
-    testfile = "test.gv"
-    root = GetRoot(testfile)
+    testfile = "./Data/test.gv"
+    #root = GetRoot(testfile)
     #print root.__dict__
     #print root["size"]
     root = Dot2JSON(testfile)
-    Root2JSON(root, "test.json")
+    Root2JSON(root, "./Data/test.json")
+    #aline = "ASD00030001 [label=, width=0.027778, color=red, pos=5.6889,266.3, height=0.041667];\n"
+    #print GetNodeProperty(aline)
 
 if __name__ == "__main__":
-    #test()
-    infile = sys.argv[1]
-    root = Dot2JSON(infile)
-    Root2JSON(root, "test.json")
+    test()
+    #infile = sys.argv[1]
+    #root = Dot2JSON(infile)
+    #Root2JSON(root, "test.json")
