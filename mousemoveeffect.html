@@ -81,6 +81,7 @@ var force = d3.layout.force()
 
 function zoom() {
   console.log("here", d3.event.translate, d3.event.scale);
+  console.log("transform", d3.event.translate, d3.event.scale);
   //vis.attr("transform", transform);
   node.attr("transform", transform);
   link.attr("transform", transform);
