@@ -73,11 +73,20 @@ var w = 800,
     link,
     root;
 
+/*** Configure Force Layout ***/
 var force = d3.layout.force()
     .on("tick", tick)
     .charge(function(d) { return d._children ? -d.size / 100 : -50; })
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
-    .size([w, h - 160]);
+    .size([w, h]);
+
+
+/*** Configure zoom behaviour ***/
+var zoomer = d3.behavior.zoom()
+     .scaleExtent([0.1,10])
+     //allow 10 times zoom in or out
+     .on("zoom", zoom);
+     //define the event handler function
 
 function zoom() {
   console.log("here", d3.event.translate, d3.event.scale);
@@ -87,31 +96,22 @@ function zoom() {
   link.attr("transform", transform);
 }
 
-function transform(d){
-  return "translate(" + d.x + "," + d.y + ")";
-  //return "translate(" + d3.event.translate + ")";
-}
-
+/** Initialize SVG ***/
 var vis = d3.select(".intgraph").append("svg:svg")
     .attr("width", w)
     .attr("height", h)
-  .append("svg:g")
-    .call(d3.behavior.zoom().on("zoom", zoom));
+  .append("g")
+    .attr("class", "graph")
+    .call(zoomer);
 
-// the area to zoom
+// Add a transparent background rectangle to catch mouse events
+// for zoom behavior. The size is the same as the whole region
+//
 var rect =  vis.append("rect")
         .attr("width", w)
         .attr("height", h)
         .style("fill", "none")
         .style("pointer-events", "all");
-
-d3.json("test.json", function(json) {
-  root = json;
-  root.fixed = true;
-  root.x = w / 2;
-  root.y = h / 2 - 80;
-  update();
-});
 
 function update() {
   var nodes = flatten(root),
@@ -211,7 +211,20 @@ function click(d) {
   update();
 }
 
-// Returns a list of all nodes under the root.
+
+/** Data functions **/
+
+// take a json file, fix the root in the center
+// and call update to position everytying else;
+d3.json("test.json", function(json) {
+  root = json;
+  root.fixed = true;
+  root.x = w / 2;
+  root.y = h / 2;
+  update();
+});
+
+// Returns all nodes under the root as an array.
 function flatten(root) {
   var nodes = [], i = 0;
 
