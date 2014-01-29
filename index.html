@@ -4,47 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <link type="text/css" rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <style type="text/css">
-
-circle.node {
-  cursor: pointer;
-  stroke: #000;
-  stroke-width: .5px;
-}
-
-line.link {
-  fill: none;
-  stroke: #9ecae1;
-  stroke-width: 1.5px;
-}
-
-#slider1{
-  width:10%;
-  height:0%;
-  top:0px;
-  left:0px;
-  position:absolute;
-  cursor:pointer;
-}
-
-#slider2{
-  width:10%;
-  height:0%;
-  top:50px;
-  left:0px;
-  position:absolute;
-  cursor:pointer;
-}
-
-
-.ui-slider .ui-slider-handle{
-    width:20px;
-    height:20px;
-    position:absolute;
-    border-style:none;
-}
-
-    </style>
   </head>
   <body>
   <div id="main">
@@ -73,8 +32,11 @@ line.link {
     <script type="text/javascript">
 
 
-var w = 800,
-    h = 800,
+/** Initial configuration of force directed graph**/
+var w = 1000,
+    h = 1000,
+    winit = 1000, // depends on how big is the graph
+    hinit = 800,
     node,
     link,
     root;
@@ -83,8 +45,10 @@ var force = d3.layout.force()
     .on("tick", tick)
     .charge(function(d) { return d._children ? -d.size / 100 : -50; })
     .linkDistance(function(d) { return d.target._children ? 80 : 30; })
-    .size([w, h - 160]);
+    .size([w, h]);
 
+
+/** JQuery dynamically change parameter for graph**/
 $(function() {
 $( "#slider1" ).slider({
   min: 0,
@@ -94,8 +58,8 @@ $( "#slider1" ).slider({
   slide: function( event, ui ) {
     // This is the value that you just dragged the slider to, there it is,
     // in a variable
-    force.start(),
-    force.gravity( ui.value )
+    force.start();
+    force.gravity( ui.value );
   }
 }
 );
@@ -110,55 +74,103 @@ $( "#slider2" ).slider({
   slide: function( event, ui ) {
     // This is the value that you just dragged the slider to, there it is,
     // in a variable
-    force.start(),
-    force.linkStrength( ui.value )
+    force.start();
+    force.linkStrength( ui.value );
   }
 }
 );
 });
 
-var x = d3.scale.linear()
-        .domain([0, w])
+
+/** Zooming configuration **/
+var scaleF = 1;
+var translationV = [0, 0];
+
+var zoomer = d3.behavior.zoom()
+            // allow only 10 times zoom in or out
+                .scaleExtent([0.1, 10])
+            // attach zoom function for variable modification
+                .on("zoom", zoom);
+
+function zoom(){
+    console.log(translationV, scaleF);
+    scaleF = d3.event.scale;
+    translationV = d3.event.translate;
+    tick(); // update position by tick, so the actual d.x, d.y won't change
+}
+
+var xrange = d3.scale.linear()
+        .domain([0, winit])
         .range([0, w]);
 
-var y = d3.scale.linear()
-        .domain([0, h])
+var yrange = d3.scale.linear()
+        .domain([0, hinit])
         .range([h, 0]);
 
-function zoom() {
-  console.log("here", d3.event.translate, d3.event.scale);
-  console.log("transform", d3.event.translate, d3.event.scale);
-  vis.attr("transform", transform);
- // link.attr("transform", transform);
-}
+// let zoomer ajust coordinates by xrange and yrange
+zoomer.x(xrange).y(yrange);
 
-function transform(d){
-  //return "translate(" + d.x + "," + d.y + ")";
-  return "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")";
-}
-
-var vis = d3.select(".intgraph").append("svg:svg")
+/** Prepare DOM to draw the graph **/
+var graph = d3.select(".intgraph").append("svg:svg")
     .attr("width", w)
     .attr("height", h)
   .append("svg:g")
-    .call(d3.behavior.zoom().on("zoom", zoom));
+    .call(zoomer);
 
-// the area to zoom
-var rect =  vis.append("rect")
+// add a transparent background for area to catch mouse
+// events for the zoom behavior
+var rect =  graph.append("rect")
         .attr("width", w)
         .attr("height", h)
         .style("fill", "none")
-        .style("pointer-events", "all")
-        .append("g");
+        .style("pointer-events", "all");
+        // respond to mouse, even when transparent
 
+// area for plotting
+var vis  = graph.append("svg:g");
+
+
+/** Data section **/
 d3.json("test.json", function(json) {
   root = json;
-  root.fixed = true;
-  root.x = w / 2;
-  root.y = h / 2 - 80;
+  //root.fixed = true;
+  initialize();
+  //root.x = w / 2;
+  //root.y = h / 2 - 80;
   update();
+  force.stop();
 });
 
+// initial position based on position attribute in node
+function initialize() {
+  var nodes = flatten(root);
+
+  // initialize the position of nodes
+  nodes.forEach(function(d){
+          dposition = d.position.split("-");
+          d.x = Number(dposition[0]);
+          d.y = Number(dposition[1]);
+          })
+}
+
+// Returns a list of all nodes under the root.
+function flatten(root) {
+  var nodes = [], i = 0;
+
+  function recurse(node) {
+    if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
+    if (!node.id) node.id = ++i;
+    nodes.push(node);
+    return node.size;
+  }
+
+  root.size = recurse(root);
+  return nodes;
+}
+
+
+
+/** updating node and link position for node information changing**/
 function update() {
   var nodes = flatten(root),
       links = d3.layout.tree().links(nodes);
@@ -169,17 +181,17 @@ function update() {
       .links(links)
       .start();
 
-  // Update the links…
+  // Update the links.
   link = vis.selectAll("line.link")
       .data(links, function(d) { return d.target.id; });
 
   // Enter any new links.
   link.enter().insert("svg:line", ".node")
       .attr("class", "link")
-      .attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
+      .attr("x1", function(d) { return xrange(d.source.x); })
+      .attr("y1", function(d) { return yrange(d.source.y); })
+      .attr("x2", function(d) { return xrange(d.target.x); })
+      .attr("y2", function(d) { return yrange(d.target.y); });
 
   // Exit any old links.
   link.exit().remove();
@@ -190,55 +202,33 @@ function update() {
       .style("fill", color);
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; });
+      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
-      .attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; })
-      .attr("r", function(d) { return d.children ? 4.5 : Math.sqrt(d.size) / 10; })
+      .attr("cx", function(d) { return xrange(d.x); })
+      .attr("cy", function(d) { return yrange(d.y); })
+      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
       .on("click", click)
       .on("mouseover", mouseover)
   //    .on("mouseout", mouseout)
-      .call(drag)
+      .call(force.drag)
 
   // Exit any old nodes.
   node.exit().remove();
 
 }
 
-// modifed drag event
-var drag = d3.behavior.drag()
-        .origin(function(d) { return d; })
-        .on("dragstart", dragstarted)
-        .on("drag", dragged)
-        .on("dragend", dragended);
-
-function dragstarted(d){
-    d3.event.sourceEvent.stopPropagation();
-    d3.select(this).classed("dragging", true);
-    force.start();
-}
-
-function dragged(d){
-    d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
-}
-
-function dragended(d){
-    d3.select(this).classed("dragging", false);
-}
-
-
 function tick() {
-  link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
+    link.attr("x1", function(d) { return xrange(d.source.x); })
+        .attr("y1", function(d) { return yrange(d.source.y); })
+      .attr("x2", function(d) { return xrange(d.target.x); })
+      .attr("y2", function(d) { return yrange(d.target.y); });
 
-  node.attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; });
+  node.attr("cx", function(d) { return xrange(d.x); })
+      .attr("cy", function(d) { return yrange(d.y); });
 }
 
 // Color leaf nodes orange, and packages white or blue.
@@ -273,21 +263,6 @@ function mouseout(){
 //   d3.select("img").transition().duration(500).remove();
    d3.select("#molimage")
      .attr("src", "");
-}
-
-// Returns a list of all nodes under the root.
-function flatten(root) {
-  var nodes = [], i = 0;
-
-  function recurse(node) {
-    if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
-    if (!node.id) node.id = ++i;
-    nodes.push(node);
-    return node.size;
-  }
-
-  root.size = recurse(root);
-  return nodes;
 }
 
     </script>

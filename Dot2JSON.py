@@ -30,7 +30,6 @@ def GetNodeProperty(line):
     name, attr = NameAndAttribute(line)
     name = ProcessName(name, False)
     position = GetAttributeValue("pos", attr)[:-1].replace(",", "-")
-    print position
     attr = CleanAttribute(attr)
     width = GetAttributeValue("width", attr)
     group = GetAttributeValue("color", attr)

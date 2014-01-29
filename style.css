@@ -1,96 +1,8 @@
 body {
   font: 300 36px "Helvetica Neue";
-  height: 640px;
   margin: 80px 160px 80px 160px;
   overflow: hidden;
   position: relative;
-  width: 960px;
-}
-
-a:link, a:visited {
-  color: #777;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #666;
-}
-
-blockquote {
-  margin: 0;
-}
-
-blockquote:before {
-  content: "“";
-  position: absolute;
-  left: -.4em;
-}
-
-blockquote:after {
-  content: "”";
-  position: absolute;
-}
-
-body > ul {
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  font-size: 64px;
-}
-
-h1, h2, h3 {
-  font-weight: inherit;
-  margin: 0;
-}
-
-h2, h3 {
-  text-align: right;
-  font-size: inherit;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-h2 {
-  font-size: 24px;
-  position: absolute;
-}
-
-h3 {
-  bottom: -20px;
-  font-size: 18px;
-}
-
-.invert {
-  background: #1f1f1f;
-  color: #dcdccc;
-}
-
-.invert h2, .invert h3 {
-  color: #7f9f7f;
-}
-
-.string, .regexp {
-  color: #f39;
-}
-
-.keyword {
-  color: #00c;
-}
-
-.comment {
-  color: #777;
-  font-style: oblique;
-}
-
-.number {
-  color: #369;
-}
-
-.class, .special {
-  color: #1181B8;
 }
 
 .molecule {
@@ -100,8 +12,8 @@ h3 {
 
 .intgraph {
   position: relative;
-  height: 640px;
-  width: 760px;
+  height: 1000px;
+  width: 1000px;
 }
 
 div.intgraph svg {
@@ -110,3 +22,39 @@ div.intgraph svg {
   left: -100px;
 }
 
+circle.node {
+  cursor: pointer;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+line.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+}
+
+#slider1{
+  width:10%;
+  height:0%;
+  top:0px;
+  left:0px;
+  position:absolute;
+  cursor:pointer;
+}
+
+#slider2{
+  width:10%;
+  height:0%;
+  top:50px;
+  left:0px;
+  position:absolute;
+  cursor:pointer;
+}
+
+.ui-slider .ui-slider-handle{
+    width:20px;
+    height:20px;
+    position:absolute;
+    border-style:none;
+}

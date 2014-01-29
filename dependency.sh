@@ -8,6 +8,9 @@ sudo easy_install -U ete2
 # networkx
 sudo apt-get install -y python-pip
 sudo pip install networkx
+# NAMS
 sudo easy_install NAMS
-sudo apt-get install python-openbabel
-sudo apt-get install python-munkres
+sudo apt-get install -y python-openbabel
+sudo apt-get install -y python-munkres
+# numpy
+sudo apt-get install -y python-numpy

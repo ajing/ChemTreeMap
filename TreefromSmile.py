@@ -10,6 +10,7 @@ from TreeConstruction import nj, DistanceMatrix
 from CreateGraph import MoleculeDictionary
 from Dot2JSON import Dot2JSON, Root2JSON
 import random
+from SFDPLayOut import SFDPonDot
 
 def SamplingLigandFile(infile, num_allo, num_comp):
     # return new ligand filename
@@ -59,8 +60,8 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
     dotfile  = nj(dmatrix, moldict, True)
     # dotfile with sfdp layout
     # write to JSON file
-    print dotfile
-    root = Dot2JSON(dotfile)
+    sfdp_dot  = SFDPonDot(dotfile, 10)
+    root = Dot2JSON(sfdp_dot)
     Root2JSON(root, filename)
 
 def TreefromSmile(infile):
