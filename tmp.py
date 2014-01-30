@@ -1,4 +1,5 @@
-infile = "test.json"
+#infile = "test.json"
+infile = "tmpsmall.json"
 
 fmax = 0
 lmax = 0
@@ -14,4 +15,15 @@ for line in open(infile):
         llist.append(last)
 
 print max(flist), min(flist), max(llist), min(llist)
+
+
+# for link distance
+linklist = []
+for line in open(infile):
+    if "dist" in line:
+        content = line.strip().split(":")[-1].strip()[:-1]
+        dist = float(content)
+        linklist.append(dist)
+
+print max(linklist),  min(linklist)
 
