@@ -82,7 +82,7 @@ $( "#slider2" ).slider({
 });
 
 
-/** Zooming configuration **/
+/** Zoom behavior configuration **/
 var scaleF = 1;
 var translationV = [0, 0];
 
@@ -109,6 +109,33 @@ var yrange = d3.scale.linear()
 
 // let zoomer ajust coordinates by xrange and yrange
 zoomer.x(xrange).y(yrange);
+
+
+/** Drag behavior configuration **/
+// zoom and drag may interfere with each other, so here redefine drag function
+var drag = d3.behavior.drag()
+            .origin(function(d){ return d; }) // identify function
+            .on("dragstart", dragstarted)
+            .on("drag", dragged)
+            .on("dragend", dragended);
+
+function dragstarted(d){
+  d3.event.sourceEvent.stopPropagation();
+  d3.select(this).classed("dragged", true);
+}
+
+function dragged(d){
+  var mouselocation = d3.mouse(vis.node());
+  d.x = xrange.invert(mouselocation[0]);
+  d.y = yrange.invert(mouselocation[1]);
+  tick(); // re-position this node and links connected to this node
+}
+
+function dragended(d){
+  d3.select(this).classed("dragging", false);
+  force.resume();
+}
+
 
 /** Prepare DOM to draw the graph **/
 var graph = d3.select(".intgraph").append("svg:svg")
@@ -213,8 +240,7 @@ function update() {
       .style("fill", color)
       .on("click", click)
       .on("mouseover", mouseover)
-  //    .on("mouseout", mouseout)
-      .call(force.drag)
+      .call(drag); // attach drag behavior to new circles
 
   // Exit any old nodes.
   node.exit().remove();
