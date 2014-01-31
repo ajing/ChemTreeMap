@@ -14,3 +14,6 @@ sudo apt-get install -y python-openbabel
 sudo apt-get install -y python-munkres
 # numpy
 sudo apt-get install -y python-numpy
+# to draw molecule structure jpg file
+# download oasa from http://bkchem.zirael.org/
+sudo apt-get install -y bkchem
