@@ -264,7 +264,9 @@ function update() {
       .style("fill", color)
       .on("click", click)
       .on("mouseover", mouseover)
-      .call(drag); // attach drag behavior to new circles
+      .call(drag) // attach drag behavior to new circles
+      .append("svg:title")
+      .text( function(d){ return d.group });
 
   // Exit any old nodes.
   node.exit().remove();
