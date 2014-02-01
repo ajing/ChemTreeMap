@@ -7,7 +7,10 @@ sys.path.append("..")
 sys.path.append("../../clusterVis")
 from ParseFile import ParseAffinity
 from ligandGraphall import similarityMatrix, getSimilarity
+from TreeConstruction import nj, DistanceMatrix
 from TreefromSmile import Matrix2JSON
+from SFDPLayOut import SFDPonDot
+from Dot2JSON import Dot2JSON, Root2JSON
 
 def NewLigandFile(ligand_dict, filename):
     newfilename = filename + "_new"
@@ -24,11 +27,23 @@ def NewLigandFile(ligand_dict, filename):
     out_obj.close()
     print "finish writing to new file"
 
+def Matrix2JSON(smatrix, affinity_dict, outfile):
+    dmatrix  = DistanceMatrix(affinity_dict.keys(), 1 - smatrix)
+    moldict  = dict( (key, [ 1, affinity_dict[key]]) for key in affinity_dict.keys())
+    # so write dot language to file
+    dotfile  = nj(dmatrix, moldict, True)
+    # dotfile with sfdp layout
+    # write to JSON file
+    sfdp_dot  = SFDPonDot(dotfile, 10)
+    print sfdp_dot
+    root = Dot2JSON(sfdp_dot)
+    Root2JSON(root, outfile)
+
 def TreefromAffinity(infile):
     smile_dict, affin_dict = ParseAffinity(infile)
     NewLigandFile(smile_dict, infile)
     smatrix  = similarityMatrix(smile_dict, getSimilarity)
-    print smatrix
+    Matrix2JSON(smatrix, affin_dict, "test.json")
 
 if __name__ == "__main__":
     infile = "affinity.txt"

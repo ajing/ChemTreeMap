@@ -17,6 +17,7 @@ def SFDPonDot(dotfile, size):
     return newfilename
 
 def RemoveBackSlash(dotfile):
+    # remove backslash and replace all " quote sign
     f = open(dotfile, 'r+')
     content = f.readlines()
     newcontent = []

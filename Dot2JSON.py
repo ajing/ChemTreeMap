@@ -74,9 +74,11 @@ class Node(dict):
 
 def NodeByName(name, contents):
     for eachline in contents:
-        if not IsEdge(eachline) and name in eachline:
-            name, size, group, position = GetNodeProperty(eachline)
-            return Node(name, size = size, group = group, position = position)
+        if not IsEdge(eachline) and NodeNameExist(eachline):
+            nodename, attr = NameAndAttribute(eachline)
+            if name == nodename.strip():
+                name, size, group, position = GetNodeProperty(eachline)
+                return Node(name, size = size, group = group, position = position)
 
 def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, currentlist):
     # return a node object
@@ -85,6 +87,11 @@ def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, current
     a_node.add_child(newnode)
     childrens.append(newnode)
     currentlist.append(new_node_name)
+
+def PrintAllChild(node):
+    print "print all children"
+    for each in node.children:
+        print each
 
 def ExtendChildren(a_node, contents, cur_list):
     children_list = []
@@ -110,13 +117,15 @@ def static_var(varname, value):
 @static_var("namedict", dict())
 @static_var("counter", 0)
 def SimpleName(name):
-    SimpleName.counter += 1
     if not "_" in name:
         return name
     if not name in SimpleName.namedict:
-        SimpleName.namedict[name] = SimpleName.counter
-        return "N" + str(SimpleName.counter)
-    return SimpleName.namedict[name]
+        SimpleName.counter += 1
+        newname = "N" + str(SimpleName.counter)
+        SimpleName.namedict[name] = newname
+        return newname
+    else:
+        return SimpleName.namedict[name]
 
 def RecursiveNode2Dict(node):
     if not node.children:

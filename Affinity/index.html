@@ -33,10 +33,10 @@
 
 
 /** Initial configuration of force directed graph**/
-var w = 1000,
-    h = 1000,
-    winit = 800, // depends on how big is the graph
-    hinit = 800,
+var w = 600,
+    h = 600,
+    winit = 400, // depends on how big is the graph
+    hinit = 400,
     node,
     link,
     root;
@@ -44,8 +44,8 @@ var w = 1000,
 var force = d3.layout.force()
     .on("tick", tick)
     .charge(function(d) { return d._children ? -d.size / 100 : -50; })
-    .linkDistance(function(d) { return d.target._children ? 80 : 30; })
-    .size([w, h]);
+    .linkDistance(function(d) { return d.target._children ? 15 : 10; })
+    .size([w/2, h/2]);
 
 
 /** JQuery dynamically change parameter for graph**/
@@ -93,7 +93,6 @@ var zoomer = d3.behavior.zoom()
                 .on("zoom", zoom);
 
 function zoom(){
-    console.log(translationV, scaleF);
     scaleF = d3.event.scale;
     translationV = d3.event.translate;
     tick(); // update position by tick, so the actual d.x, d.y won't change
@@ -156,6 +155,25 @@ var rect =  graph.append("rect")
 // area for plotting
 var vis  = graph.append("svg:g");
 
+/** Coloring function for each node**/
+// Color leaf nodes orange, and packages white or blue.
+function getGroupRange(){
+  // Get max and min for group
+  var nodes  = flatten(root);
+  _grouplist = nodes.map(function(d){ return Number(d.group)});
+  _sizelist = nodes.map(function(d){ return Number(d.size)});
+  var groupmax = d3.max(_grouplist);
+  var groupmin = d3.min(_grouplist);
+  return [groupmin, groupmax];
+}
+
+// colorRange function is initialized in initialize() function
+var colorRange;
+
+function color(d) {
+  return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(Number(d.group));
+}
+
 
 /** Data section **/
 d3.json("test.json", function(json) {
@@ -178,6 +196,12 @@ function initialize() {
           d.x = Number(dposition[0]);
           d.y = Number(dposition[1]);
           })
+
+  colorRange = d3.scale.linear()
+                .domain(getGroupRange())
+                .interpolate(d3.interpolateHcl)
+                .range(["#2900FF", "#FFF500"]);
+
 }
 
 // Returns a list of all nodes under the root.
@@ -229,14 +253,14 @@ function update() {
       .style("fill", color);
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; });
+      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 6; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
       .attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; })
+      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 6; })
       .style("fill", color)
       .on("click", click)
       .on("mouseover", mouseover)
@@ -255,12 +279,6 @@ function tick() {
 
   node.attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); });
-}
-
-// Color leaf nodes orange, and packages white or blue.
-function color(d) {
-//  return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : d.group;
 }
 
 // Toggle children on click.
