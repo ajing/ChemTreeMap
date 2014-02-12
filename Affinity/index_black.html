@@ -169,6 +169,7 @@ function getGroupRange(){
 }
 
 // colorRange function is initialized in initialize() function
+var colorRange;
 
 function color(d) {
   return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(Number(d.group));
@@ -200,7 +201,7 @@ function initialize() {
   colorRange = d3.scale.linear()
                 .domain(getGroupRange())
                 .interpolate(d3.interpolateHcl)
-                .range(["#2900FF", "#FFF500"]);
+                .range(["#FFFFFF", "#000000"]);
 
   /** Color Bar adapted from chrisbrich on github **/
   var svg = d3.select(".colorbarSVG").append("svg")
@@ -317,7 +318,6 @@ function mouseout(){
    d3.select("#molimage")
      .attr("src", "");
 }
-
 
     </script>
   </body>

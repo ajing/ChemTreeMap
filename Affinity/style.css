@@ -1,5 +1,5 @@
 body {
-  font: 300 36px "Helvetica Neue";
+  font: 300 12px "Helvetica Neue";
   margin: 80px 160px 80px 160px;
   overflow: hidden;
   position: relative;
@@ -13,7 +13,7 @@ body {
 .intgraph {
   position: relative;
   height: 1000px;
-  width: 1000px;
+  width: 600px;
 }
 
 div.intgraph svg {
@@ -57,4 +57,16 @@ line.link {
     height:20px;
     position:absolute;
     border-style:none;
+}
+
+.colorbar .axis line{
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+
+.colorbar .axis .domain{
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
 }
