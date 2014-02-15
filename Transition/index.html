@@ -117,7 +117,7 @@ function treetransit(root){
 
   // transition from old to new
   node.filter(function(d) { return d.name[0] === "N" ? null : this; })
-      .transition().delay(100).duration(1000)
+      .transition().delay(100).duration(5000)
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; });
   node.filter(function(d) { return d.name[0] === "N" ? this : null; })
