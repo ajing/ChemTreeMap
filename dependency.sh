@@ -17,3 +17,9 @@ sudo apt-get install -y python-numpy
 # to draw molecule structure jpg file
 # download oasa from http://bkchem.zirael.org/
 sudo apt-get install -y bkchem
+
+# graphviz
+sudo apt-add-repository ppa:dperry/ppa-graphviz-test
+sudo apt-get update
+sudo apt-get autoremove graphviz
+sudo apt-get install -y graphviz
