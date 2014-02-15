@@ -69,10 +69,10 @@ def TreefromSmile(infile):
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
-    Matrix2JSON(smatrix, liganddict, newfile, "test.json")
+    Matrix2JSON(smatrix, liganddict, newfile, "test.json.e")
     # for two different distance function
-    #smatrix  = similarityMatrix(liganddict, getSimilarityNAMS)
-    #Matrix2JSON(smatrix, liganddict, newfile, "test.json.n")
+    smatrix  = similarityMatrix(liganddict, getSimilarityNAMS)
+    Matrix2JSON(smatrix, liganddict, newfile, "test.json.n")
 
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
