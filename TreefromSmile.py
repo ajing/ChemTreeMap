@@ -4,7 +4,7 @@
 
 import sys
 sys.path.append("../clusterVis")
-from ligandGraphall import NewLigandFile, parseLigandFile, similarityMatrix, getSimilarity
+from ligandGraphall import NewLigandFile, parseLigandFile, similarityMatrix, getSimilarity, getSimilarityAtomPair
 from ligandGraphnams import getSimilarityNAMS
 from TreeConstruction import nj, DistanceMatrix
 from CreateGraph import MoleculeDictionary
@@ -71,8 +71,8 @@ def TreefromSmile(infile):
     smatrix  = similarityMatrix(liganddict, getSimilarity)
     Matrix2JSON(smatrix, liganddict, newfile, "test.json.e")
     # for two different distance function
-    smatrix  = similarityMatrix(liganddict, getSimilarityNAMS)
-    Matrix2JSON(smatrix, liganddict, newfile, "test.json.n")
+    smatrix  = similarityMatrix(liganddict, getSimilarityAtomPair)
+    Matrix2JSON(smatrix, liganddict, newfile, "test.json.a")
 
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
