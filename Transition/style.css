@@ -1,0 +1,77 @@
+body {
+  font: 300 12px "Helvetica Neue";
+  margin: 80px 160px 80px 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.molecule {
+  height: 640px;
+  width: 200px;
+}
+
+.intgraph {
+  position: relative;
+  height: 1000px;
+  width: 600px;
+}
+
+div.intgraph svg {
+  position: absolute;
+  top: -40px;
+  left: -100px;
+}
+
+circle.node {
+  cursor: pointer;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+line.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+}
+
+#slider1{
+  width:10%;
+  height:0%;
+  top:0px;
+  left:0px;
+  position:absolute;
+  cursor:pointer;
+}
+
+#slider2{
+  width:10%;
+  height:0%;
+  top:50px;
+  left:0px;
+  position:absolute;
+  cursor:pointer;
+}
+
+#changetree{
+  position:absolute;
+  top:200px;
+}
+
+.ui-slider .ui-slider-handle{
+    width:20px;
+    height:20px;
+    position:absolute;
+    border-style:none;
+}
+
+.colorbar .axis line{
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+
+.colorbar .axis .domain{
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
