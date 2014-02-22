@@ -13,7 +13,7 @@ a:link, a:visited {
 }
 
 a:hover {
-  color: #666;
+  color: #0000FF;
 }
 
 blockquote {
@@ -68,14 +68,12 @@ ul.a{
   font-size:12px;
 }
 
-div.a{
-
-}
-
 .centered {
-  position:fixed;
+  font-size: 56px;
   top:30%;
   left:10%;
+  text-align:center;
+  margin:256px 0px 56px 0px
 }
 
 .invert {

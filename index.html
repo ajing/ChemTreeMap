@@ -226,7 +226,8 @@ function update() {
   // Update the nodes
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
-      .style("fill", color);
+      .style("fill", color)
+      .style("fill-opacity", function(d) { return d.children ? 0 : 0.8});
 
   node.transition()
       .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; });
@@ -238,6 +239,7 @@ function update() {
       .attr("cy", function(d) { return yrange(d.y); })
       .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
+      .style("fill-opacity", function(d) { return d.children ? 0 : 0.8})
       .on("click", click)
       .on("mouseover", mouseover)
       .call(drag); // attach drag behavior to new circles
@@ -245,6 +247,9 @@ function update() {
   // Exit any old nodes.
   node.exit().remove();
 
+  // append title
+  node.append("title")
+      .text(function(d){ return d.name; });
 }
 
 function tick() {
