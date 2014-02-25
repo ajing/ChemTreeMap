@@ -62,10 +62,12 @@ svg.on("mousemove", function() {
 });
     </script>
 <script>
-y_height = $(window).height();
-
-$('#footer').css('top', y_height - 20+'px');// again 100 is the height of your footer
-$('#footer').css('display', 'block');
+function setfooter(){
+  _ = $(window).height();
+  $('#footer').css('top', _ - 15 +'px');// again 100 is the height of your footer
+  $('#footer').css('display', 'block');
+}
+window.addEventListener("resize", setfooter, false);
 </script>
 
 
