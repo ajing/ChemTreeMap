@@ -65,7 +65,7 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
     Root2JSON(root, filename)
 
 def TreefromSmile(infile):
-    newfile = SamplingLigandFile(infile, 50, 50)
+    newfile = SamplingLigandFile(infile, 500, 500)
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
