@@ -1,23 +1,29 @@
 body {
-  font: 300 36px "Helvetica Neue";
+  font: 36px "Helvetica Neue";
   margin: 80px 160px 80px 160px;
   overflow: hidden;
   position: relative;
 }
 
+p {
+  font-size:15px;
+}
+
 .molecule {
+  bottom:0px;
   height: 640px;
   width: 200px;
 }
 
-.intgraph {
-  position: relative;
-  height: 1000px;
-  width: 1200px;
+.info{
+  position:absolute;
+  cursor:pointer;
+  float:left;
+  z-index:10;
 }
 
 div.intgraph svg {
-  position: absolute;
+  position: relative;
   top: -40px;
   left: -100px;
 }
@@ -35,21 +41,35 @@ line.link {
 }
 
 #slider1{
-  width:10%;
-  height:0%;
-  top:0px;
-  left:0px;
-  position:absolute;
-  cursor:pointer;
+  width:50%;
 }
 
 #slider2{
-  width:10%;
-  height:0%;
-  top:50px;
-  left:0px;
-  position:absolute;
-  cursor:pointer;
+  width:50%;
+}
+
+#slider3{
+  width:50%;
+}
+
+#slider4{
+  width:50%;
+}
+
+#less{
+  padding:0;
+  margin:0 1px 0 1px;
+  width:50%;
+  height:50%;
+  font-size:15px
+}
+
+#more{
+  padding:0;
+  margin:0 1px 0 1px;
+  width:50%;
+  height:50%;
+  font-size:15px
 }
 
 .ui-slider .ui-slider-handle{
