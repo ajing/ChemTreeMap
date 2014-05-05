@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../jquery/jquery-ui.css">
   </head>
   <body>
-  <h1 style="font-size:32px;position:relative;left:300px">9929 Allosteric(Red) + 5659 Competitive(Blue)</h1>
+  <h1 style="font-size:32px;position:relative;left:300px;">9929 Allosteric(Red) + 5659 Competitive(Blue)</h1>
   <div id="main">
     <div class="intgraph"/>
     <div class="info">
@@ -121,7 +121,7 @@ $( "#slider4" ).slider({
     // in a variable
     force.resume();
     force.friction( 1 - ui.value );
-    $( "#amount4" ).val( 1 - ui.value );
+    $( "#amount4" ).val( ui.value );
   }
 }
 );
@@ -133,7 +133,6 @@ $(function() {
     .button()
     .click(function( event ) {
         event.preventDefault();
-        alert('button clicked');
         lesschild();
     });
 });
@@ -143,7 +142,7 @@ $(function() {
     .button()
     .click(function( event ) {
         event.preventDefault();
-        alert('button clicked');
+        morechild();
     });
 });
 
@@ -222,8 +221,8 @@ var vis  = graph.append("svg:g");
 
 
 /** Data section **/
-//d3.json("all_0.9.json", function(json) {
-d3.json("test.json.e", function(json) {
+d3.json("all_0.9.json", function(json) {
+//d3.json("test.json", function(json) {
   root = json;
   //root.fixed = true;
   initialize();
@@ -369,9 +368,7 @@ function endparent(d){
   }
   for (var i = 0; i < d.children.length; i++){
     if("children" in d.children[i]){
-      console.log(d.children[i]);
       if(d.children[i].children != null){
-        console.log("this is it!!");
         return false;
       }
     }
@@ -380,7 +377,8 @@ function endparent(d){
 }
 function lesschild(){
    var nodes = flatten(root);
-   nodes.forEach(function(d){
+   // this may cause error in the future, as it assumes the later element has higher level than earlier elements
+   nodes.reverse().forEach(function(d){
      if(d.children && endparent(d)){
        d._children = d.children;
        d.children = null;
@@ -389,6 +387,19 @@ function lesschild(){
   )
   update();
 }
+function morechild(){
+   var nodes = flatten(root);
+   // this may cause error in the future, as it assumes the later element has higher level than earlier elements
+   nodes.reverse().forEach(function(d){
+     if(d.children == null){
+       d.children = d._children;
+       d._children = null;
+     }
+   }
+  )
+  update();
+}
+
 
     </script>
   </body>
