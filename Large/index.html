@@ -7,6 +7,7 @@
   </head>
   <body>
   <h1 style="font-size:32px;position:relative;left:300px;">9929 Allosteric(Red) + 5659 Competitive(Blue)</h1>
+  <canvas id="canvas" style="display:none;"></canvas>
   <div id="main">
     <div class="intgraph"/>
     <div class="info">
@@ -30,14 +31,18 @@
         <label>Friction:</label>
         <input type="text" id="amount4" style="width:20%;border:0; color:#f6931f; font-weight:bold;">
       </p>
-      <div><input id="less" type="less" value="Less Nodes"></div>
-      <div><input id="more" type="more" value="More Nodes"></div>
+      <p><input id="less" type="less" value="Less Nodes"></p>
+      <p><input id="more" type="more" value="More Nodes"></p>
+      <p><button id="save">Save as Image</button></p>
       <div class="molecule"><img id="molimage" src=""></div>
     </div>
   </div>
     <script src="../jquery/jquery-1.9.1.js"></script>
     <script src="../jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="../d3/d3.v3.js"></script>
+    <script type="text/javascript" src="canvg.js"></script>
+    <script type="text/javascript" src="canvas2image.js"></script>
+    <script type="text/javascript" src="savepng.js"></script>
     <script type="text/javascript">
 
 
@@ -221,8 +226,8 @@ var vis  = graph.append("svg:g");
 
 
 /** Data section **/
-d3.json("all_0.9.json", function(json) {
-//d3.json("test.json", function(json) {
+//d3.json("all_0.9.json", function(json) {
+d3.json("test.json", function(json) {
   root = json;
   //root.fixed = true;
   initialize();
@@ -274,7 +279,11 @@ function update() {
 
   // Update the links.
   link = vis.selectAll("line.link")
-      .data(links, function(d) { return d.target.id; });
+      .data(links, function(d) { return d.target.id; })
+  // style originally from css, but for saving function, move to here
+      .style("fill", "none")
+      .style("stroke", "#9ecae1")
+      .style("stroke-width", "1.5px");
 
   // Enter any new links.
   link.enter().insert("svg:line", ".node")
@@ -282,7 +291,11 @@ function update() {
       .attr("x1", function(d) { return xrange(d.source.x); })
       .attr("y1", function(d) { return yrange(d.source.y); })
       .attr("x2", function(d) { return xrange(d.target.x); })
-      .attr("y2", function(d) { return yrange(d.target.y); });
+      .attr("y2", function(d) { return yrange(d.target.y); })
+  // style originally from css, but for saving function, move to here
+      .style("fill", "none")
+      .style("stroke", "#9ecae1")
+      .style("stroke-width", "1.5px");
 
   // Exit any old links.
   link.exit().remove();
@@ -291,7 +304,9 @@ function update() {
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color)
-      .style("fill-opacity", function(d) { return d.children ? 0 : 0.6});
+      .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
+  // style originally from css, but for saving function, move to here
+      .style("cursor", "pointer");
 
   node.transition()
       .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.size) / 10; });
@@ -304,6 +319,8 @@ function update() {
       .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
       .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
+  // style originally from css, but for saving function, move to here
+      .style("cursor", "pointer")
       .on("click", click)
       .on("mouseover", mouseover)
       .call(drag); // attach drag behavior to new circles
