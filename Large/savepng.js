@@ -1,7 +1,5 @@
-
-
 $(function() {
-  $( "input[type=savepng]" )
+  $( "button[id=savepng]" )
     .button()
     .click(function( event ) {
         var html = d3.select(".intgraph svg")
@@ -19,7 +17,7 @@ $(function() {
 });
 
 $(function() {
-  $( "input[type=savesvg]" )
+  $( "button[id=savesvg]" )
     .button()
     .click(function( event ) {
         var html = d3.select(".intgraph svg")
