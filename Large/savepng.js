@@ -8,7 +8,7 @@ d3.select("#save").on("click", function(){
   var canvas = document.getElementById("canvas");
   canvg(canvas, html);
   var a = document.createElement("a");
-  a.download = "sample.png";
-  a.href = canvas.toDataURL("image/png");
+  a.download = "sample.svg";
+  a.href = canvas.toDataURL("image/svg");
   a.click();
 });
