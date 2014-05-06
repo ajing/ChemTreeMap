@@ -9,7 +9,6 @@
   <h1 style="font-size:32px;position:relative;left:300px;">9929 Allosteric(Red) + 5659 Competitive(Blue)</h1>
   <canvas id="canvas" style="display:none;"></canvas>
   <div id="main">
-    <div class="intgraph"/>
     <div class="info">
       <div id="slider1" style="font-size:15px"></div>
       <p>
@@ -36,12 +35,14 @@
       <p><button id="save">Save as Image</button></p>
       <div class="molecule"><img id="molimage" src=""></div>
     </div>
+    <div class="intgraph"></div>
   </div>
     <script src="../jquery/jquery-1.9.1.js"></script>
     <script src="../jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="../d3/d3.v3.js"></script>
-    <script type="text/javascript" src="canvg.js"></script>
-    <script type="text/javascript" src="canvas2image.js"></script>
+    <script type="text/javascript" src="libs/rgbcolor.js"></script>
+    <script type="text/javascript" src="libs/StackBlur.js"></script>
+    <script type="text/javascript" src="libs/canvg.js"></script>
     <script type="text/javascript" src="savepng.js"></script>
     <script type="text/javascript">
 
