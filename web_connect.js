@@ -6,8 +6,24 @@ function logger(req, res, next) {
 }
 
 connect()
-  .use(logger)
+  .use(logger);
 
-connect.createServer(
+var app = connect.createServer(
     connect.static(__dirname)
-).listen(8080);
+);
+
+
+  res.writeHead(200, {'Content-Type': 'image/png'});
+  var convert = child_proc.spawn("convert", ["svg:", "png:-"]),
+      values = (url.parse(req.url, true).query['values'] || ".5,.5")
+        .split(",")
+        .map(function(v){return parseFloat(v)});
+
+  convert.stdout.on('data', function (data) {
+    res.write(data);
+  });
+  convert.on('exit', function(code) {
+    res.end();
+  });
+
+    .listen(8080);
