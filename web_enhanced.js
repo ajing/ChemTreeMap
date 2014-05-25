@@ -55,14 +55,14 @@ function downloadsvg(req, res) {
 }
 
 var app = connect()
-  .use(logger)
   .use(connect.compress())
+  .use(logger)
   .use("/", connect.static(__dirname))
   .use(downloadsvg)
- // .listen(8080);
+  .listen(8080);
 
-http.createServer(app)
-    .listen(8080);
+//http.createServer(app)
+//    .listen(8080);
 
 //express.use(express.static(__dirname))
 //    .post('/Large/download', convertsvg);
