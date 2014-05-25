@@ -9,6 +9,8 @@
   <h1 style="font-size:32px;position:relative;left:300px;">9929 Allosteric(Red) + 5659 Competitive(Blue)</h1>
   <canvas id="canvas" style="display:none;"></canvas>
   <div id="main">
+    <div class="stat">
+    </div>
     <div class="info">
       <div id="slider1" style="font-size:15px"></div>
       <p>
@@ -41,10 +43,8 @@
     <script src="../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
     <script src="../jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="../d3/d3.v3.js"></script>
-    <script type="text/javascript" src="libs/rgbcolor.js"></script>
-    <script type="text/javascript" src="libs/StackBlur.js"></script>
-    <script type="text/javascript" src="libs/canvg.js"></script>
     <script type="text/javascript" src="savepng.js"></script>
+    <script type="text/javascript" src="target.js"></script>
     <script type="text/javascript">
 
 
@@ -228,8 +228,8 @@ var vis  = graph.append("svg:g");
 
 
 /** Data section **/
-//d3.json("all_0.9.json", function(json) {
-d3.json("test.json", function(json) {
+d3.json("withtarget.json", function(json) {
+//d3.json("test.json", function(json) {
   root = json;
   //root.fixed = true;
   initialize();

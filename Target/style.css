@@ -1,4 +1,4 @@
-body {
+.body {
   font: 36px "Helvetica Neue";
   margin: 80px 160px 80px 160px;
   overflow: hidden;
@@ -9,9 +9,18 @@ p {
   font-size:15px;
 }
 
+.stat {
+  font:24px;
+  float:right;
+  position:relative;
+  z-index:10;
+}
+
+.stat .ui-selecting { background: #FECA40; }
+.stat .ui-selected { background: #F39814; color: white; }
+
 .molecule {
   bottom:0px;
-  height: 640px;
   width: 200px;
 }
 
