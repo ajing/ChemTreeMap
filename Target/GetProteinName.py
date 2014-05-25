@@ -37,6 +37,20 @@ def TopN(ligdict, N):
     popularpro = sorted(prodict, key = prodict.get, reverse = True)
     return popularpro[:N]
 
+def TopNBlue(ligdict, N, ligandfile):
+    ligtype = dict()
+    with open(ligandfile, 'rb') as ligobj:
+        ligreader = csv.DictReader(ligobj, delimiter="\t")
+        for row in ligreader:
+            ligtype[row['ligandid']] = row['typeofbinding']
+    prolist = [ v for k, v in ligdict.items() if ligtype[k] == "competitive"]
+    proset  = set(prolist)
+    prodict = dict()
+    for each in proset:
+        prodict[each] = prolist.count(each)
+    popularpro = sorted(prodict, key = prodict.get, reverse = True)
+    return popularpro[:N]
+
 def AddProteinWrapper(valname, value):
     def inner(func):
         setattr(func, valname, value)
@@ -58,8 +72,9 @@ def AddProteinTarget2JSON(jsondict, ligdict):
 if __name__ == "__main__":
     filedir = __FILEDIR__
     ligdict = GetLigandTargetName(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "proteinseq_5_4.txt"))
-    #print TopN(ligdict, 10)
-    jdict = json.load(open("test.json"))
+    print TopNBlue(ligdict, 10, os.path.join(filedir, "ligand_5_7.txt"))
+    jdict = json.load(open("all_0.9.json"))
+    #jdict = json.load(open("test.json"))
     AddProteinTarget2JSON(jdict, ligdict)
     fileobj  = open("withtarget.json", "w")
     fileobj.write(json.dumps(jdict, indent=2))

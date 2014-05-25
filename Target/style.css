@@ -9,6 +9,13 @@ p {
   font-size:15px;
 }
 
+table{
+  border-collapse:collapse;
+}
+table, td, th{
+  border:1px solid black;
+}
+
 .stat {
   font:24px;
   float:right;
@@ -33,8 +40,9 @@ p {
 
 div.intgraph svg {
   display: inline-block;
+  float:center;
   position: relative;
-  top: -100px;
+  top: -350px;
   left: -100px;
 }
 
