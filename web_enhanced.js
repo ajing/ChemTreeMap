@@ -36,6 +36,11 @@ function convertsvg(svgsrc, res){
   res.end();
 }
 
+// A help function endwith
+function endsWith(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
 function downloadsvg(req, res) {
   if (req.method == "POST"){
       var body = '';
@@ -44,10 +49,10 @@ function downloadsvg(req, res) {
       });
       req.on('end', function () {
         var POST = qs.parse(body);
-        if(req.url == "/Large/downloadpng"){
+        if( endsWith(req.url, "downloadpng") ){
           convertpng(POST.svg, res);
         }
-        if(req.url == "/Large/downloadsvg"){
+        if( endsWith(req.url, "downloadsvg") ){
           convertsvg(POST.svg, res);
         }
       });
