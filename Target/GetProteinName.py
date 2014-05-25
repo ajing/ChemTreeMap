@@ -73,8 +73,8 @@ if __name__ == "__main__":
     filedir = __FILEDIR__
     ligdict = GetLigandTargetName(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "proteinseq_5_4.txt"))
     print TopNBlue(ligdict, 10, os.path.join(filedir, "ligand_5_7.txt"))
-    jdict = json.load(open("all_0.9.json"))
-    #jdict = json.load(open("test.json"))
+    #jdict = json.load(open("all_0.9.json"))
+    jdict = json.load(open("test.json"))
     AddProteinTarget2JSON(jdict, ligdict)
-    fileobj  = open("withtarget.json", "w")
+    fileobj  = open("withtarget_small.json", "w")
     fileobj.write(json.dumps(jdict, indent=2))
