@@ -31,10 +31,11 @@ table, td, th{
   width: 200px;
 }
 
-.info{
+.info, .motion{
   position:absolute;
   cursor:pointer;
   float:left;
+  display:block;
   z-index:10;
 }
 
@@ -42,8 +43,7 @@ div.intgraph svg {
   display: inline-block;
   float:center;
   position: relative;
-  top: -350px;
-  left: -100px;
+  top: -150px;
 }
 
 #slider1{
