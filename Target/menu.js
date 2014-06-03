@@ -5,11 +5,13 @@ var result = [];
 
 (function(){
   // toggle for motion
+
   var moact = function(){
 
     $(".motion").show();
   }
   var modeact = function(){
+    node.on('mousedown.drag', null);
     $(".motion").hide();
   }
 

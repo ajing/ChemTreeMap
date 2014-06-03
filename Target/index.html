@@ -45,10 +45,6 @@
     <script src="../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
     <script src="../jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="../d3/d3.v3.js"></script>
-    <script type="text/javascript" src="libs/colorbrewer.js"></script>
-    <script type="text/javascript" src="savepng.js"></script>
-    <script type="text/javascript" src="target.js"></script>
-    <script type="text/javascript" src="menu.js"></script>
     <script type="text/javascript">
 
 
@@ -184,32 +180,30 @@ var yrange = d3.scale.linear()
 // let zoomer ajust coordinates by xrange and yrange
 zoomer.x(xrange).y(yrange);
 
-
 /** Drag behavior configuration **/
 // zoom and drag may interfere with each other, so here redefine drag function
-var drag = d3.behavior.drag()
-            .origin(function(d){ return d; }) // identify function
-            .on("dragstart", dragstarted)
-            .on("drag", dragged)
-            .on("dragend", dragended);
+var drag = (function(){
+  function dragstarted(d){
+    d3.event.sourceEvent.stopPropagation();
+    d3.select(this).classed("dragged", true);
+  }
+  function dragged(d){
+    var mouselocation = d3.mouse(vis.node());
+    d.x = xrange.invert(mouselocation[0]);
+    d.y = yrange.invert(mouselocation[1]);
+    tick(); // re-position this node and links connected to this node
+  }
+  function dragended(d){
+    d3.select(this).classed("dragging", false);
+    force.resume();
+  }
 
-function dragstarted(d){
-  d3.event.sourceEvent.stopPropagation();
-  d3.select(this).classed("dragged", true);
-}
-
-function dragged(d){
-  var mouselocation = d3.mouse(vis.node());
-  d.x = xrange.invert(mouselocation[0]);
-  d.y = yrange.invert(mouselocation[1]);
-  tick(); // re-position this node and links connected to this node
-}
-
-function dragended(d){
-  d3.select(this).classed("dragging", false);
-  force.resume();
-}
-
+  return d3.behavior.drag()
+  .origin(function(d){ return d; }) // identify function
+  .on("dragstart", dragstarted)
+  .on("drag", dragged)
+  .on("dragend", dragended);
+})();
 
 /** Prepare DOM to draw the graph **/
 var graph = d3.select(".intgraph").append("svg:svg")
@@ -425,5 +419,9 @@ function morechild(){
 
 
     </script>
+    <script type="text/javascript" src="libs/colorbrewer.js"></script>
+    <script type="text/javascript" src="savepng.js"></script>
+    <script type="text/javascript" src="target.js"></script>
+    <script type="text/javascript" src="menu.js"></script>
   </body>
 </html>
