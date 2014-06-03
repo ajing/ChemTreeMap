@@ -1,8 +1,6 @@
 // Brushing based histogram display
 // Adapted from Mike Bostock's example
 
-var result;
-
 var plotHist = (function(){
 
   var margin = {top: 5, right: 15, bottom: 30, left: 50},
@@ -16,6 +14,12 @@ var plotHist = (function(){
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("g")
+      .classed("x axis", true);
+
+  svg.append("g")
+      .classed("y axis", true);
 
   return function(values){
     var x = d3.scale.linear()
@@ -40,27 +44,33 @@ var plotHist = (function(){
         .orient("left");
 
     var bar = svg.selectAll(".bar")
-        .data(data)
-      .enter().append("g")
-        .attr("class", "bar")
-        .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+        .data(data);
 
     bar.exit().remove();
 
-    result = bar;
-    bar.select("rect")
-        .attr("x", 1)
-        .attr("width", x(data[0].dx) - 1)
-        .attr("height", function(d) { return height - y(d.y); });
+    bar.enter()
+        .append("g")
+          .attr("class", "bar")
+          .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
+        .append("rect")
+          .attr("x", 1)
+          .attr("width", x(data[0].dx) - 1)
+          .attr("height", function(d) { return height - y(d.y); });
 
-    svg.select("g.xaxis")
+    bar.attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
+        .select("rect")
+         .attr("width", x(data[0].dx) - 1)
+         .attr("height", function(d) { return height - y(d.y); });
+
+    svg.selectAll("g.x.axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
-    svg.select("g.yaxis")
+    svg.selectAll('g.y.axis')
         .call(yAxis);
   }
 })()
+
 
 $(function() {
   $( "button[class=hist]" )
