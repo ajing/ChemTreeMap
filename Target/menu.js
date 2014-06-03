@@ -1,8 +1,5 @@
 // menu list for visualization
 
-var result = [];
-
-
 (function(){
   // toggle for motion
 
@@ -19,10 +16,10 @@ var result = [];
 
   // toggle for highlight protein targets
   var targetact = function(){
-    $(".stat").show();
+    $(".target").show();
   }
   var targetdeact = function(){
-    $(".stat").hide();
+    $(".target").hide();
   }
 
   var menuitems = ["Disable Movement", "Highlight Target Proteins", "Brush Statistics"];
@@ -48,12 +45,10 @@ var result = [];
       },
       selected: function( e, u ) {
         var idx = menuitems.indexOf(u.selected.innerHTML);
-        result = u.selected;
         funcselect[idx]();
       },
       unselected: function( e, u ) {
         var idx = menuitems.indexOf(u.unselected.innerHTML);
-        result = funcunselect[idx];
         funcunselect[idx]();
       }
     });

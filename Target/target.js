@@ -1,6 +1,6 @@
 //var tproteins = ["first", "second", "third"];
-var tproteins = ['MGluR5', 'GABA-B-R1', 'Alpha-7 nicotinic receptor', 'A1 adenosine receptor', 'MMP-13', 'MGluR2', 'NS5B', 'D-fructose-1,6-bisphosphate 1-phosphohydrolase 1'];
-var tproteinsblue = ['Androgen Receptor', 'Estrogen receptor beta', 'Dopamine D4 receptor', 'Thrombin', 'Angiotensin II type 2 (AT-2) receptor', 'Dopamine D2 receptor', 'Progesterone receptor', 'Estrogen receptor alpha', 'Galectin-3']
+var tproteins = ['MGluR5', 'GABA-B-R1', 'Alpha-7 nicotinic receptor', 'A1 adenosine receptor', 'MMP-13', 'MGluR2', 'NS5B', 'D-fructose-1,6-bisphosphate 1-phosphohydrolase 1', 'Muscarinic acetylcholine receptor M1', 'Hexokinase-4'];
+var tproteinsblue = ['Androgen Receptor', 'Estrogen receptor beta', 'Dopamine D4 receptor', 'Thrombin', 'Angiotensin II type 2 (AT-2) receptor', 'Dopamine D2 receptor', 'Progesterone receptor', 'Estrogen receptor alpha', 'Galectin-3', 'Renin']
 
 var targetprotein = function(group, title){
   // header
@@ -8,6 +8,7 @@ var targetprotein = function(group, title){
 
   // create table
   var table = d3.select('.stat').append('div')
+    .classed("target", true)
     .selectAll('table')
     .data([group])
   .enter()
@@ -63,12 +64,12 @@ var targetprotein = function(group, title){
 
   // JQuery
   $(function() {
-    $( ".stat" ).selectable({
+    $( ".stat tbody" ).selectable({
       filter:'tr',
       stop: function() {
         var result = [];
         $( ".ui-selected", this ).each(function() {
-          selected_name = this.getElementsByTagName("td")[1].innerText;
+          selected_name = this.getElementsByTagName("td")[1].innerHTML;
           result.push( selected_name );
         });
         updatecolor(result);
