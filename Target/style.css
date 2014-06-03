@@ -85,3 +85,9 @@ div.intgraph{
 .x.axis path {
   display: none;
 }
+
+.brush .extent {
+  fill-opacity: .1;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}

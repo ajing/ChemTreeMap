@@ -2,9 +2,9 @@
 
 (function(){
   // toggle for motion
-
   var moact = function(){
-
+    node.call(drag);
+    node.on('click', click);
     $(".motion").show();
   }
   var modeact = function(){
@@ -12,7 +12,6 @@
     node.on('click', null);
     $(".motion").hide();
   }
-
 
   // toggle for highlight protein targets
   var targetact = function(){
@@ -22,9 +21,19 @@
     $(".target").hide();
   }
 
+  // toggle for brushing histogram
+  var brushact = function(){
+    $(".histogram").show();
+    graph.on('mousedown.zoom', null);
+    brushing();
+  }
+  var brushdeact = function(){
+    $(".histogram").hide();
+  }
+
   var menuitems = ["Disable Movement", "Highlight Target Proteins", "Brush Statistics"];
-  var funcselect = [ moact, targetact ];
-  var funcunselect = [ modeact, targetdeact ];
+  var funcselect = [ moact, targetact, brushact ];
+  var funcunselect = [ modeact, targetdeact, brushdeact ];
 
   var table = d3.select('.menu').append('ul')
       .selectAll('li')

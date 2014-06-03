@@ -1,6 +1,8 @@
 // Brushing based histogram display
 // Adapted from Mike Bostock's example
 
+
+
 var plotHist = (function(){
 
   var margin = {top: 5, right: 15, bottom: 30, left: 50},
@@ -72,11 +74,26 @@ var plotHist = (function(){
 })()
 
 
-$(function() {
-  $( "button[class=hist]" )
-    .button()
-    .click(function( event ) {
-      var values = d3.range(1000).map(d3.random.bates(10));
-      plotHist(values);
-    });
-});
+var brushing = function(){
+  graph.append("g")
+    .attr("class", "brush")
+    .call(d3.svg.brush()
+      .x(zoomer.x())
+      .y(zoomer.y())
+      .on("brush", function() {
+        var extent = d3.event.target.extent();
+        node.classed("selected", function(d) {
+          return extent[0][0] <= d.x && d.x < extent[1][0]
+              && extent[0][1] <= d.y && d.y < extent[1][1];
+        });
+      }));
+}
+
+//$(function() {
+//  $( "button[class=hist]" )
+//    .button()
+//    .click(function( event ) {
+//      var values = d3.range(1000).map(d3.random.bates(10));
+//      plotHist(values);
+//    });
+//});
