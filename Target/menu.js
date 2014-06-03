@@ -12,6 +12,7 @@ var result = [];
   }
   var modeact = function(){
     node.on('mousedown.drag', null);
+    node.on('click', null);
     $(".motion").hide();
   }
 
@@ -46,18 +47,14 @@ var result = [];
         });
       },
       selected: function( e, u ) {
-        var idx = menuitems.indexOf(u.selected.innerText);
+        var idx = menuitems.indexOf(u.selected.innerHTML);
+        result = u.selected;
         funcselect[idx]();
       },
       unselected: function( e, u ) {
-        var idx = menuitems.indexOf(u.unselected.innerText);
+        var idx = menuitems.indexOf(u.unselected.innerHTML);
+        result = funcunselect[idx];
         funcunselect[idx]();
-      },
-      stop: function() {
-        $( ".ui-selected", this ).each(function() {
-          selected_name = this.innerText;
-          result.push( selected_name );
-        });
       }
     });
   });
