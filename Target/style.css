@@ -93,7 +93,13 @@ div.intgraph{
 }
 
 /* for brushing */
-circle.node.selected{
+circle.node.selectedbrush{
   stroke: purple;
+  stroke-width: 2px;
+}
+
+/* for target */
+circle.node.selectedtarget{
+  stroke: black;
   stroke-width: 2px;
 }

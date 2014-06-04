@@ -99,7 +99,7 @@ var brushing = function(){
       .on("brush", function() {
         var extent = d3.event.target.extent();
         var values = [];
-        node.classed("selected", function(d) {
+        node.classed("selectedbrush", function(d) {
           if ( extent[0][0] <= d.x && d.x < extent[1][0]
                && extent[0][1] <= d.y && d.y < extent[1][1] && !d.children) {
               values.push(d.chiral);

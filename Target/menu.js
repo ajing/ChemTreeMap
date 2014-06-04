@@ -30,7 +30,7 @@
   var brushdeact = function(){
     $(".histogram").hide();
     d3.selectAll(".brush").remove();
-    node.classed("selected", false);
+    node.classed("selectedbrush", false);
     graph.call(zoomer);
   }
 

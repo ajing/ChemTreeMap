@@ -49,18 +49,11 @@ var targetprotein = function(group, title){
       .range(colorbrewer.Spectral[group.length]);
 
   function updatecolor(selected){
-      node.style("stroke", function(d){
+      node.classed("selectedtarget", function(d){
         if ( d.target && selected.indexOf(d.target) != -1) {
-          return "black";
+          return true;
         }
-        return "#9ecae1";
       })
-      .style("stroke-width", function(d){
-        if ( d.target && selected.indexOf(d.target) != -1) {
-          return "2px";
-        }
-        return "0px";
-      });
   };
 
   // JQuery
