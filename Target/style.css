@@ -9,11 +9,25 @@ p {
   font-size:15px;
 }
 
+input {
+    width:20%;border:0; color:#f6931f; font-weight:bold;
+}
+
 table{
   border-collapse:collapse;
 }
 table, td, th{
   border:1px solid black;
+}
+
+div.menu {
+  text-align:center;
+  position:relative;
+}
+li {
+  display: inline;
+  list-style-type: none;
+  padding: 0 2em 0 2em;
 }
 
 .stat {
@@ -23,49 +37,23 @@ table, td, th{
   z-index:10;
 }
 
-.stat .ui-selecting { background: #FECA40; }
-.stat .ui-selected { background: #F39814; color: white; }
+.ui-selecting { background: #FECA40; }
+.ui-selected { background: #F39814; color: white; }
 
-.molecule {
-  bottom:0px;
-  width: 200px;
-}
-
-.info{
-  position:absolute;
-  cursor:pointer;
-  float:left;
+.info, .motion{
+  position:relative;
+  width:10%;
   z-index:10;
 }
 
-div.intgraph svg {
-  display: inline-block;
+div.intgraph{
   float:center;
-  position: relative;
-  top: -350px;
-  left: -100px;
-}
-
-#slider1{
-  width:50%;
-}
-
-#slider2{
-  width:50%;
-}
-
-#slider3{
-  width:50%;
-}
-
-#slider4{
-  width:50%;
+  position: absolute;
 }
 
 #less, #more, #savepng, #savesvg{
   padding:0;
   margin:0 1px 0 1px;
-  width:50%;
   height:50%;
   font-size:15px
 }
@@ -75,4 +63,37 @@ div.intgraph svg {
     height:20px;
     position:absolute;
     border-style:none;
+}
+
+
+/* for histogram */
+.bar {
+  fill: steelblue;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.brush .extent {
+  fill-opacity: .1;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+/* for brushing */
+circle.node.selected{
+  stroke: purple;
+  stroke-width: 2px;
 }
