@@ -46,7 +46,8 @@ var targetprotein = function(group, title){
 
   // Update color
   var colortrans = d3.scale.ordinal().domain(group)
-      .range(colorbrewer.Spectral[group.length])
+      .range(colorbrewer.Spectral[group.length]);
+
   function updatecolor(selected){
       node.style("stroke", function(d){
         if ( d.target && selected.indexOf(d.target) != -1) {
@@ -60,7 +61,7 @@ var targetprotein = function(group, title){
         }
         return "0px";
       });
-  }
+  };
 
   // JQuery
   $(function() {

@@ -91,3 +91,9 @@ div.intgraph{
   stroke: #fff;
   shape-rendering: crispEdges;
 }
+
+/* for brushing */
+circle.node.selected{
+  stroke: red;
+  stroke-width: 2px;
+}

@@ -115,6 +115,7 @@ def GetLigandDesc(ligandfile, descfile, descname):
 def GetLigandChiralMain():
     filedir = __FILEDIR__
     ligdict = GetLigandDesc(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "descriptor_5_17.txt"), "chiral")
+    #jdict = json.load(open("test.json"))
     jdict = json.load(open("test.json"))
     newjson = NewJSON(jdict)
     newjson.AddField(ligdict, "chiral")

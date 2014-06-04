@@ -29,9 +29,12 @@
   }
   var brushdeact = function(){
     $(".histogram").hide();
+    d3.selectAll(".brush").remove();
+    node.classed("selected", false);
+    graph.call(zoomer);
   }
 
-  var menuitems = ["Disable Movement", "Highlight Target Proteins", "Brush Statistics"];
+  var menuitems = ["Enable Movement", "Highlight Target Proteins", "Brush Statistics"];
   var funcselect = [ moact, targetact, brushact ];
   var funcunselect = [ modeact, targetdeact, brushdeact ];
 
@@ -48,8 +51,9 @@
     }).selectable({
       filter:'li',
       create: function() {
-        $(".menu li").each(function(){
-          $(this).addClass('ui-selected');
+        $(".menu li").each(function(e){
+          if (menuitems[e].indexOf("Brush") == -1)
+             $(this).addClass('ui-selected');
         });
       },
       selected: function( e, u ) {

@@ -5,17 +5,25 @@
 
 var plotHist = (function(){
 
-  var margin = {top: 5, right: 15, bottom: 30, left: 50},
+  var margin = {top: 25, right: 15, bottom: 30, left: 50},
       width = 400 - margin.left - margin.right,
       height = 300 - margin.top - margin.bottom;
 
   var svg = d3.select(".stat").append("div")
-      .classed("histogram", true)
+      .classed("histogram", true);
+
+  var svg = svg
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("text")
+     .attr("x", (width / 2))
+     .attr("y", 0 - (margin.top / 2))
+     .attr("text-anchor", "middle")
+     .text("Chiral Center");
 
   svg.append("g")
       .classed("x axis", true);
@@ -24,6 +32,9 @@ var plotHist = (function(){
       .classed("y axis", true);
 
   return function(values){
+    if (values.length < 3) {
+       return
+    }
     var x = d3.scale.linear()
         .domain([0, d3.max(values)])
         .range([0, width]);
@@ -75,17 +86,24 @@ var plotHist = (function(){
 
 
 var brushing = function(){
-  graph.append("g")
-    .attr("class", "brush")
+  var brush = graph.append("g")
+                .attr("class", "brush");
+
+  brush
     .call(d3.svg.brush()
-      .x(zoomer.x())
-      .y(zoomer.y())
+      .x(xrange)
+      .y(yrange)
       .on("brush", function() {
         var extent = d3.event.target.extent();
+        var values = [];
         node.classed("selected", function(d) {
-          return extent[0][0] <= d.x && d.x < extent[1][0]
-              && extent[0][1] <= d.y && d.y < extent[1][1];
-        });
+          if ( extent[0][0] <= d.x && d.x < extent[1][0]
+               && extent[0][1] <= d.y && d.y < extent[1][1] && !d.children) {
+              values.push(d.chiral);
+              return true;
+           }
+          });
+        plotHist(values);
       }));
 }
 
