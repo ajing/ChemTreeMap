@@ -19,11 +19,10 @@ var plotHist = (function(){
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  svg.append("text")
+  var svgtitle = svg.append("text")
      .attr("x", (width / 2))
      .attr("y", 0 - (margin.top / 2))
-     .attr("text-anchor", "middle")
-     .text("Chiral Center");
+     .attr("text-anchor", "middle");
 
   svg.append("g")
       .classed("x axis", true);
@@ -35,6 +34,10 @@ var plotHist = (function(){
     if (values.length < 3) {
        return
     }
+
+    svgtitle
+     .text("Chiral Center");
+
     var x = d3.scale.linear()
         .domain([0, d3.max(values)])
         .range([0, width]);

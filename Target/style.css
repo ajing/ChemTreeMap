@@ -94,6 +94,6 @@ div.intgraph{
 
 /* for brushing */
 circle.node.selected{
-  stroke: red;
+  stroke: purple;
   stroke-width: 2px;
 }

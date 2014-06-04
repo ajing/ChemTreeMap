@@ -116,12 +116,13 @@ def GetLigandChiralMain():
     filedir = __FILEDIR__
     ligdict = GetLigandDesc(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "descriptor_5_17.txt"), "chiral")
     #jdict = json.load(open("test.json"))
-    jdict = json.load(open("test.json"))
+    jdict = json.load(open("all_0.9.json"))
     newjson = NewJSON(jdict)
     newjson.AddField(ligdict, "chiral")
     ligdict = GetLigandTargetName(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "proteinseq_5_4.txt"))
     newjson.AddField(ligdict, "target")
-    fileobj  = open("withchiral_small.json", "w")
+    #fileobj  = open("withchiral_small.json", "w")
+    fileobj  = open("withchiral.json", "w")
     fileobj.write(json.dumps(jdict, indent=2))
 
 if __name__ == "__main__":
