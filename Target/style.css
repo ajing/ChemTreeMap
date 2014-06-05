@@ -24,7 +24,8 @@ div.menu {
   text-align:center;
   position:relative;
 }
-li {
+div.menu li {
+  cursor:pointer;
   display: inline;
   list-style-type: none;
   padding: 0 2em 0 2em;
@@ -93,6 +94,9 @@ div.intgraph{
 }
 
 /* for brushing */
+circle.node{
+  cursor: pointer;
+}
 circle.node.selectedbrush{
   stroke: purple;
   stroke-width: 2px;

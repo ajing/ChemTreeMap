@@ -226,6 +226,7 @@ var vis  = graph.append("svg:g");
 
 
 /** Data section **/
+//d3.json("withchiral.json", function(json) {
 d3.json("withchiral_small.json", function(json) {
 //d3.json("test.json", function(json) {
   root = json;
@@ -242,12 +243,18 @@ function initialize() {
   var nodes = flatten(root);
 
   // initialize the position of nodes
+  var ymax = 0;
+  nodes.forEach(function(d){
+          dposition = d.position.split("-");
+          if ( ymax < Number(dposition[1]) )
+            ymax = Number(dposition[1]);
+          })
   nodes.forEach(function(d){
           dposition = d.position.split("-");
           d.x = Number(dposition[0]);
-          d.y = Number(dposition[1]);
+          d.y = Number(dposition[1]) + ymax / 2;
           })
-}
+};
 
 // Returns a list of all nodes under the root.
 function flatten(root) {
@@ -304,23 +311,19 @@ function update() {
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color)
-      .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
-  // style originally from css, but for saving function, move to here
-      .style("cursor", "pointer");
+      .style("fill-opacity", function(d) { return d.children ? 0 : 0.6});
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.size) / 10; });
+      .attr("r", function(d) { return d.children ? 1 : Math.log(d.size) / 3; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
       .attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.size) / 10; })
+      .attr("r", function(d) { return d.children ? 1 : Math.log(d.size) / 3; })
       .style("fill", color)
       .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
-  // style originally from css, but for saving function, move to here
-      .style("cursor", "pointer")
       .on("click", click)
       .on("mouseover", mouseover)
       .call(drag); // attach drag behavior to new circles

@@ -310,9 +310,7 @@ function update() {
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color)
-      .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
-  // style originally from css, but for saving function, move to here
-      .style("cursor", "pointer");
+      .style("fill-opacity", function(d) { return d.children ? 0 : 0.6});
 
   node.transition()
       .attr("r", function(d) { return d.children ? 1 : Math.log(d.size) / 3; });
@@ -325,8 +323,6 @@ function update() {
       .attr("r", function(d) { return d.children ? 1 : Math.log(d.size) / 3; })
       .style("fill", color)
       .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
-  // style originally from css, but for saving function, move to here
-      .style("cursor", "pointer")
       .on("click", click)
       .on("mouseover", mouseover)
       .call(drag); // attach drag behavior to new circles
