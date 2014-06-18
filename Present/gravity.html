@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>Force Layouts - Gravity</title>
     <script type="text/javascript" src="d3/d3.js"></script>
-    <script type="text/javascript" src="../jquery/jquery-1.9.1.js"></script>
     <link type="text/css" rel="stylesheet" href="style_gravity.css"/>
   </head>
   <body>
@@ -15,8 +14,8 @@
     </div>
     <script type="text/javascript">
 
-var w = $(window).width() - 300,
-    h = $(window).height() - 100;
+var w = 1000,
+    h = 750;
 
 var force = d3.layout.force()
     .gravity(0.02)
@@ -61,16 +60,5 @@ svg.on("mousemove", function() {
   force.start();
 });
     </script>
-<script>
-function setfooter(){
-  _ = $(window).height();
-  $('#footer').css('top', _ - 15 +'px');// again 100 is the height of your footer
-  $('#footer').css('display', 'block');
-}
-window.addEventListener("resize", setfooter, false);
-</script>
-
-
   </body>
-
 </html>
