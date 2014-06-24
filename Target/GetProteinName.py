@@ -3,6 +3,7 @@
     I know this can be highly redundant, but at this stage I want to impliment this function
     @Date: 5/18/2014
     @Changelog: add chiral data to tree 6/2/2014
+                add nominal/continuous categories to tree 6/21/2014
 '''
 
 import csv
@@ -61,24 +62,36 @@ def AddMemoization(valname, value):
 class NewJSON:
     def __init__(self, jsondict):
         self.json = jsondict
+        self.categories = ["nominal", "continuous"]
 
     @AddMemoization("lignames", [])
-    def AddField2JSON(self, jsondict, ligdict, fieldname):
+    def AddField2JSON(self, jsondict, ligdict, fieldname, fieldcategory):
         lignames = self.AddField2JSON.lignames
         if not lignames:
             lignames += ligdict.keys()
         if "children" in jsondict:
             for child in jsondict["children"]:
-                self.AddField2JSON(child, ligdict, fieldname)
+                self.AddField2JSON(child, ligdict, fieldname, fieldcategory)
         else:
             if jsondict["name"] in lignames:
-                jsondict[fieldname] = ligdict[jsondict["name"]]
+                try:
+                    if fieldcategory in jsondict:
+                        jsondict[fieldcategory][fieldname] = ligdict[jsondict["name"]]
+                    else:
+                        jsondict[fieldcategory] = dict()
+                        jsondict[fieldcategory][fieldname] = ligdict[jsondict["name"]]
+                except:
+                    Exception("Cannot find proper property value for " + jsondict["name"])
+            else:
+                print "Cannot find property for " + jsondict["name"]
 
-    def AddField(self, ligdict, fieldname):
-        self.AddField2JSON(self.json, ligdict, fieldname)
+    def AddField(self, ligdict, fieldname, fieldcategory = "continuous"):
+        if not fieldcategory in self.categories:
+            raise Exception("the category should be nominal or continuous")
+        self.AddField2JSON(self.json, ligdict, fieldname, fieldcategory)
 
     def EmptyMemorization(self):
-        self.AddField2JSON.lignames = []
+        self.AddField2JSON.__func__.lignames = []
 
 def GetProteinTargetMain():
     filedir = __FILEDIR__
@@ -119,8 +132,11 @@ def GetLigandChiralMain():
     jdict = json.load(open("all_0.9.json"))
     newjson = NewJSON(jdict)
     newjson.AddField(ligdict, "chiral")
+    newjson.EmptyMemorization()
+    ligdict = GetLigandDesc(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "descriptor_5_17.txt"), "SlogP")
+    newjson.AddField(ligdict, "SlogP")
     ligdict = GetLigandTargetName(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "proteinseq_5_4.txt"))
-    newjson.AddField(ligdict, "target")
+    newjson.AddField(ligdict, "target", "nominal")
     #fileobj  = open("withchiral_small.json", "w")
     fileobj  = open("withchiral.json", "w")
     fileobj.write(json.dumps(jdict, indent=2))

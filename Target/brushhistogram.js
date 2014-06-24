@@ -1,8 +1,7 @@
 // Brushing based histogram display
-// Adapted from Mike Bostock's example
 
 
-
+// Adapted from Mike Bostock's example: http://bl.ocks.org/mbostock/3048450, http://tributary.io/inlet/5998335 and http://embed.plnkr.co/agRZx6/script.js
 var plotHist = (function(){
 
   var margin = {top: 25, right: 15, bottom: 30, left: 50},
@@ -102,7 +101,7 @@ var brushing = function(){
         node.classed("selectedbrush", function(d) {
           if ( extent[0][0] <= d.x && d.x < extent[1][0]
                && extent[0][1] <= d.y && d.y < extent[1][1] && !d.children) {
-              values.push(d.chiral);
+              values.push(d.continuous.chiral);
               return true;
            }
           });

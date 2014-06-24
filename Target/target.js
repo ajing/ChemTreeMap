@@ -50,7 +50,8 @@ var targetprotein = function(group, title){
 
   function updatecolor(selected){
       node.classed("selectedtarget", function(d){
-        if ( d.target && selected.indexOf(d.target) != -1) {
+        if (!d.nominal) return false;
+        if ( d.nominal.target && selected.indexOf(d.nominal.target) != -1) {
           return true;
         }
       })
