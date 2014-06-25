@@ -25,6 +25,7 @@ var brushing = function(){
                 return true;
             }
             return false;});
+        node.classed("selectedhist", false)
         window.renderAll();
       }));
 }
@@ -37,6 +38,7 @@ var plotHists = function(){
 
     window.reset = function(i) {
       charts[i].filter(null);
+      node.classed("selectedhist", false);
       renderAll();
     };
 
@@ -57,7 +59,6 @@ var plotHists = function(){
 
     // Charts
     for (var i in d3.range(Object.keys(nodes[0].continuous).length)) {
-        console.log(keys[i]);
         charts.push(barChart()
                         .dimension(dimen_list[i])
                         .group(group_list[i])
@@ -217,7 +218,6 @@ var plotHists = function(){
       brush.on("brush.chart", function() {
         var g = d3.select(this.parentNode),
             extent = brush.extent();
-        console.log(extent);
         if (round) g.select(".brush")
             .call(brush.extent(extent = extent.map(round)))
           .selectAll(".resize")
@@ -230,7 +230,6 @@ var plotHists = function(){
         d3.selectAll("circle.node.selectedbrush")
           .classed("selectedhist", function(d) {
             if (d.continuous[property] < extent[0] || d.continuous[property] > extent[1]) {
-                console.log("This is true")
                 return false;
             }
             return true;
