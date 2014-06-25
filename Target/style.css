@@ -107,3 +107,15 @@ circle.node.selectedtarget{
   stroke: black;
   stroke-width: 2px;
 }
+
+/* for brush on histogram */
+.brush rect.extent {
+  fill: steelblue;
+  fill-opacity: .125;
+}
+
+.brush .resize path {
+  fill: #eee;
+  stroke: #666;
+}
+

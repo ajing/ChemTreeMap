@@ -45,6 +45,7 @@
     <script src="../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
     <script src="../jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="../d3/d3.v3.min.js"></script>
+    <script type="text/javascript" src="../d3/crossfilter.min.js"></script>
     <script type="text/javascript">
 
 
@@ -235,6 +236,8 @@ d3.json("withchiral.json", function(json) {
   //root.y = h / 2 - 80;
   update();
   force.stop();
+
+  plotHists();
 });
 
 // initial position based on position attribute in node
@@ -424,7 +427,7 @@ function morechild(){
     <script type="text/javascript" src="libs/colorbrewer.js"></script>
     <script type="text/javascript" src="savepng.js"></script>
     <script type="text/javascript" src="target.js"></script>
-    <script type="text/javascript" src="brushhistogram.js"></script>
+    <script type="text/javascript" src="brushstat.js"></script>
     <script type="text/javascript" src="menu.js"></script>
   </body>
 </html>
