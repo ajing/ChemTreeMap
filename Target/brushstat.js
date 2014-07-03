@@ -227,13 +227,18 @@ var plotHists = function(){
             .attr("width", x(extent[1]) - x(extent[0]));
         dimension.filterRange(extent);
 
+
+        var i;
+        var selected_nodes = dim_loc.top(Infinity);
         d3.selectAll("circle.node.selectedbrush")
-          .classed("selectedhist", function(d) {
-            if (d.continuous[property] < extent[0] || d.continuous[property] > extent[1]) {
-                return false;
+          .classed("selectedhist", function(d){
+            for (var i in selected_nodes){
+              if (selected_nodes[i].name == d.name){
+                return true;
+              }
             }
-            return true;
-          });
+            return false;
+          })
       });
 
       brush.on("brushend.chart", function() {
