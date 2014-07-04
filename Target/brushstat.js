@@ -1,6 +1,21 @@
 var contin;  // global variable to keep info about the crossfilter
 var dim_loc;
 
+var update_hist_highlight = function(){
+  var selected_nodes = dim_loc.top(Infinity);
+  d3.selectAll("circle.node.selectedhist")
+    .classed("selectedhist", false);
+  d3.selectAll("circle.node.selectedbrush")
+    .classed("selectedhist", function(d){
+      for (var i in selected_nodes){
+        if (selected_nodes[i].name == d.name){
+          return true;
+        }
+      }
+      return false;
+    });
+};
+
 // Brushing based histogram display
 var brushing = function(){
   var brush = graph.append("g")
@@ -25,7 +40,7 @@ var brushing = function(){
                 return true;
             }
             return false;});
-        node.classed("selectedhist", false)
+        update_hist_highlight();
         window.renderAll();
       }));
 }
@@ -38,7 +53,7 @@ var plotHists = function(){
 
     window.reset = function(i) {
       charts[i].filter(null);
-      node.classed("selectedhist", false);
+      update_hist_highlight();
       renderAll();
     };
 
@@ -226,19 +241,7 @@ var plotHists = function(){
             .attr("x", x(extent[0]))
             .attr("width", x(extent[1]) - x(extent[0]));
         dimension.filterRange(extent);
-
-
-        var i;
-        var selected_nodes = dim_loc.top(Infinity);
-        d3.selectAll("circle.node.selectedbrush")
-          .classed("selectedhist", function(d){
-            for (var i in selected_nodes){
-              if (selected_nodes[i].name == d.name){
-                return true;
-              }
-            }
-            return false;
-          })
+        update_hist_highlight();
       });
 
       brush.on("brushend.chart", function() {
