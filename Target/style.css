@@ -14,7 +14,7 @@ p {
 }
 
 input {
-    width:20%;border:0; color:#f6931f; font-weight:bold;
+    width:50%;border:0; color:#f6931f; font-weight:bold;
 }
 
 table{
@@ -64,10 +64,10 @@ div.intgraph{
 }
 
 .ui-slider .ui-slider-handle{
-    width:20px;
-    height:20px;
-    position:absolute;
-    border-style:none;
+  width:20px;
+  height:20px;
+  position:absolute;
+  border-style:none;
 }
 
 
@@ -126,4 +126,3 @@ circle.node.selectedtarget{
   fill: #eee;
   stroke: #666;
 }
-
