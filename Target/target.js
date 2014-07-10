@@ -74,4 +74,3 @@ var targetprotein = function(group, title){
 }
 
 targetprotein(tproteins, "All protein targets")
-targetprotein(tproteinsblue, "Competitive protein targets")

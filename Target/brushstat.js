@@ -1,5 +1,22 @@
-// Brushing based histogram display
+var contin;  // global variable to keep info about the crossfilter
+var dim_loc;
 
+var update_hist_highlight = function(){
+  var selected_nodes = dim_loc.top(Infinity);
+  d3.selectAll("circle.node.selectedhist")
+    .classed("selectedhist", false);
+  d3.selectAll("circle.node.selectedbrush")
+    .classed("selectedhist", function(d){
+      for (var i in selected_nodes){
+        if (selected_nodes[i].name == d.name){
+          return true;
+        }
+      }
+      return false;
+    });
+};
+
+// Brushing based histogram display
 var brushing = function(){
   var brush = graph.append("g")
                 .attr("class", "brush");
@@ -10,13 +27,21 @@ var brushing = function(){
       .y(yrange)
       .on("brush", function() {
         var extent = d3.event.target.extent();
-        var values = [];
         node.classed("selectedbrush", function(d) {
           if ( extent[0][0] <= d.x && d.x < extent[1][0]
                && extent[0][1] <= d.y && d.y < extent[1][1] && !d.children) {
               return true;
            }
           });
+        dim_loc.filter(function(d) {
+            var loc = d.split(",").map(function(d){return Number(d.split("=")[1])});
+            if ( extent[0][0] <= loc[0] && loc[0] < extent[1][0]
+                 && extent[0][1] <= loc[1] && loc[1] < extent[1][1]) {
+                return true;
+            }
+            return false;});
+        update_hist_highlight();
+        window.renderAll();
       }));
 }
 
@@ -28,12 +53,13 @@ var plotHists = function(){
 
     window.reset = function(i) {
       charts[i].filter(null);
+      update_hist_highlight();
       renderAll();
     };
 
     var nodes  = flatten(root);
     nodes = nodes.filter(function(d){ return d.children == null } );
-    var contin = crossfilter(nodes); // Continous data
+    contin = crossfilter(nodes); // Continous data
     // Dimensions and groups
     var keys = Object.keys(nodes[0].continuous);
     for (var i = 0; i < keys.length; i++) {
@@ -43,11 +69,15 @@ var plotHists = function(){
         group_list.push(dimen_list[i].group(Math.floor));
     }
 
+    // A dimension for location
+    dim_loc =  contin.dimension(function(d) { return "x=" + d.x + ",y=" + d.y; })
+
     // Charts
     for (var i in d3.range(Object.keys(nodes[0].continuous).length)) {
         charts.push(barChart()
                         .dimension(dimen_list[i])
                         .group(group_list[i])
+                        .property(keys[i])
                       .x(d3.scale.linear()
                         .domain([dimen_list[i].bottom(1)[0].continuous[keys[i]], dimen_list[i].top(1)[0].continuous[keys[i]]])
                         .rangeRound([0, 10*24])))
@@ -61,6 +91,8 @@ var plotHists = function(){
     var renderAll = function(){
         chart.each(render);
     }
+
+    window.renderAll = renderAll;
 
     var svg = d3.select(".stat")
         .append("div")
@@ -92,6 +124,7 @@ var plotHists = function(){
           brushDirty,
           dimension,
           group,
+          property,
           round;
 
       function chart(div) {
@@ -208,6 +241,7 @@ var plotHists = function(){
             .attr("x", x(extent[0]))
             .attr("width", x(extent[1]) - x(extent[0]));
         dimension.filterRange(extent);
+        update_hist_highlight();
       });
 
       brush.on("brushend.chart", function() {
@@ -260,6 +294,12 @@ var plotHists = function(){
       chart.group = function(_) {
         if (!arguments.length) return group;
         group = _;
+        return chart;
+      };
+
+      chart.property = function(_) {
+        if (!arguments.length) return property;
+        property = _;
         return chart;
       };
 

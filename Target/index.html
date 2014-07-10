@@ -39,6 +39,7 @@
     <div class="info">
       <p><button id="savepng">Save as PNG</button></p>
       <p><button id="savesvg">Save as SVG</button></p>
+      <h4>Reference Molecule:</h4>
       <div class="molecule"><img id="molimage" src=""></div>
     </div>
   </div>
@@ -327,15 +328,10 @@ function update() {
       .style("fill", color)
       .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
       .on("click", click)
-      .on("mouseover", mouseover)
       .call(drag); // attach drag behavior to new circles
 
   // Exit any old nodes.
   node.exit().remove();
-
-  // append title
-  node.append("title")
-      .text(function(d){ return d.name; });
 }
 
 function tick() {
@@ -365,23 +361,6 @@ function click(d) {
   }
   update();
 }
-
-// Mouse over display
-// This is added by me
-function mouseover(d){
-  if (!d.children){
-    var image_src = "../Image/" + d.name;
-    d3.select("#molimage")
-      .attr("src", image_src);
-  }
-}
-
-function mouseout(){
-//   d3.select("img").transition().duration(500).remove();
-   d3.select("#molimage")
-     .attr("src", "");
-}
-
 
 /** Collapse children or expand children**/
 function endparent(d){
@@ -428,6 +407,7 @@ function morechild(){
     <script type="text/javascript" src="savepng.js"></script>
     <script type="text/javascript" src="target.js"></script>
     <script type="text/javascript" src="brushstat.js"></script>
+    <script type="text/javascript" src="tooltip.js"></script>
     <script type="text/javascript" src="menu.js"></script>
   </body>
 </html>
