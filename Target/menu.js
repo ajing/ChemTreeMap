@@ -22,11 +22,13 @@
   }
 
   // toggle for brushing histogram
+  var mouseenterfunc;
+  var mouseleavefunc;
   var brushact = function(){
     $(".histogram").show();
     graph.on('mousedown.zoom', null);
     brushing();
-    moltip.unbind("mouseover");
+    moltip.tooltip("destroy");
   }
   var brushdeact = function(){
     $(".histogram").hide();
@@ -34,7 +36,8 @@
     node.classed("selectedbrush", false);
     node.classed("selectedhist", false);
     graph.call(zoomer);
-    //TODO need to rebind mouseover
+    console.log(mouseenterfunc);
+    $("svg").tooltip(tooltipconfig);
   }
 
   var menuitems = ["Enable Movement", "Highlight Target Proteins", "Brush Statistics"];

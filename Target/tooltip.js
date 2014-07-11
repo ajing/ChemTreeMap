@@ -20,7 +20,8 @@ window.saverefer = function(img_src){
     d3.select("#molimage").attr("src", img_src);
 };
 
-var moltip = $("svg").tooltip({
+var tooltipconfig =
+{
   items: ".node",
   content: function(){
     var eledata = d3.select(this).data()[0];
@@ -59,4 +60,6 @@ var moltip = $("svg").tooltip({
           });
       });
   }
-});
+};
+
+var moltip = $("svg").tooltip(tooltipconfig);
