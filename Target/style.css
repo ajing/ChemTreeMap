@@ -52,8 +52,12 @@ div.menu li {
 }
 
 div.intgraph{
-  float:center;
+  margin: 0 auto;
   position: absolute;
+}
+
+div.svg{
+  margin: 0 auto;
 }
 
 #less, #more, #savepng, #savesvg{
@@ -77,7 +81,7 @@ div.intgraph{
 }
 
 .axis text {
-  font: 10px sans-serif;
+  font: 15px sans-serif;
 }
 
 .axis path,
@@ -125,4 +129,20 @@ circle.node.selectedtarget{
 .brush .resize path {
   fill: #eee;
   stroke: #666;
+}
+
+/* for color bar */
+.colorbarSVG{
+  float:right;
+}
+.colorbar .axis line{
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+
+.colorbar .axis .domain{
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
 }

@@ -2,32 +2,29 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="../Target/style.css"/>
+    <link rel="stylesheet" href="../jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
     <title>Activity Tree</title>
   </head>
   <body>
   <div id="main">
-    <table>
-      <tr>
-          <td><div id="slider1" style="font-size:20px">Gravity</div></td>
-      </tr>
-      <tr>
-          <td><div id="slider2" style="font-size:20px">link strength</div></td>
-      </tr>
-      <tr>
-          <td><div class="molecule"><img id="molimage" src=""></div></td>
-        <td>
-          <div class="intgraph"/>
-        </td>
-        <td>
-          <div class="colorbarSVG"/>
-        </td>
-      </tr>
-    </table>
+    <div class="intgraph"></div>
+    <div class="colorbarSVG"></div>
+    <div class="motion">
+      <p>
+        <label>Gravity:</label>
+        <input type="text" id="amount1">
+      </p>
+      <div id="slider1" style="font-size:15px"></div>
+      <p>
+        <label>Link Strength:</label>
+        <input type="text" id="amount2">
+      </p>
+      <div id="slider2" style="font-size:15px"></div>
+    </div>
   </div>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+    <script src="../jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="d3/d3.v3.js"></script>
     <script type="text/javascript" src="colorbar.js"></script>
     <script type="text/javascript">
@@ -241,7 +238,10 @@ function update() {
 
   // Update the links.
   link = vis.selectAll("line.link")
-      .data(links, function(d) { return d.target.id; });
+      .data(links, function(d) { return d.target.id; })
+      .style("fill", "none")
+      .style("stroke", "#9ecae1")
+      .style("stroke-width", "1.5px");
 
   // Enter any new links.
   link.enter().insert("svg:line", ".node")
@@ -249,7 +249,10 @@ function update() {
       .attr("x1", function(d) { return xrange(d.source.x); })
       .attr("y1", function(d) { return yrange(d.source.y); })
       .attr("x2", function(d) { return xrange(d.target.x); })
-      .attr("y2", function(d) { return yrange(d.target.y); });
+      .attr("y2", function(d) { return yrange(d.target.y); })
+      .style("fill", "none")
+      .style("stroke", "#9ecae1")
+      .style("stroke-width", "1.5px");
 
   // Exit any old links.
   link.exit().remove();
@@ -270,10 +273,8 @@ function update() {
       .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 6; })
       .style("fill", color)
       .on("click", click)
-      .on("mouseover", mouseover)
-      .call(drag) // attach drag behavior to new circles
-      .append("svg:title")
-      .text( function(d){ return d.group });
+  //    .on("mouseover", mouseover)
+      .call(drag); // attach drag behavior to new circles
 
   // Exit any old nodes.
   node.exit().remove();
@@ -320,5 +321,6 @@ function mouseout(){
 
 
     </script>
+    <script type="text/javascript" src="../Target/tooltip.js"></script>
   </body>
 </html>
