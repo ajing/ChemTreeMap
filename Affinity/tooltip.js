@@ -1,11 +1,9 @@
 // Tool tip for each node
 
 var maketooltip = function(edata){
-    console.log(edata);
-    var image_src = "../Image/" + edata.name;
+    var image_src = "./Image/" + edata.name;
     var html = '<input type="button" value="As Reference" onclick="saverefer(\'' + image_src + '\');">';
     html = html + "<h3>" + edata.name + "</h3>";
-    console.log(edata.name);
     html = html + "<ul>";
     for (var key in edata.continuous){
       html = html + "<li>" + key + ": " + edata.continuous[key] + "</li>";
@@ -14,7 +12,8 @@ var maketooltip = function(edata){
       html = html + "<li>" + key + ": " + edata.nominal[key] + "</li>";
     }
     html = html + "</ul>";
-    html = html + '<img id="molimage" src="' + image_src + '">';
+    if(edata.name.indexOf("N") != 0 )
+    { html = html + '<img id="molimage" src="' + image_src + '">'; }
     return html;
 };
 
@@ -29,7 +28,7 @@ var tooltipconfig =
     var eledata = d3.select(this).data()[0];
     return maketooltip(eledata);
   },
-  position: { my: "left top-15" },
+  position: { my: "left+15 top+15" },
   show: {
     effect: "slideDown",
     delay: 50,

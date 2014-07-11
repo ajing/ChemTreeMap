@@ -8,6 +8,8 @@
   </head>
   <body>
   <div id="main">
+    <div class="intgraph" style=""></div>
+    <div class="colorbarSVG"></div>
     <div class="motion">
       <p>
         <label>Gravity:</label>
@@ -20,8 +22,10 @@
       </p>
       <div id="slider2" style="font-size:15px"></div>
     </div>
-    <div class="intgraph"></div>
-    <div class="colorbarSVG"></div>
+    <div class="info">
+      <h4>Reference Molecule:</h4>
+      <div class="molecule"><img id="molimage" src=""></div>
+    </div>
   </div>
     <script src="../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
     <script src="../jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
@@ -31,8 +35,8 @@
 
 
 /** Initial configuration of force directed graph**/
-var w = 600,
-    h = 600,
+var w = 1000,
+    h = 1000,
     winit = 400, // depends on how big is the graph
     hinit = 400,
     node,
@@ -58,6 +62,7 @@ $( "#slider1" ).slider({
     // in a variable
     force.start();
     force.gravity( ui.value );
+    $( "#amount1" ).val( ui.value );
   }
 }
 );
@@ -74,6 +79,7 @@ $( "#slider2" ).slider({
     // in a variable
     force.start();
     force.linkStrength( ui.value );
+    $( "#amount2" ).val( ui.value );
   }
 }
 );
@@ -321,6 +327,6 @@ function mouseout(){
 
 
     </script>
-    <script type="text/javascript" src="../Target/tooltip.js"></script>
+    <script type="text/javascript" src="tooltip.js"></script>
   </body>
 </html>

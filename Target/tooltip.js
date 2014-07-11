@@ -1,11 +1,9 @@
 // Tool tip for each node
 
 var maketooltip = function(edata){
-    console.log(edata);
-    var image_src = "./Image/" + edata.name;
+    var image_src = "../Image/" + edata.name;
     var html = '<input type="button" value="As Reference" onclick="saverefer(\'' + image_src + '\');">';
     html = html + "<h3>" + edata.name + "</h3>";
-    console.log(edata.name);
     html = html + "<ul>";
     for (var key in edata.continuous){
       html = html + "<li>" + key + ": " + edata.continuous[key] + "</li>";
