@@ -2,6 +2,8 @@
     Get ligand protein targets
     I know this can be highly redundant, but at this stage I want to impliment this function
     @Date: 5/18/2014
+    @Changelog: add chiral data to tree 6/2/2014
+                add nominal/continuous categories to tree 6/21/2014
 '''
 
 import csv
@@ -51,30 +53,94 @@ def TopNBlue(ligdict, N, ligandfile):
     popularpro = sorted(prodict, key = prodict.get, reverse = True)
     return popularpro[:N]
 
-def AddProteinWrapper(valname, value):
+def AddMemoization(valname, value):
     def inner(func):
         setattr(func, valname, value)
         return func
     return inner
 
-@AddProteinWrapper("lignames", [])
-def AddProteinTarget2JSON(jsondict, ligdict):
-    lignames = AddProteinTarget2JSON.lignames
-    if not lignames:
-        lignames += ligdict.keys()
-    if "children" in jsondict:
-        for child in jsondict["children"]:
-            AddProteinTarget2JSON(child, ligdict)
-    else:
-        if jsondict["name"] in lignames:
-            jsondict["target"] = ligdict[jsondict["name"]]
+class NewJSON:
+    def __init__(self, jsondict):
+        self.json = jsondict
+        self.categories = ["nominal", "continuous"]
 
-if __name__ == "__main__":
+    @AddMemoization("lignames", [])
+    def AddField2JSON(self, jsondict, ligdict, fieldname, fieldcategory):
+        lignames = self.AddField2JSON.lignames
+        if not lignames:
+            lignames += ligdict.keys()
+        if "children" in jsondict:
+            for child in jsondict["children"]:
+                self.AddField2JSON(child, ligdict, fieldname, fieldcategory)
+        else:
+            if jsondict["name"] in lignames:
+                try:
+                    if fieldcategory in jsondict:
+                        jsondict[fieldcategory][fieldname] = ligdict[jsondict["name"]]
+                    else:
+                        jsondict[fieldcategory] = dict()
+                        jsondict[fieldcategory][fieldname] = ligdict[jsondict["name"]]
+                except:
+                    Exception("Cannot find proper property value for " + jsondict["name"])
+            else:
+                print "Cannot find property for " + jsondict["name"]
+
+    def AddField(self, ligdict, fieldname, fieldcategory = "continuous"):
+        if not fieldcategory in self.categories:
+            raise Exception("the category should be nominal or continuous")
+        self.AddField2JSON(self.json, ligdict, fieldname, fieldcategory)
+
+    def EmptyMemorization(self):
+        self.AddField2JSON.__func__.lignames = []
+
+def GetProteinTargetMain():
     filedir = __FILEDIR__
     ligdict = GetLigandTargetName(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "proteinseq_5_4.txt"))
-    print TopNBlue(ligdict, 10, os.path.join(filedir, "ligand_5_7.txt"))
+    print TopN(ligdict, 12)
+    #print TopNBlue(ligdict, 12, os.path.join(filedir, "ligand_5_7.txt"))
     #jdict = json.load(open("all_0.9.json"))
     jdict = json.load(open("test.json"))
-    AddProteinTarget2JSON(jdict, ligdict)
+    newjson = NewJSON(jdict)
+    newjson.AddField(ligdict, "target")
     fileobj  = open("withtarget_small.json", "w")
     fileobj.write(json.dumps(jdict, indent=2))
+
+
+# The following functions for getting ligand descriptors
+def GetDescValue(desclist, smile, descname):
+    for each in desclist:
+        if each["Canonical_Smiles"] == smile:
+            return float(each[descname])
+
+def GetLigandDesc(ligandfile, descfile, descname):
+    desccontent = []
+    with open(descfile, 'rb') as descobj:
+        descreader = csv.DictReader(descobj, delimiter="\t")
+        for row in descreader:
+            desccontent.append(row)
+    ligdict = dict()
+    with open(ligandfile, 'rb') as ligobj:
+        ligreader = csv.DictReader(ligobj, delimiter="\t")
+        for row in ligreader:
+            ligdict[row['ligandid']] = GetDescValue(desccontent, row['Canonical_Smiles'], descname)
+    return ligdict
+
+def GetLigandChiralMain():
+    filedir = __FILEDIR__
+    ligdict = GetLigandDesc(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "descriptor_5_17.txt"), "chiral")
+    #jdict = json.load(open("test.json"))
+    jdict = json.load(open("all_0.9.json"))
+    newjson = NewJSON(jdict)
+    newjson.AddField(ligdict, "chiral")
+    newjson.EmptyMemorization()
+    ligdict = GetLigandDesc(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "descriptor_5_17.txt"), "SlogP")
+    newjson.AddField(ligdict, "SlogP")
+    ligdict = GetLigandTargetName(os.path.join(filedir, "ligand_5_7.txt"), os.path.join(filedir, "proteinseq_5_4.txt"))
+    newjson.AddField(ligdict, "target", "nominal")
+    #fileobj  = open("withchiral_small.json", "w")
+    fileobj  = open("withchiral.json", "w")
+    fileobj.write(json.dumps(jdict, indent=2))
+
+if __name__ == "__main__":
+    #GetProteinTargetMain()
+    GetLigandChiralMain()

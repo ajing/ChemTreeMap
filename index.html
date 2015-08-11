@@ -1,298 +1,90 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="jquery/jquery-ui.css">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>TreeViz by ajing</title>
   </head>
   <body>
-  <h1 style="font-size:32px;position:relative;left:300px">500 Allosteric(Red) + 500 Competitive(Blue)</h1>
-  <div id="main">
-    <table>
-      <tr>
-          <td><div id="slider1" style="font-size:20px">Gravity</div></td>
-      </tr>
-      <tr>
-          <td><div id="slider2" style="font-size:20px">link strength</div></td>
-      </tr>
-      <tr>
-          <td><div class="molecule"><img id="molimage" src=""></div></td>
-        <td>
-          <div class="intgraph"/>
-        </td>
-      </tr>
-    </table>
-  </div>
-    <script src="jquery/jquery-1.9.1.js"></script>
-    <script src="jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="d3/d3.v3.js"></script>
-    <script type="text/javascript">
+    <div id="container">
+      <div class="inner">
 
+        <header>
+          <h1>TreeViz</h1>
+          <h2>D3 based tree visualization for chemical structures.</h2>
+        </header>
 
-/** Initial configuration of force directed graph**/
-var w = 1000,
-    h = 1000,
-    winit = 800, // depends on how big is the graph
-    hinit = 800,
-    node,
-    link,
-    root;
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/ajing/TreeViz/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/ajing/TreeViz/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/ajing/TreeViz" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-var force = d3.layout.force()
-    .on("tick", tick)
-    .charge(function(d) { return d._children ? -d.size / 100 : -50; })
-    .linkDistance(function(d) { return d.target._children ? 80 : 30; })
-    .size([w, h]);
+        <hr>
 
+        <section id="main_content">
+          <h3>
+<a name="interesting-examples" class="anchor" href="#interesting-examples"><span class="octicon octicon-link"></span></a>Interesting Examples.</h3>
+<p>
+      <ul>
+        <li> Map Activity to Color <a href="./Affinity/index.html">1</a> <a href="./Affinity/index_black.html">2</a>
+        <li> <a href="./index_old.html">500 allosteric + 500 competitive  <br \> <a href="./linkdist.html">with link length</a></a>
+        <li> <a href="./Transition/index.html">Compare two different hierarchies</a>
+        <li> <a href="./Large/index.html">Towards 100K Molecules</a>
+      </ul>
+</p>
 
-/** JQuery dynamically change parameter for graph**/
-$(function() {
-$( "#slider1" ).slider({
-  min: 0,
-  max: 0.2,
-  step: 0.01,
-  value: force.gravity(),
-  slide: function( event, ui ) {
-    // This is the value that you just dragged the slider to, there it is,
-    // in a variable
-    force.start();
-    force.gravity( ui.value );
-  }
-}
-);
-});
+          <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-$(function() {
-$( "#slider2" ).slider({
-  min: 0,
-  max: 10,
-  step: 0.01,
-  value: force.linkStrength(),
-  slide: function( event, ui ) {
-    // This is the value that you just dragged the slider to, there it is,
-    // in a variable
-    force.start();
-    force.linkStrength( ui.value );
-  }
-}
-);
-});
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
-/** Zoom behavior configuration **/
-var scaleF = 1;
-var translationV = [0, 0];
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-var zoomer = d3.behavior.zoom()
-            // allow only 10 times zoom in or out
-                .scaleExtent([0.1, 10])
-            // attach zoom function for variable modification
-                .on("zoom", zoom);
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
 
-function zoom(){
-    console.log(translationV, scaleF);
-    scaleF = d3.event.scale;
-    translationV = d3.event.translate;
-    tick(); // update position by tick, so the actual d.x, d.y won't change
-}
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-var xrange = d3.scale.linear()
-        .domain([0, winit])
-        .range([0, w]);
+<p> I am <a href="https://github.com/ajing" class="user-mention">@ajing</a>, a Bioinformatics PhD student from University of Michigan. I am now working in <a href="http://sitemaker.umich.edu/carlsonlab/home.html">Dr. Heather Carlson's lab</a>. If you find any question about the project, please check out the <a href="https://github.com/ajing/TreeViz/wiki">Wiki</a> first, or contact <a href="mailto:ajingnk@gmail.com">ajing</a>.</p>
+<p> <code>&lt;a&gt;</code> </p>
 
-var yrange = d3.scale.linear()
-        .domain([0, hinit])
-        .range([h, 0]);
+        </section>
 
-// let zoomer ajust coordinates by xrange and yrange
-zoomer.x(xrange).y(yrange);
+        <footer>
+          Treeviz is maintained by <a href="https://github.com/ajing">ajing</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-52070275-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-/** Drag behavior configuration **/
-// zoom and drag may interfere with each other, so here redefine drag function
-var drag = d3.behavior.drag()
-            .origin(function(d){ return d; }) // identify function
-            .on("dragstart", dragstarted)
-            .on("drag", dragged)
-            .on("dragend", dragended);
-
-function dragstarted(d){
-  d3.event.sourceEvent.stopPropagation();
-  d3.select(this).classed("dragged", true);
-}
-
-function dragged(d){
-  var mouselocation = d3.mouse(vis.node());
-  d.x = xrange.invert(mouselocation[0]);
-  d.y = yrange.invert(mouselocation[1]);
-  tick(); // re-position this node and links connected to this node
-}
-
-function dragended(d){
-  d3.select(this).classed("dragging", false);
-  force.resume();
-}
-
-
-/** Prepare DOM to draw the graph **/
-var graph = d3.select(".intgraph").append("svg:svg")
-    .attr("width", w)
-    .attr("height", h)
-  .append("svg:g")
-    .call(zoomer);
-
-// add a transparent background for area to catch mouse
-// events for the zoom behavior
-var rect =  graph.append("rect")
-        .attr("width", w)
-        .attr("height", h)
-        .style("fill", "none")
-        .style("pointer-events", "all");
-        // respond to mouse, even when transparent
-
-// area for plotting
-var vis  = graph.append("svg:g");
-
-
-/** Data section **/
-d3.json("test.json", function(json) {
-  root = json;
-  //root.fixed = true;
-  initialize();
-  //root.x = w / 2;
-  //root.y = h / 2 - 80;
-  update();
-  force.stop();
-});
-
-// initial position based on position attribute in node
-function initialize() {
-  var nodes = flatten(root);
-
-  // initialize the position of nodes
-  nodes.forEach(function(d){
-          dposition = d.position.split("-");
-          d.x = Number(dposition[0]);
-          d.y = Number(dposition[1]);
-          })
-}
-
-// Returns a list of all nodes under the root.
-function flatten(root) {
-  var nodes = [], i = 0;
-
-  function recurse(node) {
-    if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
-    if (!node.id) node.id = ++i;
-    nodes.push(node);
-    return node.size;
-  }
-
-  root.size = recurse(root);
-  return nodes;
-}
-
-
-
-/** updating node and link position for node information changing**/
-function update() {
-  var nodes = flatten(root),
-      links = d3.layout.tree().links(nodes);
-
-  // Restart the force layout.
-  force
-      .nodes(nodes)
-      .links(links)
-      .start();
-
-  // Update the links.
-  link = vis.selectAll("line.link")
-      .data(links, function(d) { return d.target.id; });
-
-  // Enter any new links.
-  link.enter().insert("svg:line", ".node")
-      .attr("class", "link")
-      .attr("x1", function(d) { return xrange(d.source.x); })
-      .attr("y1", function(d) { return yrange(d.source.y); })
-      .attr("x2", function(d) { return xrange(d.target.x); })
-      .attr("y2", function(d) { return yrange(d.target.y); });
-
-  // Exit any old links.
-  link.exit().remove();
-
-  // Update the nodes
-  node = vis.selectAll("circle.node")
-      .data(nodes, function(d) { return d.id; })
-      .style("fill", color)
-      .style("fill-opacity", function(d) { return d.children ? 0 : 0.8});
-
-  node.transition()
-      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; });
-
-  // Enter any new nodes.
-  node.enter().append("svg:circle")
-      .attr("class", "node")
-      .attr("cx", function(d) { return xrange(d.x); })
-      .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 10; })
-      .style("fill", color)
-      .style("fill-opacity", function(d) { return d.children ? 0 : 0.8})
-      .on("click", click)
-      .on("mouseover", mouseover)
-      .call(drag); // attach drag behavior to new circles
-
-  // Exit any old nodes.
-  node.exit().remove();
-
-  // append title
-  node.append("title")
-      .text(function(d){ return d.name; });
-}
-
-function tick() {
-    link.attr("x1", function(d) { return xrange(d.source.x); })
-        .attr("y1", function(d) { return yrange(d.source.y); })
-      .attr("x2", function(d) { return xrange(d.target.x); })
-      .attr("y2", function(d) { return yrange(d.target.y); });
-
-  node.attr("cx", function(d) { return xrange(d.x); })
-      .attr("cy", function(d) { return yrange(d.y); });
-}
-
-// Color leaf nodes orange, and packages white or blue.
-function color(d) {
-//  return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : d.group;
-}
-
-// Toggle children on click.
-function click(d) {
-  if (d.children) {
-    d._children = d.children;
-    d.children = null;
-  } else {
-    d.children = d._children;
-    d._children = null;
-  }
-  update();
-}
-
-// Mouse over display
-// This is added by me
-function mouseover(d){
-  if (!d.children){
-    var image_src = "Image/" + d.name;
-    d3.select("#molimage")
-      .attr("src", image_src);
-  }
-}
-
-function mouseout(){
-//   d3.select("img").transition().duration(500).remove();
-   d3.select("#molimage")
-     .attr("src", "");
-}
-
-    </script>
+      </div>
+    </div>
   </body>
 </html>
