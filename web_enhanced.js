@@ -2,6 +2,7 @@ var connect = require('connect');
 var http = require('http');
 var fs = require('fs');
 var qs = require('querystring');
+var compression = require('compression')
 
 function logger(req, res, next) {
   console.log('%s %s', req.method, req.url);
@@ -60,7 +61,7 @@ function downloadsvg(req, res) {
 }
 
 var app = connect()
-  .use(connect.compress())
+  .use(compression())
   .use(logger)
   .use("/", connect.static(__dirname))
   .use(downloadsvg)

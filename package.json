@@ -3,7 +3,8 @@
   "description": "A tree visualization for compounds",
   "author": "Jing Lu <ajingnk@gmail.com>",
   "dependencies": {
-    "connect": "*",
+    "connect": "3.4",
+    "compression": "1.5.2",
     "qs": "*"
   }
 }
