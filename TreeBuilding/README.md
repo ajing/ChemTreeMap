@@ -6,6 +6,8 @@ clusterVis is a set of tools for tree building from molecules and preparing inpu
 
 ***dependency.sh*** is a simple way to install all dependencies for tree building. This is for Ubuntu operating system. This file may not be applicable to other operating system.
 
+***TreefromSmile.py*** is main function which can build a tree from smile string file.
+
 ***CreateGraphNumpy.py*** are main function for creating a tree from a molecular library. The molecular library is a tab delimited file with canonical smile string. You can check the file under TreeViz/ligand_5_7.txt as an example.
 
 ***ligandGraphall.py*** and ***ligandGraphnames*** are for creating distance matrix from a list of SMILES strings. You can change fingerprints and similarity functions inside.

@@ -62,10 +62,15 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
     root = Dot2JSON(sfdp_dot)
     Root2JSON(root, filename)
 
-def TreefromSmile(infile):
-    newfile = SamplingLigandFile(infile, 50, 50)
-    liganddict = parseLigandFile(newfile)
-    NewLigandFile(liganddict, newfile)
+def TreefromSmile(infile, sample = False):
+    if sample:
+        newfile = SamplingLigandFile(infile, 50, 50)
+        print newfile
+        liganddict = parseLigandFile(newfile)
+        NewLigandFile(liganddict, newfile)
+    else:
+        liganddict = parseLigandFile(infile)
+        NewLigandFile(liganddict, infile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
     Matrix2JSON(smatrix, liganddict, newfile, "test.json")
 
@@ -74,7 +79,7 @@ def test():
     # test for Sampling
     #SamplingLigandFile(samplefile, 100, 100)
     # test for TreefromSmile
-    TreefromSmile(samplefile)
+    TreefromSmile(samplefile, True)
 
 if __name__ == "__main__":
     test()

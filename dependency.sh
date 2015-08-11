@@ -10,13 +10,16 @@ sudo apt-get install -y python-pip
 sudo pip install networkx
 # NAMS
 #sudo easy_install NAMS
-#sudo apt-get install -y python-openbabel
+sudo apt-get install -y python-openbabel
 #sudo apt-get install -y python-munkres
 # numpy
 sudo apt-get install -y python-numpy
 # to draw molecule structure jpg file
 # download oasa from http://bkchem.zirael.org/
 sudo apt-get install -y bkchem
+
+# graphviz
+# please install graphviz from source, this is the easy way to enable sfdp
 
 
 # Please also install node.js server
