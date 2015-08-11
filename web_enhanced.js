@@ -3,6 +3,7 @@ var http = require('http');
 var fs = require('fs');
 var qs = require('querystring');
 var compression = require('compression')
+var serveStatic = require('serve-static')
 
 function logger(req, res, next) {
   console.log('%s %s', req.method, req.url);
@@ -60,15 +61,15 @@ function downloadsvg(req, res) {
   }
 }
 
+console.log(__dirname);
+
 var app = connect()
   .use(compression())
   .use(logger)
-  .use("/", connect.static(__dirname))
+  .use("/", serveStatic(__dirname))
   .use(downloadsvg)
   .listen(8080);
 
-//http.createServer(app)
-//    .listen(8080);
-
+//http.createServer(app) //    .listen(8080);
 //express.use(express.static(__dirname))
 //    .post('/Large/download', convertsvg);

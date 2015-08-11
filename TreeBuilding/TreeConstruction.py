@@ -6,6 +6,7 @@ import copy
 import numpy as np
 import math
 import datetime
+#from DataStruct import Tree
 from ete2 import Tree
 
 
