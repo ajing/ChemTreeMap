@@ -12,7 +12,7 @@ def SFDPonDot(dotfile, size):
     if os.path.isfile(newfilename):
         os.remove(newfilename)
     command = "sfdp -Gsmoothing=triangle -Gsize={size} {infile} > {outfile}".format(size=size, infile=dotfile, outfile=newfilename)
-    print command
+    #print command
     subprocess.Popen( command, shell = True, stdout = subprocess.PIPE ).communicate()
     RemoveBackSlash(newfilename)
     return newfilename
@@ -30,7 +30,6 @@ def RemoveBackSlash(dotfile):
             newcontent.append(line[:-1])
         else:
             newcontent.append(line)
-    print newcontent
     f.seek(0)
     f.write("".join(newcontent))
     f.truncate()

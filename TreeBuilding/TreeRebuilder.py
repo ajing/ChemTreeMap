@@ -7,7 +7,7 @@
 import sys
 
 def NodeNameExist(line):
-    if "CHEMBL" in line or "ASD" in line or "Chk1" in line:
+    if "CHEMBL" in line or "ASD" in line or "Chk1" in line or "B" in line:
         return True
     else:
         return False
@@ -19,6 +19,7 @@ def IsEdge(line):
         return False
 
 def NameAndAttribute(line):
+    print line
     split_index = line.index("[")
     name   = line[:split_index]
     attr   = line[split_index:]

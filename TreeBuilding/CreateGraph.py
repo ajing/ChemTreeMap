@@ -64,9 +64,9 @@ def MoleculeDictionary( infile ):
     totalrow = len( all_info[ "ligandid" ] )
     molDict  = dict()
     for index in range( totalrow ):
-        ligandid = all_info[ "ligandid" ][ index ]
-        bindingtype = all_info[ "typeofbinding" ][ index ]
-        molDict[index] = { "ligandid": ligandid, "typeofbinding": bindingtype }
+        molDict[index] = dict()
+        for dict_name in all_info.keys():
+            molDict[index][dict_name] = all_info[dict_name][index]
     return molDict
 
 def CheckExistingLeaderlist( typeofbinding, criteria ):

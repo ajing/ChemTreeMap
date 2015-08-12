@@ -40,15 +40,15 @@ def Convert2NJmoldict(moldict):
     # convert from MoleculeDictionary from CreateGraph.py to what can work in TreeConstruction nj
     newdict = dict()
     for eachkey in moldict:
+        ligandname = moldict[eachkey]["ligandid"]
         if "size" in moldict[eachkey]:
-            ligandname = moldict[eachkey]["ligandid"]
-            ligandtype = moldict[eachkey]["typeofbinding"]
             clustersize = moldict[eachkey]["size"]
-            newdict[ligandname] = [clustersize, ligandtype]
+            newdict[ligandname] = [clustersize]
         else:
-            ligandname = moldict[eachkey]["ligandid"]
-            ligandtype = moldict[eachkey]["typeofbinding"]
-            newdict[ligandname] = [1, ligandtype]
+            newdict[ligandname] = [1]
+        for dict_name in moldict[eachkey].keys():
+            if dict_name != "ligandid":
+                newdict[ligandname].append(moldict[eachkey][dict_name])
     return newdict
 
 def Matrix2JSON(smatrix, liganddict, newfile, filename):
@@ -64,22 +64,21 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
 
 def TreefromSmile(infile, sample = False):
     if sample:
-        newfile = SamplingLigandFile(infile, 50, 50)
-        print newfile
-        liganddict = parseLigandFile(newfile)
-        NewLigandFile(liganddict, newfile)
+        newfile = SamplingLigandFile(infile, 10, 10)
     else:
-        liganddict = parseLigandFile(infile)
-        NewLigandFile(liganddict, infile)
+        newfile    = infile
+    liganddict = parseLigandFile(newfile)
+    NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
     Matrix2JSON(smatrix, liganddict, newfile, "test.json")
 
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
+    samplefile = "Data/result_clean_10.txt"
     # test for Sampling
     #SamplingLigandFile(samplefile, 100, 100)
     # test for TreefromSmile
-    TreefromSmile(samplefile, True)
+    TreefromSmile(samplefile, False)
 
 if __name__ == "__main__":
     test()

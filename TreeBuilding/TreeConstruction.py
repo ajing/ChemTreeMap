@@ -294,12 +294,14 @@ def AddLineForNode(clade, moldict, filecontent):
     node_size  = None
     node_color = None
     alpha      = 0.3
+    #print moldict[clade.name]
     try:
         node_size = str(math.log(moldict[clade.name][0] + 1, 100) * alpha)
         if moldict[clade.name][1] in ["allosteric", "competitive"]:
             node_color = moldict[clade.name][1] == "allosteric" and "red" or "blue"
         else:
-            node_color = str(moldict[clade.name][1])
+            #node_color = str(moldict[clade.name][1])
+            node_color = str(moldict[clade.name][2])
         node_line = clade.name + "[label=\"\", width=" + node_size + " color=" + node_color + " ];"
     except:
         node_line = clade.name + "[label=\"\", width=0 ];"
