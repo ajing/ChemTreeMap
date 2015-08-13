@@ -332,10 +332,24 @@ def nj(distance_matrix, moldict, outfilename = False):
     if not isinstance(distance_matrix, DistanceMatrix):
         raise TypeError("Must provide a DistanceMatrix object.")
 
+    # internal mapping file, map from internal name to composite name
+    mapfile = open("./Data/mapping.txt", "w")
+    mapcontent = []
+
     # make a copy of the distance matrix to be used
     dm = copy.deepcopy(distance_matrix)
     # init terminal clades
-    clades = [Tree(name = name) for name in dm.names]
+    i = 0
+    clades = []
+    for name in dm.names:
+        newname = "B" + str(i)
+        clades.append(Tree(name = newname))
+        mapcontent.append("\t".join([newname, name]))
+        i = i + 1
+    # write to file for mapping
+    mapfile.write("\n".join(mapcontent))
+
+    #clades = [Tree(name = name) for name in dm.names]
     # init node distance
     node_dist = [0] * len(dm)
     # init minimum index
@@ -369,6 +383,9 @@ def nj(distance_matrix, moldict, outfilename = False):
         clade1 = clades[min_i]
         clade2 = clades[min_j]
         inner_clade = Tree(name = "_".join([clade1.name, clade2.name]))
+        #internal_name = "INTERNAL" + str(times)
+        #inner_clade = Tree(name = internal_name)
+        #mapcontent.append("\t".join([internal_name, "_".join([clade1.name, clade2.name])]))
         inner_clade.add_child(clade1)
         inner_clade.add_child(clade2)
         #assign branch length
@@ -429,6 +446,7 @@ def nj(distance_matrix, moldict, outfilename = False):
     # close file obj for dot language
     newfileobj.write("\n".join(filecontent) + "}")
     newfileobj.close()
+
 
     if outfilename:
         return newfilename

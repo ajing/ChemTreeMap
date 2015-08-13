@@ -1,55 +1,40 @@
 body {
-  font: 300 12px "Helvetica Neue";
+  font: 36px "Helvetica Neue";
   margin: 80px 160px 80px 160px;
   overflow: hidden;
   position: relative;
 }
 
+p {
+  font-size:15px;
+}
+
 .molecule {
+  bottom:0px;
   height: 640px;
   width: 200px;
 }
 
-.intgraph {
-  position: relative;
-  height: 1000px;
-  width: 600px;
+.info{
+  position:absolute;
+  cursor:pointer;
+  float:left;
+  z-index:10;
 }
 
 div.intgraph svg {
-  position: absolute;
-  top: -40px;
+  display: inline-block;
+  position: relative;
+  top: -100px;
   left: -100px;
 }
 
-circle.node {
-  cursor: pointer;
-  stroke: #000;
-  stroke-width: .5px;
-}
-
-line.link {
-  fill: none;
-  stroke: #9ecae1;
-  stroke-width: 1.5px;
-}
-
-#slider1{
-  width:10%;
-  height:0%;
-  top:0px;
-  left:0px;
-  position:absolute;
-  cursor:pointer;
-}
-
-#slider2{
-  width:10%;
-  height:0%;
-  top:50px;
-  left:0px;
-  position:absolute;
-  cursor:pointer;
+#less, #more, #savepng, #savesvg{
+  padding:0;
+  margin:0 1px 0 1px;
+  width:50%;
+  height:50%;
+  font-size:15px
 }
 
 .ui-slider .ui-slider-handle{
@@ -63,6 +48,12 @@ line.link {
     fill: none;
     stroke: none;
     shape-rendering: crispEdges;
+}
+
+line.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
 }
 
 .colorbar .axis .domain{

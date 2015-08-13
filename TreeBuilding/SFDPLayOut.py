@@ -36,10 +36,11 @@ def RemoveBackSlash(dotfile):
     f.close()
 
 def test():
-    dot = "./Data/test.gv"
-    SFDPonDot(dot, 10)
-    #dot = "./Data/sfdp.gv"
-    #RemoveBackSlash(dot)
+    #dot = "./Data/test.gv"
+    #SFDPonDot(dot, 10)
+    dot = "./Data/sfdp.gv"
+    dot = "./test_sfdp.gv"
+    RemoveBackSlash(dot)
 
 if __name__ == "__main__":
     test()

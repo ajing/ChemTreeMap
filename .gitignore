@@ -17,6 +17,9 @@ develop-eggs
 .installed.cfg
 lib64
 
+# data folder
+VisExample/Affinity/Image/
+
 # Installer logs
 pip-log.txt
 

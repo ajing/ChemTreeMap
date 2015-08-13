@@ -19,7 +19,7 @@ def IsEdge(line):
         return False
 
 def NameAndAttribute(line):
-    print line
+    #print line
     split_index = line.index("[")
     name   = line[:split_index]
     attr   = line[split_index:]

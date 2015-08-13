@@ -34,10 +34,10 @@
 
 
 /** Initial configuration of force directed graph**/
-var w = 600,
-    h = 600,
-    winit = 400, // depends on how big is the graph
-    hinit = 400,
+var w = 1200,
+    h = 1200,
+    winit = 800, // depends on how big is the graph
+    hinit = 800,
     node,
     link,
     root;
@@ -161,7 +161,8 @@ var vis  = graph.append("svg:g");
 function getGroupRange(){
   // Get max and min for group
   var nodes  = flatten(root);
-  _grouplist = nodes.map(function(d){ return Number(d.group)});
+  _grouplist = nodes.map(function(d){ return -Math.log(Number(d.group) + 1)});
+  console.log(_grouplist);
   _sizelist = nodes.map(function(d){ return Number(d.size)});
   var groupmax = d3.max(_grouplist);
   var groupmin = d3.min(_grouplist);
@@ -172,7 +173,7 @@ function getGroupRange(){
 var colorRange;
 
 function color(d) {
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(Number(d.group));
+  return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(-Math.log(Number(d.group) + 1));
 }
 
 
@@ -261,14 +262,14 @@ function update() {
       .style("fill", color);
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 6; });
+      .attr("r", function(d) { return d.children ? 2 : Math.sqrt(d.size) / 10; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
       .attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 3.5 : Math.sqrt(d.size) / 6; })
+      .attr("r", function(d) { return d.children ? 2 : Math.sqrt(d.size) / 10; })
       .style("fill", color)
       .on("click", click)
       .on("mouseover", mouseover)
