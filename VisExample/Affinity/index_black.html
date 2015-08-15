@@ -161,7 +161,7 @@ var vis  = graph.append("svg:g");
 function getGroupRange(){
   // Get max and min for group
   var nodes  = flatten(root);
-  _grouplist = nodes.map(function(d){ return -Math.log(Number(d.group) + 1)});
+  _grouplist = nodes.map(function(d){ return Math.log(Number(d.group) + 1)});
   console.log(_grouplist);
   _sizelist = nodes.map(function(d){ return Number(d.size)});
   var groupmax = d3.max(_grouplist);
@@ -173,7 +173,7 @@ function getGroupRange(){
 var colorRange;
 
 function color(d) {
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(-Math.log(Number(d.group) + 1));
+  return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(Math.log(Number(d.group) + 1));
 }
 
 
