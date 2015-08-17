@@ -9,6 +9,10 @@ import datetime
 #from DataStruct import Tree
 from ete2 import Tree
 
+from Model import NAME_MAP_FILE
+
+# some global variables which is because of the consistent changing of architecture...
+NAME_MAP = dict()
 
 class Matrix(object):
     """A base class for distance matrix or scoring matrix that accepts
@@ -296,13 +300,14 @@ def AddLineForNode(clade, moldict, filecontent):
     alpha      = 0.3
     #print moldict[clade.name]
     try:
-        node_size = str(math.log(moldict[clade.name][0] + 1, 100) * alpha)
-        if moldict[clade.name][1] in ["allosteric", "competitive"]:
-            node_color = moldict[clade.name][1] == "allosteric" and "red" or "blue"
-        else:
+        node_size = str(math.log(moldict[clade.name]["size"] + 1, 100) * alpha)
+        #if moldict[clade.name][1] in ["allosteric", "competitive"]:
+        #    node_color = moldict[clade.name][1] == "allosteric" and "red" or "blue"
+        #else:
             #node_color = str(moldict[clade.name][1])
-            node_color = str(moldict[clade.name][2])
-        node_line = clade.name + "[label=\"\", width=" + node_size + " color=" + node_color + " ];"
+        #print moldict[clade.name].keys()
+        #node_color = str(moldict[clade.name]["IC50"])
+        node_line = clade.name + "[label=\"\", width=" + node_size + " ];"
     except:
         node_line = clade.name + "[label=\"\", width=0 ];"
     filecontent.append(node_line)
@@ -332,22 +337,10 @@ def nj(distance_matrix, moldict, outfilename = False):
     if not isinstance(distance_matrix, DistanceMatrix):
         raise TypeError("Must provide a DistanceMatrix object.")
 
-    # internal mapping file, map from internal name to composite name
-    mapfile = open("./Data/mapping.txt", "w")
-    mapcontent = []
-
     # make a copy of the distance matrix to be used
     dm = copy.deepcopy(distance_matrix)
     # init terminal clades
-    i = 0
-    clades = []
-    for name in dm.names:
-        newname = "B" + str(i)
-        clades.append(Tree(name = newname))
-        mapcontent.append("\t".join([newname, name]))
-        i = i + 1
-    # write to file for mapping
-    mapfile.write("\n".join(mapcontent))
+    clades = [Tree(name = name) for name in dm.names]
 
     #clades = [Tree(name = name) for name in dm.names]
     # init node distance

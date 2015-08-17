@@ -44,7 +44,7 @@ var w = 1200,
 
 var force = d3.layout.force()
     .on("tick", tick)
-    .charge(function(d) { return d._children ? -d.size / 100 : -50; })
+    .charge(function(d) { return d._children ? -d.size * 100 : -50; })
     .linkDistance(function(d) { return d.target._children ? 15 : 10; })
     .size([w/2, h/2]);
 
@@ -161,11 +161,12 @@ var vis  = graph.append("svg:g");
 function getGroupRange(){
   // Get max and min for group
   var nodes  = flatten(root);
-  _grouplist = nodes.map(function(d){ return Math.log(Number(d.group) + 1)});
+  _grouplist = nodes.map(function(d){ return 9 - Math.log10(Number(d.IC50))});
   console.log(_grouplist);
   _sizelist = nodes.map(function(d){ return Number(d.size)});
   var groupmax = d3.max(_grouplist);
   var groupmin = d3.min(_grouplist);
+  console.log([groupmin, groupmax])
   return [groupmin, groupmax];
 }
 
@@ -173,7 +174,10 @@ function getGroupRange(){
 var colorRange;
 
 function color(d) {
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange(Math.log(Number(d.group) + 1));
+    if(d.name == "B50144087"){
+        return "red";
+    }
+    return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange( 9 - Math.log10(Number(d.IC50)));
 }
 
 
@@ -262,20 +266,20 @@ function update() {
       .style("fill", color);
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 2 : Math.sqrt(d.size) / 10; });
+      .attr("r", function(d) { return d.children ? 2 : d.size * 5; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
       .attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 2 : Math.sqrt(d.size) / 10; })
+      .attr("r", function(d) { return d.children ? 2 : d.size * 5; })
       .style("fill", color)
       .on("click", click)
       .on("mouseover", mouseover)
       .call(drag) // attach drag behavior to new circles
       .append("svg:title")
-      .text( function(d){ return d.group });
+      .text( function(d){ return d.name.concat(";").concat(9 - Math.log10(Number(d.IC50))); });
 
   // Exit any old nodes.
   node.exit().remove();

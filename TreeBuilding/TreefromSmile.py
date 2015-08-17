@@ -6,9 +6,13 @@ import sys
 from ligandGraphall import NewLigandFile, parseLigandFile, similarityMatrix, getSimilarity
 from TreeConstruction import nj, DistanceMatrix
 from CreateGraph import MoleculeDictionary
-from Dot2JSON import Dot2JSON, Root2JSON
+from Dot2JSON import Dot2JSON, RecursiveNode2Dict
 import random
 from SFDPLayOut import SFDPonDot
+from Model import NAME_MAP_FILE
+import json
+
+INTERESTED = ["IC50"]
 
 def SamplingLigandFile(infile, num_allo, num_comp):
     # return new ligand filename
@@ -39,28 +43,46 @@ def SamplingLigandFile(infile, num_allo, num_comp):
 def Convert2NJmoldict(moldict):
     # convert from MoleculeDictionary from CreateGraph.py to what can work in TreeConstruction nj
     newdict = dict()
+    old2new = dict()
+    new2old = dict()
+    i = 0
     for eachkey in moldict:
         ligandname = moldict[eachkey]["ligandid"]
+        newname = "B" + str(i)
+        newdict[newname] = dict()
+        old2new[ligandname] = newname
+        new2old[newname]    = ligandname
+        i = i + 1
         if "size" in moldict[eachkey]:
             clustersize = moldict[eachkey]["size"]
-            newdict[ligandname] = [clustersize]
+            newdict[newname]["size"] = clustersize
         else:
-            newdict[ligandname] = [1]
+            newdict[newname]["size"] = 1
         for dict_name in moldict[eachkey].keys():
-            if dict_name != "ligandid":
-                newdict[ligandname].append(moldict[eachkey][dict_name])
-    return newdict
+            if dict_name in INTERESTED:
+                newdict[newname][dict_name] = moldict[eachkey][dict_name]
+    return newdict, old2new, new2old
+
+def RecursiveChangeName(node, namedict):
+    if not "children" in node.keys():
+        node["name"] = namedict[node["name"]]
+    else:
+        for c_node in node["children"]:
+            RecursiveChangeName(c_node, namedict)
 
 def Matrix2JSON(smatrix, liganddict, newfile, filename):
-    dmatrix  = DistanceMatrix(liganddict.keys(), 1 - smatrix)
-    moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
+    moldict, old2new, new2old  = Convert2NJmoldict(MoleculeDictionary(newfile))
+    dmatrix  = DistanceMatrix([old2new[x] for x in liganddict.keys()], 1 - smatrix)
     # so write dot language to file
     dotfile  = nj(dmatrix, moldict, True)
     # dotfile with sfdp layout
     # write to JSON file
     sfdp_dot  = SFDPonDot(dotfile, 10)
     root = Dot2JSON(sfdp_dot)
-    Root2JSON(root, filename)
+    rootdict = RecursiveNode2Dict(root, moldict)
+    RecursiveChangeName(rootdict, new2old)
+    fileobj  = open(filename, "w")
+    fileobj.write(json.dumps(rootdict, indent=2))
 
 def TreefromSmile(infile, sample = False):
     if sample:
@@ -75,7 +97,8 @@ def TreefromSmile(infile, sample = False):
 def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
     samplefile = "Data/result_clean.txt"
-    samplefile = "Data/result_clean_20.txt"
+    samplefile = "Data/result_clean_no0.txt"
+    #samplefile = "Data/result_clean_no0_100.txt"
     # test for Sampling
     #SamplingLigandFile(samplefile, 100, 100)
     # test for TreefromSmile

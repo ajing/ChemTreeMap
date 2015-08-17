@@ -19,8 +19,8 @@ def GetRoot(dotfile):
             if nodelevel > maxlevel:
                 maxnode  = eachline
                 maxlevel = nodelevel
-    name, size, group, position = GetNodeProperty(maxnode)
-    return Node(name, size = size, group = group, position = position)
+    name, size, position = GetNodeProperty(maxnode)
+    return Node(name, size = size, position = position)
 
 def SizeScale(size):
     # size is a string
@@ -32,9 +32,9 @@ def GetNodeProperty(line):
     position = GetAttributeValue("pos", attr)[:-1].replace(",", "-")
     attr = CleanAttribute(attr)
     width = GetAttributeValue("width", attr)
-    group = GetAttributeValue("color", attr)
+    #group = GetAttributeValue("color", attr)
     size = SizeScale(GetSize(width))
-    return name, size, group, position
+    return name, size, position
 
 class Node(dict):
     # class for node of tree, each node can only have one parent
@@ -77,8 +77,8 @@ def NodeByName(name, contents):
         if not IsEdge(eachline) and NodeNameExist(eachline):
             nodename, attr = NameAndAttribute(eachline)
             if name == nodename.strip():
-                name, size, group, position = GetNodeProperty(eachline)
-                return Node(name, size = size, group = group, position = position)
+                name, size, position = GetNodeProperty(eachline)
+                return Node(name, size = size, position = position)
 
 def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, currentlist):
     # return a node object
@@ -127,19 +127,20 @@ def SimpleName(name):
     else:
         return SimpleName.namedict[name]
 
-def RecursiveNode2Dict(node):
+def RecursiveNode2Dict(node, info_dict):
     if not node.children:
-        result = {"name": SimpleName(node.name), "size": node["size"], "group": node["group"], "position": node["position"], "dist": float(node.dist)}
+        result = {"name": SimpleName(node.name), "size": node["size"], "position": node["position"], "dist": float(node.dist)}
+        result.update(info_dict[node.name])
     else:
         result = {"name": SimpleName(node.name), "position": node["position"], "dist": float(node.dist)}
-    children = [RecursiveNode2Dict(c) for c in node.children]
+    children = [RecursiveNode2Dict(c, info_dict) for c in node.children]
     if children:
         result["children"] = children
     return result
 
-def Root2JSON(root, filename):
+def Root2JSON(root, filename, moldict):
     fileobj  = open(filename, "w")
-    rootdict = RecursiveNode2Dict(root)
+    rootdict = RecursiveNode2Dict(root, moldict)
     fileobj.write(json.dumps(rootdict, indent=2))
 
 def Dot2JSON(dotfile):
