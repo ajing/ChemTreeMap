@@ -16,7 +16,7 @@ import json
 
 import argparse
 
-INTERESTED = ["IC50"]
+NOT_INTERESTED = ["ligandid", "Canonical_Smiles"]
 
 def SamplingLigandFile(infile, num_allo, num_comp):
     # return new ligand filename
@@ -56,7 +56,7 @@ def Convert2NJmoldict(moldict):
         else:
             newdict[ligandname]["size"] = 1
         for dict_name in moldict[eachkey].keys():
-            if dict_name in INTERESTED:
+            if not dict_name in NOT_INTERESTED:
                 newdict[ligandname][dict_name] = moldict[eachkey][dict_name]
     return newdict
 
@@ -81,7 +81,6 @@ def GetRootName(namedict):
 
 def Matrix2JSON(smatrix, liganddict, newfile, filename):
     moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
-    print moldict
     dmatrix  = DistanceMatrix(liganddict.keys(), 1 - smatrix)
     # so write dot language to file
     dotfile  = nj(dmatrix, moldict, True)
@@ -90,8 +89,6 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
     newdotfile, newmapdict = RewriteDot(dotfile)
 
     rootname = GetRootName(newmapdict)
-    print rootname
-    print newmapdict[rootname]
 
     sfdp_dot  = SFDPonDot(newdotfile, 10)
     root = Dot2JSON(sfdp_dot, newmapdict[rootname])

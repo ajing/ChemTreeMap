@@ -15,7 +15,6 @@ def GetRoot(dotfile, rootname):
         if NodeNameExist(eachline) and not IsEdge(eachline):
             name, attr = NameAndAttribute(eachline)
             name = name.strip()
-            print name
             if name == rootname:
                 name, size, position = GetNodeProperty(eachline)
                 return Node(name, size = size, position = position)
@@ -148,7 +147,6 @@ def Dot2JSON(dotfile, rootname):
     contents = open(dotfile).readlines()
     # get the root of the network
     root = GetRoot(dotfile, rootname)
-    print root
     curr_nodes = [root]
     curr_name_list = [root.name]
     next_nodes     = 1

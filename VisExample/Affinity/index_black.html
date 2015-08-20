@@ -164,8 +164,8 @@ function getGroupRange(){
   _grouplist = nodes.map(function(d){ return 9 - Math.log10(Number(d.IC50))});
   console.log(_grouplist);
   _sizelist = nodes.map(function(d){ return Number(d.size)});
-  var groupmax = d3.max(_grouplist);
-  var groupmin = d3.min(_grouplist);
+  var groupmax = Math.round(d3.max(_grouplist)*100)/100;
+  var groupmin = Math.round(d3.min(_grouplist)*100)/100;
   console.log([groupmin, groupmax])
   return [groupmin, groupmax];
 }
