@@ -12,6 +12,8 @@ from SFDPLayOut import SFDPonDot
 from Model import NAME_MAP_FILE
 import json
 
+import argparse
+
 INTERESTED = ["IC50"]
 
 def SamplingLigandFile(infile, num_allo, num_comp):
@@ -43,25 +45,18 @@ def SamplingLigandFile(infile, num_allo, num_comp):
 def Convert2NJmoldict(moldict):
     # convert from MoleculeDictionary from CreateGraph.py to what can work in TreeConstruction nj
     newdict = dict()
-    old2new = dict()
-    new2old = dict()
-    i = 0
     for eachkey in moldict:
         ligandname = moldict[eachkey]["ligandid"]
-        newname = "B" + str(i)
-        newdict[newname] = dict()
-        old2new[ligandname] = newname
-        new2old[newname]    = ligandname
-        i = i + 1
+        newdict[ligandname] = dict()
         if "size" in moldict[eachkey]:
             clustersize = moldict[eachkey]["size"]
-            newdict[newname]["size"] = clustersize
+            newdict[ligandname]["size"] = clustersize
         else:
-            newdict[newname]["size"] = 1
+            newdict[ligandname]["size"] = 1
         for dict_name in moldict[eachkey].keys():
             if dict_name in INTERESTED:
-                newdict[newname][dict_name] = moldict[eachkey][dict_name]
-    return newdict, old2new, new2old
+                newdict[ligandname][dict_name] = moldict[eachkey][dict_name]
+    return newdict
 
 def RecursiveChangeName(node, namedict):
     if not "children" in node.keys():
@@ -84,7 +79,7 @@ def Matrix2JSON(smatrix, liganddict, newfile, filename):
     fileobj  = open(filename, "w")
     fileobj.write(json.dumps(rootdict, indent=2))
 
-def TreefromSmile(infile, sample = False):
+def TreefromSmile(infile, outfile, sample = False):
     if sample:
         newfile = SamplingLigandFile(infile, 10, 10)
     else:
@@ -92,9 +87,17 @@ def TreefromSmile(infile, sample = False):
     liganddict = parseLigandFile(newfile)
     NewLigandFile(liganddict, newfile)
     smatrix  = similarityMatrix(liganddict, getSimilarity)
-    Matrix2JSON(smatrix, liganddict, newfile, "test.json")
+    Matrix2JSON(smatrix, liganddict, newfile, outfile)
 
 def test():
+    #parse argument
+    parser = argparse.ArgumentParser(description='Build tree for vis.')
+    parser.add_argument('--infile')
+    parser.add_argument('--outfile')
+    arg = parser.parse_args()
+    print arg.infile
+    print arg.outfile
+
     samplefile = "Data/ligand_5_7_ppilot.txt"
     samplefile = "Data/result_clean.txt"
     samplefile = "Data/result_clean_no0.txt"
@@ -102,7 +105,7 @@ def test():
     # test for Sampling
     #SamplingLigandFile(samplefile, 100, 100)
     # test for TreefromSmile
-    TreefromSmile(samplefile, False)
+    TreefromSmile(arg.infile, arg.outfile, False)
 
 if __name__ == "__main__":
     test()

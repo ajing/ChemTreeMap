@@ -174,7 +174,8 @@ function getGroupRange(){
 var colorRange;
 
 function color(d) {
-    if(d.name == "B50144087"){
+    //if(d.name == "B50222078" || d.name == "B50142114"){
+    if(d.name == "B50103676"){
         return "red";
     }
     return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange( 9 - Math.log10(Number(d.IC50)));

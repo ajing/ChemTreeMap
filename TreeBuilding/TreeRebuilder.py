@@ -99,8 +99,10 @@ def HashAName(nodename):
 
 def PrintHash(hashtable):
     newdict = dict((y,x) for x,y in hashtable.iteritems())
+    content = []
     for each in newdict:
-        print each, ":", newdict[each]
+        content.append(each + "\t" + newdict[each])
+    return content
 
 def RewriteDot(infile):
     nodename = dict()
@@ -128,7 +130,7 @@ def RewriteDot(infile):
         else:
             newfileobj.write(eachline)
     newfileobj.close()
-    PrintHash(HashAName.hashtable)
+    return newfilename, HashAName.hashtable
 
 def GetMaxWidth(infile):
     widthlist = []
