@@ -5,11 +5,13 @@
 import sys
 from ligandGraphall import NewLigandFile, parseLigandFile, similarityMatrix, getSimilarity
 from TreeConstruction import nj, DistanceMatrix
+from TreeRebuilder import RewriteDot
 from CreateGraph import MoleculeDictionary
 from Dot2JSON import Dot2JSON, RecursiveNode2Dict
 import random
 from SFDPLayOut import SFDPonDot
 from Model import NAME_MAP_FILE
+from TreeParser import GetLevelFromName
 import json
 
 import argparse
@@ -62,20 +64,45 @@ def RecursiveChangeName(node, namedict):
     if not "children" in node.keys():
         node["name"] = namedict[node["name"]]
     else:
+        if not "_" in namedict[node["name"]]:
+            node["name"] = namedict[node["name"]]
         for c_node in node["children"]:
             RecursiveChangeName(c_node, namedict)
 
+def GetRootName(namedict):
+    maxlevel = 0
+    rootname = ""
+    for name in namedict:
+        namelevel = GetLevelFromName(name)
+        if maxlevel < namelevel:
+            maxlevel = namelevel
+            rootname = name
+    return rootname
+
 def Matrix2JSON(smatrix, liganddict, newfile, filename):
-    moldict, old2new, new2old  = Convert2NJmoldict(MoleculeDictionary(newfile))
-    dmatrix  = DistanceMatrix([old2new[x] for x in liganddict.keys()], 1 - smatrix)
+    moldict  = Convert2NJmoldict(MoleculeDictionary(newfile))
+    print moldict
+    dmatrix  = DistanceMatrix(liganddict.keys(), 1 - smatrix)
     # so write dot language to file
     dotfile  = nj(dmatrix, moldict, True)
     # dotfile with sfdp layout
     # write to JSON file
-    sfdp_dot  = SFDPonDot(dotfile, 10)
-    root = Dot2JSON(sfdp_dot)
-    rootdict = RecursiveNode2Dict(root, moldict)
-    RecursiveChangeName(rootdict, new2old)
+    newdotfile, newmapdict = RewriteDot(dotfile)
+
+    rootname = GetRootName(newmapdict)
+    print rootname
+    print newmapdict[rootname]
+
+    sfdp_dot  = SFDPonDot(newdotfile, 10)
+    root = Dot2JSON(sfdp_dot, newmapdict[rootname])
+    # update keys for moldict
+    moldict_new = dict()
+    for key in moldict.keys():
+        moldict_new[newmapdict[key]] = moldict[key]
+    rootdict    = RecursiveNode2Dict(root, moldict_new)
+    inv_mapdict = { v : k for k, v in newmapdict.items()}
+    RecursiveChangeName(rootdict, inv_mapdict )
+
     fileobj  = open(filename, "w")
     fileobj.write(json.dumps(rootdict, indent=2))
 

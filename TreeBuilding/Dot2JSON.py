@@ -8,19 +8,17 @@ from TreeParser import GetLevelFromName
 from GetSize import GetSize
 import json
 
-def GetRoot(dotfile):
+def GetRoot(dotfile, rootname):
     # return root name with most levels
-    maxlevel = 0
-    maxnode  = ""
+    rootnode  = ""
     for eachline in open(dotfile):
         if NodeNameExist(eachline) and not IsEdge(eachline):
             name, attr = NameAndAttribute(eachline)
-            nodelevel = GetLevelFromName(name)
-            if nodelevel > maxlevel:
-                maxnode  = eachline
-                maxlevel = nodelevel
-    name, size, position = GetNodeProperty(maxnode)
-    return Node(name, size = size, position = position)
+            name = name.strip()
+            print name
+            if name == rootname:
+                name, size, position = GetNodeProperty(eachline)
+                return Node(name, size = size, position = position)
 
 def SizeScale(size):
     # size is a string
@@ -133,6 +131,8 @@ def RecursiveNode2Dict(node, info_dict):
         result.update(info_dict[node.name])
     else:
         result = {"name": SimpleName(node.name), "position": node["position"], "dist": float(node.dist)}
+        if node.name in info_dict:
+            result.update(info_dict[node.name])
     children = [RecursiveNode2Dict(c, info_dict) for c in node.children]
     if children:
         result["children"] = children
@@ -143,11 +143,12 @@ def Root2JSON(root, filename, moldict):
     rootdict = RecursiveNode2Dict(root, moldict)
     fileobj.write(json.dumps(rootdict, indent=2))
 
-def Dot2JSON(dotfile):
+def Dot2JSON(dotfile, rootname):
     # dotfile is a dot file
     contents = open(dotfile).readlines()
     # get the root of the network
-    root = GetRoot(dotfile)
+    root = GetRoot(dotfile, rootname)
+    print root
     curr_nodes = [root]
     curr_name_list = [root.name]
     next_nodes     = 1

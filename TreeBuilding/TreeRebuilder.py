@@ -7,7 +7,7 @@
 import sys
 
 def NodeNameExist(line):
-    if "CHEMBL" in line or "ASD" in line or "Chk1" in line or "B" in line:
+    if "CHEMBL" in line or "ASD" in line or "Chk1" in line or "B" in line or "F" in line:
         return True
     else:
         return False
@@ -44,11 +44,11 @@ def static_var(varname,value):
 @static_var("hashtable", dict())
 def HashANode(nodename):
     if nodename in HashANode.hashtable:
-        return "N" + str(HashANode.hashtable[nodename])
+        return "F" + str(HashANode.hashtable[nodename])
     else:
         HashANode.hashtable[nodename] = HashANode.counter
         HashANode.counter += 1
-        return "N" + str(HashANode.hashtable[nodename])
+        return "F" + str(HashANode.hashtable[nodename])
 
 def CleanAttribute(attr):
     new_attr = attr.replace(",", "")
@@ -130,7 +130,9 @@ def RewriteDot(infile):
         else:
             newfileobj.write(eachline)
     newfileobj.close()
-    return newfilename, HashAName.hashtable
+    namemap = dict()
+    namemap = { k : ("F" + str(v))  for k, v in HashANode.hashtable.items()}
+    return newfilename, namemap
 
 def GetMaxWidth(infile):
     widthlist = []

@@ -4,10 +4,11 @@
 
 import pybel
 from  FileParser import GetAllinfo
+import argparse
 
 def MakeStructuresForSmiles( all_info ):
     totalrow = len( all_info[ "ligandid" ] )
-    relativedir = "./Data/"
+    relativedir = "./Data/Image/"
     for index in range( totalrow ):
         smile = all_info[ "Canonical_Smiles" ][ index ]
         pngfile = all_info[ "ligandid" ][ index ]
@@ -16,6 +17,8 @@ def MakeStructuresForSmiles( all_info ):
 
 
 if __name__ == "__main__":
-    infile = "./Data/result_clean.txt"
-    all_info = GetAllinfo( infile )
+    parser = argparse.ArgumentParser(description='Plot images for each molecule.')
+    parser.add_argument('--infile')
+    arg = parser.parse_args()
+    all_info = GetAllinfo( arg.infile )
     MakeStructuresForSmiles( all_info )
