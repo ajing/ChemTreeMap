@@ -175,12 +175,15 @@ var colorRange;
 
 function color(d) {
     //if(d.name == "B50222078" || d.name == "B50142114"){
-    if(d.name == "B50103676"){
-        return "red";
-    }
+    //if(d.name == "B50114443"){
+    //    return "red";
+    //}
     return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange( 9 - Math.log10(Number(d.IC50)));
 }
 
+var linkrange = d3.scale.linear()
+        .domain([0, 0.5])
+        .range([5, 200]);
 
 /** Data section **/
 d3.json("test.json", function(json) {
@@ -191,6 +194,8 @@ d3.json("test.json", function(json) {
   //root.y = h / 2 - 80;
   update();
   force.stop();
+  force
+    .linkDistance(function(d) {  return linkrange(Number(d.target.dist)); });
 });
 
 // initial position based on position attribute in node
