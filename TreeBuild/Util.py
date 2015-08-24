@@ -15,7 +15,8 @@ def ParseLigandFile(infile):
 
 
 def WriteJSON(dict_obj, outfile):
-    pass
+    fileobj = open(outfile)
+    fileobj.write(json.dumps(dictionary, indent=2))
 
 
 if __name__ == "__main__":
