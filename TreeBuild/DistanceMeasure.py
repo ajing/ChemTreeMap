@@ -1,14 +1,16 @@
 '''
     Measure and write the distance matrix for the whole molecule library
 '''
-import numpy as np
-from Model import SMILE_COLUMNNAME
+from Model import SMILE_COLUMNNAME, FILE_FORMAT
 
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import AllChem
 
+import datetime
+
 def ToFPObj(alist):
+    # for alist, the first item is ligand name, the second is smile
     newlist = []
     for each in alist:
         smile = each[1]
@@ -25,30 +27,39 @@ def getSimilarity(fp1, fp2):
         return
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
-
-def DistanceMatrix(smile_list):
-    d_matrix = np.zeros()
+def DistanceList(smile_list):
+    d_list   = []
     list_len = len(smile_list)
-    smile_fp_list = ToFPObj(smile_list)
+    fp_list = ToFPObj(smile_list)
     for i in range(list_len):
+        lig1 = fp_list[i]
+        lig1list = []
         for j in range(0, i):
-            pass
+            lig2 = fp_list[j]
+            sim  = getSimilarity(lig1[1], lig2[1])
+            if sim:
+                lig1list.append([lig2[0], 1 - sim])
+        d_list.append([lig1[0], lig1list])
+    return d_list
 
-def WriteAsPHYLIPFormat(d_matrix, ligand_name):
-    list_len = len(ligand_name)
-    for i in range(list_len):
-        for j in range(i, list_len):
-            pass
-
-    return filename
+def WriteAsPHYLIPFormat(d_list):
+    newfilename = datetime.datetime.now().strftime(FILE_FORMAT) + ".dist"
+    fileobj  = open(newfilename, "w")
+    fileobj.write( str(len(d_list)) + "\n")
+    for eachrow in d_list:
+        sim_values = [ "%.4f" % x[1] for x in eachrow[1]]
+        line = "\t".join([eachrow[0], "\t".join(sim_values)]) + "\n"
+        fileobj.write(line)
+    return newfilename
 
 def GenerateDistanceFile(ligand_dict):
-    smile_list = [ligand_dict[lig_name][SMILE_COLUMNNAME] for lig_name in ligand_dict.keys()]
-    d_matrix   = DistanceMatrix(smile_list)
-    filename   = WriteAsPHYLIPFormat(d_matrix, ligand_dict.keys())
+    # smile_list contains ligand name and ligand smile
+    smile_list = [ [lig_name, ligand_dict[lig_name][SMILE_COLUMNNAME]] for lig_name in ligand_dict.keys()]
+    d_list     = DistanceList(smile_list)
+    filename   = WriteAsPHYLIPFormat(d_list)
     return filename
 
 if __name__ == "__main__":
     from Util import ParseLigandFile
     ligand_dict = ParseLigandFile("./Data/result_clean_no0_20.txt")
-    GenerateDistanceFile(ligand_dict)
+    print GenerateDistanceFile(ligand_dict)

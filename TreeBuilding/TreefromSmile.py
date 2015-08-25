@@ -125,6 +125,7 @@ def test():
     samplefile = "Data/ligand_5_7_ppilot.txt"
     samplefile = "Data/result_clean.txt"
     samplefile = "Data/result_clean_no0.txt"
+    samplefile = "Data/result_clean_no0_20.txt"
     #samplefile = "Data/result_clean_no0_100.txt"
     # test for Sampling
     #SamplingLigandFile(samplefile, 100, 100)

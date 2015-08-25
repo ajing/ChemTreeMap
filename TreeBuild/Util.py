@@ -3,6 +3,7 @@
 '''
 
 from csv import DictReader
+import json
 
 def ParseLigandFile(infile):
     '''
@@ -15,8 +16,14 @@ def ParseLigandFile(infile):
 
 
 def WriteJSON(dict_obj, outfile):
-    fileobj = open(outfile)
-    fileobj.write(json.dumps(dictionary, indent=2))
+    fileobj = open(outfile, "w")
+    fileobj.write(json.dumps(dict_obj, indent=2))
+
+def SelectColumn(lig_dict, colname):
+    lig_new = dict()
+    for k in lig_dict:
+        lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
+    return lig_new
 
 
 if __name__ == "__main__":
