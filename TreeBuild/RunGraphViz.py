@@ -202,7 +202,6 @@ def Dot2Dict(dotfile, moldict):
             next_nodes += ExtendChildren(each_node, contents, curr_name_list)
         curr_nodes = next_nodes
     rootdict = RecursiveNode2Dict(root, moldict)
-    print rootdict
     return rootdict
 
 class Node(dict):

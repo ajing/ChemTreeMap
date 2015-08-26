@@ -5,13 +5,32 @@
 from csv import DictReader
 import json
 
+def GuestByFirstLine(firstline):
+    num_colnam = []
+    for key in firstline:
+        try:
+            float(firstline[key])
+            num_colnam.append(key)
+        except:
+            continue
+    return num_colnam
+
+def ConvertToFloat(line, colnam_list):
+    for name in colnam_list:
+        line[name] = round(float(line[name]), 3)
+    return line
+
 def ParseLigandFile(infile):
     '''
        parse ligand file to an dictionary, key is ligand id and valud is a dictionray with properties and property values
+       This program will guess the type for each column based on the first row. The program will assume there is only two type of data: number and string.
     '''
     mol_dict = dict()
+    flag = 1 # first line flag
     for line in DictReader(open(infile), delimiter = "\t"):
-        mol_dict[line["ligandid"]] = line
+        if flag:
+            num_colnam = GuestByFirstLine(line)
+        mol_dict[line["ligandid"]] = ConvertToFloat({k:v for k,v in line.items() if not k in ["ligandid"] }, num_colnam)
     return mol_dict
 
 

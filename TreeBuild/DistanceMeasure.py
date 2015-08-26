@@ -34,7 +34,7 @@ def DistanceList(smile_list):
     for i in range(list_len):
         lig1 = fp_list[i]
         lig1list = []
-        for j in range(0, i):
+        for j in range(list_len):
             lig2 = fp_list[j]
             sim  = getSimilarity(lig1[1], lig2[1])
             if sim:
