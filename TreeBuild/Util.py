@@ -29,7 +29,7 @@ def ParseLigandFile(infile):
     flag = 1 # first line flag
     for line in DictReader(open(infile), delimiter = "\t"):
         if flag:
-            num_colnam = GuestByFirstLine(line)
+            num_colnam = GuestByFirstLine({k:v for k,v in line.items() if not k in ["ligandid"] })
         mol_dict[line["ligandid"]] = ConvertToFloat({k:v for k,v in line.items() if not k in ["ligandid"] }, num_colnam)
     return mol_dict
 

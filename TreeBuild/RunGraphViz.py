@@ -176,7 +176,7 @@ def ExtendChildren(a_node, contents, cur_list):
 
 def RecursiveNode2Dict(node, info_dict):
     if not node.children:
-        result = {"name": node.name, "size": node["size"], "position": node["position"], "dist": abs(float(node.dist)) / 10}
+        result = {"name": node.name, "position": node["position"], "dist": abs(float(node.dist)) / 10}
         result.update(info_dict[node.name])
     else:
         result = {"name": node.name, "position": node["position"], "dist": abs(float(node.dist)) / 10}

@@ -19,6 +19,8 @@ def main():
     outfile= arg.outfile
 
     liganddict   = ParseLigandFile(infile)  # keep all ligand related information, key is ligand id, value is also a dictionray
+    print liganddict
+    print "finish parsing ligand file"
     distant_file = GenerateDistanceFile(liganddict)
     print "finish generating distance file..."
     newick_cont  = RunRapidNJ(distant_file)
@@ -26,7 +28,7 @@ def main():
     dotfilename  = WriteDotFile(newick_cont)
     outdot_file  = SFDPonDot(dotfilename, 10)
     print "finish GraphViz..."
-    lig_show     = SelectColumn(liganddict, ["IC50"])
+    lig_show     = SelectColumn(liganddict, ["IC50", "size", "group"])
     tree_dict    = Dot2Dict(outdot_file, lig_show)
     WriteJSON(tree_dict, outfile)
 
