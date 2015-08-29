@@ -8,6 +8,7 @@ from Util import ParseLigandFile, WriteJSON, SelectColumn
 from RunRapidNJ import RunRapidNJ
 from RunGraphViz import WriteDotFile, SFDPonDot, Dot2Dict
 
+from Model import INTEREST_COLUMN
 
 def main():
     parser = argparse.ArgumentParser(description='Build tree for vis.')
@@ -26,7 +27,7 @@ def main():
     dotfilename  = WriteDotFile(newick_cont)
     outdot_file  = SFDPonDot(dotfilename, 10)
     print "finish GraphViz..."
-    lig_show     = SelectColumn(liganddict, ["IC50"])
+    lig_show     = SelectColumn(liganddict, INTEREST_COLUMN)
     tree_dict    = Dot2Dict(outdot_file, lig_show)
     WriteJSON(tree_dict, outfile)
 

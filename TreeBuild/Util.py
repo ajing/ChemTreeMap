@@ -5,6 +5,8 @@
 from csv import DictReader
 import json
 
+from Model import IDENTIFIER
+
 def GuestByFirstLine(firstline):
     num_colnam = []
     for key in firstline:
@@ -29,8 +31,8 @@ def ParseLigandFile(infile):
     flag = 1 # first line flag
     for line in DictReader(open(infile), delimiter = "\t"):
         if flag:
-            num_colnam = GuestByFirstLine(line)
-        mol_dict[line["ligandid"]] = ConvertToFloat({k:v for k,v in line.items() if not k in ["ligandid"] }, num_colnam)
+            num_colnam = GuestByFirstLine({k:v for k,v in line.items() if not k in [IDENTIFIER] })
+        mol_dict[line[IDENTIFIER]] = ConvertToFloat({k:v for k,v in line.items() if not k in [IDENTIFIER] }, num_colnam)
     return mol_dict
 
 
