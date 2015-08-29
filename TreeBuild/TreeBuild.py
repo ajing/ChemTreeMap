@@ -20,7 +20,7 @@ def main():
     outfile= arg.outfile
 
     liganddict   = ParseLigandFile(infile)  # keep all ligand related information, key is ligand id, value is also a dictionray
-    print liganddict
+    #print liganddict
     print "finish parsing ligand file"
     distant_file = GenerateDistanceFile(liganddict)
     print "finish generating distance file..."

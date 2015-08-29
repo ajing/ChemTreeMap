@@ -10,7 +10,7 @@ SMILE_COLUMNNAME = "Smiles"
 FILE_FORMAT = './Data/%Y-%m-%d-%Hh-%Mm'
 
 # interesting column
-INTEREST_COLUMN = ["IC50"]
+INTEREST_COLUMN = ["IC50", "orig_id"]
 #INTEREST_COLUMN = ["IC50", "size", "group"]
 
 # identifier
