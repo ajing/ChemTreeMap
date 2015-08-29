@@ -27,36 +27,37 @@ def getSimilarity(fp1, fp2):
         return
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
-def DistanceList(smile_list):
-    d_list   = []
-    list_len = len(smile_list)
+def WriteAsPHYLIPFormat(smile_list):
     fp_list = ToFPObj(smile_list)
+    print "finish parsing smile list"
+    list_len = len(fp_list)
+
+    newfilename = datetime.datetime.now().strftime(FILE_FORMAT) + ".dist"
+    fileobj  = open(newfilename, "w")
+    fileobj.write( str(list_len) + "\n")
+
     for i in range(list_len):
         lig1 = fp_list[i]
         lig1list = []
         for j in range(list_len):
             lig2 = fp_list[j]
             sim  = getSimilarity(lig1[1], lig2[1])
-            if sim:
-                lig1list.append([lig2[0], 1 - sim])
-        d_list.append([lig1[0], lig1list])
-    return d_list
+            lig1list.append([lig2[0], 1 - sim])
 
-def WriteAsPHYLIPFormat(d_list):
-    newfilename = datetime.datetime.now().strftime(FILE_FORMAT) + ".dist"
-    fileobj  = open(newfilename, "w")
-    fileobj.write( str(len(d_list)) + "\n")
-    for eachrow in d_list:
-        sim_values = [ "%.4f" % x[1] for x in eachrow[1]]
-        line = "\t".join([eachrow[0], "\t".join(sim_values)]) + "\n"
+        sim_values = [ "%.4f" % x[1] for x in lig1list]
+        line = "\t".join([lig1[0], "\t".join(sim_values)]) + "\n"
         fileobj.write(line)
+
+    fileobj.close()
+
     return newfilename
 
 def GenerateDistanceFile(ligand_dict):
     # smile_list contains ligand name and ligand smile
     smile_list = [ [lig_name, ligand_dict[lig_name][SMILE_COLUMNNAME]] for lig_name in ligand_dict.keys()]
-    d_list     = DistanceList(smile_list)
-    filename   = WriteAsPHYLIPFormat(d_list)
+    print "finish smile list"
+    filename   = WriteAsPHYLIPFormat(smile_list)
+    print "finish writing phyli file"
     return filename
 
 if __name__ == "__main__":
