@@ -3,7 +3,7 @@
 '''
 
 import argparse
-from DistanceMeasure import GenerateDistanceFile
+from DistanceMeasure import GenerateDistanceFile, AddLigEff
 from Util import ParseLigandFile, WriteJSON, SelectColumn
 from RunRapidNJ import RunRapidNJ
 from RunGraphViz import WriteDotFile, SFDPonDot, Dot2Dict
@@ -30,6 +30,9 @@ def main():
     outdot_file  = SFDPonDot(dotfilename, 10)
     print "finish GraphViz..."
     lig_show     = SelectColumn(liganddict, INTEREST_COLUMN)
+    # add ligand efficiency
+    lig_show     = AddLigEff(lig_show, liganddict)
+    print outdot_file
     tree_dict    = Dot2Dict(outdot_file, lig_show)
     WriteJSON(tree_dict, outfile)
 
