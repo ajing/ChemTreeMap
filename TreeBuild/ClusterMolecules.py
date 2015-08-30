@@ -50,7 +50,7 @@ def WriteToFile(center_list, ligand_dict, filename):
     fileobj = open(filename, "w")
     # write header
     first_e = ligand_dict.itervalues().next()
-    fileobj.write("\t".join(["ligandid", "size"] + first_e.keys()) + "\n")
+    fileobj.write("\t".join(["mapped_id", "size"] + first_e.keys()) + "\n")
     for lig in center_list:
         content = "\t".join(map(str, lig + ligand_dict[lig[0]].values()))
         fileobj.write(content + "\n")
