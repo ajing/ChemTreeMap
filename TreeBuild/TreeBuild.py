@@ -31,8 +31,8 @@ def main():
     print "finish GraphViz..."
     lig_show     = SelectColumn(liganddict, INTEREST_COLUMN)
     # add ligand efficiency
-    lig_show     = AddLigEff(lig_show, liganddict)
-    print outdot_file
+    #lig_show     = AddLigEff(lig_show, liganddict)
+    #print outdot_file
     tree_dict    = Dot2Dict(outdot_file, lig_show)
     WriteJSON(tree_dict, outfile)
 

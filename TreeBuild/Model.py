@@ -13,8 +13,8 @@ FILE_FORMAT = './Data/%Y-%m-%d-%Hh-%Mm'
 POTENCY = "IC50"
 
 # interesting column
-INTEREST_COLUMN = ["IC50", "orig_id"]
-#INTEREST_COLUMN = ["IC50", "size", "group"]
+#INTEREST_COLUMN = ["IC50", "orig_id"]
+INTEREST_COLUMN = ["IC50", "size", "group", "orig_id"]
 
 # identifier
 IDENTIFIER = "ligandid"
