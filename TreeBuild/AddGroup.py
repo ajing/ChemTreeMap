@@ -12,7 +12,7 @@ def AddColorGroup(infile):
             newline = line.strip() + "\tgroup\n"
             flag = 0
         else:
-            if line.strip().split("\t")[0].startswith("B"):
+            if not line.strip().split("\t")[0].startswith("CHEMBL"):
                 newline = line.strip() + "\tred\n"
             else:
                 newline = line.strip() + "\tblue\n"
@@ -20,4 +20,10 @@ def AddColorGroup(infile):
 
 
 if __name__ == "__main__":
-    AddColorGroup("./Data/combine_chembl_bindingdb.txt")
+    import argparse
+    parser = argparse.ArgumentParser(description='Add group to file.')
+    parser.add_argument('--infile')
+    arg = parser.parse_args()
+
+    infile = arg.infile
+    AddColorGroup(infile)

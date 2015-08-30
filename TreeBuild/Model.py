@@ -7,7 +7,8 @@
 SMILE_COLUMNNAME = "Canonical_Smiles"
 #SMILE_COLUMNNAME = "Smiles"
 
-FILE_FORMAT = './Data/%Y-%m-%d-%Hh-%Mm'
+#FILE_FORMAT = './Data/%Y-%m-%d-%Hh-%Mm'
+FILE_FORMAT = '/data/%Y-%m-%d-%Hh-%Mm'
 
 # Potency
 POTENCY = "IC50"
