@@ -29,10 +29,14 @@ def ParseLigandFile(infile):
     '''
     mol_dict = dict()
     flag = 1 # first line flag
+    id_count = 0
     for line in DictReader(open(infile), delimiter = "\t"):
         if flag:
             num_colnam = GuestByFirstLine({k:v for k,v in line.items() if not k in [IDENTIFIER] })
-        mol_dict[line[IDENTIFIER]] = ConvertToFloat({k:v for k,v in line.items() if not k in [IDENTIFIER] }, num_colnam)
+        new_id    = "B" + str(id_count)
+        id_count += 1
+        mol_dict[new_id] = ConvertToFloat({k:v for k,v in line.items() if not k in [IDENTIFIER] }, num_colnam)
+        mol_dict[new_id]["orig_id"] = line[IDENTIFIER]
     return mol_dict
 
 
