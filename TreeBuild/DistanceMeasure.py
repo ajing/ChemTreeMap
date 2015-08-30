@@ -1,13 +1,14 @@
 '''
     Measure and write the distance matrix for the whole molecule library
 '''
-from Model import SMILE_COLUMNNAME, FILE_FORMAT
+from Model import SMILE_COLUMNNAME, FILE_FORMAT, POTENCY
 
 from rdkit import Chem
 from rdkit import DataStructs
 from rdkit.Chem import AllChem
 
 import datetime
+import math
 
 def ToFPObj(alist):
     # for alist, the first item is ligand name, the second is smile
@@ -59,6 +60,16 @@ def GenerateDistanceFile(ligand_dict):
     filename   = WriteAsPHYLIPFormat(smile_list)
     print "finish writing phyli file"
     return filename
+
+def LigEff(smile, ic50):
+    m = Chem.MolFromSmiles(smile)
+    num_heavy = m.GetNumHeavyAtoms()
+    return 1.37 * (9 - math.log10(ic50)) / num_heavy
+
+def AddLigEff(lig_show, liganddict):
+    for ligname in lig_show:
+        lig_show[ligname]["lig_eff"] = LigEff(liganddict[ligname][SMILE_COLUMNNAME], liganddict[ligname][POTENCY])
+    return lig_show
 
 if __name__ == "__main__":
     from Util import ParseLigandFile

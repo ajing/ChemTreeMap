@@ -53,4 +53,3 @@ def SelectColumn(lig_dict, colname):
 
 if __name__ == "__main__":
     ParseLigandFile("./Data/thrombin_clean_ct.txt")
-

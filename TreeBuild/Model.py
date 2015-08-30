@@ -9,6 +9,9 @@ SMILE_COLUMNNAME = "Canonical_Smiles"
 
 FILE_FORMAT = './Data/%Y-%m-%d-%Hh-%Mm'
 
+# Potency
+POTENCY = "IC50"
+
 # interesting column
 INTEREST_COLUMN = ["IC50", "orig_id"]
 #INTEREST_COLUMN = ["IC50", "size", "group"]
