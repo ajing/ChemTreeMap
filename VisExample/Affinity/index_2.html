@@ -185,7 +185,7 @@ var linkrange = d3.scale.linear()
         .range([5, 200]);
 
 /** Data section **/
-d3.json("test.json", function(json) {
+d3.json("factorxa_ligeff.json", function(json) {
   root = json;
   //root.fixed = true;
   initialize();
@@ -276,7 +276,8 @@ function update() {
   // Update the nodes
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
-      .style("fill", color);
+      .style("fill", color)
+      .style("stroke", function(d) {return colorRange2(d["lig_eff"]); });
 
   node.transition()
       .attr("r", function(d) { return d.children ? 2 : d.size * 5; });
