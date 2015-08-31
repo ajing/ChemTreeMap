@@ -164,9 +164,22 @@ function getGroupRange(g_name){
   _grouplist = nodes.map(function(d){ return 9 - Math.log10(Number(d[g_name]))});
   var groupmax = Math.round(d3.max(_grouplist)*100)/100;
   var groupmin = Math.round(d3.min(_grouplist)*100)/100;
+  console.log(g_name)
   console.log([groupmin, groupmax])
   return [groupmin, (groupmin + groupmax) / 2,groupmax];
 }
+
+function getGroupRange2(g_name){
+  // Get max and min for group
+  var nodes  = flatten(root);
+  _grouplist = nodes.map(function(d){ return d[g_name]});
+  var groupmax = d3.max(_grouplist);
+  var groupmin = d3.min(_grouplist);
+  console.log(g_name)
+  console.log([groupmin, groupmax])
+  return [groupmin, (groupmin + groupmax) / 2,groupmax];
+}
+
 
 // colorRange function is initialized in initialize() function
 var colorRange;
@@ -178,6 +191,14 @@ function color(d) {
     //    return "red";
     //}
     return d._children ? "#3182bd" : d.children ? "#c6dbef" : colorRange( 9 - Math.log10(Number(d.IC50)));
+}
+
+function color2(d) {
+    //if(d.name == "B50222078" || d.name == "B50142114"){
+    //if(d.name == "B50114443"){
+    //    return "red";
+    //}colorRange2(d["lig_eff"])
+    return d._children ? "#CCC" : d.children ? "#c6dbef" : colorRange2(d["lig_eff"]);
 }
 
 var linkrange = d3.scale.linear()
@@ -215,7 +236,7 @@ function initialize() {
                 .range(["#008000", "#FFFF00", "#FF0000"]);
 
   colorRange2 = d3.scale.linear()
-                .domain(getGroupRange("lig_eff"))
+                .domain(getGroupRange2("lig_eff"))
                 .nice()
                 .interpolate(d3.interpolateHcl)
                 .range(["#008000", "#FFFF00", "#FF0000"]);
@@ -277,7 +298,7 @@ function update() {
   node = vis.selectAll("circle.node")
       .data(nodes, function(d) { return d.id; })
       .style("fill", color)
-      .style("stroke", function(d) {return colorRange2(d["lig_eff"]); });
+      .style("stroke", color2);
 
   node.transition()
       .attr("r", function(d) { return d.children ? 2 : d.size * 5; });
@@ -326,7 +347,7 @@ function click(d) {
 // This is added by me
 function mouseover(d){
   if (!d.children){
-    var image_src = "Image/" + d.name;
+    var image_src = "Image/B" + d.orig_id;
     d3.select("#molimage")
       .attr("src", image_src);
   }
