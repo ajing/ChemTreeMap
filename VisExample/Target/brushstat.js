@@ -18,31 +18,64 @@ var update_hist_highlight = function(){
 
 // Brushing based histogram display
 var brushing = function(){
-  var brush = graph.append("g")
-                .attr("class", "brush");
+    // Lasso functions to execute while lassoing
+    var lasso_start = function() {
+      lasso.items()
+   //     .attr("r",3.5) // reset size
+   //     .style("fill",null) // clear all of the fills
+        .classed({"not_possible":true,"selectedbrush":false}); // style as not possible
+    };
 
-  brush
-    .call(d3.svg.brush()
-      .x(xrange)
-      .y(yrange)
-      .on("brush", function() {
-        var extent = d3.event.target.extent();
-        node.classed("selectedbrush", function(d) {
-          if ( extent[0][0] <= d.x && d.x < extent[1][0]
-               && extent[0][1] <= d.y && d.y < extent[1][1] && !d.children) {
-              return true;
-           }
-          });
-        dim_loc.filter(function(d) {
-            var loc = d.split(",").map(function(d){return Number(d.split("=")[1])});
-            if ( extent[0][0] <= loc[0] && loc[0] < extent[1][0]
-                 && extent[0][1] <= loc[1] && loc[1] < extent[1][1]) {
-                return true;
-            }
-            return false;});
-        update_hist_highlight();
-        window.renderAll();
-      }));
+    var lasso_draw = function() {
+      // Style the possible dots
+      var selected = lasso.items().filter(function(d) {return d.possible===true});
+      selected
+        .classed({"not_possible":false,"possible":true, "selectedbrush": true});
+
+      //console.log(selected);
+      var selected_name = []
+      selected.each(function(d){ selected_name.push(d.name);});
+      console.log(selected_name);
+
+      dim_loc.filter(function(d) { return selected_name.indexOf(d) >= 0;});
+
+   //   // Style the not possible dot
+   //   lasso.items().filter(function(d) {return d.possible===false})
+   //     .classed({"not_possible":true,"possible":false});
+    };
+
+    var lasso_end = function() {
+
+      // Reset the style of the not selected dots
+    //  lasso.items().filter(function(d) {return d.selected===false})
+    //    .classed({"not_possible":false,"possible":false, "selectedbrush":true});
+      update_hist_highlight();
+      window.renderAll();
+
+    };
+
+    var brush = graph.append("g")
+                .attr("class", "brush");
+    // Create the area where the lasso event can be triggered
+    var lasso_area = graph.append("rect")
+                          .attr("width", 1200)
+                          .attr("height", 1200)
+                          .style("opacity",0);
+    // Define the lasso
+    var lasso = d3.lasso()
+          .closePathDistance(75) // max distance for the lasso loop to be closed
+          .closePathSelect(true) // can items be selected by closing the path?
+          .hoverSelect(true) // can items by selected by hovering over them?
+          .area(lasso_area) // area where the lasso can be started
+          .on("start",lasso_start) // lasso start function
+          .on("draw",lasso_draw) // lasso draw function
+          .on("end",lasso_end); // lasso end function
+
+    // Init the lasso on the svg:g that contains the dots
+    graph.call(lasso);
+
+    lasso.items(d3.selectAll(".node"));
+
 }
 
 // Adapted from Crossfilter example
@@ -70,7 +103,8 @@ var plotHists = function(){
     }
 
     // A dimension for location
-    dim_loc =  contin.dimension(function(d) { return "x=" + d.x + ",y=" + d.y; })
+    //dim_loc =  contin.dimension(function(d) { return "x=" + d.x + ",y=" + d.y; })
+    dim_loc =  contin.dimension(function(d) { return d.name; })
 
     // Charts
     for (var i in d3.range(Object.keys(nodes[0].continuous).length)) {
