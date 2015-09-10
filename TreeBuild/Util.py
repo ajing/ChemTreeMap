@@ -40,8 +40,8 @@ def ParseLigandFile(infile):
     return mol_dict
 
 
-def WriteJSON(dict_obj, outfile):
-    fileobj = open(outfile, "w")
+def WriteJSON(dict_obj, outfile, write_type):
+    fileobj = open(outfile, write_type)
     fileobj.write(json.dumps(dict_obj, indent=2))
 
 def SelectColumn(lig_dict, colname):
@@ -50,6 +50,12 @@ def SelectColumn(lig_dict, colname):
         lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
     return lig_new
 
+def ReArrangeActivity(lig_dict, colname):
+    lig_new = dict()
+    for k in lig_dict:
+        lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if not sk in colname}
+        lig_new[k]["activities"] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
+    return lig_new
 
 if __name__ == "__main__":
     ParseLigandFile("./Data/thrombin_clean_ct.txt")

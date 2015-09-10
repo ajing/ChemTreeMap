@@ -5,12 +5,11 @@ from Model import SMILE_COLUMNNAME, FILE_FORMAT, POTENCY
 
 from rdkit import Chem
 from rdkit import DataStructs
-from rdkit.Chem import AllChem
 
 import datetime
 import math
 
-def ToFPObj(alist):
+def ToFPObj(alist, fp_func):
     # for alist, the first item is ligand name, the second is smile
     newlist = []
     for each in alist:
@@ -18,7 +17,7 @@ def ToFPObj(alist):
         m = Chem.MolFromSmiles(smile)
         if m is None:
             continue
-        fp = AllChem.GetMorganFingerprint(m, 3)
+        fp = fp_func(m)
         newlist.append([each[0], fp])
     return newlist
 
@@ -28,8 +27,8 @@ def getSimilarity(fp1, fp2):
         return
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
-def WriteAsPHYLIPFormat(smile_list):
-    fp_list = ToFPObj(smile_list)
+def WriteAsPHYLIPFormat(smile_list, fp_func):
+    fp_list = ToFPObj(smile_list, fp_func)
     print "finish parsing smile list"
     list_len = len(fp_list)
 
@@ -53,23 +52,37 @@ def WriteAsPHYLIPFormat(smile_list):
 
     return newfilename
 
-def GenerateDistanceFile(ligand_dict):
+def GenerateDistanceFile(ligand_dict, fp_func):
     # smile_list contains ligand name and ligand smile
     smile_list = [ [lig_name, ligand_dict[lig_name][SMILE_COLUMNNAME]] for lig_name in ligand_dict.keys()]
     print "finish smile list"
-    filename   = WriteAsPHYLIPFormat(smile_list)
+    filename   = WriteAsPHYLIPFormat(smile_list, fp_func)
     print "finish writing phyli file"
     return filename
 
 def LigEff(smile, ic50):
     m = Chem.MolFromSmiles(smile)
     num_heavy = m.GetNumHeavyAtoms()
-    return 1.37 * (9 - math.log10(ic50)) / num_heavy
+    return round(1.37 * (9 - math.log10(ic50)) / num_heavy, 5)
 
 def AddLigEff(lig_show, liganddict):
     for ligname in lig_show:
-        lig_show[ligname]["lig_eff"] = LigEff(liganddict[ligname][SMILE_COLUMNNAME], liganddict[ligname][POTENCY])
+        if not "properties" in lig_show[ligname]:
+            lig_show[ligname]["properties"] = dict()
+        lig_show[ligname]["properties"]["Lig_Eff"] = LigEff(liganddict[ligname][SMILE_COLUMNNAME], liganddict[ligname][POTENCY])
     return lig_show
+
+def SLogP(smile):
+    m = Chem.MolFromSmiles(smile)
+    return round(Chem.rdMolDescriptors.CalcCrippenDescriptors(m)[0], 5)
+
+def AddSLogP(lig_show, liganddict):
+    for ligname in lig_show:
+        if not "properties" in lig_show[ligname]:
+            lig_show[ligname]["properties"] = dict()
+        lig_show[ligname]["properties"]["SLogP"] = SLogP(liganddict[ligname][SMILE_COLUMNNAME])
+    return lig_show
+
 
 if __name__ == "__main__":
     from Util import ParseLigandFile

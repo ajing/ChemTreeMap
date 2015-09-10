@@ -52,8 +52,8 @@ div.intgraph svg {
 
 circle.node {
   cursor: pointer;
-  stroke: #000;
-  stroke-width: 3px;
+ /* stroke: #000;
+  stroke-width: 3px;*/
 }
 
 line.link {

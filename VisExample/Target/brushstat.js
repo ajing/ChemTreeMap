@@ -26,18 +26,20 @@ var brushing = function(){
         .classed({"not_possible":true,"selectedbrush":false}); // style as not possible
     };
 
+    var selected_name = [];
+
     var lasso_draw = function() {
       // Style the possible dots
       var selected = lasso.items().filter(function(d) {return d.possible===true});
       selected
         .classed({"not_possible":false,"possible":true, "selectedbrush": true});
 
-      //console.log(selected);
-      var selected_name = []
+      selected_name = []
       selected.each(function(d){ selected_name.push(d.name);});
-      console.log(selected_name);
 
       dim_loc.filter(function(d) { return selected_name.indexOf(d) >= 0;});
+
+      update_hist_highlight();
 
    //   // Style the not possible dot
    //   lasso.items().filter(function(d) {return d.possible===false})
