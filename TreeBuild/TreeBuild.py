@@ -4,12 +4,12 @@
 
 import argparse
 from DistanceMeasure import GenerateDistanceFile, AddLigEff, AddSLogP
-from Util import ParseLigandFile, WriteJSON, SelectColumn, ReArrangeActivity
+from Util import ParseLigandFile, WriteJSON, SelectColumn, ReArrangeActivity, Dict2List
 from RunRapidNJ import RunRapidNJ
 from RunGraphViz import WriteDotFile, SFDPonDot, Dot2Dict
+from MakeStructuresForSmiles import MakeStructuresForSmiles
 
 from Model import INTEREST_COLUMN, ACTIVITY_COLUMN
-
 
 # two kinds of fingerprint
 from rdkit.Chem.AtomPairs import Pairs
@@ -58,9 +58,17 @@ def main():
     lig_show     = AddLigEff(lig_show, liganddict)
     # add ligand efficiency
     lig_show     = AddSLogP(lig_show, liganddict)
+    lig_list     = Dict2List(lig_show)
 
-    WriteJSON({"trees": {"ECFP": tree_dict_ecfp, "AtomPair": tree_dict_atom}, "compounds":lig_show}, outfile, "w")
+    trees = {"ECFP": tree_dict_ecfp, "AtomPair": tree_dict_atom}
 
+    ACTIVITY_COLUMN.append("pIC50")
+
+    WriteJSON({"metadata": {"activityTypes": [{"name": x, "metadata": "nothing"} for x in ACTIVITY_COLUMN], "treeTypes": [{"name":x, "metadata": "nothing"} for x in trees.keys()], "circleSizeTypes": [{"name": x, "metadata": "nothing"} for x in lig_list[0]["properties"].keys()], "circleBorderTypes": [{"name": x, "metadata": "nothing"} for x in lig_list[0]["properties"].keys()]}, "trees": trees, "compounds":lig_list}, outfile, "w")
+    print "finish writing to JSON..."
+
+    # make image file
+    MakeStructuresForSmiles(liganddict)
 
     #print outdot_file
     # the current output structure is

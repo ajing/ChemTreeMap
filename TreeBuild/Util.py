@@ -4,6 +4,7 @@
 
 from csv import DictReader
 import json
+import math
 
 from Model import IDENTIFIER
 
@@ -55,7 +56,18 @@ def ReArrangeActivity(lig_dict, colname):
     for k in lig_dict:
         lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if not sk in colname}
         lig_new[k]["activities"] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
+        if "IC50" in lig_new[k]["activities"]:
+            lig_new[k]["activities"]["pIC50"] = round(9 - math.log10(float(lig_new[k]["activities"]["IC50"])), 5)
     return lig_new
+
+def Dict2List(lig_dict):
+    lig_list = []
+    for idx in range(len(lig_dict.keys())):
+        new_entry = lig_dict["B" + str(idx)]
+        new_entry["id"] = "B" + str(idx)
+        lig_list.append(new_entry)
+    return lig_list
+
 
 if __name__ == "__main__":
     ParseLigandFile("./Data/thrombin_clean_ct.txt")

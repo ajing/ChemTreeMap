@@ -34,10 +34,10 @@
 
 
 /** Initial configuration of force directed graph**/
-var w = 1200,
-    h = 1200,
-    winit = 800, // depends on how big is the graph
-    hinit = 800,
+var w = window.innerWidth,
+    h = window.innerHeight,
+    winit = w/2, // depends on how big is the graph
+    hinit = h/2,
     node,
     link,
     root;
@@ -65,6 +65,9 @@ $( "#slider1" ).slider({
 }
 );
 });
+
+$("#slider1").prepend('<span class="ui-slider-inner-label" style="position: absolute; left:0px; top:20px; text-shadow:none; color:black; font-weight:normal">'+"left"+ '</span>')
+            .append('<span class="ui-slider-inner-label" style="position: absolute; right:0px; bottom:20px; text-shadow:none; color:black; font-weight:normal">'+"right"+ '</span>');
 
 $(function() {
 $( "#slider2" ).slider({
