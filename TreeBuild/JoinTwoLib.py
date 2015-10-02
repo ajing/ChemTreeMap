@@ -4,6 +4,9 @@
 import pickle
 import numpy as np
 
+from ClusterMolecules import Convert2Numpy, GetCenterOfClusterKMeans
+from sklearn.cluster import MiniBatchKMeans
+
 def AssignGroup(class_member_idx, fp_list1_size):
     group1 = np.any(class_member_idx < fp_list1_size)
     group2 = np.any(class_member_idx >= fp_list1_size)
