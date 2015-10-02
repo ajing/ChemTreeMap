@@ -50,6 +50,12 @@ div.intgraph svg {
     shape-rendering: crispEdges;
 }
 
+circle.node {
+  cursor: pointer;
+ /* stroke: #000;
+  stroke-width: 3px;*/
+}
+
 line.link {
   fill: none;
   stroke: #9ecae1;
