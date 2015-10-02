@@ -62,7 +62,8 @@ def main():
 
     trees = {"ECFP": tree_dict_ecfp, "AtomPair": tree_dict_atom}
 
-    ACTIVITY_COLUMN.append("pIC50")
+    if not "pIC50" in ACTIVITY_COLUMN:
+        ACTIVITY_COLUMN.append("pIC50")
 
     WriteJSON({"metadata": {"activityTypes": [{"name": x, "metadata": "nothing"} for x in ACTIVITY_COLUMN], "treeTypes": [{"name":x, "metadata": "nothing"} for x in trees.keys()], "circleSizeTypes": [{"name": x, "metadata": "nothing"} for x in lig_list[0]["properties"].keys()], "circleBorderTypes": [{"name": x, "metadata": "nothing"} for x in lig_list[0]["properties"].keys()]}, "trees": trees, "compounds":lig_list}, outfile, "w")
     print "finish writing to JSON..."
