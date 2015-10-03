@@ -58,14 +58,15 @@ def WriteToFile(center_list, ligand_dict, filename):
 
 def Convert2Numpy(fp_list):
     numpy_list = []
-    print "size of zero matrix", len(fp_list), len(fp_list[0][1]) / 4
-    print (len(fp_list), len(fp_list[0][1]) / 4)
-    fp_matrix  = np.zeros((len(fp_list), len(fp_list[0][1]) / 4))
+    fold_times = 8
+    print "size of zero matrix", len(fp_list), len(fp_list[0][1]) / fold_times
+    print (len(fp_list), len(fp_list[0][1]) / fold_times)
+    fp_matrix  = np.zeros((len(fp_list), len(fp_list[0][1]) / fold_times))
     for idx in range(len(fp_list)):
         fp  = fp_list[idx][1]
         fpa = np.zeros((1,len(fp)),np.double)
         DataStructs.ConvertToNumpyArray(fp, fpa)
-        fp_matrix[idx,:] = np.sum(np.reshape(fpa, (4, -1)), axis = 0)
+        fp_matrix[idx,:] = np.sum(np.reshape(fpa, (fold_times, -1)), axis = 0)
     return fp_matrix
 
 def GetCenterOfClusterKMeans(fp_list, fp_matrix, center_fp, idx):

@@ -19,7 +19,12 @@ def MakeStructuresForSmiles( ligand_dict ):
         smile = ligand_dict[key][ SMILE_COLUMNNAME ]
         filename = ligand_dict[ key ][ "orig_id" ]
         mol = Chem.MolFromSmiles(smile)
-        MolToFile( mol, os.path.join(relativedir, '{}.svg'.format(filename)) )
+        print filename
+        try:
+            MolToFile( mol, os.path.join(relativedir, '{}.svg'.format(filename)) )
+            print "successfully print to file"
+        except:
+            continue
 
 
 if __name__ == "__main__":

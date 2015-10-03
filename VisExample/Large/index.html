@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <link type="text/css" rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="../jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
+    <link rel="stylesheet" href="../lib/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
   </head>
   <body>
   <h1 style="font-size:32px;position:relative;left:300px;">9929 Allosteric(Red) + 5659 Competitive(Blue)</h1>
@@ -38,9 +38,9 @@
     </div>
     <div class="intgraph"></div>
   </div>
-    <script src="../jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
-    <script src="../jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
-    <script type="text/javascript" src="../d3/d3.v3.js"></script>
+    <script src="../lib/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+    <script src="../lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="../lib/d3/d3.v3.js"></script>
     <script type="text/javascript" src="libs/rgbcolor.js"></script>
     <script type="text/javascript" src="libs/StackBlur.js"></script>
     <script type="text/javascript" src="libs/canvg.js"></script>
@@ -367,7 +367,7 @@ function click(d) {
 // This is added by me
 function mouseover(d){
   if (!d.children){
-    var image_src = "../Image/" + d.name;
+    var image_src = "../Image/" + d.orig_id + ".svg";
     d3.select("#molimage")
       .attr("src", image_src);
   }
@@ -421,5 +421,6 @@ function morechild(){
 
 
     </script>
+    <script type="text/javascript" src="libs/tooltip.js"></script>
   </body>
 </html>

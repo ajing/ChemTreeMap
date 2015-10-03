@@ -25,6 +25,8 @@ def WriteToFile(center_list, gp_list, ligand_dict, filename):
     # write header
     first_e = ligand_dict.itervalues().next()
     fileobj.write("\t".join(["mapped_id", "size", "group"] + first_e.keys()) + "\n")
+    #print center_list
+    print "lig dict length", len(ligand_dict.keys())
     for idx in range(len(center_list)):
         lig = center_list[idx]
         gp  = gp_list[idx]
@@ -34,7 +36,12 @@ def WriteToFile(center_list, gp_list, ligand_dict, filename):
 
 def GetSmallSetAfterClusteringKMeans(fp_list1, fp_list2, cluster_n):
     fp1_len   = len(fp_list1)
-    fp_matrix = Convert2Numpy(fp_list1 + fp_list2)
+    fp_list = fp_list1 + fp_list2
+    print "fp1", fp1_len
+    print "fp2", len(fp_list2)
+    print "fp1 + fp2", len(fp_list)
+    print "cluster_n", cluster_n
+    fp_matrix = Convert2Numpy(fp_list)
     mnb = MiniBatchKMeans(n_clusters = cluster_n)
     mnb.fit(fp_matrix)
     centers = mnb.cluster_centers_
@@ -54,20 +61,20 @@ def GetSmallSetAfterClusteringKMeans(fp_list1, fp_list2, cluster_n):
 
 def MergeTwoDicts(x, y):
     '''Given two dicts, merge them into a new dict as a shallow copy.'''
-    z = x.copy()
-    z.update(y)
+    z = {x[x_key]["orig_id"]:x[x_key] for x_key in x}
+    z.update({y[y_key]["orig_id"]:y[y_key] for y_key in y})
     return z
 
 if __name__ == "__main__":
     import argparse
     from Util import ParseLigandFile
     parser = argparse.ArgumentParser(description='Join two libs.')
-    parser.add_argument('--raw1')
-    parser.add_argument('--raw2')
-    parser.add_argument('--fp1')
-    parser.add_argument('--fp2')
-    parser.add_argument('--cluster_n')
-    parser.add_argument('--outfile')
+    parser.add_argument('--raw1', required = True)
+    parser.add_argument('--raw2', required = True)
+    parser.add_argument('--fp1', required = True)
+    parser.add_argument('--fp2', required = True)
+    parser.add_argument('--cluster_n', type = int, required = True)
+    parser.add_argument('--outfile', required = True)
     arg = parser.parse_args()
 
     ligand_dict1 = ParseLigandFile(arg.raw1)
