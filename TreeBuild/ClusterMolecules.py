@@ -46,14 +46,20 @@ def GetSmallSetAfterClustering(fp_list):
     print len(center_list)
     return center_list
 
-def WriteToFile(center_list, ligand_dict, filename):
-    fileobj = open(filename, "w")
+def WriteToFile(center_list, ligand_dict, filename, write_type = "w", group = None):
+    fileobj = open(filename, write_type)
     # write header
     first_e = ligand_dict.itervalues().next()
-    fileobj.write("\t".join(["mapped_id", "size"] + first_e.keys()) + "\n")
-    for lig in center_list:
-        content = "\t".join(map(str, lig + ligand_dict[lig[0]].values()))
-        fileobj.write(content + "\n")
+    if group is None:
+        fileobj.write("\t".join(["mapped_id", "size"] + first_e.keys()) + "\n")
+        for lig in center_list:
+            content = "\t".join(map(str, lig + ligand_dict[lig[0]].values()))
+            fileobj.write(content + "\n")
+    else:
+        fileobj.write("\t".join(["mapped_id", "size", "group"] + first_e.keys()) + "\n")
+        for lig in center_list:
+            content = "\t".join(map(str, lig + [group] + ligand_dict[lig[0]].values()))
+            fileobj.write(content + "\n")
     fileobj.close()
 
 def Convert2Numpy(fp_list):
@@ -119,7 +125,6 @@ def ToFPObjRDK(alist):
 if __name__ == "__main__":
     from Util import ParseLigandFile
     from Model import SMILE_COLUMNNAME, FILE_FORMAT
-    from DistanceMeasure import ToFPObj
     import argparse
     parser = argparse.ArgumentParser(description='Get a clustered result.')
     parser.add_argument('--infile')
@@ -145,7 +150,7 @@ if __name__ == "__main__":
                 pickle.dump(fp_list, outputobj, pickle.HIGHEST_PROTOCOL)
         center_list= GetSmallSetAfterClusteringKMeans(fp_list, arg.num_cluster)
     else:
-        fp_list    = ToFPObj(smile_list)
+        fp_list    = ToFPObjRDK(smile_list)
         center_list= GetSmallSetAfterClustering(fp_list)
 
     WriteToFile(center_list, ligand_dict, arg.outfile)
