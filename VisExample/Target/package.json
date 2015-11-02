@@ -1,8 +1,0 @@
-{
-  "name": "TreeVis",
-  "description": "A tree visualization for compounds",
-  "author": "Jing Lu <ajingnk@gmail.com>",
-  "dependencies": {
-    "connect": "*"
-  }
-}
