@@ -1,0 +1,11 @@
+{
+    "author": {
+        "name": "Pinecone, LLC"
+    },
+    "name": "angular-foundation",
+    "version": "0.5.1",
+    "main": ["./mm-foundation-tpls.js"],
+    "dependencies": {
+        "angular": ">=1"
+    }
+}
