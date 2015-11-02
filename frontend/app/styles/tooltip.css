@@ -1,0 +1,141 @@
+
+.tooltip-detail {
+    display: none;
+    max-height: calc(100% - 110px);
+    overflow: auto;
+    position: absolute;
+    opacity: 0.9;
+    background: white;
+    user-select:none;
+    top: 80px;
+    right: 20px;
+    width: 280px;
+    z-index: 10;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.188235) 0px 10px 30px 0px;
+    -webkit-font-smoothing: antialiased;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.188235) 0px 10px 30px 0px;
+    box-sizing: border-box;
+
+}
+
+.tooltip-accordion-toggle {
+    opacity: 0.4;
+    float:right;
+    vertical-align: middle;
+    line-height: 1.5em;
+}
+
+.tooltip-title {
+    padding: 0.25em 0.5em 0.0em 0.5em;
+    font-size: 20pt;
+    font-weight: 600;
+}
+
+.tooltip-table {
+    margin: 0 5% 0 5%;
+    width: 90%;
+    border: none;
+    border-spacing: 0;
+}
+
+.tooltip-table tr:nth-child(even) {
+    background-color: white;
+}
+
+.synergy-table tr td {
+    cursor: pointer;
+    color: #666666;
+    max-width: 120px;
+    transition: color 0.25s;
+    -webkit-transition: color 0.25s;
+    -moz-transition: color 0.25s;
+    -o-transition: color 0.25s;
+    transition: background-color 0.1s;
+    -webkit-transition: background-color 0.1s;
+    -moz-transition: background-color 0.1s;
+    -o-transition: background-color 0.1s;
+}
+
+.compound-image-thumbnail {
+    padding: 0.25em;
+}
+
+.accordion dd > .content {
+    padding: 0.4em;
+}
+
+.synergy-table tr:hover td {
+    color: #111111;
+    background-color: #F9F9F9;
+}
+
+.tooltip-table td.data-key {
+    text-align: left;
+    color: #333333;
+    font-weight: bold; 
+    border-left: gray;
+
+}
+
+.tooltip-table td.data-value {
+    text-align: right;
+    color: #666666;
+
+}
+
+.accordion dd a {
+    padding: 0.5em 1em 0.5em 1em;
+    font-weight: lighter;
+}
+
+.accordion dd div.content {
+    
+}
+
+.tooltip-structure {
+    margin: -5px auto -5px auto;
+    display: block;
+    width: 10em;
+    height: 10em;
+}
+
+.tooltip-components-container {
+    text-align: center;
+}
+
+.tooltip-component-container {
+    color: #888888;
+    opacity: 0.6;
+    cursor: pointer;
+    display: inline-block;
+    width: 120px;
+    transition: opacity 0.25s;
+    -webkit-transition: opacity 0.25s;
+    -moz-transition: opacity 0.25s;
+    -o-transition: opacity 0.25s;
+}
+
+.tooltip-component-container:hover {
+    color: #111111;
+    opacity: 1.0;
+}
+
+.tooltip-component {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6em;
+    height: 6em;
+}
+
+.tooltip-close {
+    font-size: 14pt;
+    position: absolute;
+    top: 0.4em;
+    right: 0.8em;
+    color: #999999;
+}

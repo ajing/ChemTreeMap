@@ -1,0 +1,87 @@
+.slider {
+    position: relative;
+    z-index: 1;
+    width: 150px;
+    height: 17px;
+    top: 0px;
+    left: 20px;
+    opacity: 0.8;
+}
+
+.ui-slider .ui-slider-handle { 
+    margin-top: 2px;
+}
+
+.ui-slider-range {
+    background: white;
+}
+
+.slider .section {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    font-size: 10px;
+}
+
+.slider .left {
+    border-bottom-left-radius: 3px; 
+    border-top-left-radius: 3px;
+    padding-left: 2.5%;
+    text-align: left;
+    float:left;
+}
+
+.slider .right {
+    border-bottom-right-radius: 3px; 
+    border-top-right-radius: 3px;
+    padding-right: 2.5%;
+    text-align: right;
+    right: 0px;
+}
+
+.sm-label {
+    opacity: 0.0;
+    cursor: default;
+
+    user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+}
+
+.slider .section:hover .sm-label {
+    opacity: 1.0;
+}
+
+
+
+svg.axis {
+    position: absolute;
+    left: 0px;
+    top: 17px;
+    width: 280px;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: -1px;
+    opacity: 0.3;
+}
+
+svg.axis line {
+  stroke: #000;
+}
+
+svg.axis path {
+  display: none;
+}
+
+svg.axis .tick {
+    font-size: 10px;
+}
+

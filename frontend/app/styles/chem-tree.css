@@ -1,0 +1,62 @@
+/*@-webkit-keyframes 'blink' {
+    0% {
+        stoke-opacity:0.6;
+    }
+    25% {
+        stroke-opacity:0.8;
+    }
+    50% {
+        stroke-opacity:0.6;
+    }
+    75% {
+        stroke-opacity:0.4;
+    }
+    100% {
+        stroke-opacity:0.6;
+    }
+}*/
+
+svg.viz {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    height: calc(100% - 45px);
+}
+
+circle.node {
+  /*  stroke: #DDDDDD; */
+  /*  fill: #888888; */
+    opacity: 1;
+    transition: fill 0.2s ease-in-out;
+    -webkit-transition: fill 0.2s ease-in-out;
+    -moz-transition: fill 0.2s ease-in-out;
+    -o-transition: fill 0.2s ease-in-out;
+    -ms-transition: fill 0.2s ease-in-out;
+}
+
+circle.highlighted {
+    stroke: #999999;
+    fill: #666666;
+}
+
+circle.node.selected {
+    stroke: #ca0a00;
+    fill: #ca0a00;
+}
+
+circle.hidden {
+    display: none;
+    visibility: none;
+    opacity: 0.0;
+}
+
+line.link {
+    stroke-opacity: 0.6;
+    stroke: #D3D3D3;
+    stroke-width: 5px;
+    transition: stroke-opacity 0.2s ease-in-out;
+    -webkit-transition: stroke-opacity 0.2s ease-in-out;
+    -moz-transition: stroke-opacity 0.2s ease-in-out;
+    -o-transition: stroke-opacity 0.2s ease-in-out;
+    -ms-transition: stroke-opacity 0.2s ease-in-out;
+}

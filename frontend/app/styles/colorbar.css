@@ -1,0 +1,37 @@
+.colorbarA .axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.colorbarB .axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.colorbarA .axis line{
+    fill: none;
+    /*
+    stroke: black;
+    */
+    shape-rendering: crispEdges;
+}
+
+.colorbarA .axis .domain{
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.colorbarB .axis line{
+    fill: none;
+    /*
+    stroke: black;
+    */
+    shape-rendering: crispEdges;
+}
+
+.colorbarB .axis .domain{
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}

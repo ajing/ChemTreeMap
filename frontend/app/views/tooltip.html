@@ -1,0 +1,39 @@
+<div class="tooltip-close dismiss" ng-click="close()"><i class="fa fa-close"></i></div>
+<h2 class="tooltip-title">{{data.object.orig_id}}</h2>
+
+<!-- compound specific properties -->
+<accordion ng-show="data.compound" close-others="oneAtATime">
+    <accordion-group is-open="structureIsOpen" ng-init="structureIsOpen = true">
+        <accordion-heading>
+            <span>structure</span>
+            <i class="tooltip-accordion-toggle" ng-class="{'fa fa-chevron-down': structureIsOpen, 'fa fa-chevron-right': !structureIsOpen}"></i>
+        </accordion-heading>
+        <img class="tooltip-structure" ng-src="data/images/{{data.object.orig_id}}.svg">
+    </accordion-group>
+
+    <accordion-group is-open="activityIsOpen" ng-init="activityIsOpen = false">
+        <accordion-heading>
+            <span>activities</span>
+            <i class="tooltip-accordion-toggle" ng-class="{'fa fa-chevron-down': activityIsOpen, 'fa fa-chevron-right': !activityIsOpen}"></i></accordion-heading>
+        <table class="tooltip-table">
+            <tr ng-repeat="(activity, value) in data.object.activities">
+                <td class="data-key">{{activity}}</td>
+                <td class="data-value">{{value | number:4}}</td>
+            </tr>
+        </table>
+    </accordion-group>
+
+    <accordion-group ng-show="true" is-open="propertiesIsOpen" ng-init="propertiesIsOpen = false">
+        <accordion-heading>
+            <span>properties</span>
+            <i class="tooltip-accordion-toggle" ng-class="{'fa fa-chevron-down': propertiesIsOpen, 'fa fa-chevron-right': !propertiesIsOpen}"></i>
+        </accordion-heading>
+        <table class="tooltip-table">
+           <tr ng-repeat="(property, value) in data.object.properties">
+                <td class="data-key">{{property}}</td>
+                <td ng-show="angular.isNumber(value)" class="data-value">{{value | number:4}}</td>
+                <td ng-hide="angular.isNumber(value)" class="data-value">{{value}}</td>
+            </tr>
+        </table>
+    </accordion-group>
+</accordion>
