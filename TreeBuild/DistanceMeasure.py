@@ -64,6 +64,7 @@ def LigEff(smile, ic50):
     m = Chem.MolFromSmiles(smile)
     num_heavy = m.GetNumHeavyAtoms()
     return round(1.37 * (9 - math.log10(ic50)) / num_heavy, 5)
+    #return round(1.37 * (6 - math.log10(ic50)) / num_heavy, 5)
 
 def AddLigEff(lig_show, liganddict):
     for ligname in lig_show:

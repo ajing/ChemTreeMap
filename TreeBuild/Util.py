@@ -57,7 +57,10 @@ def ReArrangeActivity(lig_dict, colname):
         lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if not sk in colname}
         lig_new[k]["activities"] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
         if "IC50" in lig_new[k]["activities"]:
-            lig_new[k]["activities"]["pIC50"] = round(9 - math.log10(float(lig_new[k]["activities"]["IC50"])), 5)
+            # This is for nM
+            #lig_new[k]["activities"]["pIC50"] = round(9 - math.log10(float(lig_new[k]["activities"]["IC50"])), 5)
+            # This is for uM
+            lig_new[k]["activities"]["pIC50"] = round(6 - math.log10(float(lig_new[k]["activities"]["IC50"])), 5)
     return lig_new
 
 def Dict2List(lig_dict):
