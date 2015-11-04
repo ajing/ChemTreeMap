@@ -51,7 +51,9 @@ def main():
     print "finish GraphViz..."
     tree_dict_atom = Dot2Dict(outdot_file, None)
 
+    ################## Adding properties ######################
     lig_show     = SelectColumn(liganddict, INTEREST_COLUMN)
+    # add pIC50, here we assume the unit for IC50 is nM
     lig_show     = ReArrangeActivity(lig_show, ACTIVITY_COLUMN)
 
     # add ligand efficiency
@@ -60,20 +62,47 @@ def main():
     lig_show     = AddSLogP(lig_show, liganddict)
     lig_list     = Dict2List(lig_show)
 
-    trees = {"ECFP": tree_dict_ecfp, "AtomPair": tree_dict_atom}
+    ################## Tree structure info  ######################
+    tree_meta = [{ "name":     "ECFP",
+                  "metadata": """Extended Connectivity fingerprint, """
+                              """implemented in <a href="http://www.rdkit.org">RDKit</a>. <br/>"""
+                              """Parameters used: Radius = 4"""},
+                 { "name": "AtomPair",
+                   "metadata": """Atom Pairs as Molecular Features, describe in """
+                         """ R.E. Carhart, D.H. Smith, R. Venkataraghavan;"""
+                         """ "Atom Pairs as Molecular Features in Structure-Activity Studies:"""
+                         """ Definition and Applications" JCICS 25, 64-73 (1985)."""
+                         """implemented in <a href="http://www.rdkit.org">RDKit</a>. <br/>"""}]
 
-    if not "pIC50" in ACTIVITY_COLUMN:
-        ACTIVITY_COLUMN.append("pIC50")
+    ################## Activity info  ######################
+    activity_meta = [{ "name": "IC50",
+                      "metadata" : "User input activity"},
+                     { "name": "pIC50",
+                       "metadata" : "This number assumes IC50 in nM unit, so please change your data or the code to make it appropriate." }]
 
-    WriteJSON({"metadata": {"activityTypes": [{"name": x, "metadata": "nothing"} for x in ACTIVITY_COLUMN], "treeTypes": [{"name":x, "metadata": "nothing"} for x in trees.keys()], "circleSizeTypes": [{"name": x, "metadata": "nothing"} for x in lig_list[0]["properties"].keys()], "circleBorderTypes": [{"name": x, "metadata": "nothing"} for x in lig_list[0]["properties"].keys()]}, "trees": trees, "compounds":lig_list}, outfile, "w")
+    ################## Property info  ######################
+    property_meta = [{"name": "SLogP",
+                      "metadata": """SLogP, the coefficients are a measure of the difference in solubility of the compound in water and octanol. describe in """
+                         """   S. A. Wildman and G. M. Crippen JCICS 39 868-873 (1999)"""
+                         """ R.E. Carhart, D.H. Smith, R. Venkataraghavan;"""
+                         """ "Atom Pairs as Molecular Features in Structure-Activity Studies:"""},
+                     {"name": "Lig_Eff",
+                      "metadata": "Ligand efficiency. The value is calculated by function 1.37 * pIC50 / a_heavy"}]
+
+
+    WriteJSON({"metadata": {"activityTypes": activity_meta,
+                            "treeTypes": tree_meta,
+                            "circleSizeTypes": property_meta,
+                            "circleBorderTypes": property_meta},
+               "trees": trees,
+               "compounds":lig_list},
+               outfile, "w")
+
     print "finish writing to JSON..."
 
     # make image file
     MakeStructuresForSmiles(liganddict)
 
-    #print outdot_file
-    # the current output structure is
-    # {trees:{ECFP:root, AtomPair:root}, compounds:[{id:, name:, activities: {IC50:}, properties:},]}
 
 if __name__ == "__main__":
     main()
