@@ -73,6 +73,7 @@ def main():
                          """ "Atom Pairs as Molecular Features in Structure-Activity Studies:"""
                          """ Definition and Applications" JCICS 25, 64-73 (1985)."""
                          """implemented in <a href="http://www.rdkit.org">RDKit</a>. <br/>"""}]
+    trees = {"ECFP": tree_dict_ecfp, "AtomPair": tree_dict_atom}
 
     ################## Activity info  ######################
     activity_meta = [{ "name": "IC50",
@@ -87,7 +88,7 @@ def main():
                          """ R.E. Carhart, D.H. Smith, R. Venkataraghavan;"""
                          """ "Atom Pairs as Molecular Features in Structure-Activity Studies:"""},
                      {"name": "Lig_Eff",
-                      "metadata": "Ligand efficiency. The value is calculated by function 1.37 * pIC50 / a_heavy"}]
+                      "metadata": "Ligand efficiency. The value is calculated by the function 1.37 * pIC50 / a_heavy"}]
 
 
     WriteJSON({"metadata": {"activityTypes": activity_meta,
