@@ -40,12 +40,9 @@ angular.module('frontendApp')
       console.log('selected:', selected);
 
       if (selected === null) {
-
         $scope.tooltip.visibility = false;
-
       } else {
         //set up the tooltip for the specific selected item
-
         $scope.tooltip.visibility = true;
 
         // if is compound
@@ -60,9 +57,9 @@ angular.module('frontendApp')
 
 
 
-    $scope.gravitySlider      = {min: 0, max: 0.2, value:0.1, id: "gravity", name: "Radius of Display", leftName: "Lager", rightName: "Smaller"};
+    $scope.gravitySlider      = {min: 0, max: 0.2, value:0.1, id: 'gravity', name: 'Radius of Display', leftName: 'Lager', rightName: 'Smaller'};
 
-    $scope.linkStrengthSlider = {min: 0, max: 10, value: 1, id: "linkstrength", name: "Compactness", leftName: "Looser", rightName: "Tight"};
+    $scope.linkStrengthSlider = {min: 0, max: 10, value: 1, id: 'linkstrength', name: 'Compactness', leftName: 'Looser', rightName: 'Tight'};
 
     dataService.loadExample($routeParams.dataset, function() {
         $scope.data = dataService.data;

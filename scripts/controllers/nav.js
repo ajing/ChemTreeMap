@@ -24,9 +24,9 @@ angular.module('frontendApp')
             e.stopPropagation();
             //console.log(dataService.metadata);
             SweetAlert.swal({
-/*                title: infoObject,
+                title: infoObject,
                 html: dataService.metadata[infoObject],
-                allowOutsideClick: true*/
+                allowOutsideClick: true
             });
         };
 

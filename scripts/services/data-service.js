@@ -44,7 +44,7 @@ angular.module('frontendApp')
         var nodes = {}, i = 0;
 
         function recurse(node) {
-          if (node.children) node.r = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
+          if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
           nodes[node.name] = node;
           return node.size;
         }
@@ -57,7 +57,7 @@ angular.module('frontendApp')
         var nodes = [], i = 0;
 
         function recurse(node) {
-          if (node.children) node.r = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
+          if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
           nodes.push(node);
           return node.size;
         }
@@ -102,12 +102,12 @@ angular.module('frontendApp')
 
         if (newCircleSize === "None") {
           nodes.forEach(function(d) {
-            d.r = 2;
+            d.size = 2;
           });
         } else {
           nodes.forEach(function(d) {
             if (d.name.startsWith("B")) {
-              d.r = dataService.data.compounds[parseInt(d.name.substring(1))].properties[newCircleSize];
+              d.size = dataService.data.compounds[parseInt(d.name.substring(1))].properties[newCircleSize];
             }
           });
         }

@@ -34,23 +34,23 @@ angular.module('frontendApp')
 
           var vis = svg.append('g'); // the zoom container
 
-          d3.selectAll(".viz").append("g").append("svg")
-            .attr("x", "60")
-            .attr("y", "100")
-            .append("g")
-            .attr("transform", "translate(0, 10)").classed("colorbarA",true);// color bar Activyty
+          d3.selectAll('.viz').append('g').append('svg')
+            .attr('x', '60')
+            .attr('y', '100')
+            .append('g')
+            .attr('transform', 'translate(0, 10)').classed('colorbarA',true);// color bar Activyty
 
-          d3.selectAll(".viz").append("g").append("svg")
-            .attr("x", "20")
-            .attr("y", "100")
-            .append("g")
-            .attr("transform", "translate(0, 10)").classed("colorbarB",true);// color bar border
+          d3.selectAll('.viz').append('g').append('svg')
+            .attr('x', '20')
+            .attr('y', '100')
+            .append('g')
+            .attr('transform', 'translate(0, 10)').classed('colorbarB',true);// color bar border
 
           function flatten(root){
               var nodes = [], i = 0;
 
               function recurse(node) {
-                  if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
+                  if (node.children) { node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0); }
                   nodes.push(node);
                   return node.size;
               }
@@ -61,53 +61,51 @@ angular.module('frontendApp')
 
           function tick() {
               linkDOM
-                .attr("x1", function(d) { return xScale(d.source.x); })
-                .attr("y1", function(d) { return yScale(d.source.y); })
-                .attr("x2", function(d) { return xScale(d.target.x); })
-                .attr("y2", function(d) { return yScale(d.target.y); });
+                .attr('x1', function(d) { return xScale(d.source.x); })
+                .attr('y1', function(d) { return yScale(d.source.y); })
+                .attr('x2', function(d) { return xScale(d.target.x); })
+                .attr('y2', function(d) { return yScale(d.target.y); });
 
               nodeDOM
-                .attr("cx", function(d) { return xScale(d.x); })
-                .attr("cy", function(d) { return yScale(d.y); });
+                .attr('cx', function(d) { return xScale(d.x); })
+                .attr('cy', function(d) { return yScale(d.y); });
           }
 
          activityScale = d3.scale.linear()
             .domain([4, 9])
             .clamp(true)
-            .range(["hsl(300,80%,50%)", "hsl(0,80%,50%)"])
+            .range(['hsl(300,80%,50%)', 'hsl(0,80%,50%)'])
             .interpolate(d3.interpolateString);
 
         /*
-            .range(["#008000", "#FFFF00", "#FF0000"]);
+            .range(['#008000', '#FFFF00', '#FF0000']);
             .interpolate(d3.interpolateRgb)
          */
 
           slogpScale = d3.scale.linear()
             .domain([5, -5])
             .clamp(true)
-            .range(["hsl(300,80%,50%)", "hsl(0,80%,50%)"])
+            .range(['hsl(300,80%,50%)', 'hsl(0,80%,50%)'])
             .interpolate(d3.interpolateString);
-
 
           ligeffScale = d3.scale.linear()
             .domain([0, 0.5])
             .clamp(true)
-            .range(["hsl(300,80%,50%)", "hsl(0,80%,50%)"])
+            .range(['hsl(300,80%,50%)', 'hsl(0,80%,50%)'])
             .interpolate(d3.interpolateString);
 
 
-
-
           //update data
-          scope.$watch( "treeType", function(newTreeType) {
+          scope.$watch( 'treeType', function(newTreeType) {
             //function(scope) { return scope.treeType === null; }, function() {
 
               if (scope.treeType === undefined || scope.data === undefined) {
                   return;
               }
 
-              console.log("test");
-              var color_extent, colorbarB; // for border color
+              console.log('test');
+              var colorExtent, colorbarB; // for border color
+              var click, update; // for clicking
 
               var root  = scope.data.trees[scope.treeType],
                 nodes = flatten(root),
@@ -125,48 +123,45 @@ angular.module('frontendApp')
                 .range([0.1 * window.innerHeight, 0.9 * window.innerHeight]);
 
               sizeScale = d3.scale.linear()
-                .domain(d3.extent(nodes, function(d) { return d.r; }))
+                .domain(d3.extent(nodes, function(d) { if (d.name[0] === 'B') return d.size; }))
                 .range([4, 10]);
 
               var colorbarA = colorBar()
-                .color(activityScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format("g"));
+                .color(activityScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
 
-              d3.select(".colorbarA").call(colorbarA);
+              d3.select('.colorbarA').call(colorbarA);
 
 
-              if (scope.circleBorderType === "SLogP") {
+              if (scope.circleBorderType === 'SLogP') {
                 borderScale = slogpScale;
                 colorbarB = colorBar()
-                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format("g"));
-              } else if (scope.circleBorderType === "Lig_Eff") {
+                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
+              } else if (scope.circleBorderType === 'Lig_Eff') {
                 borderScale = ligeffScale;
                 colorbarB = colorBar()
-                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format("g"));
+                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
               } else {
-                color_extent = d3.extent(nodes, function(d) { if (d.name[0] === "B") { return d.stroke; } });
+                colorExtent = d3.extent(nodes, function(d) { if (d.name[0] === 'B') { return d.stroke; } });
                 borderScale = d3.scale.linear()
-                  .domain([color_extent[0], d3.mean(color_extent), color_extent[1]])
-                  .range(["#008000", "#FFFF00", "#FF0000"]);
+                  .domain([colorExtent[0], d3.mean(colorExtent), colorExtent[1]])
+                  .range(['#008000', '#FFFF00', '#FF0000']);
               }
 
-              if (scope.circleBorderType === "None") {
-                d3.select(".colorbarB").style("visibility","hidden");
+              if (scope.circleBorderType === 'None') {
+                d3.select('.colorbarB').style('visibility','hidden');
               } else {
-                d3.select(".colorbarB").style("visibility","visible").call(colorbarB);
+                d3.select('.colorbarB').style('visibility','visible').call(colorbarB);
               }
-
-
-
 
 
               activityColor = function(d) {
-                  return d._children ? "#3182bd" : d.children ? "#D3D3D3" : activityScale(d.fill);
+                  return d._children ? '#3182bd' : d.children ? '#D3D3D3' : activityScale(d.fill);
               };
 
               borderColor = function(d) {
                 //console.log(d.stroke);
-                //if (d.stroke == 0) { return "#c6dbef"; }
-                return d._children ? "#CCC" : d.children ? "#D3D3D3" : borderScale(d.stroke);
+                //if (d.stroke == 0) { return '#c6dbef'; }
+                return d._children ? '#CCC' : d.children ? '#D3D3D3' : borderScale(d.stroke);
               };
 
 
@@ -175,13 +170,13 @@ angular.module('frontendApp')
               // zoom and drag may interfere with each other, so here redefine drag function
               var drag = d3.behavior.drag()
                 .origin(function(d){ return d; }) // identify function
-                .on("dragstart", dragstarted)
-                .on("drag", dragged)
-                .on("dragend", dragended);
+                .on('dragstart', dragstarted)
+                .on('drag', dragged)
+                .on('dragend', dragended);
 
               function dragstarted(d){
                   d3.event.sourceEvent.stopPropagation();
-                  d3.select(this).classed("dragged", true);
+                  d3.select(this).classed('dragged', true);
               }
 
               function dragged(d){
@@ -193,15 +188,43 @@ angular.module('frontendApp')
               }
 
               function dragended(d){
-                  d3.select(this).classed("dragging", false);
+                  d3.select(this).classed('dragging', false);
                   force.resume();
               }
 
 
+              /** Click behavior configuration **/
+              // Toggle children on click.
+              function clickOnInterNode(d) {
+                if (d.children) {
+                  d._children = d.children;
+                  d.children = null;
+                } else {
+                  d.children = d._children;
+                  d._children = null;
+                }
+                force.start();
+                update();
+              }
+
+              function click(compound) {
+                if (compound.name[0] !== 'B') { return clickOnInterNode(compound); }
+                if (d3.event.defaultPrevented) { return; }
+                d3.event.preventDefault();
+                if (compound === scope.selected) {
+                  scope.selected = null;
+                } else {
+                  scope.selected = scope.data.compounds[parseInt(compound.name.substring(1))];
+                }
+                force.start();
+                scope.$apply();
+              }
+
 
 
               function update() {
-                var nodes = flatten(root),
+                var root  = scope.data.trees[scope.treeType],
+                  nodes = flatten(root),
                   links = d3.layout.tree().links(nodes);
 
                 //create the selections and bind them to the data
@@ -210,37 +233,40 @@ angular.module('frontendApp')
 
 
                 // Enter any new nodes.
-                nodeDOM.enter().append("svg:circle")
-                  .attr("class", "node")
-                  .attr("cx", function(d) { return xScale(d.x); })
-                  .attr("cy", function(d) { return yScale(d.y); })
-                  .attr("r", function(d) { return d.children ? 2 : sizeScale(d.r); })
-                  .style("fill", activityColor)
-                  .style("stroke", borderColor)
-                  .style("stroke-width", function(d) { return d.strokeWidth; })
-                  //.on("click", click)
-                  // .on("mouseover", mouseover)
+                nodeDOM.enter().append('svg:circle')
+                  .attr('class', 'node')
+                  .attr('cx', function(d) { return xScale(d.x); })
+                  .attr('cy', function(d) { return yScale(d.y); })
+                  .attr('r', function(d) { return d.children ? 2 : sizeScale(d.size); })
+                  .style('fill', activityColor)
+                  .style('stroke', borderColor)
+                  .style('stroke-width', function(d) { return d.strokeWidth; })
+                  .on('click', click)
+                  // .on('mouseover', mouseover)
                   .call(drag) // attach drag behavior to new circles
-                  .append("svg:title")
+                  .append('svg:title')
                   .text( function(d){ return d.name; });
                 // .classed('selected', function (d) { return d.name === scope.id; });
 
 
                 // transition from old to new
-                nodeDOM.filter(function(d) { return d.name[0] === "B" ? this : null; })
+                nodeDOM
                   //.transition().duration(750)
-                  .attr("cx", function(d) { return xScale(d.x); })
-                  .attr("cy", function(d) { return yScale(d.y); });
-                nodeDOM.filter(function(d) { return d.name[0] === "B" ? null : this; })
-                  .attr("cx", function(d) { return xScale(d.x); })
-                  .attr("cy", function(d) { return yScale(d.y); });
+                  .attr('cx', function(d) { return xScale(d.x); })
+                  .attr('cy', function(d) { return yScale(d.y); })
+                  .attr('r', function(d) { return d.children ? 2 : sizeScale(d.size); });
+                //nodeDOM.filter(function(d) { return d.name[0] === 'B' ? null : this; })
+                //  .attr('cx', function(d) { return xScale(d.x); })
+                //  .attr('cy', function(d) { return yScale(d.y); })
+                //  .attr('r', function(d) { return sizeScale(d.r); });
+
 
 
                 // Exit any old nodes.
                 nodeDOM.exit().remove();
 
                 // 2. update new links
-                linkDOM = vis.selectAll("line")
+                linkDOM = vis.selectAll('line')
                   .data(links, function(d) { return d.target.name; });
 
                 // transition from old to new
@@ -252,53 +278,25 @@ angular.module('frontendApp')
                   .attr('y2', function(d) { return yScale(d.target.y); });
 
                 // Enter any new links.
-                linkDOM.enter().insert("svg:line", ".node")
-                  .attr("class", "link")
-                  .attr("x1", function(d) { return xScale(d.source.x); })
-                  .attr("y1", function(d) { return yScale(d.source.y); })
-                  .attr("x2", function(d) { return xScale(d.target.x); })
-                  .attr("y2", function(d) { return yScale(d.target.y); })
-                  .style("stroke", "#D3D3D3")
-                  .style("stroke-width", "5px");
+                linkDOM.enter().insert('svg:line', '.node')
+                  .attr('class', 'link')
+                  .attr('x1', function(d) { return xScale(d.source.x); })
+                  .attr('y1', function(d) { return yScale(d.source.y); })
+                  .attr('x2', function(d) { return xScale(d.target.x); })
+                  .attr('y2', function(d) { return yScale(d.target.y); })
+                  .style('stroke', '#D3D3D3')
+                  .style('stroke-width', '5px');
 
                 // 2. Exit previous links
                 linkDOM.exit().remove();
 
                 // 3. transition
                 //linkDOM.transition().duration(750)
-                //  .style("stroke-opacity", 0.5);
+                //  .style('stroke-opacity', 0.5);
 
               }
 
               update();
-
-              // Toggle children on click.
-              function click(d) {
-                if (d.children) {
-                  d._children = d.children;
-                  d.children = null;
-                } else {
-                  d.children = d._children;
-                  d._children = null;
-                }
-                update();
-              }
-
-
-              //click - select the element that was clicked
-              nodeDOM.on('click', function (compound) {
-              //  if (compound.name[0] !== "B") { return click(compound); }
-                if (d3.event.defaultPrevented) { return; }
-                d3.event.preventDefault();
-                if (compound === scope.selected) {
-                  scope.selected = null;
-                } else {
-                  scope.selected = scope.data.compounds[parseInt(compound.name.substring(1))];
-                }
-                force.start();
-                scope.$apply();
-              });
-
 
 
               //zoomer
@@ -312,14 +310,14 @@ angular.module('frontendApp')
                   // allow only 10 times zoom in or out
                 .scaleExtent([0.1, 10])
                   // attach zoom function for variable modification
-                .on("zoom", zoom);
+                .on('zoom', zoom);
 
               // let zoomer ajust coordinates by xScale and yScale
               zoomer.x(xScale).y(yScale);
 
               svg.call(zoomer);
 
-              force.on("tick", tick);
+              force.on('tick', tick);
 
               // start the force
               console.log(force.size());
@@ -328,7 +326,7 @@ angular.module('frontendApp')
               //scope.gravityValue = force.gravity;
           });
 
-/*          scope.$watch("treeType", function(newTreeType, oldTreeType) {
+/*          scope.$watch('treeType', function(newTreeType, oldTreeType) {
               if (scope.treeType === null || scope.data === undefined || oldTreeType === null) {
                   return;
               }
@@ -345,17 +343,17 @@ angular.module('frontendApp')
 
 
               // transition from old to new
-              nodeDOM.filter(function(d) { return d.name[0] === "B" ? this : null; })
+              nodeDOM.filter(function(d) { return d.name[0] === 'B' ? this : null; })
                 .transition().delay(100).duration(750)
-                .attr("cx", function(d) { return xScale(d.x); })
-                .attr("cy", function(d) { return yScale(d.y); });
-              nodeDOM.filter(function(d) { return d.name[0] === "B" ? null : this; })
-                .attr("cx", function(d) { return xScale(d.x); })
-                .attr("cy", function(d) { return yScale(d.y); });
+                .attr('cx', function(d) { return xScale(d.x); })
+                .attr('cy', function(d) { return yScale(d.y); });
+              nodeDOM.filter(function(d) { return d.name[0] === 'B' ? null : this; })
+                .attr('cx', function(d) { return xScale(d.x); })
+                .attr('cy', function(d) { return yScale(d.y); });
           });*/
 
 
-          scope.$watch("circleSizeType", function(newCircleSizeType) {
+          scope.$watch('circleSizeType', function(newCircleSizeType) {
 
               if (newCircleSizeType === undefined || scope.data === undefined) {
                   return;
@@ -366,7 +364,7 @@ angular.module('frontendApp')
 
               nodeDOM = vis.selectAll('circle').data(nodes, function(d) { return d.name; });
 
-              var extent = d3.extent(nodes, function(d) { if (d.name[0] === "B") { return d.r } })
+              var extent = d3.extent(nodes, function(d) { if (d.name[0] === 'B') { return d.size } })
 
               var size_lowerbound = 4;
               var sizeScale = d3.scale.linear()
@@ -374,55 +372,53 @@ angular.module('frontendApp')
                 .range([size_lowerbound, 10]);
 
               // transition from old to new
-              nodeDOM.filter(function(d) { return d.name[0] === "B" ? this : null; })
+              nodeDOM.filter(function(d) { return d.name[0] === 'B' ? this : null; })
                 .transition().delay(100).duration(750)
-                .attr("r", function(d) { if (extent[0] == extent[1]) { return size_lowerbound; } else { return sizeScale(d.r);}});
+                .attr('r', function(d) { if (extent[0] == extent[1]) { return size_lowerbound; } else { return sizeScale(d.size);}});
           });
 
-          scope.$watch("circleBorderType", function(newCircleBorderType) {
+          scope.$watch('circleBorderType', function(newCircleBorderType) {
 
               if (newCircleBorderType === undefined || scope.data === undefined) {
                   return;
               }
 
-              var root, nodes, color_extent, colorScale, colorbarB;
+              var root, nodes, colorExtent, colorScale, colorbarB;
 
               root  = scope.data.trees[scope.treeType];
               nodes = flatten(root);
 
               nodeDOM = vis.selectAll('circle').data(nodes, function(d) { return d.name; })
 
-
-
-              if (scope.circleBorderType === "SLogP") {
+              if (scope.circleBorderType === 'SLogP') {
                 borderScale = slogpScale;
                 colorbarB = colorBar()
-                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format("g"));
-              } else if (scope.circleBorderType === "Lig_Eff") {
+                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
+              } else if (scope.circleBorderType === 'Lig_Eff') {
                 borderScale = ligeffScale;
                 colorbarB = colorBar()
-                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format("g"));
+                  .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
               } else {
-                color_extent = d3.extent(nodes, function(d) { if (d.name[0] === "B") { return d.stroke; } });
+                colorExtent = d3.extent(nodes, function(d) { if (d.name[0] === 'B') { return d.stroke; } });
                 borderScale = d3.scale.linear()
-                  .domain([color_extent[0], d3.mean(color_extent), color_extent[1]])
-                  .range(["#008000", "#FFFF00", "#FF0000"]);
+                  .domain([colorExtent[0], d3.mean(colorExtent), colorExtent[1]])
+                  .range(['#008000', '#FFFF00', '#FF0000']);
               }
 
-              if (newCircleBorderType === "None") {
-                d3.select(".colorbarB").style("visibility","hidden");
+              if (newCircleBorderType === 'None') {
+                d3.select('.colorbarB').style('visibility','hidden');
               } else {
-                d3.select(".colorbarB").style("visibility","visible").call(colorbarB);
+                d3.select('.colorbarB').style('visibility','visible').call(colorbarB);
               }
 
               // transition from old to new
-              nodeDOM.filter(function(d) { return d.name[0] === "B" ? this : null; })
+              nodeDOM.filter(function(d) { return d.name[0] === 'B' ? this : null; })
                 .transition().delay(100).duration(750)
-                .style("stroke", function(d) { return borderScale(d.stroke); })
-                .style("stroke-width", function(d) { return d.strokeWidth; });
+                .style('stroke', function(d) { return borderScale(d.stroke); })
+                .style('stroke-width', function(d) { return d.strokeWidth; });
           });
 
-          scope.$watch("activityType", function(newActivityType) {
+          scope.$watch('activityType', function(newActivityType) {
 
               if (newActivityType === undefined || scope.data === undefined) {
                   return;
@@ -433,25 +429,25 @@ angular.module('frontendApp')
 
               nodeDOM = vis.selectAll('circle').data(nodes, function(d) { return d.name; });
 
-/*            var color_extent = d3.extent(nodes, function(d) { if (d.name[0] === "B") { return d.fill; } });
+/*            var colorExtent = d3.extent(nodes, function(d) { if (d.name[0] === 'B') { return d.fill; } });
             activityScale = d3.scale.linear()
-                .domain([color_extent[0], d3.mean(color_extent), color_extent[1]])
-                .range(["#008000", "#FFFF00", "#FF0000"]);*/
+                .domain([colorExtent[0], d3.mean(colorExtent), colorExtent[1]])
+                .range(['#008000', '#FFFF00', '#FF0000']);*/
 
               // transition from old to new
-              nodeDOM.filter(function(d) { return d.name[0] === "B" ? this : null; })
+              nodeDOM.filter(function(d) { return d.name[0] === 'B' ? this : null; })
                 .transition().delay(100).duration(750)
-                .style("fill", function(d) { return activityScale(d.fill); });
+                .style('fill', function(d) { return activityScale(d.fill); });
 
           });
 
-          scope.$watch("gravityValue", function(newGravity) {
+          scope.$watch('gravityValue', function(newGravity) {
 
               if (newGravity === undefined || scope.data === undefined) {
                   return;
               }
 
-              //console.log("new gravity:" + newGravity);
+              //console.log('new gravity:' + newGravity);
 
               var force = scope.data.forces[scope.treeType];
 
@@ -460,13 +456,13 @@ angular.module('frontendApp')
 
           });
 
-          scope.$watch("linkStrengthValue", function(newLinkStrength) {
+          scope.$watch('linkStrengthValue', function(newLinkStrength) {
 
               if (newLinkStrength === undefined || scope.data === undefined) {
                   return;
               }
 
-              console.log("new linkStrength:" + newLinkStrength);
+              console.log('new linkStrength:' + newLinkStrength);
 
               var force = scope.data.forces[scope.treeType];
 
@@ -474,8 +470,8 @@ angular.module('frontendApp')
               force.resume();
               scope.$apply();
 
-              console.log("tree type is: ", scope.treeType);
-              console.log("setted linkStrength:" + force.linkStrength());
+              console.log('tree type is: ', scope.treeType);
+              console.log('setted linkStrength:' + force.linkStrength());
           });
 
 
@@ -492,19 +488,19 @@ angular.module('frontendApp')
               activityScale = d3.scale.linear()
                 .domain(d3.extent(nodes, function(d) { return d.fill; }))
                 .interpolate(d3.interpolateHcl)
-                .range(["#008000", "#FFFF00", "#FF0000"]);*/
+                .range(['#008000', '#FFFF00', '#FF0000']);*/
 
               //if nothing is selected set the elements to not be selected
               if (selected === null) {
                 nodeDOM
-                  .filter(function(d) { return d.name[0] === "B" ? this : null; })
-                  .style("fill", function (d) {
+                  .filter(function(d) { return d.name[0] === 'B' ? this : null; })
+                  .style('fill', function (d) {
                     return activityScale(d.fill);
                   });
               } else {
                 nodeDOM
-                  .filter(function(d) { return d.name[0] === "B" ? this : null; })
-                  .style("fill", function (d) {
+                  .filter(function(d) { return d.name[0] === 'B' ? this : null; })
+                  .style('fill', function (d) {
                     return d.name === selected.id ? 'black' : activityScale(d.fill);
                   });
               }

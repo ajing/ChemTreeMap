@@ -1,7 +1,29 @@
-<tree-slider min="gravitySlider.min" max="gravitySlider.max" value="gravitySlider.value" left-name="gravitySlider.leftName" name="gravitySlider.name" id="gravitySlider.id" right-name="gravitySlider.rightName"></tree-slider> <!--<tree-slider    min="linkStrengthSlider.min"
+<tree-slider    min="gravitySlider.min"
+                max="gravitySlider.max"
+                value="gravitySlider.value"
+                left-name="gravitySlider.leftName"
+                name = "gravitySlider.name"
+                id = "gravitySlider.id"
+                right-name="gravitySlider.rightName"></tree-slider>
+
+<!--<tree-slider    min="linkStrengthSlider.min"
                 max="linkStrengthSlider.max"
                 value="linkStrengthSlider.value"
                 left-name="linkStrengthSlider.leftName"
                 name = "linkStrengthSlider.name"
                 id = "linkStrengthSlider.id"
-                right-name="linkStrengthSlider.rightName"></tree-slider>--> <tooltips class="tooltip-detail" visibility="tooltip.visibility" data="tooltip.data" click="select"></tooltips> <chem-tree data="data" selected tree-type="current.treeType" circle-size-type="current.circleSizeType" circle-border-type="current.circleBorderType" activity-type="current.activityType" gravity-value="gravitySlider.value" link-strength-value="linkStrengthSlider.value"></chem-tree>
+                right-name="linkStrengthSlider.rightName"></tree-slider>-->
+
+<tooltips       class="tooltip-detail"
+                visibility="tooltip.visibility"
+                data="tooltip.data"
+                click="select"></tooltips>
+
+<chem-tree      data="data"
+                selected="model.selected"
+                tree-type="current.treeType"
+                circle-size-type="current.circleSizeType"
+                circle-border-type="current.circleBorderType"
+                activity-type="current.activityType"
+                gravity-value="gravitySlider.value"
+                link-strength-value="linkStrengthSlider.value"></chem-tree>
