@@ -11,8 +11,8 @@ SMILE_COLUMNNAME = "Canonical_Smiles"
 FILE_FORMAT = './Data/%Y-%m-%d-%Hh-%Mm-%Ss'
 
 # image directory
-#IMG_DIR = "./Data/Image/"
-IMG_DIR = "/data3/Image/"
+IMG_DIR = "./Data/Image/"
+#IMG_DIR = "/data3/Image/"
 #IMG_DIR = "/data3/ImageCD/"
 
 # Potency

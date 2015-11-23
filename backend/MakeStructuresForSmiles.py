@@ -24,6 +24,7 @@ def MakeStructuresForSmiles( ligand_dict ):
             MolToFile( mol, os.path.join(relativedir, '{}.svg'.format(filename)) )
             print "successfully print to file"
         except:
+            print "cannot write to file: " + os.path.join(relativedir, '{}.svg'.format(filename))
             continue
 
 
