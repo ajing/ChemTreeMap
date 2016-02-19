@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc overview
  * @name frontendApp
@@ -8,6 +9,7 @@
  *
  * Main module of the application.
  */
+
 angular
   .module('frontendApp', [
     'oitozero.ngSweetAlert',
@@ -31,6 +33,6 @@ angular
           controller: 'TreeController'
       })
       .otherwise({
-        redirectTo: '/test'
+        redirectTo: '/affinity'
       });
   });

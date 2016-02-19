@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('TreeController', function ($scope, $routeParams, dataService) {
+  .controller('TreeController', function ($scope, $routeParams, dataService, settings) {
 
     //locate database from the route
     $scope.datasetName = $routeParams.dataset;
@@ -22,9 +22,7 @@ angular.module('frontendApp')
 
     $scope.tooltip = {visibility: false};
 
-    //$scope.selected = dataService.model.selected;
-
-    //setInterval(function() { console.log($scope.model.selected)}, 1000);
+    $scope.settings = settings;
 
     $scope.$watch('tooltip.visibility', function(newVis) {
       if ( newVis === false ) {
@@ -40,29 +38,22 @@ angular.module('frontendApp')
       console.log('selected:', selected);
 
       if (selected === null) {
-
         $scope.tooltip.visibility = false;
-
       } else {
         //set up the tooltip for the specific selected item
-
         $scope.tooltip.visibility = true;
-
-        // if is compound
-        var compound = selected;
-
         $scope.tooltip.data = {
           compound: true,
-          object: compound
+          object: selected
         };
       }
     });
 
 
 
-    $scope.gravitySlider      = {min: 0, max: 0.2, value:0.1, id: "gravity", name: "Radius of Display", leftName: "Lager", rightName: "Smaller"};
+    $scope.gravitySlider      = {min: 0, max: 0.2, value:0.1, id: 'gravity', name: 'Radius of Display', leftName: 'Lager', rightName: 'Smaller'};
 
-    $scope.linkStrengthSlider = {min: 0, max: 10, value: 1, id: "linkstrength", name: "Compactness", leftName: "Looser", rightName: "Tight"};
+    $scope.linkStrengthSlider = {min: 0, max: 10, value: 1, id: 'linkstrength', name: 'Compactness', leftName: 'Looser', rightName: 'Tight'};
 
     dataService.loadExample($routeParams.dataset, function() {
         $scope.data = dataService.data;

@@ -13,35 +13,45 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-    .controller('NavController', function ($scope, $modal, dataService, SweetAlert) {
+  .controller('NavController', function ($scope, $modal, dataService, SweetAlert) {
 
-        $scope.dataService = dataService;
+    $scope.dataService = dataService;
 
-        $scope.currentSearch = '';
+    $scope.currentSearch = '';
 
 
-        $scope.getInfo = function(e, infoObject) {
-            e.stopPropagation();
-            //console.log(dataService.metadata);
-            SweetAlert.swal({
-/*                title: infoObject,
-                html: dataService.metadata[infoObject],
-                allowOutsideClick: true*/
-            });
-        };
+    $scope.getInfo = function(e, infoObject) {
+      e.stopPropagation();
+      //console.log(dataService.metadata);
+      SweetAlert.swal({
+        title: infoObject,
+        html: dataService.metadata[infoObject],
+        allowOutsideClick: true
+      });
+    };
 
-        $scope.select = function(a) {
-            dataService.model.selected = a;
-            console.log(dataService.model.selected);
-        };
+    $scope.select = function(a) {
+      dataService.model.selected = a;
+      console.log(dataService.model.selected);
+    };
 
-        //open the info modal
-        $scope.openInfo = function () {
+    //open the settings modal
+    $scope.openSettings = function () {
 
-            $modal.open({
-                    templateUrl: 'views/info.html',
-                    controller: 'InfoCtrl'
-                }
-            );
-        };
-    });
+      $modal.open({
+          templateUrl: 'views/settings.html',
+          controller: 'SettingsCtrl'
+        }
+      );
+    };
+
+    //open the info modal
+    $scope.openInfo = function () {
+
+      $modal.open({
+          templateUrl: 'views/info.html',
+          controller: 'InfoCtrl'
+        }
+      );
+    };
+  });

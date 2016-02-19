@@ -1,6 +1,7 @@
 // Generated on 2015-01-13 using generator-angular 0.10.0
 'use strict';
 
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -174,7 +175,7 @@ module.exports = function (grunt) {
                 src: [
                     '<%= yeoman.dist %>/scripts/{,*/}*.js',
                     '<%= yeoman.dist %>/styles/{,*/}*.css',
-                    '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+                    '<%= yeoman.dist %>/images/*.{png,jpg,jpeg,gif,webp,svg}',
                     '<%= yeoman.dist %>/styles/fonts/*'
                 ]
             }
@@ -377,8 +378,8 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
-        'concat',
         'ngAnnotate',
+        'concat',
         'copy:dist',
         'cdnify',
         'cssmin',

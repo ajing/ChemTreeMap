@@ -5,8 +5,8 @@
 
 function Colorbar() {
   var scale, // the input scale this represents;
-    margin = {top: 5, right: 30, bottom: 25, left: 0}
-  orient = "vertical",
+    margin = {top: 5, right: 30, bottom: 25, left: 0},
+    orient = "vertical",
     origin = {
       x: 0,
       y: 0
@@ -39,7 +39,7 @@ function Colorbar() {
     else {
       return "unknown"
     }
-  }
+  };
 
 
   function chart(selection) {
@@ -62,7 +62,7 @@ function Colorbar() {
           'M ' + thickness +' '+ 0 + ' l -' +  pointerWidth + ' -' + pointerWidth + ' l ' + 0 + ' ' +  2*pointerWidth + ' z'
 
         )
-      }
+      };
 
       pointers
         .enter()
@@ -92,7 +92,7 @@ function Colorbar() {
         .duration(3000)
         .attr('opacity',0)
         .remove();
-    }
+    };
 
     selection.each(function(data) {
 

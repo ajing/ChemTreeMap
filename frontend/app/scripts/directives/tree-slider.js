@@ -28,7 +28,7 @@ angular.module('frontendApp')
           leftLabel = $('<span class="sm-label">left</span>'),
           rightSection = $('<div class="right section"></div>'),
           rightLabel = $('<span class="sm-label">right</span>'),
-          slider= $('<div class="slider"></div>');
+          slider= $('<div class="slider"  title="Please activate the force directed graph first."></div>');
 
         //console.log('#' + scope.id);
         //console.log(slider);
