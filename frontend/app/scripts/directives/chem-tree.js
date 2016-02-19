@@ -104,8 +104,8 @@ angular.module('frontendApp')
         .color(activityScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
 
       d3.select('.colorbarA')
-        .insert("text",":first-child")
-        .text("Activity");
+        .insert('text',':first-child')
+        .text('Activity');
 
       d3.select('.colorbarA')
         .append('g')
@@ -116,11 +116,11 @@ angular.module('frontendApp')
         var colorExtent, colorbarB; // for border color
         if ($scope.circleBorderType === 'SLogP') {
           borderScale = slogpScale;
-          colorbarB = colorBar()
+          colorbarB = $scope.colorBar()
             .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
         } else if ($scope.circleBorderType === 'Lig_Eff') {
           borderScale = ligeffScale;
-          colorbarB = colorBar()
+          colorbarB = $scope.colorBar()
             .color(borderScale).size(350).lineWidth(20).precision(4).tickFormat(d3.format('g'));
         } else {
           colorExtent = d3.extent(nodes, function(d) { if (d.name[0] === 'B') { return d.stroke; } });
@@ -159,7 +159,7 @@ angular.module('frontendApp')
       }
 
       $scope.$watch('forceAct.value', function(newForce) {
-        console.log("new force act");
+        console.log('new force act');
         console.log(newForce);
         if ($scope.forceAct === undefined ){ return; }
 
@@ -175,11 +175,11 @@ angular.module('frontendApp')
       $scope.$watch('treeType', function(newTreeType) {
         //function($scope) { return $scope.treeType === null; }, function() {
 
-        if ($scope.treeType === undefined || $scope.data === undefined) {
+        if (newTreeType === undefined || $scope.data === undefined) {
           return;
         }
 
-        var root  = $scope.data.trees[$scope.treeType];
+        var root  = $scope.data.trees[newTreeType];
         nodes = flatten(root);
         //  force = $scope.data.forces[$scope.treeType];
 
@@ -300,19 +300,6 @@ angular.module('frontendApp')
 
         update();
 
-        // Toggle children on click.
-        function click(d) {
-          if (d.children) {
-            d._children = d.children;
-            d.children = null;
-          } else {
-            d.children = d._children;
-            d._children = null;
-          }
-          update();
-        }
-
-
         //click - select the element that was clicked
         nodeDOM.on('click', function (compound) {
           //  if (compound.name[0] !== 'B') { return click(compound); }
@@ -346,6 +333,12 @@ angular.module('frontendApp')
 
         svg.call(zoomer);
 
+        if ($scope.forceAct.value) {
+          addForce(nodes);
+        } else {
+          force.stop();
+          force = null;
+        }
       });
 
       $scope.$watch('circleSizeType', function(newCircleSizeType) {

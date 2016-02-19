@@ -10,19 +10,51 @@ function colorBar(){
     precision = 8,
     points_,
     tickSize_,
+    oldLineWidth,
     oldQuads;
 
+
+    // Sample the SVG path string 'd' uniformly with the specified precision.
+    function sample(d,pre) {
+        var path = document.createElementNS(d3.ns.prefix.svg, 'path');
+        path.setAttribute('d', d);
+
+        var n = path.getTotalLength();
+
+        var t = [0], i = 0, dt = pre;
+        while ((i += dt) < n) {
+          t.push(i);
+        }
+        t.push(n);
+
+        return t.map(function(t) {
+            var p = path.getPointAtLength(t), a = [p.x, p.y];
+            a.t = t / n;
+            return a;
+        });
+
+    }
+
+    // Compute quads of adjacent points [p0, p1, p2, p3].
+    function quad(pts) {
+        return d3.range(pts.length - 1).map(function(i) {
+            var a = [pts[i - 1], pts[i], pts[i + 1], pts[i + 2]];
+            a.t = (pts[i].t + pts[i + 1].t) / 2;
+            return a;
+        });
+    }
+
     function component(selection){
-        selection.each(function(data,index){
+        selection.each(function(){
             var container = d3.select(this),
             tickSize = tickSize_ || lineWidth,
             n,
-            points = points_ || (((orient == 'left') || (orient == 'right'))?[[0,size_],[0,0]]:[[size_,0],[0,0]]),
+            points = points_ || (((orient === 'left') || (orient === 'right'))?[[0,size_],[0,0]]:[[size_,0],[10,0]]),
             quads = quad(sample(line(points),precision)),
             size = (points)?n:size_,
             aScale = color.copy().interpolate(d3.interpolate).domain(color.domain()).range([size,0]), //v -> px
             colorExtent = color.domain(),
-            normScale = color.copy().domain(color.domain().map(function(d){ return (d - colorExtent[0])/ (colorExtent[1] - colorExtent[0])})),
+            normScale = color.copy().domain(color.domain().map(function(d){ return (d - colorExtent[0])/ (colorExtent[1] - colorExtent[0]);}));
 
             //Save values for transitions
             oldLineWidth = this.__lineWidth__ || lineWidth;
@@ -31,65 +63,35 @@ function colorBar(){
             this.__lineWidth__ = lineWidth;
 
             //Enters
-            var bar = container.selectAll('path.c').data(d3.range(quads.length), function(d){return d}),
-            bEnter = bar.enter().insert('path','g.axis').classed('c',true),
-            bExit = d3.transition(bar.exit()).remove(),
-            bUpdate = d3.transition(bar),
-            bTransform = function(selection,f,lw){
-                selection.style('fill', function(d) { return normScale(f(d).t); })
-                    .style('stroke', function(d) { return normScale(f(d).t); })
-                    .attr('d', function(d) { var p = f(d); return lineJoin(p[0], p[1], p[2], p[3], lw); });};
+            var bar = container.selectAll('path.c').data(d3.range(quads.length), function(d){return d;}),
+              bEnter = bar.enter().insert('path','g.axis').classed('c',true),
+              bExit = d3.transition(bar.exit()).remove(),
+              bUpdate = d3.transition(bar),
+              bTransform = function(selection,f,lw){
+                  selection.style('fill', function(d) { return normScale(f(d).t); })
+                      .style('stroke', function(d) { return normScale(f(d).t); })
+                      .attr('d', function(d) { var p = f(d); return lineJoin(p[0], p[1], p[2], p[3], lw); });};
 
-            bEnter.call(bTransform,function(d){return oldQuads[oldQuads.length - 1]},oldLineWidth); // enter from last of oldQuad
-            bExit.call(bTransform,function(d){return quads[quads.length - 1]},lineWidth); //exit from last of quads
-            bUpdate.call(bTransform,function(d){return quads[d]},lineWidth)
+            bEnter.call(bTransform,function(){return oldQuads[oldQuads.length - 1];},oldLineWidth); // enter from last of oldQuad
+            bExit.call(bTransform,function(){return quads[quads.length - 1];},lineWidth); //exit from last of quads
+            bUpdate.call(bTransform,function(d){return quads[d];},lineWidth);
 
             var colorBarAxis = d3.svg.axis().scale(aScale).orient(orient)
                 .tickSize(tickSize).tickFormat(tickFormat),
-            a = container.selectAll('g.axis').data(function(d){return (aScale)?[1]:[]}), //axis container
+            a = container.selectAll('g.axis').data(function(){return (aScale)?[1]:[];}), //axis container
             aEnter = a.enter().append('g').classed('axis',true),
             aExit = d3.transition(a.exit()).remove(),
             aUpdate = d3.transition(a).call(colorBarAxis),
             aTransform = function(selection,lw){
-                selection.attr('transform', 'translate('
-                               + (((orient == 'right') || (orient == 'left'))?-lw/2:0) + ','
-                               + (((orient == 'right') || (orient =='left'))?0:lw/2) + ')');};
+                selection.attr('transform', 'translate(' + (((orient === 'right') || (orient === 'left'))?-lw/2:0) + ',' + (((orient === 'right') || (orient ==='left'))?0:lw/2) + ')');};
 
             aEnter.call(aTransform,oldLineWidth);
             aExit.call(aTransform,lineWidth);
             aUpdate.call(aTransform,lineWidth);
 
-            // Sample the SVG path string 'd' uniformly with the specified precision.
-            function sample(d,pre) {
-                var path = document.createElementNS(d3.ns.prefix.svg, 'path');
-                path.setAttribute('d', d);
-
-                n = path.getTotalLength();
-
-                var t = [0], i = 0, dt = pre;
-                while ((i += dt) < n) t.push(i);
-                t.push(n);
-
-                return t.map(function(t) {
-                    var p = path.getPointAtLength(t), a = [p.x, p.y];
-                    a.t = t / n;
-                    return a;
-                });
-
-            }
-
-            // Compute quads of adjacent points [p0, p1, p2, p3].
-            function quad(pts) {
-                return d3.range(pts.length - 1).map(function(i) {
-                    var a = [pts[i - 1], pts[i], pts[i + 1], pts[i + 2]];
-                    a.t = (pts[i].t + pts[i + 1].t) / 2;
-                    return a;
-                });
-            }
-
             // Compute stroke outline for segment p12.
             function lineJoin(p0, p1, p2, p3, width) {
-                var u12 = perp(p1, p2),
+                var u12 = perp(p1, p2), e, u23,
                 r = width / 2,
                 a = [p1[0] + u12[0] * r, p1[1] + u12[1] * r],
                 b = [p2[0] + u12[0] * r, p2[1] + u12[1] * r],
@@ -97,13 +99,15 @@ function colorBar(){
                 d = [p1[0] - u12[0] * r, p1[1] - u12[1] * r];
 
                 if (p0) { // clip ad and dc using average of u01 and u12
-                    var u01 = perp(p0, p1), e = [p1[0] + u01[0] + u12[0], p1[1] + u01[1] + u12[1]];
+                    var u01 = perp(p0, p1);
+                    e = [p1[0] + u01[0] + u12[0], p1[1] + u01[1] + u12[1]];
                     a = lineIntersect(p1, e, a, b);
                     d = lineIntersect(p1, e, d, c);
                 }
 
                 if (p3) { // clip ab and dc using average of u12 and u23
-                    var u23 = perp(p2, p3), e = [p2[0] + u23[0] + u12[0], p2[1] + u23[1] + u12[1]];
+                    u23 = perp(p2, p3);
+                    e = [p2[0] + u23[0] + u12[0], p2[1] + u23[1] + u12[1]];
                     b = lineIntersect(p2, e, a, b);
                     c = lineIntersect(p2, e, d, c);
                 }
@@ -126,58 +130,76 @@ function colorBar(){
                 return [u01x / u01d, u01y / u01d];
             }
 
-        })}
+        });}
 
     component.orient = function(_) {
-        if (!arguments.length) return orient;
+        if (!arguments.length) {
+          return orient;
+        }
         orient = _;
         return component;
     };
 
     component.lineWidth = function(_) {
-        if (!arguments.length) return lineWidth;
+        if (!arguments.length) {
+          return lineWidth;
+        }
         lineWidth = _;
         return component;
     };
 
     component.size = function(_) {
-        if (!arguments.length) return size_;
+        if (!arguments.length) {
+          return size_;
+        }
         size_ = _;
         return component;
     };
 
     component.tickFormat = function(_) {
-        if (!arguments.length) return tickFormat;
+        if (!arguments.length) {
+          return tickFormat;
+        }
         tickFormat = _;
         return component;
     };
 
     component.tickSize = function(_) {
-        if (!arguments.length) return tickSize_;
+        if (!arguments.length) {
+          return tickSize_;
+        }
         tickSize_ = _;
         return component;
     };
 
     component.color = function(_) {
-        if (!arguments.length) return color;
+        if (!arguments.length) {
+          return color;
+        }
         color = _;
         return component;
     };
 
     component.precision = function(_) {
-        if (!arguments.length) return precision;
+        if (!arguments.length) {
+          return precision;
+        }
         precision = _;
         return component;
     };
 
     component.points = function(_) {
-        if (!arguments.length) return points_;
+        if (!arguments.length) {
+          return points_;
+        }
         points_ = _;
         return component;
     };
 
     component.line = function(_) {
-        if (!arguments.length) return line;
+        if (!arguments.length) {
+          return line;
+        }
         line = _;
         return component;
     };

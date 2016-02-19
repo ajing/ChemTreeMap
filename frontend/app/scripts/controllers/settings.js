@@ -20,10 +20,7 @@ angular.module('frontendApp')
     $scope.forceAct = settings.forceAct;
 
     $scope.reset = function () {
-      console.log("before setting");
-      console.log(settings.forceAct.value);
       $scope.forceAct.value = settings.defaultForce.value;
-      console.log(settings.defaultForce.value);
     };
 
     $scope.dismiss = function () {

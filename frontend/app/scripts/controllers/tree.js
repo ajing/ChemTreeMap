@@ -24,6 +24,8 @@ angular.module('frontendApp')
 
     $scope.settings = settings;
 
+    $scope.colorBar = dataService.colorBar;
+
     $scope.$watch('tooltip.visibility', function(newVis) {
       if ( newVis === false ) {
         $scope.model.selected = null;

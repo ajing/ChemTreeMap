@@ -36,10 +36,6 @@ angular.module('frontendApp')
 
         $(el).append([nameTag, slider]);
 
-        var sliderScale = d3.scale.linear()
-            .domain([scope.min, scope.max])
-            .range([0, 280]);
-
         slider.append([leftSection, rightSection]);
         rightLabel.appendTo(rightSection);
         leftLabel.appendTo(leftSection);
