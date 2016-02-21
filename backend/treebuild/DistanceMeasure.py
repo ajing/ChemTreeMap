@@ -1,7 +1,7 @@
 '''
     Measure and write the distance matrix for the whole molecule library
 '''
-from Model import SMILE_COLUMNNAME, FILE_FORMAT, POTENCY
+from model import SMILE_COLUMNNAME, FILE_FORMAT, POTENCY
 
 from rdkit import Chem
 from rdkit import DataStructs
@@ -86,6 +86,6 @@ def AddSLogP(lig_show, liganddict):
 
 
 if __name__ == "__main__":
-    from Util import ParseLigandFile
+    from util import ParseLigandFile
     ligand_dict = ParseLigandFile("./Data/result_clean_no0_20.txt")
     print GenerateDistanceFile(ligand_dict)

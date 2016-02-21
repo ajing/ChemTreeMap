@@ -123,8 +123,8 @@ def ToFPObjRDK(alist):
 
 
 if __name__ == "__main__":
-    from Util import ParseLigandFile
-    from Model import SMILE_COLUMNNAME, FILE_FORMAT
+    from util import ParseLigandFile
+    from model import SMILE_COLUMNNAME, FILE_FORMAT
     import argparse
     parser = argparse.ArgumentParser(description='Get a clustered result.')
     parser.add_argument('--infile')

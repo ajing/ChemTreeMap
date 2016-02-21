@@ -7,7 +7,7 @@ import subprocess
 
 from ete2 import Tree
 
-from treebuild.Model import FILE_FORMAT
+from treebuild.model import FILE_FORMAT
 
 
 def WriteDotFile(newick):
@@ -266,6 +266,6 @@ if __name__ == "__main__":
     filename = WriteDotFile("('B50266893':0.13092,(((((((((((((((('B50266922':0.26611,'B50443857':-0.12731):0.0030516,'B50266920':0.17615):-0.064354,'B50266923':0.13973):0.12317,'B50142090':0.00073348):0.029559,'B50266921':0.13694):0.15116,'B50328697':-0.18416):0.029298,'B50266924':0.14146):0.15875,'B50103666':-0.10715):0.09859,'B50266891':0.017935):0.093078,'B50266743':-0.068619):0.35558,'B50113591':-0.22354):0.2073,'B50142163':-0.18887):0.26968,'B50266919':-0.2017):0.57275,'B50328726':-0.36233):0.55194,'B50266775':-0.53153):1.3155,'B50142161':-1.1255):2.3503,'B50266773':-2.2315);")
     sdfile = SFDPonDot(filename, 10)
     print sdfile
-    from Util import ParseLigandFile
+    from util import ParseLigandFile
     liganddict   = ParseLigandFile("./Data/result_clean_no0_20.txt")  # keep all ligand related information, key is ligand id, value is also a dictionray
     Dot2Dict(sdfile, liganddict)

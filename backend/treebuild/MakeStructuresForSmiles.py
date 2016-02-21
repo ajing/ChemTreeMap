@@ -3,7 +3,7 @@
 """
 
 import pybel
-from Util import ParseLigandFile
+from util import ParseLigandFile
 import argparse
 
 from rdkit import Chem
@@ -11,7 +11,7 @@ from rdkit.Chem.Draw import MolToFile
 
 import os
 
-from Model import SMILE_COLUMNNAME, IDENTIFIER, IMG_DIR
+from model import SMILE_COLUMNNAME, IDENTIFIER, IMG_DIR
 
 def MakeStructuresForSmiles( ligand_dict ):
     relativedir = IMG_DIR

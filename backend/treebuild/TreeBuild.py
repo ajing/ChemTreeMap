@@ -1,24 +1,28 @@
-'''
-    The main function for tree building
-'''
+#! /usr/bin/env python
+#
+# Copyright (C) 2016 Jing Lu <ajingnk@gmail.com>
+# License: Apache
+
+# -*- coding: utf-8 -*-
+
+# pylint: disable=too-few-public-methods
 
 import argparse
+import os
 
 from DistanceMeasure import GenerateDistanceFile, AddLigEff, AddSLogP
-from Model import INTEREST_COLUMN, ACTIVITY_COLUMN
+from model import INTEREST_COLUMN, ACTIVITY_COLUMN
 
 from RunGraphViz import WriteDotFile, SFDPonDot, Dot2Dict
 from RunRapidNJ import RunRapidNJ
-from Util import ParseLigandFile, WriteJSON, SelectColumn, ReArrangeActivity, Dict2List
+from util import ParseLigandFile, WriteJSON, SelectColumn, ReArrangeActivity, Dict2List
 from treebuild.MakeStructuresForSmiles import MakeStructuresForSmiles
 
 # two kinds of fingerprint
 from rdkit.Chem.AtomPairs import Pairs
 from rdkit.Chem import AllChem
 
-# ECFP6
-def ECFP6(mol):
-    return AllChem.GetMorganFingerprint(mol, 3)
+
 
 def main():
     parser = argparse.ArgumentParser(description='Build tree for vis.')
@@ -75,6 +79,45 @@ def main():
     #print outdot_file
     # the current output structure is
     # {trees:{ECFP:root, AtomPair:root}, compounds:[{id:, name:, activities: {IC50:}, properties:},]}
+DIRNAME = os.path.dirname(os.path.abspath(__file__))
+
+from types import FingerPrintType
+
+
+class TreeBuild:
+    """
+    There are a few assumptions for the input file:
+        1. potency unit is nM
+    """
+    def __init__(self, inputfile, fps, activities, other_properties):
+        lig_dict = self.parse_lig_file(inputfile)
+        trees = dict()
+        for fp in fps:
+            assert isinstance(fp, FingerPrintType)
+            trees[fp.name] = self.build_single_tree(lig_dict, fp)
+        metadata = dict()
+        metadata["activityType"] = [act.to_dict() for act in activities]
+        metadata["treeTypes"] = [fp.to_dict() for fp in fps]
+        metadata["circleSizeTypes"] = [prop.to_dict() for prop in other_properties]
+        metadata["circleBorderTypes"] = [prop.to_dict() for prop in other_properties]
+
+        comp_info = self.add_properties()
+        final_dict = {"metadata": metadata, "trees": trees, compounds: comp_info}
+
+    def build_single_tree(self, lig_dict, fp):
+        distfile = self.gen_dist_file(lig_dict, fp)
+        newick_f = self.run_rapidnj(distfile)
+        dot_inf = self.write_dotfile(newick_f)
+        dot_out = self.sfdp_dot(dot_inf, 10)
+        dot_dict = self.dot2dict(dot_out, None)
+        return dot_dict
+
+
+
+    def gen_dist_file(self, liganddict, fp):
+        pass
+
+
 
 if __name__ == "__main__":
     main()
