@@ -9,7 +9,7 @@ from rdkit import Chem, DataStructs
 
 from ete2 import Tree
 
-from treebuild.model import FILE_FORMAT
+from .model import FILE_FORMAT
 
 
 def GuestByFirstLine(firstline):

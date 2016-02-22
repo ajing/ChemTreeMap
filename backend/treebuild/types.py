@@ -11,7 +11,7 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem.AtomPairs import Pairs
 
-from model import SMILE_COLUMNNAME, POTENCY
+from .model import SMILE_COLUMNNAME, POTENCY
 
 
 class FingerPrintType:

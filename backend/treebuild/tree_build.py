@@ -13,10 +13,10 @@ import shutil
 from rdkit import Chem
 from rdkit.Chem.Draw import MolToFile
 
-from types import FingerPrintType
-from util import ParseLigandFile, WriteJSON, WriteAsPHYLIPFormat, Dot2Dict, \
+from .types import FingerPrintType
+from .util import ParseLigandFile, WriteJSON, WriteAsPHYLIPFormat, Dot2Dict, \
     WriteDotFile, RemoveBackSlash
-from model import IMG_DIR, SMILE_COLUMNNAME, RAPIDNJ_COMMAND, FILE_FORMAT, TMP_FOLDER
+from .model import IMG_DIR, SMILE_COLUMNNAME, RAPIDNJ_COMMAND, FILE_FORMAT, TMP_FOLDER
 
 class TreeBuild:
     """
