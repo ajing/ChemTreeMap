@@ -8,14 +8,15 @@
 # pylint: disable=too-few-public-methods
 import datetime
 import os
+import subprocess
+import shutil
 from rdkit import Chem
 from rdkit.Chem.Draw import MolToFile
 
 from types import FingerPrintType
 from util import ParseLigandFile, WriteJSON, WriteAsPHYLIPFormat, Dot2Dict, \
     WriteDotFile, RemoveBackSlash
-from model import IMG_DIR, SMILE_COLUMNNAME, RAPIDNJ_COMMAND, FILE_FORMAT
-import subprocess
+from model import IMG_DIR, SMILE_COLUMNNAME, RAPIDNJ_COMMAND, FILE_FORMAT, TMP_FOLDER
 
 class TreeBuild:
     """
@@ -23,29 +24,52 @@ class TreeBuild:
         1. potency unit is nM
     """
     def __init__(self, input_file, output_file, id_column, fps, properties):
-
+        """
+        Setting parameters to build the tree.
+        :param input_file: input file is a tab delimited text file.
+        :param output_file: output file is a json file
+        :param id_column: the id for each column, which will shown as the identifier in the visualization.
+        :param fps: a list of FingperPrintType
+        :param properties: a list of PropertyType
+        :return: void, the program will generate input file for the visualization.
+        """
+        # initial setting
         self._RAPIDNJ_COMMAND = RAPIDNJ_COMMAND
         self._FILE_FORMAT = FILE_FORMAT
 
+        # creating folders
+        if not os.path.exists(TMP_FOLDER):
+            os.makedirs(TMP_FOLDER)
+        if not os.path.exists(IMG_DIR):
+            os.makedirs(IMG_DIR)
+
         activities = properties["activities"]
-        other_properties = properties["others"]
+        other_properties = properties["properties"]
+        ext_links = properties["ext_links"]
         lig_dict = self.parse_lig_file(input_file, id_column)
         trees = dict()
         for fp in fps:
             assert isinstance(fp, FingerPrintType)
             trees[fp.name] = self.build_single_tree(lig_dict, fp)
         metadata = dict()
-        metadata["activityType"] = [act.to_dict() for act in activities]
+        metadata["activityTypes"] = [act.to_dict() for act in activities]
         metadata["treeTypes"] = [fp.to_dict() for fp in fps]
         metadata["circleSizeTypes"] = [prop.to_dict() for prop in other_properties]
         metadata["circleBorderTypes"] = [prop.to_dict() for prop in other_properties]
+        metadata["external"] = ext_links
 
-        comp_info = self.gen_properties(lig_dict, activities, other_properties)
+        ext_names = [ext["name"] for ext in ext_links]
+
+        comp_info = self.gen_properties(lig_dict, activities, other_properties, ext_names)
         final_dict = {"metadata": metadata, "trees": trees, "compounds": comp_info}
 
         WriteJSON(final_dict, outfile=output_file, write_type="w")
          # make image file
         self.make_structures_for_smiles(lig_dict)
+
+        # delete tmp folder
+        shutil.rmtree(TMP_FOLDER)
+
 
     def build_single_tree(self, lig_dict, fp):
         """
@@ -125,24 +149,34 @@ class TreeBuild:
         return Dot2Dict(dot_outfile, None)
 
     @staticmethod
-    def gen_properties(ligand_dict, activities, properties):
+    def gen_properties(ligand_dict, activities, properties, ext_cols):
         """
         Generate properties for each molecule.
         :param ligand_dict: ligand dictionary which keep all ligand information
         :param activities: a list of PropertyType objects
         :param properties: a list of PropertyType objects
+        :param ext_cols: the column name for external links
         :return:
         """
         compounds = []
-        for lid in ligand_dict:
+        for idx in range(len(ligand_dict)):
+            lid = "B" + str(idx)
             comp = dict()
             comp["id"] = lid
             comp["orig_id"] = ligand_dict[lid]["orig_id"]
             comp["activities"] = dict()
+            comp["properties"] = dict()
+            comp["external"] = dict()
             for act in activities:
                 comp["activities"][act.name] = act.gen_property(ligand_dict[lid])
             for prop in properties:
                 comp["properties"][prop.name] = prop.gen_property(ligand_dict[lid])
+            for col in ext_cols:
+                ext_val = ligand_dict[lid][col]
+                if isinstance(ext_val, float):
+                    comp[col] = str(int(ext_val))
+                else:
+                    comp[col] = str(ext_val)
             compounds.append(comp)
 
         return compounds
@@ -159,9 +193,9 @@ class TreeBuild:
             smile = ligand_dict[key][ SMILE_COLUMNNAME ]
             filename = ligand_dict[ key ][ "orig_id" ]
             mol = Chem.MolFromSmiles(smile)
-            print filename
+            #print filename
             try:
                 MolToFile( mol, os.path.join(relative_dir, '{}.svg'.format(filename)) )
-                print "successfully print to file"
+                #print "successfully print to file"
             except:
                 raise Exception("cannot write to file: " + os.path.join(relative_dir, '{}.svg'.format(filename)))

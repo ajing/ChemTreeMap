@@ -37,17 +37,17 @@ def ParseLigandFile(infile, identifier):
     id_count = 0
     for line in DictReader(open(infile), delimiter = "\t"):
         if flag:
-            num_colnam = GuestByFirstLine({k:v for k,v in line.items() if not k in [identifier] })
-        new_id    = "B" + str(id_count)
+            num_colnam = GuestByFirstLine({k:v for k,v in line.items() })
+        new_id = "B" + str(id_count)
         id_count += 1
-        mol_dict[new_id] = ConvertToFloat({k:v for k,v in line.items() if not k in [identifier] }, num_colnam)
+        mol_dict[new_id] = ConvertToFloat({k:v for k,v in line.items()}, num_colnam)
         mol_dict[new_id]["orig_id"] = line[identifier]
     return mol_dict
 
 
 def WriteJSON(dict_obj, outfile, write_type):
     fileobj = open(outfile, write_type)
-    fileobj.write(json.dumps(dict_obj, indent=2))
+    fileobj.write(json.dumps(dict_obj))
 
 def SelectColumn(lig_dict, colname):
     lig_new = dict()
@@ -176,9 +176,6 @@ def Dot2Dict(dotfile, moldict):
         curr_nodes = next_nodes
     rootdict = RecursiveNode2Dict(root, moldict)
     return rootdict
-
-if __name__ == "__main__":
-    ParseLigandFile("./Data/thrombin_clean_ct.txt")
 
 
 def getSimilarity(fp1, fp2):
@@ -365,3 +362,7 @@ class Node(dict):
 
     def set_dist(self, dist):
         self.dist = dist
+
+
+if __name__ == "__main__":
+    ParseLigandFile("./Data/thrombin_clean_ct.txt")

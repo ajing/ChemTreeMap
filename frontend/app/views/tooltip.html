@@ -1,5 +1,6 @@
 <div class="tooltip-close dismiss" ng-click="close()"><i class="fa fa-close"></i></div>
 <h2 class="tooltip-title">{{data.object.orig_id}}</h2>
+<a target="_blank" ng-repeat="ext in data.external" ng-href="{{ext.link + data.object[ext.name]}}"> {{ext.name}} </a>
 
 <!-- compound specific properties -->
 <accordion ng-show="data.compound" close-others="oneAtATime">

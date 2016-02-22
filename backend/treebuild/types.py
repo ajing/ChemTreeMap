@@ -41,7 +41,7 @@ class PropertyType:
     """
     representing biological or chemical properties
     """
-    def __init__(self, name, metadata, transfunc = None):
+    def __init__(self, name, metadata, transfunc=None, colname=None):
         """
         :param name:
         :param metadata:
@@ -51,7 +51,7 @@ class PropertyType:
         self.name = name
         self.metadata = metadata
         self.transfunc = transfunc  # the signiture for transfunc is transfunc(a_value, a_mol_dict)
-        self.colname = None
+        self.colname = colname
 
     def set_col_name(self, col_name):
         """
@@ -68,16 +68,16 @@ class PropertyType:
         :param mol_dict: other information about the molecule
         :return: a generated value for this property
         """
-        if self.colname is None:
-            raise Exception("Please set the column name for this property")
+        # if self.colname is None:
+        #     raise Exception("Please set the column name for this property")
 
         if self.colname in mol_dict:
             return mol_dict[self.colname]
 
-        if not self.transfunc is None and mol_dict is None:
+        if not self.transfunc is None and not mol_dict is None:
             return self.transfunc(mol_dict)
         else:
-            raise Exception("please provide the transformation function and molecule information")
+            raise Exception("please provide the transformation function and molecule information for " + str(self))
 
 
     def to_dict(self):
@@ -86,6 +86,9 @@ class PropertyType:
         :return: dictionary with basic info
         """
         return {"name": self.name, "metadata": self.metadata}
+
+    def __str__(self):
+        return self.name
 
 # property functions
 def _lig_eff(mol_dict):
@@ -112,10 +115,15 @@ lig_eff = PropertyType(name = "Lig_Eff", metadata = "Ligand efficiency. The valu
 
 slogp   = PropertyType(name = "SLogP", metadata = "SLogP, the coefficients are a measure of the difference in solubility of the compound in water and octanol. describe in    S. A. Wildman and G. M. Crippen JCICS 39 868-873 (1999) R.E. Carhart, D.H. Smith, R. Venkataraghavan; \"Atom Pairs as Molecular Features in Structure-Activity Studies:", transfunc = _slogp)
 
-ic50   = PropertyType(name = "IC50", metadata = "The half maximal inhibitory concentration (IC50) is a measure of the effectiveness of a substance in inhibiting a specific biological or biochemical function.")
+ic50   = PropertyType(name = "IC50", colname = "IC50", metadata = "The half maximal inhibitory concentration (IC50) is a measure of the effectiveness of a substance in inhibiting a specific biological or biochemical function.")
 
 pic50 = PropertyType(name = "pIC50", metadata = "This number assumes IC50 in nM unit, so it is calculated by 9 - log(IC50). Please change your data or the code to make it appropriate.", transfunc = _pic50)
+
+bindingdb = {"name": "BindingDB", "link": "https://www.bindingdb.org/bind/chemsearch/marvin/MolStructure.jsp?monomerid="}
+chebi = {"name": "CHEBI", "link": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId="}
+pubchem = {"name": "PubChem", "link": "https://pubchem.ncbi.nlm.nih.gov/compound/"}
 
 DEFAULT_FINGERPRINT_TYPES = [ecfp6, atom_pair]
 DEFAULT_ACTIVITY_TYPES = [ic50, pic50]
 DEFAULT_PROPERTY_TYPES = [lig_eff, slogp]
+DEFAULT_EXTERNAL = [bindingdb, pubchem]

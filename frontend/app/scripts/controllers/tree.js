@@ -44,7 +44,8 @@ angular.module('frontendApp')
         $scope.tooltip.visibility = true;
         $scope.tooltip.data = {
           compound: true,
-          object: selected
+          object: selected,
+          external: dataService.data.metadata.external
         };
       }
     });
