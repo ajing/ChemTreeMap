@@ -74,6 +74,9 @@ class PropertyType:
         if self.colname in mol_dict:
             return mol_dict[self.colname]
 
+        if self.name in mol_dict:
+            return mol_dict[self.name]
+
         if not self.transfunc is None and not mol_dict is None:
             return self.transfunc(mol_dict)
         else:
@@ -93,10 +96,17 @@ class PropertyType:
 # property functions
 def _lig_eff(mol_dict):
     smile = mol_dict[SMILE_COLUMNNAME]
-    ic50  = mol_dict[POTENCY]
     m = Chem.MolFromSmiles(smile)
     num_heavy = m.GetNumHeavyAtoms()
-    return round(1.37 * (9 - math.log10(ic50)) / num_heavy, 5)
+    if POTENCY in mol_dict:
+        ic50  = mol_dict[POTENCY]
+        return round(1.37 * (9 - math.log10(ic50)) / num_heavy, 5)
+    elif "pIC50" in mol_dict:
+        pic50 = mol_dict["pIC50"]
+        return round(1.37 * pic50 / num_heavy, 5)
+    else:
+        raise Exception("Cannot calculate ligand efficiency, please change your input file column name to IC50 or pIC50.")
+
 
 def _slogp(mol_dict):
     smile = mol_dict[SMILE_COLUMNNAME]
@@ -107,7 +117,7 @@ def _pic50(mol_dict):
     ic50 = mol_dict[POTENCY]
     return round(9 - math.log10(float(ic50)), 5)
 
-ecfp6 = FingerPrintType(name = "ECFP6", fp_func= lambda mol: AllChem.GetMorganFingerprint(mol, 3), metadata = "Extended Connectivity fingerprint, implemented in <a href=\"http://www.rdkit.org\">RDKit</a>. <br/>Parameters used: Radius = 4")
+ecfp6 = FingerPrintType(name = "ECFP6", fp_func= lambda mol: AllChem.GetMorganFingerprint(mol, 3), metadata = "Extended Connectivity fingerprint, implemented in <a href=\"http://www.rdkit.org\">RDKit</a>. <br/>Parameters used: Radius = 3")
 
 atom_pair = FingerPrintType(name = "AtomPair", fp_func= Pairs.GetAtomPairFingerprint, metadata = "Atom Pairs as Molecular Features, describe in  R.E. Carhart, D.H. Smith, R. Venkataraghavan; \"Atom Pairs as Molecular Features in Structure-Activity Studies: Definition and Applications\" JCICS 25, 64-73 (1985).implemented in <a href=\"http://www.rdkit.org\">RDKit</a>. <br/>")
 
