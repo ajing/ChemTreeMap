@@ -14,11 +14,15 @@ from distutils.dir_util import copy_tree
 from treebuild import DEFAULT_ACTIVITY_TYPES, DEFAULT_PROPERTY_TYPES, DEFAULT_FINGERPRINT_TYPES, DEFAULT_EXTERNAL
 from treebuild.types import bindingdb, pubchem, pic50
 
+# for the static server
+import SimpleHTTPServer
+import SocketServer
+
 # affinity data with chk1 kinase
 input_file = "./aff.txt"
 out_file = "./aff.json"
 properties = {"activities": [pic50], "properties": DEFAULT_PROPERTY_TYPES, "ext_links": []}
-treebuild.TreeBuild(input_file, out_file, id_column ="ligandid", fps = DEFAULT_FINGERPRINT_TYPES, properties=properties)
+treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FINGERPRINT_TYPES, properties=properties)
 
 # factor xa
 # input_file = "./factorxa.txt"
@@ -53,3 +57,18 @@ for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", 
 if os.path.exists("../../../frontend/app/images"):
     shutil.rmtree("../../../frontend/app/images")
 copy_tree("./images", "../../../frontend/app/images")
+
+##
+# setup the server
+##
+# change working directory
+os.chdir("../../../frontend")
+
+PORT = 8000
+
+Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+
+httpd = SocketServer.TCPServer(("", PORT), Handler)
+
+print "Serving at port", PORT
+httpd.serve_forever()
