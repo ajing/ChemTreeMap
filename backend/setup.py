@@ -7,7 +7,7 @@
 
 # pylint: disable=too-few-public-methods
 
-from distutils.core import setup
+from distutils.core import setup, Extension
 
 setup(
     name='treebuild',
@@ -23,5 +23,6 @@ setup(
         #               ## so this dependency must be met by the installer
         'ete2'
     ],
-    package_data={'treebuild': ['data/*.txt', 'data/*.py', 'lib/rapidnj-linux-64']}
+    package_data={'treebuild': ['data/*.txt', 'data/*.py']},
+    ext_modules=[Extension('rapidnj', ['lib/rapidnj-linux-64'])]
 )
