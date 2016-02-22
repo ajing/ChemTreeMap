@@ -1,0 +1,422 @@
+{
+  "metadata": {
+    "circleBorderTypes": [
+      {
+        "name": "SLogP", 
+        "metadata": "nothing"
+      }, 
+      {
+        "name": "Lig_Eff", 
+        "metadata": "nothing"
+      }
+    ], 
+    "circleSizeTypes": [
+      {
+        "name": "SLogP", 
+        "metadata": "nothing"
+      }, 
+      {
+        "name": "Lig_Eff", 
+        "metadata": "nothing"
+      }
+    ], 
+    "treeTypes": [
+      {
+        "name": "ECFP", 
+        "metadata": "nothing"
+      }, 
+      {
+        "name": "AtomPair", 
+        "metadata": "nothing"
+      }
+    ], 
+    "activityTypes": [
+      {
+        "name": "pIC50", 
+        "metadata": "nothing"
+      }
+    ]
+  }, 
+  "trees": {
+    "ECFP": {
+      "y": 177.42, 
+      "x": 535.7, 
+      "dist": 0.0, 
+      "name": "F0", 
+      "children": [
+        {
+          "y": 125.22, 
+          "x": 624.74, 
+          "dist": 0.057959, 
+          "name": "F1", 
+          "children": [
+            {
+              "y": 113.73, 
+              "x": 723.78, 
+              "dist": 0.24672, 
+              "name": "B1", 
+              "size": 1
+            }, 
+            {
+              "y": 22.808, 
+              "x": 625.13, 
+              "dist": 0.12398, 
+              "name": "B0", 
+              "size": 1
+            }
+          ]
+        }, 
+        {
+          "y": 266.45, 
+          "x": 479.39, 
+          "dist": 0.069144, 
+          "name": "F2", 
+          "children": [
+            {
+              "y": 289.26, 
+              "x": 376.25, 
+              "dist": 0.081678, 
+              "name": "F3", 
+              "children": [
+                {
+                  "y": 268.71, 
+                  "x": 271.99, 
+                  "dist": 0.21278, 
+                  "name": "F5", 
+                  "children": [
+                    {
+                      "y": 245.64, 
+                      "x": 165.54, 
+                      "dist": 0.025529, 
+                      "name": "F6", 
+                      "children": [
+                        {
+                          "y": 157.56, 
+                          "x": 111.46, 
+                          "dist": 0.10749, 
+                          "name": "F7", 
+                          "children": [
+                            {
+                              "y": 123.7, 
+                              "x": 22.808, 
+                              "dist": 0.15801, 
+                              "name": "B8", 
+                              "size": 1
+                            }, 
+                            {
+                              "y": 67.053, 
+                              "x": 151.5, 
+                              "dist": 0.15679, 
+                              "name": "B4", 
+                              "size": 1
+                            }
+                          ]
+                        }, 
+                        {
+                          "y": 294.38, 
+                          "x": 80.676, 
+                          "dist": 0.26176, 
+                          "name": "B5", 
+                          "size": 1
+                        }
+                      ]
+                    }, 
+                    {
+                      "y": 367.47, 
+                      "x": 236.77, 
+                      "dist": 0.29875, 
+                      "name": "B2", 
+                      "size": 1
+                    }
+                  ]
+                }, 
+                {
+                  "y": 387.99, 
+                  "x": 377.46, 
+                  "dist": 0.41045, 
+                  "name": "B9", 
+                  "size": 1
+                }
+              ]
+            }, 
+            {
+              "y": 345.82, 
+              "x": 548.91, 
+              "dist": 0.090803, 
+              "name": "F4", 
+              "children": [
+                {
+                  "y": 442.27, 
+                  "x": 548.06, 
+                  "dist": 0.20507, 
+                  "name": "B7", 
+                  "size": 1
+                }, 
+                {
+                  "y": 345.03, 
+                  "x": 647.23, 
+                  "dist": 0.25073, 
+                  "name": "B6", 
+                  "size": 1
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "y": 98.223, 
+          "x": 475.33, 
+          "dist": 0.064445, 
+          "name": "B3", 
+          "size": 1
+        }
+      ]
+    }, 
+    "AtomPair": {
+      "y": 306.74, 
+      "x": 406.12, 
+      "dist": 0.0, 
+      "name": "F0", 
+      "children": [
+        {
+          "y": 307.64, 
+          "x": 519.34, 
+          "dist": 0.012094, 
+          "name": "F1", 
+          "children": [
+            {
+              "y": 211.06, 
+              "x": 577.0, 
+              "dist": 0.067735, 
+              "name": "F3", 
+              "children": [
+                {
+                  "y": 112.41, 
+                  "x": 614.74, 
+                  "dist": 0.14149, 
+                  "name": "F6", 
+                  "children": [
+                    {
+                      "y": 22.808, 
+                      "x": 570.29, 
+                      "dist": 0.059181, 
+                      "name": "B3", 
+                      "size": 1
+                    }, 
+                    {
+                      "y": 84.334, 
+                      "x": 709.12, 
+                      "dist": 0.065519, 
+                      "name": "B0", 
+                      "size": 1
+                    }
+                  ]
+                }, 
+                {
+                  "y": 244.84, 
+                  "x": 679.72, 
+                  "dist": 0.31296, 
+                  "name": "B1", 
+                  "size": 1
+                }
+              ]
+            }, 
+            {
+              "y": 399.16, 
+              "x": 573.92, 
+              "dist": 0.074527, 
+              "name": "F4", 
+              "children": [
+                {
+                  "y": 427.51, 
+                  "x": 673.02, 
+                  "dist": 0.2145, 
+                  "name": "B7", 
+                  "size": 1
+                }, 
+                {
+                  "y": 500.67, 
+                  "x": 550.27, 
+                  "dist": 0.2815, 
+                  "name": "B6", 
+                  "size": 1
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "y": 261.09, 
+          "x": 310.29, 
+          "dist": 0.17272, 
+          "name": "F2", 
+          "children": [
+            {
+              "y": 280.32, 
+              "x": 206.92, 
+              "dist": 0.031189, 
+              "name": "F5", 
+              "children": [
+                {
+                  "y": 226.72, 
+                  "x": 118.2, 
+                  "dist": 0.082031, 
+                  "name": "F7", 
+                  "children": [
+                    {
+                      "y": 126.36, 
+                      "x": 90.995, 
+                      "dist": 0.19195, 
+                      "name": "B8", 
+                      "size": 1
+                    }, 
+                    {
+                      "y": 257.67, 
+                      "x": 22.808, 
+                      "dist": 0.16825, 
+                      "name": "B4", 
+                      "size": 1
+                    }
+                  ]
+                }, 
+                {
+                  "y": 376.49, 
+                  "x": 175.94, 
+                  "dist": 0.28477, 
+                  "name": "B5", 
+                  "size": 1
+                }
+              ]
+            }, 
+            {
+              "y": 157.11, 
+              "x": 312.55, 
+              "dist": 0.30426, 
+              "name": "B2", 
+              "size": 1
+            }
+          ]
+        }, 
+        {
+          "y": 407.51, 
+          "x": 381.59, 
+          "dist": 0.37112, 
+          "name": "B9", 
+          "size": 1
+        }
+      ]
+    }
+  }, 
+  "compounds": [
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N144", 
+      "properties": {
+        "SLogP": 4.4327, 
+        "Lig_Eff": 0.37893
+      }, 
+      "id": "B0"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N145", 
+      "properties": {
+        "SLogP": 2.93178, 
+        "Lig_Eff": 0.45903
+      }, 
+      "id": "B1"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N40", 
+      "properties": {
+        "SLogP": 2.71588, 
+        "Lig_Eff": 0.42429
+      }, 
+      "id": "B2"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N115", 
+      "properties": {
+        "SLogP": 5.0377, 
+        "Lig_Eff": 0.38056
+      }, 
+      "id": "B3"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N12", 
+      "properties": {
+        "SLogP": 2.81338, 
+        "Lig_Eff": 0.44218
+      }, 
+      "id": "B4"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N76", 
+      "properties": {
+        "SLogP": 2.23648, 
+        "Lig_Eff": 0.50288
+      }, 
+      "id": "B5"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N104", 
+      "properties": {
+        "SLogP": 5.0538, 
+        "Lig_Eff": 0.31619
+      }, 
+      "id": "B6"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N101", 
+      "properties": {
+        "SLogP": 4.5128, 
+        "Lig_Eff": 0.40988
+      }, 
+      "id": "B7"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N48", 
+      "properties": {
+        "SLogP": 1.90868, 
+        "Lig_Eff": 0.40993
+      }, 
+      "id": "B8"
+    }, 
+    {
+      "activities": {
+        "pIC50": 10.0
+      }, 
+      "orig_id": "Chk1N136", 
+      "properties": {
+        "SLogP": 5.5623, 
+        "Lig_Eff": 0.29924
+      }, 
+      "id": "B9"
+    }
+  ]
+}

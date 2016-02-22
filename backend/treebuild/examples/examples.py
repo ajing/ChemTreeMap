@@ -18,6 +18,9 @@ from treebuild.types import bindingdb, pubchem, pic50
 import SimpleHTTPServer
 import SocketServer
 
+# directory for chemtree
+CHEMTREE_DIR = "../../"
+
 # affinity data with chk1 kinase
 input_file = "./aff.txt"
 out_file = "./aff.json"
@@ -51,18 +54,18 @@ treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FING
 # move the image directory to frontend
 for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", "./cyto.json"]:
     try:
-        shutil.copy(fname, "../../../frontend/app/data/")
+        shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/app/data/"))
     except:
         continue
-if os.path.exists("../../../frontend/app/images"):
-    shutil.rmtree("../../../frontend/app/images")
-copy_tree("./images", "../../../frontend/app/images")
+if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/app/images")):
+    shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/app/images"))
+copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/app/images"))
 
 ##
 # setup the server
 ##
 # change working directory
-os.chdir("../../../frontend")
+os.chdir(os.path.join(CHEMTREE_DIR, "frontend"))
 
 PORT = 8000
 

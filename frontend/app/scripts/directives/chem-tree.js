@@ -367,9 +367,9 @@ angular.module('frontendApp')
       $scope.$watch('forceAct.value', function(newForce) {
         console.log('new force act');
         console.log(newForce);
-        if ($scope.forceAct === undefined  || force !== undefined){ return; }
+        if (newForce === undefined){ return; }
 
-        if ($scope.forceAct.value) {
+        if (newForce) {
           addForce(nodes);
         } else if (force) {
           force.stop();
