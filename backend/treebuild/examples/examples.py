@@ -27,7 +27,7 @@ out_file = "./aff.json"
 properties = {"activities": [pic50], "properties": DEFAULT_PROPERTY_TYPES, "ext_links": []}
 treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FINGERPRINT_TYPES, properties=properties)
 
-# factor xa
+# # factor xa
 # input_file = "./factorxa.txt"
 # out_file = "./factorxa.json"
 # properties = {"activities": DEFAULT_ACTIVITY_TYPES, "properties": DEFAULT_PROPERTY_TYPES, "ext_links": DEFAULT_EXTERNAL}
@@ -50,16 +50,16 @@ treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FING
 # out_file = "./cyto.json"
 # properties = {"activities": DEFAULT_ACTIVITY_TYPES, "properties": DEFAULT_PROPERTY_TYPES, "ext_links": [pubchem]}
 # treebuild.TreeBuild(input_file, out_file, id_column ="PubChem", fps = DEFAULT_FINGERPRINT_TYPES, properties=properties)
-
-# move the image directory to frontend
-for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", "./cyto.json"]:
-    try:
-        shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/app/data/"))
-    except:
-        continue
-if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/app/images")):
-    shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/app/images"))
-copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/app/images"))
+#
+# # move the image directory to frontend
+# for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", "./cyto.json"]:
+#     try:
+#         shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/app/data/"))
+#     except:
+#         continue
+# if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/app/images")):
+#     shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/app/images"))
+# copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/app/images"))
 
 ##
 # setup the server
