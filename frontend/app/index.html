@@ -114,7 +114,7 @@
                         <fa name="search" class="magnifying-glass"></fa>
                         <script type="text/ng-template" id="customTemplate.html">
                             <a class="typeahead-item">
-                                <img ng-src="data/images/{{match.model.orig_id}}.svg" width="32">
+                                <img ng-src="images/{{match.model.orig_id}}.svg" width="32">
                                 <div class="typeahead-label" ng-bind-html="'BindingDB:' + match.label | truncate:20:'...' | typeaheadHighlight:query"></div>
                                 <div class="typeahead-id" ng-bind-html="'PubChem:' + match.model.PubChem"></div>
                             </a>
