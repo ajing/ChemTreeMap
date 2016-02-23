@@ -630,7 +630,7 @@ angular.module('frontendApp')
       });
 
 
-      //watch the selected scope variable - this can be controlled from outside the directive or inside the directive
+      ////watch the selected scope variable - this can be controlled from outside the directive or inside the directive
       $scope.$watch('selected', function (selected) {
 
           if (selected === undefined || $scope.data === undefined) {

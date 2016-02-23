@@ -24,18 +24,7 @@ angular.module('frontendApp')
 
     $scope.settings = settings;
 
-    $scope.$watch('tooltip.visibility', function(newVis) {
-      if ( newVis === false ) {
-        $scope.model.selected = null;
-      }
-    });
-
-    $scope.select = function(d) {
-      $scope.model.selected = d;
-    };
-
     $scope.$watch('model.selected', function(selected) {
-      console.log('selected:', selected);
 
       if (selected === null) {
         $scope.tooltip.visibility = false;
@@ -49,6 +38,16 @@ angular.module('frontendApp')
         };
       }
     });
+
+    $scope.$watch('tooltip.visibility', function(newVis) {
+      if ( newVis === false ) {
+        $scope.model.selected = null;
+      }
+    });
+
+    $scope.select = function(d) {
+      $scope.model.selected = d;
+    };
 
 
 
