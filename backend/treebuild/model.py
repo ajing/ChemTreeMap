@@ -12,6 +12,7 @@
 """
 import os
 
+
 SMILE_COLUMNNAME = "Canonical_Smiles"
 
 RAPIDNJ_COMMAND = os.path.join(os.path.dirname(__file__), "lib/rapidnj-linux-64")
