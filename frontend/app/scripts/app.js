@@ -33,6 +33,6 @@ angular
           controller: 'TreeController'
       })
       .otherwise({
-        redirectTo: '/affinity'
+        redirectTo: '/aff'
       });
   });
