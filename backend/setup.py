@@ -45,7 +45,7 @@ setup(
     install_requires=[
         #'rdkit',  ## currently rdkit is not pip installable
         #               ## so this dependency must be met by the installer
-        'ete2'
+        #'ete2'
     ],
     package_data={'treebuild': ['data/*.txt', 'data/*.py', 'lib/rapidnj-linux-64']},
     cmdclass={'install': OverrideInstall}

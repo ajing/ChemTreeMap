@@ -18,6 +18,7 @@ Contents
    frontend
    backend
    modules
+   documentation
 
 Indices and tables
 ==================
