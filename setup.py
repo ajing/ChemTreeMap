@@ -50,5 +50,4 @@ setup(
         'ete2'
     ],
     package_data={'treebuild': ['data/*.txt', 'data/*.py', 'lib/rapidnj-linux-64']},
-    cmdclass={'install': OverrideInstall}
 )
