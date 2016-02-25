@@ -7,9 +7,9 @@
 
 # pylint: disable=too-few-public-methods
 import math
-# from rdkit import Chem
-# from rdkit.Chem import AllChem
-# from rdkit.Chem.AtomPairs import Pairs
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Chem.AtomPairs import Pairs
 
 from .model import SMILE_COLUMNNAME, POTENCY
 

@@ -11,8 +11,8 @@ import datetime
 import os
 import subprocess
 import shutil
-#from rdkit import Chem
-#from rdkit.Chem.Draw import MolToFile
+from rdkit import Chem
+from rdkit.Chem.Draw import MolToFile
 
 from .types import FingerPrintType
 from .util import ParseLigandFile, WriteJSON, WriteAsPHYLIPFormat, Dot2Dict, \

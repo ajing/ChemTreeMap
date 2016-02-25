@@ -15,6 +15,7 @@ Contents
    :maxdepth: 4
 
    introduction
+   installation
    frontend
    backend
    modules

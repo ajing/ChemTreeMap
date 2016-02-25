@@ -3,9 +3,8 @@
 '''
 import datetime
 import json
-import math
 from csv import DictReader
-# from rdkit import Chem, DataStructs
+from rdkit import Chem, DataStructs
 
 from ete2 import Tree
 

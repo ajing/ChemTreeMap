@@ -52,14 +52,14 @@ treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FING
 # treebuild.TreeBuild(input_file, out_file, id_column ="PubChem", fps = DEFAULT_FINGERPRINT_TYPES, properties=properties)
 #
 # # move the image directory to frontend
-# for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", "./cyto.json"]:
-#     try:
-#         shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/app/data/"))
-#     except:
-#         continue
-# if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/app/images")):
-#     shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/app/images"))
-# copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/app/images"))
+for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", "./cyto.json"]:
+    try:
+        shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/app/data/"))
+    except:
+        continue
+if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/app/images")):
+    shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/app/images"))
+copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/app/images"))
 
 ##
 # setup the server
@@ -74,4 +74,7 @@ Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
 httpd = SocketServer.TCPServer(("", PORT), Handler)
 
 print "Serving at port", PORT
+print "Please open the following link in your browser:"
+print "localhost:8000/" + out_file.split("/")[-1].split(".")[0]
+
 httpd.serve_forever()
