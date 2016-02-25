@@ -12,7 +12,12 @@ from ete2 import Tree
 from .model import FILE_FORMAT
 
 
-def GuestByFirstLine(firstline):
+def GuessByFirstLine(firstline):
+    """
+    Guess the number of columns with floats by the first line of the file
+    :param firstline:
+    :return:
+    """
     num_colnam = []
     for key in firstline:
         try:
@@ -23,21 +28,33 @@ def GuestByFirstLine(firstline):
     return num_colnam
 
 def ConvertToFloat(line, colnam_list):
+    """
+    Convert some columns (in colnam_list) to float, and round by 3 decimal.
+    :param line: a dictionary from DictReader.
+    :param colnam_list: float columns
+    :return: a new dictionary
+    """
     for name in colnam_list:
         line[name] = round(float(line[name]), 3)
     return line
 
 def ParseLigandFile(infile, identifier):
+    """
+    Parse ligand file to an dictionary, key is ligand id and valud is a dictionary with properties and property values.
+    This program will guess the type for each column based on the first row. The program will assume there is only two types of data: number and string.
+    :param infile: input filename
+    :param identifier: the identifier column name
+    :return: a dictionray
+    """
     '''
-       parse ligand file to an dictionary, key is ligand id and valud is a dictionray with properties and property values
-       This program will guess the type for each column based on the first row. The program will assume there is only two type of data: number and string.
+
     '''
     mol_dict = dict()
     flag = 1 # first line flag
     id_count = 0
     for line in DictReader(open(infile), delimiter = "\t"):
         if flag:
-            num_colnam = GuestByFirstLine({k:v for k,v in line.items() })
+            num_colnam = GuessByFirstLine({k:v for k,v in line.items() })
         new_id = "B" + str(id_count)
         id_count += 1
         mol_dict[new_id] = ConvertToFloat({k:v for k,v in line.items()}, num_colnam)
@@ -46,35 +63,37 @@ def ParseLigandFile(infile, identifier):
 
 
 def WriteJSON(dict_obj, outfile, write_type):
+    """
+    Dump json object to a file
+    :param dict_obj: dictionary object
+    :param outfile: output file name
+    :param write_type: append or rewrite ('a' or 'w')
+    :return: void
+    """
     fileobj = open(outfile, write_type)
     fileobj.write(json.dumps(dict_obj))
 
+
 def SelectColumn(lig_dict, colname):
+    """
+    Prune the dictionary, only attribute in colname will be left.
+    :param lig_dict: a tree like dictionary
+    :param colname: what attribute you want to keep.
+    :return: a new dictionary
+    """
     lig_new = dict()
     for k in lig_dict:
         lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
     return lig_new
 
-def ReArrangeActivity(lig_dict, colname):
-    lig_new = dict()
-    for k in lig_dict:
-        lig_new[k] = {sk:v for sk, v in lig_dict[k].items() if not sk in colname}
-        lig_new[k]["activities"] = {sk:v for sk, v in lig_dict[k].items() if sk in colname}
-        if "IC50" in lig_new[k]["activities"]:
-            lig_new[k]["activities"]["pIC50"] = round(9 - math.log10(float(lig_new[k]["activities"]["IC50"])), 5)
-            #lig_new[k]["activities"]["pIC50"] = round(6 - math.log10(float(lig_new[k]["activities"]["IC50"])), 5)
-    return lig_new
-
-def Dict2List(lig_dict):
-    lig_list = []
-    for idx in range(len(lig_dict.keys())):
-        new_entry = lig_dict["B" + str(idx)]
-        new_entry["id"] = "B" + str(idx)
-        lig_list.append(new_entry)
-    return lig_list
-
 
 def WriteAsPHYLIPFormat(smile_list, fp_func):
+    """
+    Prepare the input for RapidNJ.
+    :param smile_list: a list of smiles string
+    :param fp_func: the fingerprint function
+    :return: tje filename with PHYLIP format (input for rapidnj)
+    """
     fp_list = ToFPObj(smile_list, fp_func)
     print "finish parsing smile list"
     list_len = len(fp_list)
@@ -101,7 +120,11 @@ def WriteAsPHYLIPFormat(smile_list, fp_func):
 
 
 def ToFPObj(alist, fp_func):
-    # for alist, the first item is ligand name, the second is smile
+    """
+    :param alist: a list of two element list, the first item is ligand name, the second is smile
+    :param fp_func: the fingerprint function
+    :return: a new list of two element list, with first item as ligand name, second item as a fingerprint object.
+    """
     newlist = []
     for each in alist:
         smile = each[1]
@@ -114,6 +137,11 @@ def ToFPObj(alist, fp_func):
 
 
 def WriteDotFile(newick):
+    """
+    Write newick string to a DOT file
+    :param newick: a string with newick tree structure
+    :return: DOT file name
+    """
     tree = Tree(newick)
 
     dot_file_name = datetime.datetime.now().strftime(FILE_FORMAT) + ".gv"
@@ -142,6 +170,11 @@ def WriteDotFile(newick):
 
 
 def RemoveBackSlash(dotfile):
+    """
+    Rewrite dot file, with removing back slash of dot file
+    :param dotfile: DOT file name
+    :return: void
+    """
     # remove backslash and replace all " quote sign
     f = open(dotfile, 'r+')
     content = f.readlines()
@@ -161,6 +194,12 @@ def RemoveBackSlash(dotfile):
 
 
 def Dot2Dict(dotfile, moldict):
+    """
+    Read a DOT file to generate a tree and save it to a dictionary
+    :param dotfile: DOT file name
+    :param moldict: a dictionary with ligand information
+    :return: a dictionary with the tree
+    """
     rootname = "F0"
     # dotfile is a dot file
     contents = open(dotfile).readlines()
@@ -179,15 +218,24 @@ def Dot2Dict(dotfile, moldict):
 
 
 def getSimilarity(fp1, fp2):
-    # generate similarity score for two smiles strings
+    """
+    Generate similarity score for two smiles strings
+    :param fp1: fingerprint object (rdkit)
+    :param fp2: fingerprint object (rdkit)
+    :return: Tanimoto similarity
+    """
     if (fp1 is None or fp2 is None):
         return
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
 
 def GetRoot(dotfile, rootname):
-    # return root name with most levels
-    rootnode  = ""
+    """
+    Return root name with rootname
+    :param dotfile: DOT file
+    :param rootname: the name of the root
+    :return: the object of the root
+    """
     for eachline in open(dotfile):
         if NodeNameExist(eachline) and not IsEdge(eachline):
             name, attr = NameAndAttribute(eachline)
@@ -198,6 +246,13 @@ def GetRoot(dotfile, rootname):
 
 
 def extendChildren(a_node, contents, cur_list):
+    """
+    Find all children of a node in a tree
+    :param a_node: a node in a tree
+    :param contents: contents from DOT file
+    :param cur_list: current children
+    :return: a list of node objects (children)
+    """
     children_list = []
     for eachline in contents:
         if IsEdge(eachline):
@@ -214,6 +269,11 @@ def extendChildren(a_node, contents, cur_list):
 
 
 def IsEdge(line):
+    """
+    Whether this line in DOT file is an edge
+    :param line: a string line in DOT file
+    :return: True or False
+    """
     if "--" in line:
         return True
     else:
@@ -222,9 +282,10 @@ def IsEdge(line):
 
 def RecursiveNode2Dict(node, info_dict):
     '''
+    Recursively populate information to the tree object with info_dict
     :param node: tree object with all info
-    :param info_dict:
-    :return:
+    :param info_dict: information for each ligand.
+    :return: a tree dictionary
     '''
     if not node.children:
         x, y   = map(float, node["position"].split("-"))
@@ -243,7 +304,11 @@ def RecursiveNode2Dict(node, info_dict):
 
 
 def NodeNameExist(line):
-    ## Functions for parsing DOT file
+    """
+    Functions for parsing DOT file
+    :param line: a line from DOT file
+    :return: whether there is a node name in this line
+    """
     if "CHEMBL" in line or "ASD" in line or "Chk1" in line or "B" in line or "F" in line:
         return True
     else:
@@ -251,23 +316,42 @@ def NodeNameExist(line):
 
 
 def NameAndAttribute(line):
-    #print line
+    """
+    Split name and attribute
+    :param line: DOT file name
+    :return: name string and attribute string
+    """
     split_index = line.index("[")
     name   = line[:split_index]
     attr   = line[split_index:]
     return name, attr
 
 
-def AddNewChild(contents, a_node, new_node_name, edge_length, childrens, currentlist):
+def AddNewChild(contents, a_node, new_node_name, edge_length, children, currentlist):
+    """
+    Add a new child to a node
+    :param contents: a string, a line from DOT
+    :param a_node: a node object
+    :param new_node_name: new node name
+    :param edge_length: the length of edge
+    :param children: existing children
+    :param currentlist: current list of node name
+    :return: void
+    """
     # return a node object
     newnode = NodeByName(new_node_name, contents)
     newnode.set_dist(edge_length)
     a_node.add_child(newnode)
-    childrens.append(newnode)
+    children.append(newnode)
     currentlist.append(new_node_name)
 
 
 def GetNodeProperty(line):
+    """
+    Get node property from a string
+    :param line: a string
+    :return: name, size, and position of the node
+    """
     name, attr = NameAndAttribute(line)
     name = ProcessName(name, False)
     position = GetAttributeValue("pos", attr)[:-1].replace(",", "-")
@@ -279,6 +363,12 @@ def GetNodeProperty(line):
 
 
 def ProcessName(name, isedge):
+    """
+    Process the name of the node
+    :param name: name of the node
+    :param isedge: whether this is a edge
+    :return: new name
+    """
     if isedge:
         firstnode, secondnode = name.split("--")
         firstnode = firstnode.strip()
@@ -289,6 +379,12 @@ def ProcessName(name, isedge):
 
 
 def GetAttributeValue(attrname, attr):
+    """
+    Get node attribute
+    :param attrname: name of the attribute
+    :param attr: the attribute string
+    :return: the value for the attribute
+    """
     left = attr.index("[") + 1
     right = attr.index("]")
     attr  = attr[left:right]
@@ -303,11 +399,22 @@ def GetAttributeValue(attrname, attr):
 
 
 def CleanAttribute(attr):
+    """
+    Clean attribute, remove ','.
+    :param attr: old attribute string
+    :return: new string
+    """
     new_attr = attr.replace(",", "")
     return new_attr
 
 
 def NodeByName(name, contents):
+    """
+    Create node with name name
+    :param name: a string with node name
+    :param contents: a list of string from DOT file
+    :return: node object
+    """
     for eachline in contents:
         if not IsEdge(eachline) and NodeNameExist(eachline):
             nodename, attr = NameAndAttribute(eachline)
@@ -317,18 +424,29 @@ def NodeByName(name, contents):
 
 
 def SizeScale(size):
-    # size is a string
+    """
+    Rescale the size (currently only convert to float)
+    :param size: a string
+    :return: a float
+    """
     return float(size)
 
 
 def GetSize(width):
+    """
+    Get the size.
+    :param width:
+    :return:
+    """
     if isinstance(width, str):
         width = float(width)
     return width
 
 
 class Node(dict):
-    # class for node of tree, each node can only have one parent
+    """
+    class for node of tree, each node can only have one parent
+    """
     def __init__(self, name, **attr):
         self.name = name
         self.parent = None
@@ -340,6 +458,11 @@ class Node(dict):
         return "a node with name:" + self.name
 
     def get_dist(self, a_node):
+        """
+        get the node as a dictionary
+        :param a_node: Node object
+        :return: a dictionary
+        """
         if not isinstance(a_node, Node):
             raise TypeError("argument should be Node class")
         if a_node == self.parent:
@@ -350,17 +473,32 @@ class Node(dict):
             return None
 
     def add_child(self, a_node):
+        """
+        Add child to the node.
+        :param a_node: Node object
+        :return: void
+        """
         if not isinstance(a_node, Node):
             raise TypeError("argument should be Node class")
         self.children.append(a_node)
         a_node.set_parent(self)
 
     def set_parent(self, a_node):
+        """
+        Set the parent for a node
+        :param a_node: Node object
+        :return: void
+        """
         if not isinstance(a_node, Node):
             raise TypeError("argument should be Node class")
         self.parent = a_node
 
     def set_dist(self, dist):
+        """
+        set the dictionary attribute for the Node object
+        :param dist:
+        :return:
+        """
         self.dist = dist
 
 
