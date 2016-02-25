@@ -13,6 +13,8 @@ from setuptools.command.install import install
 from distutils import log # needed for outputting information messages
 
 import os
+import sys
+os.chdir('../backend')
 
 
 class OverrideInstall(install):
