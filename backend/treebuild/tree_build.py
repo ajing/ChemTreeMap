@@ -23,6 +23,13 @@ class TreeBuild:
     """
     There are a few assumptions for the input file:
         1. potency unit is nM
+        2. the file must have a id column, you can set the column name with id_column
+        3. the file must have a SMILES column, with 'Canonical_Smiles' as column name
+        4. the file must have at least one activity column.
+    To build the tree
+        1. the identity column needs to be specified with id_column
+        2. a list of fingerprints and a list of properties need to be specified
+        3. the directories for input and output file are also needed to be specified
     """
     def __init__(self, input_file, output_file, id_column, fps, properties):
         """
