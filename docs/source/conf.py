@@ -16,6 +16,25 @@ import sys
 import os
 import sphinx_rtd_theme
 
+# For mocking rdkit
+import sys
+from unittest.mock import MagicMock
+
+class rdkit(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+            return rdkit()
+
+
+MOCK_MODULES = ['Chem', 'DataStructs', '', 'argparse', 'numpy', 'pandas']
+sys.modules.update((mod_name, rdkit()) for mod_name in MOCK_MODULES)
+
+
+sys.modules.update((mod_name, rdkit.Chem()) for mod_name in ['Draw', 'AllChem', 'AtomPairs'])
+sys.modules.update((mod_name, rdkit.Chem.Draw()) for mod_name in ['MolToFile'])
+sys.modules.update((mod_name, rdkit.Chem.AtomPairs()) for mod_name in ['Pairs'])
+
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
