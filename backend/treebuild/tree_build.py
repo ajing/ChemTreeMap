@@ -32,8 +32,8 @@ class TreeBuild:
         3. the directories for input and output file are also needed to be specified
     """
     def __init__(self, input_file, output_file, id_column, fps, properties):
-        """
-        Setting parameters to build the tree.
+        """Setting parameters to build the tree.
+
         :param input_file: input file is a tab delimited text file.
         :param output_file: output file is a json file
         :param id_column: the id for each column, which will shown as the identifier in the visualization.
@@ -82,6 +82,7 @@ class TreeBuild:
     def build_single_tree(self, lig_dict, fp):
         """
         Build a single tree with fingerprint function
+
         :param lig_dict: all ligand information
         :param fp: fingerprint object
         :return: dot filename
@@ -97,6 +98,7 @@ class TreeBuild:
     def parse_lig_file(in_file, identifier):
         """
         parse ligand file and return a dictionary with identifier as IDs
+
         :param in_file: input file directory
         :param identifier: name for the identifier
         :return: a dictionray with ligand information
@@ -107,6 +109,7 @@ class TreeBuild:
     def gen_dist_file(liganddict, fp_func):
         """
         generate distance file which is the input of rapidnj program.
+
         :param liganddict: ligand information
         :param fp_func: fingerprint function
         :return: filename for distance file
@@ -120,6 +123,7 @@ class TreeBuild:
     def run_rapidnj(self, distance_file):
         """
         run rapidnj program on distance_file
+
         :param distance_file: directory of distance file
         :return: newick string
         """
@@ -131,6 +135,7 @@ class TreeBuild:
     def write_dotfile(newick):
         """
         write newick string as dot file
+
         :param newick: newick string
         :return: dot file
         """
@@ -139,6 +144,7 @@ class TreeBuild:
     def sfdp_dot(self, dot_infile, size):
         """
         run sdfp on dot file
+
         :param dot_infile: directory for dot file
         :param size: parameter for the sfdp
         :return: new filename
@@ -160,6 +166,7 @@ class TreeBuild:
     def gen_properties(ligand_dict, activities, properties, ext_cols):
         """
         Generate properties for each molecule.
+
         :param ligand_dict: ligand dictionary which keep all ligand information
         :param activities: a list of PropertyType objects
         :param properties: a list of PropertyType objects
@@ -193,6 +200,7 @@ class TreeBuild:
     def make_structures_for_smiles( ligand_dict ):
         """
         Make structure figures from smile strings. All image files will be in the IMG_DIR
+
         :param ligand_dict: ligand dictionary which keep all ligand information
         :return:
         """

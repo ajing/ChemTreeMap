@@ -14,6 +14,7 @@ from .model import FILE_FORMAT
 def GuessByFirstLine(firstline):
     """
     Guess the number of columns with floats by the first line of the file
+
     :param firstline:
     :return:
     """
@@ -29,6 +30,7 @@ def GuessByFirstLine(firstline):
 def ConvertToFloat(line, colnam_list):
     """
     Convert some columns (in colnam_list) to float, and round by 3 decimal.
+
     :param line: a dictionary from DictReader.
     :param colnam_list: float columns
     :return: a new dictionary
@@ -41,6 +43,7 @@ def ParseLigandFile(infile, identifier):
     """
     Parse ligand file to an dictionary, key is ligand id and valud is a dictionary with properties and property values.
     This program will guess the type for each column based on the first row. The program will assume there is only two types of data: number and string.
+
     :param infile: input filename
     :param identifier: the identifier column name
     :return: a dictionray
@@ -63,7 +66,8 @@ def ParseLigandFile(infile, identifier):
 
 def WriteJSON(dict_obj, outfile, write_type):
     """
-    Dump json object to a file
+    Dump json object to a file.
+
     :param dict_obj: dictionary object
     :param outfile: output file name
     :param write_type: append or rewrite ('a' or 'w')
@@ -76,6 +80,7 @@ def WriteJSON(dict_obj, outfile, write_type):
 def SelectColumn(lig_dict, colname):
     """
     Prune the dictionary, only attribute in colname will be left.
+
     :param lig_dict: a tree like dictionary
     :param colname: what attribute you want to keep.
     :return: a new dictionary
@@ -89,6 +94,7 @@ def SelectColumn(lig_dict, colname):
 def WriteAsPHYLIPFormat(smile_list, fp_func):
     """
     Prepare the input for RapidNJ.
+
     :param smile_list: a list of smiles string
     :param fp_func: the fingerprint function
     :return: tje filename with PHYLIP format (input for rapidnj)
@@ -120,6 +126,8 @@ def WriteAsPHYLIPFormat(smile_list, fp_func):
 
 def ToFPObj(alist, fp_func):
     """
+    A list of SMILE string object with (id, smiles) to a list of fingerprint object with (id, fp_obj)
+
     :param alist: a list of two element list, the first item is ligand name, the second is smile
     :param fp_func: the fingerprint function
     :return: a new list of two element list, with first item as ligand name, second item as a fingerprint object.
@@ -138,6 +146,7 @@ def ToFPObj(alist, fp_func):
 def WriteDotFile(newick):
     """
     Write newick string to a DOT file
+
     :param newick: a string with newick tree structure
     :return: DOT file name
     """
@@ -170,7 +179,8 @@ def WriteDotFile(newick):
 
 def RemoveBackSlash(dotfile):
     """
-    Rewrite dot file, with removing back slash of dot file
+    Rewrite dot file, with removing back slash of dot file.
+
     :param dotfile: DOT file name
     :return: void
     """
@@ -194,7 +204,8 @@ def RemoveBackSlash(dotfile):
 
 def Dot2Dict(dotfile, moldict):
     """
-    Read a DOT file to generate a tree and save it to a dictionary
+    Read a DOT file to generate a tree and save it to a dictionary.
+
     :param dotfile: DOT file name
     :param moldict: a dictionary with ligand information
     :return: a dictionary with the tree
@@ -218,7 +229,8 @@ def Dot2Dict(dotfile, moldict):
 
 def getSimilarity(fp1, fp2):
     """
-    Generate similarity score for two smiles strings
+    Generate similarity score for two smiles strings.
+
     :param fp1: fingerprint object (rdkit)
     :param fp2: fingerprint object (rdkit)
     :return: Tanimoto similarity
@@ -230,7 +242,8 @@ def getSimilarity(fp1, fp2):
 
 def GetRoot(dotfile, rootname):
     """
-    Return root name with rootname
+    Return root name with rootname.
+
     :param dotfile: DOT file
     :param rootname: the name of the root
     :return: the object of the root
@@ -246,7 +259,8 @@ def GetRoot(dotfile, rootname):
 
 def extendChildren(a_node, contents, cur_list):
     """
-    Find all children of a node in a tree
+    Find all children of a node in a tree.
+
     :param a_node: a node in a tree
     :param contents: contents from DOT file
     :param cur_list: current children
@@ -269,7 +283,8 @@ def extendChildren(a_node, contents, cur_list):
 
 def IsEdge(line):
     """
-    Whether this line in DOT file is an edge
+    Whether this line in DOT file is an edge.
+
     :param line: a string line in DOT file
     :return: True or False
     """
@@ -281,7 +296,8 @@ def IsEdge(line):
 
 def RecursiveNode2Dict(node, info_dict):
     '''
-    Recursively populate information to the tree object with info_dict
+    Recursively populate information to the tree object with info_dict.
+
     :param node: tree object with all info
     :param info_dict: information for each ligand.
     :return: a tree dictionary
@@ -304,7 +320,8 @@ def RecursiveNode2Dict(node, info_dict):
 
 def NodeNameExist(line):
     """
-    Functions for parsing DOT file
+    Functions for parsing DOT file.
+
     :param line: a line from DOT file
     :return: whether there is a node name in this line
     """
@@ -316,7 +333,8 @@ def NodeNameExist(line):
 
 def NameAndAttribute(line):
     """
-    Split name and attribute
+    Split name and attribute.
+
     :param line: DOT file name
     :return: name string and attribute string
     """
@@ -328,7 +346,8 @@ def NameAndAttribute(line):
 
 def AddNewChild(contents, a_node, new_node_name, edge_length, children, currentlist):
     """
-    Add a new child to a node
+    Add a new child to a node.
+
     :param contents: a string, a line from DOT
     :param a_node: a node object
     :param new_node_name: new node name
@@ -347,7 +366,8 @@ def AddNewChild(contents, a_node, new_node_name, edge_length, children, currentl
 
 def GetNodeProperty(line):
     """
-    Get node property from a string
+    Get node property from a string.
+
     :param line: a string
     :return: name, size, and position of the node
     """
@@ -363,7 +383,8 @@ def GetNodeProperty(line):
 
 def ProcessName(name, isedge):
     """
-    Process the name of the node
+    Process the name of the node.
+
     :param name: name of the node
     :param isedge: whether this is a edge
     :return: new name
@@ -379,7 +400,8 @@ def ProcessName(name, isedge):
 
 def GetAttributeValue(attrname, attr):
     """
-    Get node attribute
+    Get node attribute.
+
     :param attrname: name of the attribute
     :param attr: the attribute string
     :return: the value for the attribute
@@ -400,6 +422,7 @@ def GetAttributeValue(attrname, attr):
 def CleanAttribute(attr):
     """
     Clean attribute, remove ','.
+
     :param attr: old attribute string
     :return: new string
     """
@@ -409,7 +432,8 @@ def CleanAttribute(attr):
 
 def NodeByName(name, contents):
     """
-    Create node with name name
+    Create node with name name.
+
     :param name: a string with node name
     :param contents: a list of string from DOT file
     :return: node object
@@ -424,7 +448,8 @@ def NodeByName(name, contents):
 
 def SizeScale(size):
     """
-    Rescale the size (currently only convert to float)
+    Rescale the size (currently only convert to float).
+
     :param size: a string
     :return: a float
     """
@@ -434,6 +459,7 @@ def SizeScale(size):
 def GetSize(width):
     """
     Get the size.
+
     :param width:
     :return:
     """
@@ -458,7 +484,8 @@ class Node(dict):
 
     def get_dist(self, a_node):
         """
-        get the node as a dictionary
+        get the node as a dictionary.
+
         :param a_node: Node object
         :return: a dictionary
         """
@@ -474,6 +501,7 @@ class Node(dict):
     def add_child(self, a_node):
         """
         Add child to the node.
+
         :param a_node: Node object
         :return: void
         """
@@ -484,7 +512,8 @@ class Node(dict):
 
     def set_parent(self, a_node):
         """
-        Set the parent for a node
+        Set the parent for a node.
+
         :param a_node: Node object
         :return: void
         """
@@ -494,7 +523,8 @@ class Node(dict):
 
     def set_dist(self, dist):
         """
-        set the dictionary attribute for the Node object
+        set the dictionary attribute for the Node object.
+        
         :param dist:
         :return:
         """

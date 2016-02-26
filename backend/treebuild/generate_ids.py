@@ -15,6 +15,7 @@ class GenerateIDs:
         """
         Initialize the object with a spreadsheet input file, and output a file with
         CHEBI ID and PubChem ID.
+
         :param infile:
         :param outfile:
         :return:
@@ -37,6 +38,7 @@ class GenerateIDs:
     def parse_dict_file(filename):
         """
         Parse BindingDB_CID and BindingDB_CHEBI_ID
+
         :param filename: ID mapping between BindingDB and other databases
         :return: dictionray with BindingDB ID as the key.
         """
@@ -50,6 +52,7 @@ class GenerateIDs:
     def get_pubchemid_from_bdid(self, bdid):
         """
         Get PubCHEM ID with BindingDB ID
+
         :param bdid: bindingdb id
         :return: pubchem id
         """
@@ -62,6 +65,7 @@ class GenerateIDs:
     def get_chebiid_from_bdid(self, bdid):
         """
         Get CHEBI ID with BindingDB ID
+
         :param bdid: CHEBI ID
         :return: pubchem id
         """
@@ -74,6 +78,7 @@ class GenerateIDs:
     def run_for_file(self):
         """
         Create a new file based on the input file
+
         :return:
         """
         import csv

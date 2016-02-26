@@ -20,9 +20,11 @@ class FingerPrintType:
     """
     def __init__(self, name, fp_func, metadata):
         """
+        Initialize the fingerprint type
+
         :param name: name of fingerprint
-        :param fp_func:
-        :param meta:
+        :param fp_func: the function to generate a fingerprint
+        :param meta: string for fingerprint document
         :return:
         """
         self.name = name
@@ -32,6 +34,7 @@ class FingerPrintType:
     def to_dict(self):
         """
         Show the information for this fingerprint
+
         :return: dictionary with basic info
         """
         return {"name": self.name, "metadata": self.metadata}
@@ -43,9 +46,9 @@ class PropertyType:
     """
     def __init__(self, name, metadata, transfunc=None, colname=None):
         """
-        :param name:
-        :param metadata:
-        :param transfunc:
+        :param name: a string name of property
+        :param metadata: a string with property meaning
+        :param transfunc: a function to generate the property
         :return:
         """
         self.name = name
@@ -56,6 +59,7 @@ class PropertyType:
     def set_col_name(self, col_name):
         """
         Set the property name from the input file
+
         :param col_name: original column name in the input file
         :return:
         """
@@ -64,6 +68,7 @@ class PropertyType:
     def gen_property(self, mol_dict = None):
         """
         generate value for this property type
+
         :param prop_name: the name of the property
         :param mol_dict: other information about the molecule
         :return: a generated value for this property
@@ -86,6 +91,7 @@ class PropertyType:
     def to_dict(self):
         """
         Show the information
+
         :return: dictionary with basic info
         """
         return {"name": self.name, "metadata": self.metadata}
