@@ -20,19 +20,14 @@ import sphinx_rtd_theme
 import sys
 from mock import Mock as MagicMock
 
-class rdkit(MagicMock):
+
+class Mock(MagicMock):
     @classmethod
     def __getattr__(cls, name):
-            return rdkit()
+            return Mock()
 
-
-MOCK_MODULES = ['Chem', 'DataStructs', '', 'argparse', 'numpy', 'pandas']
-sys.modules.update((mod_name, rdkit()) for mod_name in MOCK_MODULES)
-
-
-sys.modules.update((mod_name, rdkit.Chem()) for mod_name in ['Draw', 'AllChem', 'AtomPairs'])
-sys.modules.update((mod_name, rdkit.Chem.Draw()) for mod_name in ['MolToFile'])
-sys.modules.update((mod_name, rdkit.Chem.AtomPairs()) for mod_name in ['Pairs'])
+MOCK_MODULES = ['rdkit']
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 
 # If extensions (or modules to document with autodoc) are in another directory,
