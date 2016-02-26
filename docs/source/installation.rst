@@ -1,14 +1,16 @@
 Installation
 ============
 
-ChemTreeMap contains two parts: frontend (JavaScript) and backend (Python). Users can install ChemTreeMap backend as python package. We support two ways to install ChemTreeMap.
+ChemTreeMap contains two parts: frontend (JavaScript) and backend (Python). We support two ways to install ChemTreeMap.
 
-- Docker installation: Run ChemTreeMap in a Docker container isolated from all other programs on your machine.
-- `Source code installation`_: Several packages are needed to fully install ChemTreeMap. Please check this wiki page for more details.
+- Docker installation: Run ChemTreeMap in a Docker container with a reproducible environment.
+- `Source code installation`_: Several packages are needed to fully install ChemTreeMap. Please check this `wiki page`_ for more details. Users can install ChemTreeMap backend as python package.
 
 
 Docker installation (fastest install)
 -------------------------------------
+
+Docker container provides a reproducible environment for scientific software, with all dependencies pre-installed in the Docker container.
 
 Docker is a system which can be used to build self contained versions of a Linux operating system running on your machine. When you install and run ChemTreeMap via Docker, it completely isolates the installation from pre-existing packages on your machine.
 
@@ -52,3 +54,4 @@ Please change examples.py (variables input_file, out_file) accordingly and run t
 
 .. _installing Docker: https://docs.docker.com/engine/installation/
 .. _Source code installation: https://github.com/ajing/ChemTreeMap/wiki/Souce-code-installation
+.. _wiki page: https://github.com/ajing/ChemTreeMap/wiki/Souce-code-installation

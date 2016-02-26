@@ -524,7 +524,7 @@ class Node(dict):
     def set_dist(self, dist):
         """
         set the dictionary attribute for the Node object.
-        
+
         :param dist:
         :return:
         """
