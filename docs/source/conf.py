@@ -18,7 +18,7 @@ import sphinx_rtd_theme
 
 # For mocking rdkit
 import sys
-from unittest.mock import MagicMock
+from mock import Mock as MagicMock
 
 class rdkit(MagicMock):
     @classmethod
