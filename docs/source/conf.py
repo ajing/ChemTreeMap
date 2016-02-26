@@ -26,7 +26,7 @@ class Mock(MagicMock):
     def __getattr__(cls, name):
             return Mock()
 
-MOCK_MODULES = ['rdkit', 'rdkit.Chem', 'rdkit.Chem.Draw', 'rdkit.Chem.Draw.MolToFile', 'rdkit.Chem.AllChem', 'rdkit.Chem.AtomPairs', 'rdkit.Chem.AtomPairs.Pairs', 'rdkit.DataStructs']
+MOCK_MODULES = ['ete2', 'ete2.Tree', 'rdkit', 'rdkit.Chem', 'rdkit.Chem.Draw', 'rdkit.Chem.Draw.MolToFile', 'rdkit.Chem.AllChem', 'rdkit.Chem.AtomPairs', 'rdkit.Chem.AtomPairs.Pairs', 'rdkit.DataStructs']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 
