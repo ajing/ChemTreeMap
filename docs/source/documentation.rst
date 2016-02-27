@@ -1,9 +1,6 @@
 Documentation
 =============
 
-Current readthedoc doesn't include detailed API for modules. More informative
-document can be built locally.
-
 The documentation you are reading is included in the docs subdirectory of the
 project repository.  It is build using `sphinx`_ and hosted using `readthedocs`_.
 

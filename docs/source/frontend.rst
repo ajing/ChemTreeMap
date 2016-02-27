@@ -1,9 +1,9 @@
 Frontend
 ========
 
-The frontend is written in JavaScript, and runs in modern (HTML5 enabled) web browsers.
-It is an `angularjs`_ app, and was scaffolded using `yeoman`_, using the `angular`_ generator.
-The visualization uses the `D3.js`_ library to render the images.
+The frontend, written in JavaScript, requires in modern (HTML5 enabled) web browsers.
+It is an `angularjs`_ app, which was scaffolded using `yeoman`_, and `angular`_ generator.
+We uses the `D3.js`_ library to render images and the force directed graphs.
 
 Dependencies
 ------------
@@ -15,7 +15,7 @@ dependencies respectively.
 Building
 --------
 
-To build and serve the project (having installed `node`_ and `npm`_), change into the frontend directory and run:
+To build and serve the project (having installed `node`_ and `npm`_), you can change to the frontend directory and run:
 
 .. code-block:: bash
 

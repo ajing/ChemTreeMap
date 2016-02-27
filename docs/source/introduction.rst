@@ -1,16 +1,16 @@
 Introduction
 ============
 
-ChemTreeMap is a novel visualization technique for interactive exploring
-biochemical similarity in molecular datasets. This is the documentation
-for an interactive implementation, written by `Jing Lu`_, whilst a PhD
+ChemTreeMap is a novel visualization technique for exploring
+biochemical similarity in molecular datasets interactively. This is the documentation
+for an interactive implementation, written by `Jing Lu`_, a PhD
 student under the supervision of Dr. `Heather Carlson`_.
 
 Software
 --------
 
-Briefly, the data processing is done on the :doc:`Python backend <backend>`,
-and the visualization is produced by the :doc:`JavaScript frontend <frontend>`:
+Briefly, the data processing is done on :doc:`Python backend <backend>`,
+and the visualization is processed by the :doc:`JavaScript frontend <frontend>`:
 
 .. figure:: workflow.png
 

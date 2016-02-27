@@ -7,7 +7,7 @@ representation. The API is detailed in :doc:`modules`.
 Installation
 ------------
 
-Change into the backend directory and run the `setup.py` script.
+Switch to the backend directory and run the `setup.py` script.
 
 .. code-block:: bash
 
@@ -19,7 +19,7 @@ Quickstart
 A prebuilt script, ``examples.py`` for analysing composite biochemical data
 in a standard format is provided in the ``examples`` folder.  This provides
 minimum functionality - the software is designed for extensibility,
-so consider writing your own script such as those in the example datasets
+so consider writing your own scripts like those in the example datasets
 included in ``backend/treebuild/examples/``.
 
 The script can be run using:
