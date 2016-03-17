@@ -6,8 +6,6 @@
 Welcome to ChemTreeMap's documentation!
 =======================================
 
-.. include:: introduction.rst
-
 Contents
 ========
 
@@ -19,7 +17,6 @@ Contents
    frontend
    backend
    modules
-   documentation
 
 Indices and tables
 ==================

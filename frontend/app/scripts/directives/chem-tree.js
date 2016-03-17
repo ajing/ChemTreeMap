@@ -30,9 +30,9 @@ function colorBar(){
         points = points_ || (((orient === 'left') || (orient === 'right'))?[[0,size_],[0,0]]:[[size_,0],[0,0]]),
         quads = quad(sample(line(points),precision)),
         size = (points)?n:size_,
-        aScale = color.copy().interpolate(d3.interpolate).domain(color.domain()).range([size,0]), //v -> px
+        aScale = color.copy().interpolate(d3.interpolate).domain(color.domain()).range([size, size * 2 / 5, 0]), //v -> px
         colorExtent = color.domain(),
-        normScale = color.copy().domain(color.domain().map(function(d){ return (d - colorExtent[0])/ (colorExtent[1] - colorExtent[0]);})),
+        normScale = color.copy().domain(color.domain().map(function(d){ return (d - colorExtent[0])/ (colorExtent[colorExtent.length - 1] - colorExtent[0]);})),
 
       //Save values for transitions
         oldLineWidth = this.__lineWidth__ || lineWidth,
@@ -282,10 +282,14 @@ angular.module('frontendApp')
       }
 
       activityScale = d3.scale.linear()
-        .domain([4, 9])
+        .domain([-3, 0, 2])
         .clamp(true)
+        .range(['#0000FF', '#FFFFFF', '#FF0000'])
+        .interpolate(d3.interpolateRgb);
+      /*
         .range(['hsl(300,80%,50%)', 'hsl(0,80%,50%)'])
         .interpolate(d3.interpolateString);
+       */
 
       /*
        .range(['#008000', '#FFFF00', '#FF0000']);
@@ -400,7 +404,7 @@ angular.module('frontendApp')
 
         sizeScale = d3.scale.linear()
           .domain(d3.extent(nodes, function(d) { return d.r; }))
-          .range([4, 10]);
+          .range([3, 10]);
 
         changeBorderColorBar(nodes);
 
@@ -409,6 +413,7 @@ angular.module('frontendApp')
         };
 
         borderColor = function(d) {
+          if (d.stroke === "black") {return d.children ? '#CCC' : "black";}
           return d._children ? '#CCC' : d.children ? '#D3D3D3' : borderScale(d.stroke);
         };
 
@@ -555,7 +560,7 @@ angular.module('frontendApp')
 
         var extent = d3.extent(nodes, function(d) { if (d.name[0] === 'B') { return d.r; } });
 
-        var sizeLowerbound = 4;
+        var sizeLowerbound = 3;
         var sizeScale = d3.scale.linear()
           .domain(extent)
           .range([sizeLowerbound, 10]);

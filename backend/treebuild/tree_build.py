@@ -55,6 +55,10 @@ class TreeBuild:
         other_properties = properties["properties"]
         ext_links = properties["ext_links"]
         lig_dict = self.parse_lig_file(input_file, id_column)
+
+        # make image file
+        self.make_structures_for_smiles(lig_dict)
+
         trees = dict()
         for fp in fps:
             assert isinstance(fp, FingerPrintType)
@@ -72,8 +76,6 @@ class TreeBuild:
         final_dict = {"metadata": metadata, "trees": trees, "compounds": comp_info}
 
         WriteJSON(final_dict, outfile=output_file, write_type="w")
-         # make image file
-        self.make_structures_for_smiles(lig_dict)
 
         # delete tmp folder
         shutil.rmtree(TMP_FOLDER)

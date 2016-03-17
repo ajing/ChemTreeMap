@@ -78,11 +78,11 @@ angular.module('frontendApp')
 
       if (newCircleSize === 'None') {
         nodes.forEach(function(d) {
-          d.r = 2;
+          d.r = 3;
         });
       } else {
         nodes.forEach(function(d) {
-          if (d.name.startsWith('B')) {
+          if (d.name.substring(0,1) === 'B') {
             d.r = dataService.data.compounds[parseInt(d.name.substring(1))].properties[newCircleSize];
           }
         });
@@ -103,12 +103,12 @@ angular.module('frontendApp')
 
       if (newCircleBorderType === 'None') {
         nodes.forEach(function(d) {
-          d.stroke = 0;
-          d.strokeWidth = 0;
+          d.stroke = "black";
+          d.strokeWidth = 1;
         });
       } else {
         nodes.forEach(function(d) {
-          if (d.name.startsWith('B')) {
+          if (d.name.substring(0,1) === 'B') {
             d.stroke = dataService.data.compounds[parseInt(d.name.substring(1))].properties[newCircleBorderType];
             d.strokeWidth = 3;
           }
@@ -129,7 +129,7 @@ angular.module('frontendApp')
       var nodes = dataService.flatten(root);
 
       nodes.forEach(function(d) {
-        if (d.name.startsWith('B')) {
+        if (d.name.substring(0,1) === 'B') {
           d.fill = dataService.data.compounds[parseInt(d.name.substring(1))].activities[newActivityType];
         }
       });
