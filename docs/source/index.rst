@@ -6,8 +6,6 @@
 Welcome to ChemTreeMap's documentation!
 =======================================
 
-.. include:: introduction.rst
-
 Contents
 ========
 

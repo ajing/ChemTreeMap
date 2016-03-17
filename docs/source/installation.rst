@@ -30,7 +30,7 @@ Then, launch a Docker container with the binary image as follows.
 
   $ docker run -t -i -p 8000:8000 ajing/chemtreemap /bin/bash
 
-The example code is in /examples folder. Please read and run the examples.py file to see how it works with example input files.
+The example code is in ~/examples folder. Please read and run the examples.py file to see how it works with example input files.
 
 .. code-block:: bash
 
