@@ -19,7 +19,7 @@ import SimpleHTTPServer
 import SocketServer
 
 # directory for chemtree
-CHEMTREE_DIR = "../../"
+CHEMTREE_DIR = "../../../"
 
 # affinity data with chk1 kinase
 input_file = "./aff.txt"
