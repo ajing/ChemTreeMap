@@ -82,7 +82,7 @@ angular.module('frontendApp')
         });
       } else {
         nodes.forEach(function(d) {
-          if (d.name.startsWith('B')) {
+          if (d.name.lastIndexOf('B') == 0) {
             d.r = dataService.data.compounds[parseInt(d.name.substring(1))].properties[newCircleSize];
           }
         });
@@ -108,7 +108,7 @@ angular.module('frontendApp')
         });
       } else {
         nodes.forEach(function(d) {
-          if (d.name.startsWith('B')) {
+          if (d.name.lastIndexOf('B') == 0) {
             d.stroke = dataService.data.compounds[parseInt(d.name.substring(1))].properties[newCircleBorderType];
             d.strokeWidth = 3;
           }
@@ -129,7 +129,7 @@ angular.module('frontendApp')
       var nodes = dataService.flatten(root);
 
       nodes.forEach(function(d) {
-        if (d.name.startsWith('B')) {
+        if (d.name.lastIndexOf('B') == 0) {
           d.fill = dataService.data.compounds[parseInt(d.name.substring(1))].activities[newActivityType];
         }
       });
