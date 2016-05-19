@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="ChemTreeMap: an Open Source Interactive Application for Visualizing Chemical Similarity/Diversity in a Molecule Library">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="./indexStyle/stylesheet.css">
+
+    <title>ChemTreeMap</title>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/ajing/ChemTreeMap">View on GitHub</a>
+
+        <h1 id="project_title">ChemTreeMap</h1>
+        <h2 id="project_tagline">Hierachical tree visualization of a molecule library</h2>
+
+        <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/ajing/ChemTreeMap/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/ajing/ChemTreeMap/tarball/master">Download this project as a tar.gz file</a>
+        </section>
+    </header>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+        <p><img src="https://github.com/ajing/ChemisTree/wiki/images/all.jpg" alt="ChemTreeMap screenshot"></p>
+
+        <h3><a name="intro">Introduction</a></h3>
+
+        <p><em>ChemTreeMap</em> is an <code>Open Source</code> interactive application for visualizing chemical similarity/diversity in a molecule library.</p>
+        <p>For detailed documentation, please check <a href="http://chemtreemap.readthedocs.org/en/latest/">ChemTreeMap</a> on <a href="http://readthedocs.org/">readthedocs</a></p>
+
+        <h3><a name="install">Installation</a></h3>
+        <p>ChemTreeMap contains two parts: frontend (JavaScript) and backend (Python). Users can install ChemTreeMap backend as python package. We support two ways to install ChemTreeMap.</p>
+        <ul>
+            <li><strong>Docker installation</strong>: Run ChemTreeMap in a <a href="https://www.docker.com/">Docker</a> container with a reproducible environment. </li>
+            <li><strong> Source code installation</strong>: Several packages are needed to fully install ChemTreeMap. Please check this <a href="https://github.com/ajing/ChemTreeMap/wiki/Souce-code-installation">wiki page</a> for more details.</li>
+        </ul>
+
+        <h3><a name="docker">Docker installation (fastest install)</a></h3>
+        <p>Docker is a system which can be used to build self contained versions of a Linux operating system running on your machine. When you install and run ChemTreeMap via Docker, it completely isolates the installation from pre-existing packages on your machine. </p>
+        <p>Please follow the following steps to install ChemTreeMap Docker container. (Superuser privilege may be necessary for the following commands)</p>
+        <p>See <a target="_blank" href="http://docs.docker.com/engine/installation/" rel="noreferrer">installing Docker</a> for instructions on installing Docker on your machine.</p>
+        <p>After Docker is installed, pull ChemTreeMap image as follows.</p>
+        <code>$ docker pull ajing/chemtreemap</code>
+        <p>Then, launch a Docker container with the binary image as follows.</p>
+        <code>$ docker run -t -i -p 8000:8000 ajing/chemtreemap /bin/bash</code>
+        <p>The example code is in /examples folder. Please read and run the examples.py file to see how it works with example input files.</p>
+        <code>$ cd examples</code><br>
+        <code>$ python examples.py</code>
+        <p>Then, open the following URL in your Chrome/Firefox.</p>
+        <p><a href="http://localhost:8000/dist/#/aff">http://localhost:8000/dist/#/aff</a></p>
+        <p>'aff' may be changed to your input filename without file extension.</p>
+        <p>If you have your own molecule files, please prepare your input file following the same tab delimited format as example files (e.g. aff.txt, factorxa.txt, etc.). The following command can be used to import files into Docker container.</p>
+        <code>docker cp foo.txt ajing/chemtreemap:/examples/foo.txt</code>
+        <p>Please change examples.py (variables input_file, out_file) accordingly and run the examples.py.</p>
+
+
+        <h3><a name="feat">Features</a></h3>
+
+        <ul>
+            <li>Circle border, size, and color can be mapped to chosen properties in the data.</li>
+            <li>Dragging and zooming.</li>
+            <li>Searching by ligand ID (PubChem ID or BindingDB ID).</li>
+        </ul>
+
+        <h3><a name="use">What can you do with ChemTreeMap.</a></h3>
+
+        <ul>
+            <li>Comparing multiple molecular libraries</li>
+            <li>QSAR studies</li>
+            <li>Organize molecule related data</li>
+        </ul>
+
+        <h3><a name="tips">Some tips about using ChemTreeMap.</a></h3>
+        <ul>
+            <li>We recommend Chrome or Firefox as your browser</li>
+            <li>You can use the setting to activate the force directed graph</li>
+            <li>After activating force directed graph, the location for each node will be adjusted.</li>
+            <li>For more than 3000 nodes, the force directed graph may be slow.</li>
+            <li>You can drag the whole tree by dragging the white space, and zoom with middle mouse button. </li>
+        </ul>
+
+        <h3><a name="example">Examples to use ChemTreeMap.</a></h3>
+        <p>Examples for the overlap between large datasets (Please use Chrome or Firefox for large datasets)</p>
+        <ul>
+            <li><a href="http://ec2-52-40-28-210.us-west-2.compute.amazonaws.com:8000/Large/CHEMBANK.html">The overlap between ChEMBL and ChemBank.</a></li>
+            <li><a href="http://ec2-52-40-28-210.us-west-2.compute.amazonaws.com:8000/Large/BINDINGDB.html">The overlap between ChEMBL and BindingDB.</a></li>
+        </ul>
+        <p>Examples for SAR analysis</p>
+        <ul>
+            <li>A simple example for 107 compounds targeting <a href="chemtreemap.html#/aff">Chk1 kinase</a> from <a href="http://www.csardock.org">CSAR</a>. You may not find the external links for BindingDB or PubChem, because the data source doesn't have those external information.</li>
+            <li><a href="chemtreemap.html#/factorxa">factor Xa</a> with 2161 molecules. </li>
+            <li><a href="chemtreemap.html#/cdk2">cdk2</a> with 1923 molecules. </li>
+            <li><a href="chemtreemap.html#/map_p38">MAP P38</a> with 5139 molecules. </li>
+            <li><a href="chemtreemap.html#/cyto">cytochrome P450</a> with 6837 molecules. The input file is about 3.2MB, which may take a few seconds to load into browser. </li>
+        </ul>
+
+        <h3><a name="author">Who am I?</a></h3>
+
+        <p> I am <a href="https://github.com/ajing" class="user-mention">@ajing</a>, a Bioinformatics PhD student from University of Michigan. I am working under the supervision of <a href="https://pharmacy.umich.edu/people/carlsonh">Dr. Heather Carlson's lab</a>. If you have any question about the project or find any bug, please check out the <a href="https://github.com/ajing/ChemTreeMap/wiki/Souce-code-installation">Wiki</a> first, or contact <a href="mailto:ajing@umich.edu">ajing</a>.</p>
+
+
+        <h3><a name="tech">Technologies</a></h3>
+
+        <ul>
+            <li>
+                <a href="http://jquery.com/">jQuery</a> for client side effects.</li>
+            <li>
+                <a href="https://angularjs.org/">AngularJS</a> for organizing the client side.</li>
+            <li>
+                <a href="http://d3js.org/">D3</a> for data visualization.</li>
+            <li>
+                I have used some codes from <a href="https://github.com/richlewis42/synergy-maps">synergy-maps</a></li>
+        </ul>
+
+        <h3><a name="cite">Citation</a></h3>
+
+        <p>If you use our tool, please cite:</p>
+        <p>ChemTreeMap: An Interactive Map of Biochemical Similarity in Molecular Datasets. submitted to Bioinformatics</p>
+    </section>
+</div>
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+    <footer class="inner">
+        <p class="copyright">ChemTreeMap maintained by <a href="https://github.com/ajing">ajing</a></p>
+        <p>Published with <a href="http://pages.github.com/">GitHub Pages</a></p>
+    </footer>
+</div>
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-52070275-1");
+        pageTracker._trackPageview();
+    } catch(err) {}
+</script>
+
+</body></html>
