@@ -41,12 +41,12 @@ def ConvertToFloat(line, colnam_list):
 
 def ParseLigandFile(infile, identifier):
     """
-    Parse ligand file to an dictionary, key is ligand id and valud is a dictionary with properties and property values.
+    Parse ligand file to an dictionary, key is ligand id and value is a dictionary with properties and property values.
     This program will guess the type for each column based on the first row. The program will assume there is only two types of data: number and string.
 
     :param infile: input filename
     :param identifier: the identifier column name
-    :return: a dictionray
+    :return: a dictionary
     """
     '''
 
@@ -97,7 +97,7 @@ def WriteAsPHYLIPFormat(smile_list, fp_func):
 
     :param smile_list: a list of smiles string
     :param fp_func: the fingerprint function
-    :return: tje filename with PHYLIP format (input for rapidnj)
+    :return: the filename with PHYLIP format (input for rapidnj)
     """
     fp_list = ToFPObj(smile_list, fp_func)
     print "finish parsing smile list"
@@ -128,9 +128,9 @@ def ToFPObj(alist, fp_func):
     """
     A list of SMILE string object with (id, smiles) to a list of fingerprint object with (id, fp_obj)
 
-    :param alist: a list of two element list, the first item is ligand name, the second is smile
+    :param alist: two element list, the first item is ligand name, the second is smile
     :param fp_func: the fingerprint function
-    :return: a new list of two element list, with first item as ligand name, second item as a fingerprint object.
+    :return: two element list, with first item as ligand name, second item as a fingerprint object.
     """
     newlist = []
     for each in alist:

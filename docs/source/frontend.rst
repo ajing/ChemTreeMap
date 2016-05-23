@@ -1,16 +1,17 @@
 Frontend
 ========
 
-The frontend, written in JavaScript, requires in modern (HTML5 enabled) web browsers.
+The frontend, written in JavaScript, requires modern (HTML5 enabled) web browsers.
 It is an `angularjs`_ app, which was scaffolded using `yeoman`_, and `angular`_ generator.
-We uses the `D3.js`_ library to render images and the force directed graphs.
+It uses the `D3.js`_ library to render images and the force directed graphs.
 
 Dependencies
 ------------
 
-The project requires the `node`_ runtime to build the app, `Grunt`_ to run tasks,
-and the package managers `npm`_ and `bower`_ to install development and production
-dependencies respectively.
+The project requires the `node`_ (https://nodejs.org/en/) runtime to build the app,
+`Grunt`_ (http://gruntjs.com/) to run tasks,
+and the package managers `npm`_ (https://www.npmjs.com/) and `bower`_ (http://bower.io/)
+to install development and production dependencies respectively.
 
 Building
 --------

@@ -6,6 +6,7 @@ representation. The API is detailed in :doc:`modules`.
 
 Installation
 ------------
+First, install rdkit (http://www.rdkit.org/), ete (http://etetoolkit.org/), and graphviz (http://www.graphviz.org).
 
 Switch to the backend directory and run the `setup.py` script.
 
@@ -28,7 +29,7 @@ The script can be run using:
 
     $ python examples.py
 
-The server will server the output in the end of ``examples.py``
+The server will serve the output upon running ``examples.py``
 
 Data structure
 ^^^^^^^^^^^^^^
@@ -41,16 +42,15 @@ provided with column name Canonical_Smiles, and the identifier column is set
 as a parameter of TreeBuild object.  The individual activities and properties
 are supplied as extra columns.
 
-A sample of a compound dataset would be:
+A sample of a compound dataset would be delimited by tabs:
 
 .. code-block:: bash
 
-    $ head aff.txt
-    ligandid        Canonical_Smiles        pIC50
-    Chk1N144        COc1cc2Cc3c(n[nH]c3c4ccc(nc4)c5ccc(O)cc5)c2cc1OC        9.52432881
-    Chk1N145        COc1cc2Cc3c(n[nH]c3c4ccc(nc4)C#N)c2cc1OC        9.09151498
-    Chk1N40 OC1CCCN(C1)c2ccc(Br)cc2NC(=O)Nc3cnc(cn3)C#N     8.86646109
-    Chk1N115        COc1c(OC)cc2c(Cc3c2n[nH]c3c4ccc(c5ccc(O)cc5)cc4)c1      8.79588002
+    Canonical_Smiles        ligandid        pIC50
+    COc1cc2Cc3c(n[nH]c3c4ccc(nc4)c5ccc(O)cc5)c2cc1OC        Chk1N144        9.52432881
+    COc1cc2Cc3c(n[nH]c3c4ccc(nc4)C#N)c2cc1OC        Chk1N145        9.09151498
+    OC1CCCN(C1)c2ccc(Br)cc2NC(=O)Nc3cnc(cn3)C#N     Chk1N40 8.86646109
+    COc1c(OC)cc2c(Cc3c2n[nH]c3c4ccc(c5ccc(O)cc5)cc4)c1      Chk1N115        8.79588002
     ... ... ...
 
 Showing 4 compounds, with pIC50 as activity.
@@ -61,8 +61,8 @@ Running the Script and Viewing the Tree
 
 The script will use the default fingerprint (ECFP and AtomPair) and
 caculated properties (pIC50, SlogP and ligand efficiency) to generate
-the ChemTreeMap data, and produce the JSON as an output file, specified
-in out_file parameter of TreeBuild object.
+the ChemTreeMap data, and produce JSON output file, specified
+in the out_file parameter of TreeBuild object.
 
 
 .. code-block:: bash
@@ -71,12 +71,12 @@ in out_file parameter of TreeBuild object.
     ... ... ...
 
 The generated data will be copied to the data directory of the :doc:`frontend` and
-view the data in browser.
+viewed in a browser.
 
 Then open the browser Chrome/Firefox with the `link
-<http://localhost:8000/dist/index.html#/aff>`_.
+<http://localhost:8000/dist/index.html#/aff>`_ (http://localhost:8000/dist/index.html#/aff).
 
-`aff` need to be changed to the filename of your input file without file extention.
+`aff` needs to be changed to the filename of your input file without file extention.
 
 Please consider looking at ``treebuild/examples/examples.py`` where there are five examples
 using the :doc:`declarative API <modules>` for generating the datasets.

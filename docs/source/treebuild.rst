@@ -1,26 +1,8 @@
 treebuild package
 =================
 
-This is the API for the python packages.
-
 Submodules
 ----------
-
-treebuild.generate_ids module
------------------------------
-
-.. automodule:: treebuild.generate_ids
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-treebuild.model module
-----------------------
-
-.. automodule:: treebuild.model
-    :members:
-    :undoc-members:
-    :show-inheritance:
 
 treebuild.tree_build module
 ---------------------------
@@ -42,15 +24,6 @@ treebuild.util module
 ---------------------
 
 .. automodule:: treebuild.util
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: treebuild
     :members:
     :undoc-members:
     :show-inheritance:

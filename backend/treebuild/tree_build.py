@@ -21,15 +21,16 @@ from .model import IMG_DIR, SMILE_COLUMNNAME, RAPIDNJ_COMMAND, FILE_FORMAT, TMP_
 
 class TreeBuild:
     """
-    There are a few assumptions for the input file:
-        1. potency unit is nM
+    There are assumptions for the data format of the input file.
+    It is very important to understand these assumptions:
+        1. potency (e.g. IC50/Ka/Ki) unit is nM
         2. the file must have a id column, you can set the column name with id_column
         3. the file must have a SMILES column, with 'Canonical_Smiles' as column name
-        4. the file must have at least one activity column.
+        4. the file must have at least one potency column (IC50/Ka/Ki).
     To build the tree
         1. the identity column needs to be specified with id_column
-        2. a list of fingerprints and a list of properties need to be specified
-        3. the directories for input and output file are also needed to be specified
+        2. a list of fingerprints and a list of properties need to be specified with rdkit
+        3. the directories for input and output file need to be specified
     """
     def __init__(self, input_file, output_file, id_column, fps, properties):
         """Setting parameters to build the tree.
@@ -58,7 +59,7 @@ class TreeBuild:
         trees = dict()
         for fp in fps:
             assert isinstance(fp, FingerPrintType)
-            trees[fp.name] = self.build_single_tree(lig_dict, fp)
+            trees[fp.name] = self._build_single_tree(lig_dict, fp)
         metadata = dict()
         metadata["activityTypes"] = [act.to_dict() for act in activities]
         metadata["treeTypes"] = [fp.to_dict() for fp in fps]
@@ -79,7 +80,7 @@ class TreeBuild:
         shutil.rmtree(TMP_FOLDER)
 
 
-    def build_single_tree(self, lig_dict, fp):
+    def _build_single_tree(self, lig_dict, fp):
         """
         Build a single tree with fingerprint function
 

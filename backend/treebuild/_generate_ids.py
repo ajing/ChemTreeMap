@@ -92,6 +92,6 @@ class GenerateIDs:
                 #line["CHEBI"] = self.get_chebiid_from_bdid(line["BindingDB"])
                 writer.writerow(line)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import sys
     GenerateIDs(sys.argv[1], sys.argv[2])

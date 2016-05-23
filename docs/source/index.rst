@@ -16,12 +16,11 @@ Contents
    installation
    frontend
    backend
+
+Modules
+========
+
+.. toctree::
+   :maxdepth: 4
+
    modules
-   documentation
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

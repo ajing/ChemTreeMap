@@ -19,19 +19,25 @@ import SimpleHTTPServer
 import SocketServer
 
 # directory for chemtree
-CHEMTREE_DIR = "../../"
+CHEMTREE_DIR = "../../../"
 
-# affinity data with chk1 kinase
-input_file = "./aff.txt"
+
+input_file = "./.txt"
 out_file = "./aff.json"
 properties = {"activities": [pic50], "properties": DEFAULT_PROPERTY_TYPES, "ext_links": []}
 treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FINGERPRINT_TYPES, properties=properties)
 
+# affinity data with chk1 kinase
+#input_file = "./aff.txt"
+#out_file = "./aff.json"
+#properties = {"activities": [pic50], "properties": DEFAULT_PROPERTY_TYPES, "ext_links": []}
+#treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FINGERPRINT_TYPES, properties=properties)
+
 # # factor xa
-# input_file = "./factorxa.txt"
-# out_file = "./factorxa.json"
-# properties = {"activities": DEFAULT_ACTIVITY_TYPES, "properties": DEFAULT_PROPERTY_TYPES, "ext_links": DEFAULT_EXTERNAL}
-# treebuild.TreeBuild(input_file, out_file, id_column ="BindingDB", fps = DEFAULT_FINGERPRINT_TYPES, properties=properties)
+#input_file = "./factorxa.txt"
+#out_file = "./factorxa.json"
+#properties = {"activities": DEFAULT_ACTIVITY_TYPES, "properties": DEFAULT_PROPERTY_TYPES, "ext_links": DEFAULT_EXTERNAL}
+#treebuild.TreeBuild(input_file, out_file, id_column ="BindingDB", fps = DEFAULT_FINGERPRINT_TYPES, properties=properties)
 #
 # # cdk2
 # input_file = "./cdk2.txt"
