@@ -81,6 +81,6 @@ httpd = SocketServer.TCPServer(("", PORT), Handler)
 
 print "Serving at port", PORT
 print "Please open the following link in your browser:"
-print "localhost:8000/" + out_file.split("/")[-1].split(".")[0]
+print "localhost:8000/dist/#/" + out_file.split("/")[-1].split(".")[0]
 
 httpd.serve_forever()
