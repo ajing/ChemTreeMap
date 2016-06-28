@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg:svg version="1.1" baseProfile="full"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve" width="300px" height="300px" >
+<svg:line x1="35.25" y1="166.56" x2="35.25" y2="133.44" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="43.04" y1="163.25" x2="43.04" y2="136.75" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="63.94" y1="183.13" x2="35.25" y2="166.56" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="35.25" y1="133.44" x2="63.94" y2="116.87" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="63.94" y1="116.87" x2="92.63" y2="133.44" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="62.91" y1="125.28" x2="85.86" y2="138.53" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="92.63" y1="133.44" x2="92.63" y2="166.56" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="121.31" y1="116.87" x2="92.63" y2="133.44" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="92.63" y1="166.56" x2="63.94" y2="183.13" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="85.86" y1="161.47" x2="62.91" y2="174.72" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="92.63" y1="166.56" x2="121.31" y2="183.13" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="117.42" y1="183.13" x2="117.42" y2="199.69" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="117.42" y1="199.69" x2="117.42" y2="216.25" stroke="rgb(255,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="125.21" y1="183.13" x2="125.21" y2="199.69" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="125.21" y1="199.69" x2="125.21" y2="216.25" stroke="rgb(255,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="121.31" y1="183.13" x2="150.00" y2="166.56" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="117.27,222.49 125.36,222.49 125.36,210.02 117.27,210.02 117.27,222.49"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="10.39" fill="rgb(255,0,0)" x="117.27" y="222.49">O</svg:text>
+</svg:g><svg:line x1="150.00" y1="166.56" x2="150.00" y2="133.44" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="142.21" y1="163.25" x2="142.21" y2="136.75" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="150.00" y1="166.56" x2="164.34" y2="174.84" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="164.34" y1="174.84" x2="178.69" y2="183.13" stroke="rgb(204,204,0)" stroke-width="1"></svg:line>
+<svg:line x1="150.00" y1="133.44" x2="121.31" y2="116.87" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="150.00" y1="133.44" x2="164.34" y2="125.16" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="164.34" y1="125.16" x2="178.69" y2="116.87" stroke="rgb(204,204,0)" stroke-width="1"></svg:line>
+<svg:line x1="125.21" y1="116.87" x2="125.21" y2="100.31" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="125.21" y1="100.31" x2="125.21" y2="83.75" stroke="rgb(255,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="117.42" y1="116.87" x2="117.42" y2="100.31" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="117.42" y1="100.31" x2="117.42" y2="83.75" stroke="rgb(255,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="117.27,89.98 125.36,89.98 125.36,77.51 117.27,77.51 117.27,89.98"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="10.39" fill="rgb(255,0,0)" x="117.27" y="89.98">O</svg:text>
+</svg:g><svg:line x1="178.69" y1="116.87" x2="193.03" y2="125.16" stroke="rgb(204,204,0)" stroke-width="1"></svg:line>
+<svg:line x1="193.03" y1="125.16" x2="207.38" y2="133.44" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="175.22,123.11 182.15,123.11 182.15,110.64 175.22,110.64 175.22,123.11"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="10.39" fill="rgb(204,204,0)" x="175.22" y="123.11">S</svg:text>
+</svg:g><svg:line x1="207.38" y1="133.44" x2="236.06" y2="116.87" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="236.06" y1="116.87" x2="250.41" y2="125.16" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="250.41" y1="125.16" x2="264.75" y2="133.44" stroke="rgb(255,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="256.96,139.67 272.54,139.67 272.54,127.20 256.96,127.20 256.96,139.67"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="10.39" fill="rgb(255,0,0)" x="256.96" y="139.67">OH</svg:text>
+</svg:g><svg:line x1="178.69" y1="183.13" x2="193.03" y2="174.84" stroke="rgb(204,204,0)" stroke-width="1"></svg:line>
+<svg:line x1="193.03" y1="174.84" x2="207.38" y2="166.56" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="175.22,189.36 182.15,189.36 182.15,176.89 175.22,176.89 175.22,189.36"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="10.39" fill="rgb(204,204,0)" x="175.22" y="189.36">S</svg:text>
+</svg:g><svg:line x1="207.38" y1="166.56" x2="236.06" y2="183.13" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="236.06" y1="183.13" x2="250.41" y2="174.84" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="250.41" y1="174.84" x2="264.75" y2="166.56" stroke="rgb(255,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="256.96,172.80 272.54,172.80 272.54,160.33 256.96,160.33 256.96,172.80"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="10.39" fill="rgb(255,0,0)" x="256.96" y="172.80">OH</svg:text>
+</svg:g></svg:svg>
