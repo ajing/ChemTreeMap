@@ -1,1 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300pt" height="300pt" viewBox="0 0 300 300"><defs><symbol overflow="visible"><path d="M.547 1.938V-7.75h5.5v9.688zm.625-.61h4.266v-8.47H1.171zm0 0"/></symbol><symbol overflow="visible" id="a"><path d="M1.078-8.016h1.47l3.546 6.704v-6.704h1.062V0H5.688L2.124-6.703V0H1.078zm0 0"/></symbol><symbol overflow="visible" id="b"><path d="M1.078-8.016h1.094v3.282H6.11v-3.282h1.077V0H6.11v-3.813H2.17V0H1.078zm0 0"/></symbol></defs><g><path fill="#fff" d="M0 0h300v300H0z"/><path d="M264.75 120.738l-11.773 22.93M252.977 143.668l-25.747 1.266M227.23 144.934l-11.773 22.93M215.457 167.863l-25.746 1.266M189.71 169.13l-11.773 22.93M189.71 169.13l-13.968-21.66M177.938 192.06l-25.743 1.264M175.742 147.47l-12.87.632" stroke-width="1.2" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M162.87 148.102l-12.87.632M150 148.734l-6.984-10.832" stroke-width="1.2" stroke="#00f" stroke-miterlimit="10" fill="none"/><path d="M143.016 137.902l-6.985-10.832" stroke-width="1.2" stroke="#000" stroke-miterlimit="10" fill="none"/><path d="M142 142.234h17v13h-17zm0 0" fill="#fff"/><g fill="#00f"><use xlink:href="#a" x="142" y="152.136"/><use xlink:href="#b" x="149.983" y="152.136"/></g><path d="M136.03 127.07l-25.74 1.27M110.29 128.34l-13.97-21.664M110.29 128.34L98.51 151.266M96.32 106.676l-25.746 1.265M98.512 151.266L72.77 152.53M72.77 152.53l-11.778 22.93M60.992 175.46l-25.742 1.267" stroke-width="1.2" stroke="#000" stroke-miterlimit="10" fill="none"/></g></svg>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg:svg version="1.1" baseProfile="full"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve" width="300px" height="300px" >
+<svg:line x1="264.75" y1="120.74" x2="252.97" y2="143.67" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="252.97" y1="143.67" x2="227.23" y2="144.93" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="227.23" y1="144.93" x2="215.46" y2="167.86" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="215.46" y1="167.86" x2="189.71" y2="169.13" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="189.71" y1="169.13" x2="177.94" y2="192.06" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="189.71" y1="169.13" x2="175.74" y2="147.47" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="177.94" y1="192.06" x2="152.19" y2="193.32" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="175.74" y1="147.47" x2="162.87" y2="148.10" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="162.87" y1="148.10" x2="150.00" y2="148.73" stroke="rgb(0,0,255)" stroke-width="1"></svg:line>
+<svg:line x1="150.00" y1="148.73" x2="143.02" y2="137.90" stroke="rgb(0,0,255)" stroke-width="1"></svg:line>
+<svg:line x1="143.02" y1="137.90" x2="136.03" y2="127.07" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:polygon fill="rgb(255,255,255)" stroke="none" stroke-width="0" points="144.16,153.59 155.84,153.59 155.84,143.88 144.16,143.88 144.16,153.59"></svg:polygon>
+<svg:g>  <svg:text font-family="helvetica"   font-size="8.09" fill="rgb(0,0,255)" x="144.16" y="153.59">NH</svg:text>
+</svg:g><svg:line x1="136.03" y1="127.07" x2="110.29" y2="128.34" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="110.29" y1="128.34" x2="96.32" y2="106.68" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="110.29" y1="128.34" x2="98.51" y2="151.27" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="96.32" y1="106.68" x2="70.58" y2="107.94" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="98.51" y1="151.27" x2="72.77" y2="152.53" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="72.77" y1="152.53" x2="60.99" y2="175.46" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+<svg:line x1="60.99" y1="175.46" x2="35.25" y2="176.73" stroke="rgb(0,0,0)" stroke-width="1"></svg:line>
+</svg:svg>
