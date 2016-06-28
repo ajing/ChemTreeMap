@@ -22,16 +22,11 @@ import SocketServer
 CHEMTREE_DIR = "../../../"
 
 
-input_file = "./.txt"
+# affinity data with chk1 kinase
+input_file = "./aff.txt"
 out_file = "./aff.json"
 properties = {"activities": [pic50], "properties": DEFAULT_PROPERTY_TYPES, "ext_links": []}
 treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FINGERPRINT_TYPES, properties=properties)
-
-# affinity data with chk1 kinase
-#input_file = "./aff.txt"
-#out_file = "./aff.json"
-#properties = {"activities": [pic50], "properties": DEFAULT_PROPERTY_TYPES, "ext_links": []}
-#treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FINGERPRINT_TYPES, properties=properties)
 
 # # factor xa
 #input_file = "./factorxa.txt"
