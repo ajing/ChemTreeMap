@@ -244,13 +244,13 @@ angular.module('frontendApp')
         .attr('x', '80')
         .attr('y', '100')
         .append('g')
-        .attr('transform', 'translate(0, 10)').classed('colorbarA',true);// color bar Activyty
+        .attr('transform', 'translate(0, 11)').classed('colorbarA',true);// color bar Activyty
 
       var barB = d3.selectAll('.viz').append('g').append('svg')
         .attr('x', '20')
         .attr('y', '100')
         .append('g')
-        .attr('transform', 'translate(0, 10)').classed('barB', true);
+        .attr('transform', 'translate(0, 11)').classed('barB', true);
 
       barB.append('text').classed('barBtext', true);
       barB.append('g')
@@ -315,7 +315,7 @@ angular.module('frontendApp')
 
       d3.select('.colorbarA')
         .append('g')
-        .attr('transform', 'translate(0, 10)').call(colorbarA);
+        .attr('transform', 'translate(0, 11)').call(colorbarA);
 
 
       function changeBorderColorBar(nodes) {
