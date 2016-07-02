@@ -55,12 +55,12 @@ treebuild.TreeBuild(input_file, out_file, id_column="ligandid", fps=DEFAULT_FING
 # # move the image directory to frontend
 for fname in ["./aff.json", "./factorxa.json", "./cdk2.json", "./map_p38.json", "./cyto.json"]:
     try:
-        shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/app/data/"))
+        shutil.copy(fname, os.path.join(CHEMTREE_DIR, "frontend/dist/data/"))
     except:
         continue
-if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/app/images")):
-    shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/app/images"))
-copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/app/images"))
+if os.path.exists(os.path.join(CHEMTREE_DIR, "frontend/dist/images")):
+    shutil.rmtree(os.path.join(CHEMTREE_DIR, "frontend/dist/images"))
+copy_tree("./images", os.path.join(CHEMTREE_DIR, "frontend/dist/images"))
 
 ##
 # setup the server
