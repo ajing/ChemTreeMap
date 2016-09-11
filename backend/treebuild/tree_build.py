@@ -210,7 +210,4 @@ class TreeBuild:
             smile = ligand_dict[key][ SMILE_COLUMNNAME ]
             filename = ligand_dict[ key ][ "orig_id" ]
             mol = Chem.MolFromSmiles(smile)
-            try:
-                MolToFile( mol, os.path.join(relative_dir, '{}.svg'.format(filename)) )
-            except:
-                raise Exception("cannot write to file: " + os.path.join(relative_dir, '{}.svg'.format(filename)))
+            MolToFile( mol, os.path.join(relative_dir, '{}.svg'.format(filename)) )
