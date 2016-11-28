@@ -27,7 +27,7 @@ def SMILE2Matrix(smile_list):
         cid = id_smile[0]
         smile = id_smile[1]
         mol = Chem.MolFromSmiles(smile)
-        return [cid, ]
+        return [cid, AllChem.GetMorganFingerprintAsBitVect(mol, 3)]
 
     fps = map(ToECFP, smile_list)
 
@@ -35,8 +35,8 @@ def SMILE2Matrix(smile_list):
     ids = []
     for fp in fps:
       arr = numpy.zeros((1,))
-      fp = DataStructs.FoldFingerprint(fp[1], 4)
-      DataStructs.ConvertToNumpyArray(fp, arr)
+      vfp = DataStructs.FoldFingerprint(fp[1], 4)
+      DataStructs.ConvertToNumpyArray(vfp, arr)
       ids.append(fp[0])
       np_fps.append(arr)
 
