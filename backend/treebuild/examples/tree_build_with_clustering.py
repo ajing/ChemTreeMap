@@ -37,7 +37,7 @@ def SMILE2Matrix(smile_list):
 
 
 
-def LigandClusteringByClass(lig_dict, class_col = "allosteric", num_clusters = {"allo": 5, "comp" : 3}):
+def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Canonical_Smiles", num_clusters = {"allo": 5, "comp" : 3}):
     """
     Ligand clustering by ligand class
 
@@ -45,7 +45,7 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", num_clusters = {
     :param class_col: the column name with ligand class
     :return: new lig_dict with cluster size
     """
-    smile_list = [ [lig_name, lig_dict[lig_name][SMILE_COLUMNNAME]] for lig_name in lig_dict.keys()]
+    smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys()]
 
     # to fp matrix
     fp_mat = SMILE2Matrix(smile_list)
