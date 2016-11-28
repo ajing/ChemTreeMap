@@ -21,19 +21,23 @@ from rdkit import DataStructs
 
 def SMILE2Matrix(smile_list):
     # To ECFP6
-    def ToECFP(smile):
+    def ToECFP(id_smile):
+        cid = id_smile[0]
+        smile = id_smile[1]
         mol = Chem.MolFromSmiles(smile)
-        return AllChem.GetMorganFingerprint(mol, 3)
+        return [cid, AllChem.GetMorganFingerprint(mol, 3)]
 
     fps = map(ToECFP, smile_list)
 
     np_fps = []
+    ids = []
     for fp in fps:
       arr = numpy.zeros((1,))
-      DataStructs.ConvertToNumpyArray(fp, arr)
+      DataStructs.ConvertToNumpyArray(fp[1], arr)
+      ids.append(fp[0])
       np_fps.append(arr)
 
-    print np_fps
+    return  ids, np_fps
 
 
 
@@ -47,8 +51,10 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
     """
     smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys()]
 
+
     # to fp matrix
-    fp_mat = SMILE2Matrix(smile_list)
+    ids, fp_mat = SMILE2Matrix(smile_list)
+    print ids
     print fp_mat.shape
     print fp_mat
     return fp_mat
