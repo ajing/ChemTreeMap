@@ -19,6 +19,8 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
 
+import numpy
+
 def SMILE2Matrix(smile_list):
     # To ECFP6
     def ToECFP(id_smile):
@@ -72,8 +74,6 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
 if __name__ == "__main__":
     input_file = "allo.txt"
     lig_dict = TreeBuild.parse_lig_file(input_file, "ligandid")
-
-    print lig_dict
 
     LigandClusteringByClass(lig_dict)
 
