@@ -45,7 +45,7 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", num_clusters = {
     :param class_col: the column name with ligand class
     :return: new lig_dict with cluster size
     """
-    smile_list = [ [lig_name, liganddict[lig_name][SMILE_COLUMNNAME]] for lig_name in liganddict.keys()]
+    smile_list = [ [lig_name, lig_dict[lig_name][SMILE_COLUMNNAME]] for lig_name in lig_dict.keys()]
 
     # to fp matrix
     fp_mat = SMILE2Matrix(smile_list)
@@ -66,6 +66,8 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", num_clusters = {
 if __name__ == "__main__":
     input_file = "allo.txt"
     lig_dict = TreeBuild.parse_lig_file(input_file, "ligandid")
+
+    print lig_dict
 
     LigandClusteringByClass(lig_dict)
 
