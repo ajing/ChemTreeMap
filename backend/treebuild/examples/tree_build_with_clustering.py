@@ -27,7 +27,7 @@ def SMILE2Matrix(smile_list):
         cid = id_smile[0]
         smile = id_smile[1]
         mol = Chem.MolFromSmiles(smile)
-        return [cid, AllChem.GetMorganFingerprintAsBitVect(mol, 3)]
+        return [cid, AllChem.GetMorganFingerprintAsBitVect(mol, 3, nBits=1024)]
 
     fps = map(ToECFP, smile_list)
 
@@ -44,26 +44,47 @@ def SMILE2Matrix(smile_list):
 
 
 
-def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Canonical_Smiles", num_clusters = {"allo": 5, "comp" : 3}):
+def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Canonical_Smiles", num_clusters = {"allosteric": 5, "competitive" : 3}):
     """
     Ligand clustering by ligand class
 
     :param lig_dict: all ligand information
     :param class_col: the column name with ligand class
-    :return: new lig_dict with cluster size
+    :param smile_col: the column name with SMILE string
+    :param num_clusters: the number of clusters for each class
+    :return: new lig_dict with center only and cluster size
     """
-    smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys()]
+    all_classes = set([lig_dict[lig_name][class_col] for lig_name in lig_dict.keys()])
+    lig_dict_center = dict()
+
+    for e_class in num_clusters.keys():
+        smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys() if lig_dict[lig_name][class_col] == e_class]
+        ids, fp_mat = SMILE2Matrix(smile_list)
+        kcluster = KMeans(n_clusters = num_clusters[e_class]).fit(fp_mat)
+        print(dir(kcluster.cluster_centers_))
+        print(kcluster.labels_)
+
+        for c_idx in range(kcluster.cluster_centers_.shape[0]):
+            min_dist = float("inf")
+            dist = (fp_mat - kcluster.cluster_centers_[c_idx,])**2
+            dist = np.sum(dist, axis=1)
+            m_idx = np.argmin(dist)
+            lig_dict_center[ids[m_idx]] = lig_dict[ids[m_idx]]
+            lig_dict_center[ids[m_idx]]["cluster_size"] = sum(kcluster.labels_ == c_idx)
+
+    return lig_dict_center
+
+
+
+
+
+
+
+
 
 
     # to fp matrix
-    ids, fp_mat = SMILE2Matrix(smile_list)
-    print ids
-    print fp_mat.shape
-    print fp_mat
-    return fp_mat
-
     # KMean clustering
-    # allo_c <- KMeans(n_clusters = num_clusters["allo"]).fit()
     #
     # print "finish parsing smile list"
     # list_len = len(fp_list)
