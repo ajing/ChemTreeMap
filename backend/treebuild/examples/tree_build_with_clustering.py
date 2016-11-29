@@ -19,7 +19,7 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
 
-import numpy
+import numpy as np
 
 def SMILE2Matrix(smile_list):
     # To ECFP6
@@ -34,7 +34,7 @@ def SMILE2Matrix(smile_list):
     np_fps = []
     ids = []
     for fp in fps:
-      arr = numpy.zeros((1,))
+      arr = np.zeros((1,))
       vfp = DataStructs.FoldFingerprint(fp[1], 4)
       DataStructs.ConvertToNumpyArray(vfp, arr)
       ids.append(fp[0])
@@ -61,14 +61,16 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
         smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys() if lig_dict[lig_name][class_col] == e_class]
         ids, fp_mat = SMILE2Matrix(smile_list)
         kcluster = KMeans(n_clusters = num_clusters[e_class]).fit(fp_mat)
-        print(dir(kcluster.cluster_centers_))
-        print(kcluster.labels_)
+        print "cluster center:", dir(kcluster.cluster_centers_)
+        print "cluster labels:", kcluster.labels_
 
         for c_idx in range(kcluster.cluster_centers_.shape[0]):
             min_dist = float("inf")
             dist = (fp_mat - kcluster.cluster_centers_[c_idx,])**2
             dist = np.sum(dist, axis=1)
+            print "dist:", dist
             m_idx = np.argmin(dist)
+            print "m_idx", m_idx
             lig_dict_center[ids[m_idx]] = lig_dict[ids[m_idx]]
             lig_dict_center[ids[m_idx]]["cluster_size"] = sum(kcluster.labels_ == c_idx)
 
