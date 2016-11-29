@@ -42,8 +42,6 @@ class TreeBuild:
         :param properties: a list of PropertyType
         :return: void, the program will generate input file for the visualization.
         """
-        # initial setting
-        self._FILE_FORMAT = FILE_FORMAT
 
         # creating folders
         if not os.path.exists(TMP_FOLDER):
@@ -54,11 +52,11 @@ class TreeBuild:
         activities = properties["activities"]
         other_properties = properties["properties"]
         ext_links = properties["ext_links"]
-        lig_dict = self.parse_lig_file(input_file, id_column)
+        lig_dict = TreeBuild.parse_lig_file(input_file, id_column)
         trees = dict()
         for fp in fps:
             assert isinstance(fp, FingerPrintType)
-            trees[fp.name] = self._build_single_tree(lig_dict, fp)
+            trees[fp.name] = TreeBuild._build_single_tree(lig_dict, fp)
         metadata = dict()
         metadata["activityTypes"] = [act.to_dict() for act in activities]
         metadata["treeTypes"] = [fp.to_dict() for fp in fps]
@@ -68,18 +66,18 @@ class TreeBuild:
 
         ext_names = [ext["name"] for ext in ext_links]
 
-        comp_info = self.gen_properties(lig_dict, activities, other_properties, ext_names)
+        comp_info = TreeBuild.gen_properties(lig_dict, activities, other_properties, ext_names)
         final_dict = {"metadata": metadata, "trees": trees, "compounds": comp_info}
 
         WriteJSON(final_dict, outfile=output_file, write_type="w")
          # make image file
-        self.make_structures_for_smiles(lig_dict)
+        TreeBuild.make_structures_for_smiles(lig_dict)
 
         # delete tmp folder
         shutil.rmtree(TMP_FOLDER)
 
-
-    def _build_single_tree(self, lig_dict, fp):
+    @staticmethod
+    def _build_single_tree(lig_dict, fp):
         """
         Build a single tree with fingerprint function
 
@@ -87,11 +85,11 @@ class TreeBuild:
         :param fp: fingerprint object
         :return: dot filename
         """
-        distfile = self.gen_dist_file(lig_dict, fp.fp_func)
-        newick_o = self.run_rapidnj(distfile)
-        dot_inf = self.write_dotfile(newick_o)
-        dot_out = self.sfdp_dot(dot_inf, 10)
-        dot_dict = self.dot2dict(dot_out)
+        distfile = TreeBuild.gen_dist_file(lig_dict, fp.fp_func)
+        newick_o = TreeBuild.run_rapidnj(distfile)
+        dot_inf = TreeBuild.write_dotfile(newick_o)
+        dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
+        dot_dict = TreeBuild.dot2dict(dot_out)
         return dot_dict
 
     @staticmethod
@@ -142,7 +140,8 @@ class TreeBuild:
         """
         return WriteDotFile(newick)
 
-    def sfdp_dot(self, dot_infile, size):
+    @staticmethod
+    def sfdp_dot(dot_infile, size):
         """
         run sdfp on dot file
 
