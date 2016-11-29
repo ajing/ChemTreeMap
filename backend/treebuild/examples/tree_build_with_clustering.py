@@ -20,8 +20,8 @@ from rdkit.Chem import AllChem
 from rdkit import DataStructs
 
 import numpy as np
-
 import os
+import json
 
 def SMILE2Matrix(smile_list):
     # To ECFP6
@@ -119,6 +119,6 @@ if __name__ == "__main__":
 
     fileobj = open(output_file, "w")
     fileobj.write(json.dumps(dot_dict))
-    
+
     # make image file
     TreeBuild.make_structures_for_smiles(lig_dict)
