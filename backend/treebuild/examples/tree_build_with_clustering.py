@@ -61,8 +61,8 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
         smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys() if lig_dict[lig_name][class_col] == e_class]
         ids, fp_mat = SMILE2Matrix(smile_list)
         kcluster = KMeans(n_clusters = num_clusters[e_class]).fit(fp_mat)
-        print "cluster center:", dir(kcluster.cluster_centers_)
         print "cluster labels:", kcluster.labels_
+        print "cluster ids:", ids
 
         for c_idx in range(kcluster.cluster_centers_.shape[0]):
             dist = (fp_mat - kcluster.cluster_centers_[c_idx,])**2
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     lig_dict_center = LigandClusteringByClass(lig_dict, num_clusters = {"allosteric": 5, "competitive" : 3})
 
-    distfile = TreeBuild.gen_dist_file(lig_dict, fp.fp_func)
+    distfile = TreeBuild.gen_dist_file(lig_dict, lambda mol: AllChem.GetMorganFingerprint(mol, 3))
     newick_o = TreeBuild.run_rapidnj(distfile)
     dot_inf = TreeBuild.write_dotfile(newick_o)
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
