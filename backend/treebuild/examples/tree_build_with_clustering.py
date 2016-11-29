@@ -90,9 +90,7 @@ def RecursiveUpdate(node, info_dict):
         node.update(info_dict[name])
     else:
         children = [RecursiveUpdate(c, info_dict) for c in node["children"]]
-    if children:
-        result["children"] = children
-    return result
+        node["children"] = children
 
 
 if __name__ == "__main__":
@@ -118,6 +116,7 @@ if __name__ == "__main__":
 
     print dot_dict
     RecursiveUpdate(dot_dict, lig_dict)
+    print "after:", dot_dict
 
     WriteJSON(dot_dict, outfile=output_file, write_type="w")
     # make image file
