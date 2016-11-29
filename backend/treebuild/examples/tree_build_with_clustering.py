@@ -85,7 +85,7 @@ def RecursiveUpdate(node, info_dict):
     :return: a tree dictionary
     '''
     children = None
-    if "children" in node:
+    if not "children" in node:
         name = node["name"]
         node.update(info_dict[name])
     else:
@@ -116,6 +116,7 @@ if __name__ == "__main__":
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
     dot_dict = TreeBuild.dot2dict(dot_out)
 
+    print dot_dict
     RecursiveUpdate(dot_dict, lig_dict)
 
     WriteJSON(dot_dict, outfile=output_file, write_type="w")
