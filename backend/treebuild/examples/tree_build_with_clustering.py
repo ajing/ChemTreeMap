@@ -107,18 +107,18 @@ if __name__ == "__main__":
     if not os.path.exists(IMG_DIR):
         os.makedirs(IMG_DIR)
 
-    distfile = TreeBuild.gen_dist_file(lig_dict, lambda mol: AllChem.GetMorganFingerprint(mol, 3))
+    distfile = TreeBuild.gen_dist_file(lig_dict_center, lambda mol: AllChem.GetMorganFingerprint(mol, 3))
     newick_o = TreeBuild.run_rapidnj(distfile)
     dot_inf = TreeBuild.write_dotfile(newick_o)
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
     dot_dict = TreeBuild.dot2dict(dot_out)
 
     print dot_dict
-    RecursiveUpdate(dot_dict, lig_dict)
+    RecursiveUpdate(dot_dict, lig_dict_center)
     print "after:", dot_dict
 
     fileobj = open(output_file, "w")
     fileobj.write(json.dumps(dot_dict))
 
     # make image file
-    TreeBuild.make_structures_for_smiles(lig_dict)
+    TreeBuild.make_structures_for_smiles(lig_dict_center)
