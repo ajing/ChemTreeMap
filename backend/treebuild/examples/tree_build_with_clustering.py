@@ -85,7 +85,7 @@ def RecursiveUpdate(node, info_dict):
     :return: a tree dictionary
     '''
     children = None
-    if not node["children"]:
+    if "children" in node:
         name = node["name"]
         node.update(info_dict[name])
     else:
