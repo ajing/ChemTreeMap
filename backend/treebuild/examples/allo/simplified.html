@@ -151,14 +151,14 @@ function update() {
       .style("cursor", "pointer");
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.cluster_size) + 1; });
+      .attr("r", function(d) { return d.children ? 1.5 : d.cluster_size; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
       .attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.cluster_size) + 1; })
+      .attr("r", function(d) { return d.children ? 1.5 : d.cluster_size; })
       .style("fill", color)
       .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
   // style originally from css, but for saving function, move to here
