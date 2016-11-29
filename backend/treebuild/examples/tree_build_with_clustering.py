@@ -77,24 +77,19 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
 
     return lig_dict_center
 
-def RecursiveNode2Dict(node, info_dict):
+def RecursiveUpdate(node, info_dict):
     '''
     Recursively populate information to the tree object with info_dict.
     :param node: tree object with all info
     :param info_dict: information for each ligand.
     :return: a tree dictionary
     '''
-    if not node.children:
-        x, y   = map(float, node["position"].split("-"))
-        result = {"name": node.name, "size": 1, "x": x, "y": y, "dist": abs(float(node.dist))}
-        if info_dict:
-            result.update(info_dict[node.name])
+    children = None
+    if not node["children"]:
+        name = node["name"]
+        node.update(info_dict[name])
     else:
-        x, y   = map(float, node["position"].split("-"))
-        result = {"name": node.name, "x": x, "y": y, "dist": abs(float(node.dist))}
-        if info_dict and node.name in info_dict:
-            result.update(info_dict[node.name])
-    children = [RecursiveNode2Dict(c, info_dict) for c in node.children]
+        children = [RecursiveUpdate(c, info_dict) for c in node["children"]]
     if children:
         result["children"] = children
     return result
@@ -121,7 +116,7 @@ if __name__ == "__main__":
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
     dot_dict = TreeBuild.dot2dict(dot_out)
 
-    RecursiveNode2Dict(dot_dict, lig_dict)
+    RecursiveUpdate(dot_dict, lig_dict)
 
     WriteJSON(dot_dict, outfile=output_file, write_type="w")
     # make image file
