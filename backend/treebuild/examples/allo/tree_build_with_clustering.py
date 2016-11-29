@@ -113,6 +113,7 @@ if __name__ == "__main__":
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
     dot_dict = TreeBuild.dot2dict(dot_out)
 
+    print lig_dict
     print dot_dict
     RecursiveUpdate(dot_dict, lig_dict)
     print "after:", dot_dict
