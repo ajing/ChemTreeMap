@@ -77,17 +77,43 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
 
     return lig_dict_center
 
+def RecursiveNode2Dict(node, info_dict):
+    '''
+    Recursively populate information to the tree object with info_dict.
+    :param node: tree object with all info
+    :param info_dict: information for each ligand.
+    :return: a tree dictionary
+    '''
+    if not node.children:
+        x, y   = map(float, node["position"].split("-"))
+        result = {"name": node.name, "size": 1, "x": x, "y": y, "dist": abs(float(node.dist))}
+        if info_dict:
+            result.update(info_dict[node.name])
+    else:
+        x, y   = map(float, node["position"].split("-"))
+        result = {"name": node.name, "x": x, "y": y, "dist": abs(float(node.dist))}
+        if info_dict and node.name in info_dict:
+            result.update(info_dict[node.name])
+    children = [RecursiveNode2Dict(c, info_dict) for c in node.children]
+    if children:
+        result["children"] = children
+    return result
+
 
 if __name__ == "__main__":
     TMP_FOLDER  = "./.tmp"
+    IMG_DIR = "./images/"
 
     input_file = "allo.txt"
+    output_file = "allo.json"
     lig_dict = TreeBuild.parse_lig_file(input_file, "ligandid")
 
     lig_dict_center = LigandClusteringByClass(lig_dict, num_clusters = {"allosteric": 5, "competitive" : 3})
 
     if not os.path.exists(TMP_FOLDER):
         os.makedirs(TMP_FOLDER)
+    if not os.path.exists(IMG_DIR):
+        os.makedirs(IMG_DIR)
 
     distfile = TreeBuild.gen_dist_file(lig_dict, lambda mol: AllChem.GetMorganFingerprint(mol, 3))
     newick_o = TreeBuild.run_rapidnj(distfile)
@@ -95,4 +121,8 @@ if __name__ == "__main__":
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
     dot_dict = TreeBuild.dot2dict(dot_out)
 
-    print dot_dict
+    RecursiveNode2Dict(dot_dict, lig_dict)
+
+    WriteJSON(dot_dict, outfile=output_file, write_type="w")
+    # make image file
+    TreeBuild.make_structures_for_smiles(lig_dict)
