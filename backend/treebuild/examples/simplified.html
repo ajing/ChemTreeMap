@@ -76,7 +76,7 @@ var vis  = graph.append("svg:g");
 
 /** Data section **/
 //d3.json("all_0.9.json", function(json) {
-d3.json("test.json", function(json) {
+d3.json("allo.json", function(json) {
   root = json;
   //root.fixed = true;
   initialize();
@@ -103,13 +103,13 @@ function flatten(root) {
   var nodes = [], i = 0;
 
   function recurse(node) {
-    if (node.children) node.size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
+    if (node.children) node.cluster_size = node.children.reduce(function(p, v) { return p + recurse(v); }, 0);
     if (!node.id) node.id = ++i;
     nodes.push(node);
-    return node.size;
+    return node.cluster_size;
   }
 
-  root.size = recurse(root);
+  root.cluster_size = recurse(root);
   return nodes;
 }
 
@@ -152,14 +152,14 @@ function update() {
       .style("cursor", "pointer");
 
   node.transition()
-      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.size) + 1; });
+      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.cluster_size) + 1; });
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
       .attr("class", "node")
       .attr("cx", function(d) { return xrange(d.x); })
       .attr("cy", function(d) { return yrange(d.y); })
-      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.size) + 1; })
+      .attr("r", function(d) { return d.children ? 1.5 : Math.sqrt(d.cluster_size) + 1; })
       .style("fill", color)
       .style("fill-opacity", function(d) { return d.children ? 0 : 0.6})
   // style originally from css, but for saving function, move to here
@@ -188,7 +188,7 @@ function tick() {
 // Color leaf nodes orange, and packages white or blue.
 function color(d) {
 //  return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : d.group;
+  return d._children ? "#3182bd" : d.children ? "#c6dbef" : d.allosteric == "allosteric" ? "blue" : "red";
 }
 
 // Toggle children on click.
