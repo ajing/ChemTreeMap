@@ -43,7 +43,6 @@ class TreeBuild:
         :return: void, the program will generate input file for the visualization.
         """
         # initial setting
-        self._RAPIDNJ_COMMAND = RAPIDNJ_COMMAND
         self._FILE_FORMAT = FILE_FORMAT
 
         # creating folders
@@ -121,14 +120,15 @@ class TreeBuild:
         print "finish writing phyli file"
         return filename
 
-    def run_rapidnj(self, distance_file):
+    @staticmethod
+    def run_rapidnj(distance_file):
         """
         run rapidnj program on distance_file
 
         :param distance_file: directory of distance file
         :return: newick string
         """
-        proc = subprocess.Popen([self._RAPIDNJ_COMMAND, distance_file, "-i", "pd"], stdout=subprocess.PIPE)
+        proc = subprocess.Popen([RAPIDNJ_COMMAND, distance_file, "-i", "pd"], stdout=subprocess.PIPE)
         newick = proc.stdout.read()
         return newick
 
@@ -150,7 +150,7 @@ class TreeBuild:
         :param size: parameter for the sfdp
         :return: new filename
         """
-        fmt= self._FILE_FORMAT + '_sfdp.gv'
+        fmt= FILE_FORMAT + '_sfdp.gv'
         newfilename = datetime.datetime.now().strftime(fmt)
         if os.path.isfile(newfilename):
             os.remove(newfilename)

@@ -77,10 +77,15 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
 
 
 if __name__ == "__main__":
+    TMP_FOLDER  = "./.tmp"
+
     input_file = "allo.txt"
     lig_dict = TreeBuild.parse_lig_file(input_file, "ligandid")
 
     lig_dict_center = LigandClusteringByClass(lig_dict, num_clusters = {"allosteric": 5, "competitive" : 3})
+
+    if not os.path.exists(TMP_FOLDER):
+        os.makedirs(TMP_FOLDER)
 
     distfile = TreeBuild.gen_dist_file(lig_dict, lambda mol: AllChem.GetMorganFingerprint(mol, 3))
     newick_o = TreeBuild.run_rapidnj(distfile)
