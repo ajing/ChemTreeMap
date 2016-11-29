@@ -1,0 +1,72 @@
+body {
+  font: 36px "Helvetica Neue";
+  overflow: hidden;
+  position: relative;
+}
+
+p {
+  position:relative;
+  top: 500px;
+  font-size:15px;
+}
+
+.molecule {
+  position:relative;
+  top: 500px;
+}
+
+.info{
+  position:absolute;
+  bottom: 0px;
+  cursor:pointer;
+  float:left;
+  z-index:10;
+}
+
+div.intgraph svg {
+  position: absolute;
+  width: 100%;
+  z-index:1;
+}
+
+#slider1{
+  width:50%;
+}
+
+#slider2{
+  width:50%;
+}
+
+#slider3{
+  width:50%;
+}
+
+#slider4{
+  width:50%;
+}
+
+#less, #more, #savepng, #savesvg{
+  padding:0;
+  margin:0 1px 0 1px;
+  width:50%; height:50%;
+  font-size:15px
+}
+
+.ui-slider .ui-slider-handle{
+    width:20px;
+    height:20px;
+    position:absolute;
+    border-style:none;
+}
+
+
+line.link {
+    stroke-opacity: 0.6;
+    stroke: #D3D3D3;
+    stroke-width: 5px;
+    transition: stroke-opacity 0.2s ease-in-out;
+    -webkit-transition: stroke-opacity 0.2s ease-in-out;
+    -moz-transition: stroke-opacity 0.2s ease-in-out;
+    -o-transition: stroke-opacity 0.2s ease-in-out;
+    -ms-transition: stroke-opacity 0.2s ease-in-out;
+}
