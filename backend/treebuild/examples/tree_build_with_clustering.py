@@ -21,6 +21,8 @@ from rdkit import DataStructs
 
 import numpy as np
 
+import os
+
 def SMILE2Matrix(smile_list):
     # To ECFP6
     def ToECFP(id_smile):
