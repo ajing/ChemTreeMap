@@ -90,7 +90,6 @@ def RecursiveUpdate(node, info_dict):
         node.update(info_dict[name])
     else:
         children = [RecursiveUpdate(c, info_dict) for c in node["children"]]
-        node["children"] = children
 
 
 if __name__ == "__main__":
@@ -118,6 +117,8 @@ if __name__ == "__main__":
     RecursiveUpdate(dot_dict, lig_dict)
     print "after:", dot_dict
 
-    WriteJSON(dot_dict, outfile=output_file, write_type="w")
+    fileobj = open(output_file, "w")
+    fileobj.write(json.dumps(dot_dict))
+    
     # make image file
     TreeBuild.make_structures_for_smiles(lig_dict)
