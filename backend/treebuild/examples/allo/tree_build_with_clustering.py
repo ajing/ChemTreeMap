@@ -63,15 +63,15 @@ def LigandClusteringByClass(lig_dict, class_col = "allosteric", smile_col = "Can
         smile_list = [ [lig_name, lig_dict[lig_name][smile_col]] for lig_name in lig_dict.keys() if lig_dict[lig_name][class_col] == e_class]
         ids, fp_mat = SMILE2Matrix(smile_list)
         kcluster = KMeans(n_clusters = num_clusters[e_class]).fit(fp_mat)
-        print "cluster labels:", kcluster.labels_
-        print "cluster ids:", ids
+        #print "cluster labels:", kcluster.labels_
+        #print "cluster ids:", ids
 
         for c_idx in range(kcluster.cluster_centers_.shape[0]):
             dist = (fp_mat - kcluster.cluster_centers_[c_idx,])**2
             dist = np.sum(dist, axis=1)
-            print "dist:", dist
+            #print "dist:", dist
             m_idx = np.argmin(dist)
-            print "m_idx", m_idx
+            #print "m_idx", m_idx
             lig_dict_center[ids[m_idx]] = lig_dict[ids[m_idx]]
             lig_dict_center[ids[m_idx]]["cluster_size"] = sum(kcluster.labels_ == c_idx)
 
@@ -113,10 +113,10 @@ if __name__ == "__main__":
     dot_out = TreeBuild.sfdp_dot(dot_inf, 10)
     dot_dict = TreeBuild.dot2dict(dot_out)
 
-    print lig_dict
-    print dot_dict
+    #print lig_dict
+    #print dot_dict
     RecursiveUpdate(dot_dict, lig_dict_center)
-    print "after:", dot_dict
+    #print "after:", dot_dict
 
     fileobj = open(output_file, "w")
     fileobj.write(json.dumps(dot_dict))
