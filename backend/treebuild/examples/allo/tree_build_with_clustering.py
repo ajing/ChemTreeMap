@@ -109,7 +109,7 @@ if __name__ == "__main__":
     lig_dict = TreeBuild.parse_lig_file(input_file, "ligandid")
 
     lig_dict_center = LigandClusteringByClass(
-        lig_dict, num_clusters={"allosteric": 4000, "competitive": 3000})
+        lig_dict, num_clusters={"1": 4000, "2": 3000})
 
     if not os.path.exists(TMP_FOLDER):
         os.makedirs(TMP_FOLDER)
