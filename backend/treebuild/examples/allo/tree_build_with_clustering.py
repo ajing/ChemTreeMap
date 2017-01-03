@@ -104,12 +104,12 @@ if __name__ == "__main__":
     TMP_FOLDER = "./.tmp"
     IMG_DIR = "./images/"
 
-    input_file = "allo.txt"
-    output_file = "allo.json"
+    input_file = "allo_comp.txt"
+    output_file = "allo_comp.json"
     lig_dict = TreeBuild.parse_lig_file(input_file, "ligandid")
 
     lig_dict_center = LigandClusteringByClass(
-        lig_dict, num_clusters={"allosteric": 5, "competitive": 3})
+        lig_dict, num_clusters={"allosteric": 4000, "competitive": 3000})
 
     if not os.path.exists(TMP_FOLDER):
         os.makedirs(TMP_FOLDER)
